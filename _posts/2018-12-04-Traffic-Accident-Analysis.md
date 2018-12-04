@@ -8,7 +8,7 @@ date: "04 December 2018"
 
 
 
-It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The purpose of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
+It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The objective of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
 
 ### Preprocessing
 
@@ -122,7 +122,7 @@ accidents_$Paallksel = NULL
 
 ### Missing values
 
-While analyzing the data some missing values were located. The missing values can be found in the variables "Tie", "Aosa", "Ajr" and "Lampatila". The first ones wont cause any problems since we're not going to use them, however the latter one caught my interest and there would be an opportunity to investigate it more. To do this we could use some imputation methods to fill the missing values, I'll quickly introduce here the KNN method which is found to be one of the most efficient methods.
+While analyzing the data some missing values were located. The missing values can be found in the variables "Tie", "Aosa", "Ajr" and "Lampatila". The first ones wont cause any problems since we're not going to use them however, the latter one caught my interest and there would be an opportunity to investigate it more. To do this we could use some imputation methods to fill the missing values, I'll quickly introduce here the KNN method which is found to be one of the most efficient methods.
 
 ``` r
 # Count NA's
@@ -220,7 +220,7 @@ ggplot(death_y, aes(x = as.factor(Vuosi), y = Kuolleet)) +
 
 ### Number of deaths by weekday
 
-We can see that the deaths are more commmon on the weekends (Friday and Saturday). This doesn't come as a surprise since on the weekends there's more likely also alcohol involved. Too bad we don't have access on that kind of data to investigate it. On the contrary the amount of fatal accidents seems to be the lowest on Sundays.
+We can see that the deaths are more common on the weekends (Friday and Saturday). This doesn’t come as a surprise since on the weekends there’s more likely also alcohol involved. Too bad we don’t have access to that kind of data to investigate it. On the contrary, the amount of fatal accidents seems to be the lowest on Sundays.
 
 ``` r
 # Number of deaths by weekday
@@ -243,7 +243,7 @@ ggplot(death_weekday, aes(x = as.factor(Vkpv), y = Kuolleet)) +
 
 ### Number of deaths hourly
 
-Most of the deaths occur between 12-18 and the highest amount at 16. This might be due to the fact that large number of people are leaving work around that time and the traffic periods are at their peak.
+Most of the deaths occur between 12-18 and the highest amount at 16. This might be due to the fact that a large number of people are leaving work around that time and the traffic periods are at their peak.
 
 ``` r
 death_hour <- accidents_ %>%
@@ -266,7 +266,7 @@ ggplot(death_hour, aes(x = as.factor(Tunti), y = Kuolleet)) +
 
 ### Number of deaths in largest cities of Finland
 
-It looks like the most deaths occur in Helsinki and Oulu. Helsinki doesn't come as a surprise since it's the capital of Finland and has the most population. Oulu on the otherhand is only the 4th most populated city and still it has roughly about 45% difference compared to other cities.
+It looks like the most deaths occur in Helsinki and Oulu. Helsinki doesn’t come as a surprise since it’s the capital of Finland and has the most population. Oulu, on the other hand, is only the 4th most populated city and still, it has roughly about 45% difference compared to other cities.
 
 ``` r
 # Number of deaths by largest cities in Finland
@@ -371,7 +371,7 @@ ggplot(death_wc, aes(x = as.factor(Talvhoitlk), y = Kuolleet)) +
 
 ### Number of injuries depending on Winter maintenance
 
-The plot above was something that really caught my attention. I find it pretty disturbing that we're losing lives due to " bargaining ". Here im plotting the same graph but instead of all outcomes that lead dead, we're looking at all the accidents that lead to injuries. Again we can see that the roads that aren't maintained are causing lots of potential harm and have a substantial risk of fatality.
+The plot above was something that really caught my attention. I find it pretty disturbing that we’re losing lives due to “ bargaining “. Here I'm plotting the same graph but instead of all outcomes that lead dead, we’re looking at all the accidents that lead to injuries. Again we can see that the roads that aren’t maintained are causing lots of potential harm and have a substantial risk of fatality.
 
 ``` r
 acc_wc <- accidents_ %>%
@@ -393,7 +393,7 @@ ggplot(acc_wc, aes(x = as.factor(Talvhoitlk), y = acc)) +
 
 ### Number of deaths monthly
 
-Although the common assumption would be that most of the accidents that lead to death would occur in the Winter season, however this doens't seem to be the case. The graph displays that most of the deaths actually happen during summer time. Perhaps the accidents are more serious in the summer and that's why the consequences are worse.
+Although the common assumption would be that most of the accidents that lead to death would occur in the Winter season, however, this doesn't seem to be the case. The graph displays that most of the deaths actually happen during summer time. Perhaps the accidents are more serious in the summer and that’s why the consequences are worse.
 
 ``` r
 accidents_$Paiva = as.yearmon(accidents_$Paiva, format = "%d.%m.%Y")
@@ -473,7 +473,7 @@ plot_ly(inj_yearlymon, x = ~ YearMonth, y = ~ Loukkaant, type = "scatter",
 
 ### Number of accidents monthly
 
-The good news is that it seems that the number of accidents has been slowly declining. You might also detect a seasonal behaviour within the numbers. April typically has the least number of accidents, while November and December is the worst month for accidents. This is rather different from the previous plot where we looked at the number of actual fatalities/deaths. The deaths were more common in the summer time. So the time series appears to be composed of a trend and cyclical/seasonal component.
+The good news is that it seems that the number of accidents has been slowly declining. You might also detect seasonal behavior within the numbers. April typically has the least number of accidents, while November and December is the worst month for accidents. This is rather different from the previous plot where we looked at the number of actual fatalities/deaths. The deaths were more common in the summertime. So the time series appears to be composed of a trend and cyclical/seasonal component.
 
 ``` r
 acc_yearlymon <- accidents_ %>%
@@ -552,8 +552,7 @@ plot_ly_decomp(decomp_accs_ts) %>%
 
 ### ARIMA
 
-While the plot illustrates the seasonal behaviour and trend within the data, if we want to forecast the number of accidents in 2019, we’ll employ another form of time series decomposition called Autoregressive Integrated Moving 
-Average (ARIMA).
+While the plot illustrates the seasonal behavior and trend within the data, if we want to forecast the number of accidents in 2019, we’ll apply another form of time series decomposition called Autoregressive Integrated Moving Average (ARIMA).
 
 Key concepts behind ARIMA.
 
@@ -563,7 +562,7 @@ A stationary time series is one whose statistical properties such as mean, varia
 
 ### Autoregressive Models
 
-Autoregressive models and processes operate under the premise that past values have an effect on current values. In autoregressive models the output is a linear combination of its p previous (or lagged) values, together with a stochastic term (e.g. white noise).
+Autoregressive models and processes operate under the assumption that past values have an effect on current values. In autoregressive models, the output is a linear combination of its p previous (or lagged) values, together with a stochastic term (e.g. white noise).
 
 $$ 
 y_{t} = \phi_{1} y_{t-1} + ... + \phi_{p} y_{t-p} + \epsilon_{t}
@@ -640,4 +639,4 @@ plot_ly(acc_yearlymon, x = ~ YearMonth, y = ~ acc, type = "scatter", mode = "lin
 
 ### Summary
 
-We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Unfortunately, we cannot do this until the 2018 data becomes available.
+We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Sadly, we cannot do this until the 2018 data becomes available.
