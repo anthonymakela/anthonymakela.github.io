@@ -1,11 +1,7 @@
 ---
-title: "A Road Incident Model Analysis"
-excerpt: "This post looks at road accidents in the UK between 2005 and 2015 and investigates whether we can forecast the number of accidents in 2016."
+title: "Traffic Accident Analysis"
+excerpt: "This post looks at road accidents in Finland between 2008 and 2017 and investigates whether we can forecast the number of accidents in 2018."
 layout: single
-header:
-  overlay_image: road_overlay.jpg
-  overlay_filter: 0.4
-  caption: ""
 categories:
   - data science
   - general
@@ -16,13 +12,13 @@ tags:
   - time series
   - forecast
   - R
-author: "David Sheehan"
-date: "17 December 2016"
+author: "Anthony Makela"
+date: "04 December 2018"
 ---
 
 
 
-As my father once told me: 'If you don't get the job, at least get a blog post'. This post was motivated by a task I was given for a data scientist job, which involved predicting road accidents in the UK. I won't focus on the specific task (that would encourage cheating), but instead will explore the rich dataset and use ARIMA to predict the number of road accidents in 2016 (as always, [the full code is posted on github](https://github.com/dashee87/blogScripts/blob/master/R/2016-12-18-A-Road-Incident-Model-Analysis.R)).
+It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The purpose of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
 
 ### Getting the Data
 
