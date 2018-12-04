@@ -153,7 +153,7 @@ show(na_count)
 The assumption behind using KNN for missing values is that a point value can be approximated by the values of the  $$ {k} $$ points that are closest to it, based on other variables. Essentially, two vectors that are far apart based on the distance function are less likely than two closely situated vectors to have a similar output value. The most frequently used distance metrics are the Euclidean distance metric or the Pearson correlation metric. Let $$ {X}_{i}$$ , $$ {i} $$ = 1, …, $$ {n} $$ be independent and identically distributed (iid) with mean $$ {µ} $$ $$ {X} $$ and standard deviation $$ {σ} $$ $$ {X} $$, and $$ {Y}_{i} $$, $$ {i} $$ = 1, …, $$ {n} $$ be iid with mean $$ {µ} $$ $$ {Y} $$ and standard deviation $$ {σ} $$ $$ {Y} $$. The Euclidean distance between the two sample vectors $$ {x} $$ = $$ x_{i} $$ 1, …, $$ {x} $$ $$ {n} $$ and $$ {y} $$ = $$ {y} $$ 1, …, $$ {y} $$ $${n} $$ is defined as follows:
 
 \begin{equation*}
-{\mathbf{d}}_{\mathbf{E}}(\mathbf{x, y}) = \sqrt{\sum^{N}_{i=1}(\mathbf{x}_{i} - \mathbf{y}_{i})^{2}}
+{{d}}_{{E}}({x, y}) = \sqrt{\sum^{N}_{i=1}({x}_{i} - {y}_{i})^{2}}
 \end{equation*}
 
 <iframe  src="https://plot.ly/~dashee/13/hourly_accs_0515.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
