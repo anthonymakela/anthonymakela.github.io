@@ -156,7 +156,7 @@ The assumption behind using KNN for missing values is that a point value can be 
 {{d}}_{{E}}({x, y}) = \sqrt{\sum^{N}_{i=1}({x}_{i} - {y}_{i})^{2}}
 \end{equation*}
 
-<iframe  src="https://plot.ly/~dashee/13/hourly_accs_0515.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+<iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
 There's a clear distinction between the weekend and weekdays (though Friday is a sort of hybrid). The weekday rush hour peaks are apparent, while the weekend hits its maximum at around midday, with a noticeable increase in the early morning compared to weekdays. Switching gears, let's turn our attention to the longer term and plot the number of road accidents per month from 2005-2015.
 
