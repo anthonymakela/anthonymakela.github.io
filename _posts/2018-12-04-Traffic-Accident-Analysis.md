@@ -2,16 +2,6 @@
 title: "Traffic Accident Analysis"
 excerpt: "This post looks at road accidents in Finland between 2008 and 2017 and investigates whether we can forecast the number of accidents in 2018."
 layout: single
-categories:
-  - data science
-  - general
-tags:
-  - road
-  - accident
-  - ARIMA
-  - time series
-  - forecast
-  - R
 author: "Anthony Makela"
 date: "04 December 2018"
 ---
