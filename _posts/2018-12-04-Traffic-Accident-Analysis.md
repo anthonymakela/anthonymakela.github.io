@@ -146,6 +146,10 @@ The assumption behind using KNN for missing values is that a point value can be 
 {\mathbf{d}}_{\mathbf{E}}(\mathbf{x, y}) = \sqrt{\sum^{N}_{i=1}(\mathbf{x}_{i} - \mathbf{y}_{i})^{2}}
 \end{equation*}
 
+$$ 
+{d}_{E} ({x, y}) = + ... + \sqrt{\sum^{N}_{i=1}({x}_{i} - {y}_{i})^{2})
+$$
+
 ``` r
 # knnImputation()
 ```
