@@ -7,20 +7,20 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "anthonymakela.github.io"
+title                    : "dashee87.github.io"
 title_separator          : "-"
-name                     : "Anthony Makela"
-description              : ""
-url                      : "https://anthonymakela.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : "David Sheehan"
+description              : "My personal blog to explore the world of data science."
+url                      : "https://dashee87.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "anthonymakela/anthonymakela.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "dashee87/dashee87.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : disqus # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
-    shortname            : anthonymakela # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : dashee87 # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -77,10 +77,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Anthony Makela"
+  name             : "David Sheehan"
   avatar           : "bio-photo.jpg"
-  bio              : "Data scientist"
-  location         : "Helsinki,"
+  bio              : "Data scientist interested in sports, politics and Simpsons references"
+  location         : "London via Cork"
   email            : "davidfsheehan87@gmail.com"
   uri              :
   bitbucket        :
