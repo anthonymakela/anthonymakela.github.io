@@ -207,6 +207,99 @@ ggplot(cause_, aes(x = as.factor(Onluokka), y = Kuolleet)) +
 
 </div>
 
+### Number of deaths yearly
+
+Here we can observe that the most of the deaths happened in 2011. What might be the cause of this?
+
+``` r
+# Number of deaths by year
+death_y <- accidents_ %>%
+    group_by(Vuosi) %>%
+    summarize(Kuolleet = sum(Kuolleet))
+
+ggplot(death_y, aes(x = as.factor(Vuosi), y = Kuolleet)) +
+  geom_line(size = .5, alpha = 0.7, color = "mediumseagreen", group = 1) + 
+  geom_point(size = 0.8) +
+  labs(x = "Vuosi", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_y.png)
+
+</div>
+
+### Number of deaths by weekday
+
+We can see that the deaths are more commmon on the weekends (Friday and Saturday). This doesn't come as a surprise since on the weekends there's more likely also alcohol involved. Too bad we don't have access on that kind of data to investigate it. On the contrary the amount of fatal accidents seems to be the lowest on Sundays.
+
+``` r
+# Number of deaths by weekday
+death_weekday <- accidents_ %>%
+    group_by(Vkpv) %>%
+    summarize(Kuolleet = sum(Kuolleet))
+
+death_weekday = death_weekday[-8, ]
+
+ggplot(death_weekday, aes(x = as.factor(Vkpv), y = Kuolleet)) +
+  geom_bar(stat="identity", color="blue", fill=rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x="Paivamaara", y="Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_weekday.png)
+
+</div>
+
+### Number of deaths hourly
+
+Most of the deaths occur between 12-18 and the highest amount at 16. This might be due to the fact that large number of people are leaving work around that time and the traffic periods are at their peak.
+
+``` r
+death_hour <- accidents_ %>%
+  group_by(Tunti) %>%
+  summarize(Kuolleet = sum(Kuolleet)) %>%
+  arrange(desc(Kuolleet))
+
+death_hour = death_hour[-nrow(death_hour), ]
+
+ggplot(death_hour, aes(x = as.factor(Tunti), y = Kuolleet)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Tunti", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_hour.png)
+
+</div>
+
+### Number of deaths in largest cities of Finland
+
+It looks like the most deaths occur in Helsinki and Oulu. Helsinki doesn't come as a surprise since it's the capital of Finland and has the most population. Oulu on the otherhand is only the 4th most populated city and still it has roughly about 45% difference compared to other cities.
+
+``` r
+# Number of deaths by largest cities in Finland
+largest_cities <- c('Helsinki', 'Espoo', 'Vantaa', 'Tampere', 'Turku', 'Oulu', 'Jyvaskyla', 'Lahti')
+
+death_c <- accidents_ %>%
+  filter(Kuntasel %in% largest_cities)  %>%
+  group_by(Kuntasel) %>%
+  summarize(Kuolleet = sum(Kuolleet)) %>%
+  arrange(desc(Kuolleet))
+
+ggplot(death_c, aes(x = as.factor(Kuntasel), y = Kuolleet)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Kaupungit", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_city.png)
+
+</div>
+
 <iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
 There's a clear distinction between the weekend and weekdays (though Friday is a sort of hybrid). The weekday rush hour peaks are apparent, while the weekend hits its maximum at around midday, with a noticeable increase in the early morning compared to weekdays. Switching gears, let's turn our attention to the longer term and plot the number of road accidents per month from 2005-2015.
