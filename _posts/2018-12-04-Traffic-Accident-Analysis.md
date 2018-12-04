@@ -10,9 +10,9 @@ date: "04 December 2018"
 
 It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The purpose of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
 
-### Getting the data
+### Preprocessing
 
-If an injury occurs in a road accident that was reported to the police, they produce a detailed report (age/sex of casualties, vehicle/road types, etc). These reports, going back to 2005, are collated and compiled within multiple csvs, which are freely available online ([here](https://data.gov.uk/dataset/road-accidents-safety-data)). They are well formatted: missing data is marked; tidy columns with relatively intuitive names. The csvs are quite big and combined in zip files; you'll need to download them to your computer and then extract the csvs. Note that the 2015 must be downloaded separately, while the 2005-2014 data is available under the 2014 tab. Okay, so let's get started.
+All of the data used in this analysis is from https://www.avoindata.fi. They have some really interesting data that they make available to public.
 
 ``` r
 # Libraries
@@ -36,7 +36,7 @@ suppressWarnings(suppressMessages(library(IRdisplay)))
 options(repr.plot.width = 6, repr.plot.height = 4)
 ```
 
-We now have three datasets: Accidents (time and location of accident, road type, weather conditions, etc); Casualties (age, sex, driver/passenger status, severity, etc); Vehicle (type, engine capacity, etc). We'll start off with some minor exploration of the data.
+
 
 ``` r
 # Read the data(2008-2017)
