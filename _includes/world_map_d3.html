@@ -1,0 +1,648 @@
+<html>
+
+<head>
+
+<style>
+ 
+/*  
+  .path .active {
+  stroke: #FFA500;
+  stroke-width: 5px;
+}*/
+  
+/*  .names {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  } */
+
+    /* Tooltip CSS */
+    .d3-tip {
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 0.8em;
+    font-family:"avenir next", Arial, sans-serif;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFA500;
+    border-radius: 1px;
+    pointer-events: none;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {      
+      box-sizing: border-box;
+      display: inline;
+      font-size: 8px;
+      width: 100%;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      pointer-events: none;
+      
+    }
+
+    /* Northward tooltips */
+    .d3-tip.n:after {
+      content: "\25BC";
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+      text-align: center;
+    }
+
+    /* Eastward tooltips */
+    .d3-tip.e:after {
+      content: "\25C0";
+      margin: -4px 0 0 0;
+      top: 50%;
+      left: -8px;
+    }
+
+    /* Southward tooltips */
+    .d3-tip.s:after {
+      content: "\25B2";
+      margin: 0 0 1px 0;
+      top: -8px;
+      left: 0;
+      text-align: center;
+    }
+
+    /* Westward tooltips */
+    .d3-tip.w:after {
+      content: "\25B6";
+      margin: -4px 0 0 -1px;
+      top: 50%;
+      left: 100%;
+    }
+
+/*    text{
+      pointer-events:none;
+    }*/
+
+    .details{
+      color:white;
+    }
+  
+    svg {
+      /*border: 2px solid black;*/
+      background-color: white;
+    }
+
+</style>
+</head>
+
+<body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+  <div class="clearBoth" id="football_map_options">
+<input type="radio" name="d3_map_choice" value="adv" checked="checked" onclick="update_map(this.value);">Home Advantage 
+<input type="radio" name="d3_map_choice"  value="goals" onclick="update_map(this.value)">Goals
+</div>
+    <svg id="world_map"></svg>
+
+
+  
+  
+  
+
+    <script >
+        ;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module with d3 as a dependency.
+    define([
+      'd3-collection',
+      'd3-selection'
+    ], factory)
+  } else if (typeof module === 'object' && module.exports) {
+    /* eslint-disable global-require */
+    // CommonJS
+    var d3Collection = require('d3-collection'),
+        d3Selection = require('d3-selection')
+    module.exports = factory(d3Collection, d3Selection)
+    /* eslint-enable global-require */
+  } else {
+    // Browser global.
+    var d3 = root.d3
+    // eslint-disable-next-line no-param-reassign
+    root.d3.tip = factory(d3, d3)
+  }
+}(this, function(d3Collection, d3Selection) {
+  // Public - contructs a new tooltip
+  //
+  // Returns a tip
+  return function() {
+    var direction = d3TipDirection,
+        offset    = d3TipOffset,
+        html      = d3TipHTML,
+        node      = initNode(),
+        svg       = null,
+        point     = null,
+        target    = null
+
+    function tip(vis) {
+      svg = getSVGNode(vis)
+      if (!svg) return
+      point = svg.createSVGPoint()
+      document.body.appendChild(node)
+    }
+
+    // Public - show the tooltip on the screen
+    //
+    // Returns a tip
+    tip.show = function() {
+      var args = Array.prototype.slice.call(arguments)
+      if (args[args.length - 1] instanceof SVGElement) target = args.pop()
+
+      var content = html.apply(this, args),
+          poffset = offset.apply(this, args),
+          dir     = direction.apply(this, args),
+          nodel   = getNodeEl(),
+          i       = directions.length,
+          coords,
+          scrollTop  = document.documentElement.scrollTop ||
+            document.body.scrollTop,
+          scrollLeft = document.documentElement.scrollLeft ||
+            document.body.scrollLeft
+
+      nodel.html(content)
+        .style('opacity', 1).style('pointer-events', 'all')
+
+      while (i--) nodel.classed(directions[i], false)
+      coords = directionCallbacks.get(dir).apply(this)
+      nodel.classed(dir, true)
+        .style('top', (coords.top + poffset[0]) + scrollTop + 'px')
+        .style('left', (coords.left + poffset[1]) + scrollLeft + 'px')
+
+      return tip
+    }
+
+    // Public - hide the tooltip
+    //
+    // Returns a tip
+    tip.hide = function() {
+      var nodel = getNodeEl()
+      nodel.style('opacity', 0).style('pointer-events', 'none')
+      return tip
+    }
+
+    // Public: Proxy attr calls to the d3 tip container.
+    // Sets or gets attribute value.
+    //
+    // n - name of the attribute
+    // v - value of the attribute
+    //
+    // Returns tip or attribute value
+    // eslint-disable-next-line no-unused-vars
+    tip.attr = function(n, v) {
+      if (arguments.length < 2 && typeof n === 'string') {
+        return getNodeEl().attr(n)
+      }
+
+      var args =  Array.prototype.slice.call(arguments)
+      d3Selection.selection.prototype.attr.apply(getNodeEl(), args)
+      return tip
+    }
+
+    // Public: Proxy style calls to the d3 tip container.
+    // Sets or gets a style value.
+    //
+    // n - name of the property
+    // v - value of the property
+    //
+    // Returns tip or style property value
+    // eslint-disable-next-line no-unused-vars
+    tip.style = function(n, v) {
+      if (arguments.length < 2 && typeof n === 'string') {
+        return getNodeEl().style(n)
+      }
+
+      var args = Array.prototype.slice.call(arguments)
+      d3Selection.selection.prototype.style.apply(getNodeEl(), args)
+      return tip
+    }
+
+    // Public: Set or get the direction of the tooltip
+    //
+    // v - One of n(north), s(south), e(east), or w(west), nw(northwest),
+    //     sw(southwest), ne(northeast) or se(southeast)
+    //
+    // Returns tip or direction
+    tip.direction = function(v) {
+      if (!arguments.length) return direction
+      direction = v == null ? v : functor(v)
+
+      return tip
+    }
+
+    // Public: Sets or gets the offset of the tip
+    //
+    // v - Array of [x, y] offset
+    //
+    // Returns offset or
+    tip.offset = function(v) {
+      if (!arguments.length) return offset
+      offset = v == null ? v : functor(v)
+
+      return tip
+    }
+
+    // Public: sets or gets the html value of the tooltip
+    //
+    // v - String value of the tip
+    //
+    // Returns html value or tip
+    tip.html = function(v) {
+      if (!arguments.length) return html
+      html = v == null ? v : functor(v)
+
+      return tip
+    }
+
+    // Public: destroys the tooltip and removes it from the DOM
+    //
+    // Returns a tip
+    tip.destroy = function() {
+      if (node) {
+        getNodeEl().remove()
+        node = null
+      }
+      return tip
+    }
+
+    function d3TipDirection() { return 'n' }
+    function d3TipOffset() { return [0, 0] }
+    function d3TipHTML() { return ' ' }
+
+    var directionCallbacks = d3Collection.map({
+          n:  directionNorth,
+          s:  directionSouth,
+          e:  directionEast,
+          w:  directionWest,
+          nw: directionNorthWest,
+          ne: directionNorthEast,
+          sw: directionSouthWest,
+          se: directionSouthEast
+        }),
+        directions = directionCallbacks.keys()
+
+    function directionNorth() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.n.y - node.offsetHeight,
+        left: bbox.n.x - node.offsetWidth / 2
+      }
+    }
+
+    function directionSouth() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.s.y,
+        left: bbox.s.x - node.offsetWidth / 2
+      }
+    }
+
+    function directionEast() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.e.y - node.offsetHeight / 2,
+        left: bbox.e.x
+      }
+    }
+
+    function directionWest() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.w.y - node.offsetHeight / 2,
+        left: bbox.w.x - node.offsetWidth
+      }
+    }
+
+    function directionNorthWest() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.nw.y - node.offsetHeight,
+        left: bbox.nw.x - node.offsetWidth
+      }
+    }
+
+    function directionNorthEast() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.ne.y - node.offsetHeight,
+        left: bbox.ne.x
+      }
+    }
+
+    function directionSouthWest() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.sw.y,
+        left: bbox.sw.x - node.offsetWidth
+      }
+    }
+
+    function directionSouthEast() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.se.y,
+        left: bbox.se.x
+      }
+    }
+
+    function initNode() {
+      var div = d3Selection.select(document.createElement('div'))
+      div
+        .style('position', 'absolute')
+        .style('top', 0)
+        .style('opacity', 0)
+        .style('pointer-events', 'none')
+        .style('box-sizing', 'border-box')
+
+      return div.node()
+    }
+
+    function getSVGNode(element) {
+      var svgNode = element.node()
+      if (!svgNode) return null
+      if (svgNode.tagName.toLowerCase() === 'svg') return svgNode
+      return svgNode.ownerSVGElement
+    }
+
+    function getNodeEl() {
+      if (node == null) {
+        node = initNode()
+        // re-add node to DOM
+        document.body.appendChild(node)
+      }
+      return d3Selection.select(node)
+    }
+
+    // Private - gets the screen coordinates of a shape
+    //
+    // Given a shape on the screen, will return an SVGPoint for the directions
+    // n(north), s(south), e(east), w(west), ne(northeast), se(southeast),
+    // nw(northwest), sw(southwest).
+    //
+    //    +-+-+
+    //    |   |
+    //    +   +
+    //    |   |
+    //    +-+-+
+    //
+    // Returns an Object {n, s, e, w, nw, sw, ne, se}
+    function getScreenBBox() {
+      var targetel   = target || d3Selection.event.target
+
+      while (targetel.getScreenCTM == null && targetel.parentNode == null) {
+        targetel = targetel.parentNode
+      }
+
+      var bbox       = {},
+          matrix     = targetel.getScreenCTM(),
+          tbbox      = targetel.getBBox(),
+          width      = tbbox.width,
+          height     = tbbox.height,
+          x          = tbbox.x,
+          y          = tbbox.y
+
+      point.x = x
+      point.y = y
+      bbox.nw = point.matrixTransform(matrix)
+      point.x += width
+      bbox.ne = point.matrixTransform(matrix)
+      point.y += height
+      bbox.se = point.matrixTransform(matrix)
+      point.x -= width
+      bbox.sw = point.matrixTransform(matrix)
+      point.y -= height / 2
+      bbox.w = point.matrixTransform(matrix)
+      point.x += width
+      bbox.e = point.matrixTransform(matrix)
+      point.x -= width / 2
+      point.y -= height / 2
+      bbox.n = point.matrixTransform(matrix)
+      point.y += height
+      bbox.s = point.matrixTransform(matrix)
+
+      return bbox
+    }
+
+    // Private - replace D3JS 3.X d3.functor() function
+    function functor(v) {
+      return typeof v === 'function' ? v : function() {
+        return v
+      }
+    }
+
+    return tip
+  }
+// eslint-disable-next-line semi
+}));
+
+
+var format = d3.format(",");
+
+var s = 1,
+    centered;
+
+// Set tooltips
+var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0]);
+
+
+var margin = {top: 0, right: 0, bottom: 0, left: 0},
+            width = 900 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+var path = d3.geoPath();
+
+var svg = d3.select("#world_map")
+   //         .on("click", function() {
+              //alert("rect");
+              //d3.event.stopPropagation();
+    //        })
+            .attr("width", width)
+            .attr("height", height);
+
+svg.append("rect")
+    .attr("class", "map_background")
+    .attr("width", width)
+    .attr("height", height)
+    .style("fill", "white")
+    .on("click", clicked);
+
+var projection = d3.geoEquirectangular()
+                   .scale(145)
+                  .translate( [width / 2, 0.55*height]);
+
+var path = d3.geoPath().projection(projection);
+
+svg.call(tip);
+
+var g = svg.append("g")
+            .attr('class', 'map');
+
+var map_instructions = svg.append("text")
+                 .attr("x", width*0.5)
+                 .attr("y", height*0.98)
+                 .attr("id", "map_instructions")
+                 .text("Click on country to zoom. Click on background to reset view.")
+                 .attr("font-family", "sans-serif")
+                 .attr("font-size", "0.7em")
+                 .attr("fill", "black");
+
+function update_map(map_choice){
+
+//  svg.selectAll("*").remove();
+  
+  var adv_map = map_choice=='adv';
+  
+  if(adv_map){
+  var color = d3.scaleThreshold()
+  .domain([-0.6,-0.5,-0.4,-0.3,-0.2,-0.1,
+           0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.9,1.1, 1.3])
+    .range(["rgb(255,0, 0)", "rgb(255,30,30)", "rgb(255,60,60)", "rgb(255,90,90)", "rgb(255,120,120)", "rgb(255,170,170)",
+            "rgb(255,220,220)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)","rgb(0,35,102)"]);
+  }else{
+      var color = d3.scaleThreshold()
+          .domain([1.7,1.9,2.1,2.3,2.5,2.8,3.1,3.4,3.7,4])
+    .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
+  }
+queue()
+    .defer(d3.json, "https://raw.githubusercontent.com/dashee87/dashee87.github.io/master/_includes/world_topo.json")
+    .defer(d3.csv, "https://raw.githubusercontent.com/dashee87/dashee87.github.io/master/_includes/home_advantage.csv")
+    .await(ready);
+
+
+function ready(error, data, country_info) {
+  if(error) throw error
+  var metric = {},
+      ByRank = {},
+      ByLeague = {},
+      overlay_choice;
+  country_info.forEach(function(d) { 
+    if(adv_map){
+      overlay_choice = "Home Advantage Score";
+    metric[d.countryCode] = d.home_advantage_score;
+    ByRank[d.countryCode] = parseInt(d.home_adv_rank)+1;
+    }else{
+      overlay_choice = "Average Goals";
+    metric[d.countryCode] = d.avg_goals;
+    ByRank[d.countryCode] = parseInt(d.avg_goals_rank)+1;
+    }
+    ByLeague[d.countryCode] = d.league;
+  
+  });
+
+  data.objects.countries.geometries.forEach(function(d) { 
+      if(typeof metric[d.properties.countryCode] == 'undefined'){
+       // alert(d.properties.countryCode);
+        metric[d.properties.countryCode] = "N/A";
+        ByRank[d.properties.countryCode] = "N/A";
+      ByLeague[d.properties.countryCode] = "N/A";}
+    d.avg_goals = metric[d.properties.countryCode];});
+
+  d3.selectAll(".countries")
+    .remove();
+  
+  g.append("g")
+    .attr("class", "countries")
+    .selectAll("path")
+    .data(topojson.feature(data, data.objects.countries).features)
+    .enter().append("path")
+      .attr("d", path)
+      .style("fill", null)
+      .style("fill", function(d) {
+    return metric[d.properties.countryCode]=="N/A" ? "gray" : color(metric[d.properties.countryCode]); })
+      .style('stroke', 'white')
+      .style('stroke-width', 1.5)
+      .style("opacity",0.8)
+      // tooltips
+        .style("stroke","white")
+        .style('stroke-width', 0.3)
+        .on("click", clicked)
+        .on('mouseover',function(d){
+          tip.html(function(d) {
+              return "<strong>Country: </strong><span class='details'>" + d.properties.country + "<br></span>" + "<strong>League: </strong><span class='details'>" + ByLeague[d.properties.countryCode] +"<br></span><strong>"+overlay_choice+": </strong><span class='details'>" + metric[d.properties.countryCode] + "<br></span>" + "<strong>Rank: </strong><span class='details'>" + ByRank[d.properties.countryCode];
+            })
+              .show(d);
+          d3.select(this)
+            .style("opacity", 1)
+        //    .style("stroke","white")
+            .style("stroke-width",3.0/parseFloat(Math.pow(s,1.1)));
+        })
+        .on('mouseout', function(d){
+          tip.hide(d);
+
+          d3.select(this)
+            .style("opacity", 0.8)
+            .style("stroke","white")
+            .style("stroke-width",0.3);
+        });
+
+  svg.append("path")
+      .datum(topojson.mesh(data, data.objects.countries.geometries, function(a, b) { return a !== b; }))
+       // .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
+      .attr("class", "names")
+      .attr("d", path);
+}
+
+}
+
+
+
+function clicked(d) {
+  var x, y, k;
+   //alert(path.centroid(d));
+
+  if (d && centered !== d) {
+  //  alert("if");
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    s = s==1 ? 3: s;
+    k = s;
+    
+    centered = d;
+     map_instructions.attr("fill", "none");
+  } else if(centered == d){
+   // alert("ifelse");
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    s = s==3 ? 6: 3;
+    k =  s;
+    centered = d;    
+            }else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    s = 1;
+    centered = null;
+    map_instructions.attr("fill", "black");
+  }
+
+ // g.selectAll("path")
+   //   .classed("active", centered && function(d) { 
+    //alert("here");
+    //alert(d === centered);
+  //  return d === centered; });
+
+  
+  g.transition()
+      .duration(1250)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+}
+
+update_map("adv");
+    </script>
+
+
+</body>
+
+</html>
+ 

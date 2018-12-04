@@ -1,0 +1,2026 @@
+<html >
+  
+  <head>  
+  
+  
+  
+  <style>
+       
+    @-moz-document url-prefix() { 
+#visualisation{
+    height: 500px;
+}
+}
+    
+          .axis path, .axis line
+        {
+            fill: none;
+            stroke: #777;
+            shape-rendering: crispEdges;
+        }
+        
+        .axis text
+        {
+            font-family: 'Arial';
+            font-size: 0.6em;
+        }
+        .tick
+        {
+            stroke-dasharray: 1, 2;
+        }
+        .bar
+        {
+            fill: FireBrick;
+        }
+        
+       .legend {cursor: pointer}
+
+.MathJax_SVG svg > g, 
+.MathJax_SVG_Display svg > g
+{
+  fill: black;
+  stroke: black; 
+}
+
+.legend{
+  font-size: 1.2em
+}
+ 
+.graph_inputs{
+    font-size:0.8em;
+    }
+
+    
+.func_text{
+  font-size: 0.65em
+}
+    
+    .deriv_func_text{
+  font-size: 0.65em
+}
+    
+    #select_activ{
+  font-size: 0.8em
+}
+    
+    .input_labels{
+  font-size: 0.8em
+}
+    
+    #func_equation{
+     font: "Helvetica Neue";
+     font-size: 0.9em;
+}
+
+#deriv_func_equation{
+     font: "Helvetica Neue";
+     font-size: 0.9em;
+}
+    
+#rrelu_button {
+background-color: #009900;
+color: white;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.8em;
+cursor: pointer;
+margin-left: 0.3em;
+}
+
+#rrelu_button:hover {
+background-color: #4CAF50; 
+color: white;
+}
+
+  </style>
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+  
+  </head> 
+  <body  style="height:100%">
+  <div id="browser_warning">
+    <p>Note: You are recommended to view it on Chrome for the best experience. On Firefox and IE, the equations in the boxes may not render.</p>
+    </div>
+  <select id="select_activ" onchange="InitChart();">
+		<option value="step" selected="selected">Step</option>
+		<option value="identity">Identity</option>
+		<option value="relu">ReLu</option>
+    <option value="sigmoid">Sigmoid</option>
+      <option value="tanh">Tanh</option>
+          <option value="leakyrelu">Leaky ReLU</option>
+            <option value="prelu">PReLU</option>
+  <option value="rrelu">RReLU</option>
+  <option value="elu">ELU</option>
+   <option value="selu">SELU</option>
+     <option value="srelu">SReLU</option>
+              <!--<option value="probit">Probit</option>-->
+               <option value="hardsigmoid">Hard Sigmoid</option>
+               <option value="hardtanh">Hard Tanh</option>
+       <option value="lctanh">LeCun Tanh</option>
+     <option value="arctan">ArcTan</option>
+    <option value="softsign">SoftSign</option>
+    <option value="softplus">Softplus</option>
+          <option value="sign">Signum</option>
+  <option value="bentid">Bent Identity</option>
+                 <option value="symmsigmoid">Symmetrical Sigmoid</option>
+                   <option value="loglog">Log Log</option>
+              <option value="gaussian">Gaussian</option>
+           <option value="absolute">Absolute</option>
+      <option value="sinusoid">Sinusoid</option>
+        <option value="cos">Cos</option>
+        <option value="sinc">Sinc</option>
+</select>
+<form name="message" method="post" id="plot_inputs">
+ <div style="float:left;margin-right:20px;margin-left:100px;">
+        <label for="alpha_input" style="display: none" class= "input_labels" id="alpha_input_label">&alpha;<sub> </sub></label>
+        <input id="alpha_input" class="graph_inputs" size="5" type="text" value="0.7" style="display: none;" onchange="InitChart();">
+    </div>
+
+    <div style="float:left;margin-right:20px;">
+        <label for="alpha_input_r" style="display: none" class= "input_labels" id="alpha_input_r_label">&alpha;<sub>r</sub></label>
+        <input id="alpha_input_r" class="graph_inputs" size="5"  type="text" value="0.4" style="display: none;" onchange="InitChart();">
+    </div>
+    
+    <div style="float:left;margin-right:20px;">
+        <label for="t_input_l" style="display: none" class= "input_labels" id="t_input_l_label">t<sub>l</sub></label>
+        <input id="t_input_l" class="graph_inputs"  size="5"  type="text" value="-1.0" style="display: none;" onchange="InitChart();">
+    </div>
+
+    <div style="float:left;margin-right:20px;">
+        <label for="t_input_r" style="display: none" class= "input_labels" id="t_input_r_label">t<sub>r</sub></label>
+        <input id="t_input_r" class="graph_inputs"  size="5"  type="text" value="1.0" style="display: none;" onchange="InitChart();">
+    </div>
+
+    <br style="clear:both;" />
+</form>
+<button type="button" onclick="InitChart();" id="rrelu_button" style="display: none;margin-left:20px;">Random &alpha;</button>
+<div id="legendContainer" class="legendContainer" style="width:100%">
+<svg id="visualisation" width="100%" height="500px" height="80vh"></svg>
+<div id="func_primer" style="margin-left:20px;font-size:0.8em;margin-right:20px">
+  <p>
+    More theoretical than practical, this activation function mimics the all-or-nothing property of biological neurons. It's not useful for neural networks, as its derivative is zero (except at 0 where it's undefined). This means that gradient based approaches for optimisation are not feasible.
+  </p>
+</div>
+</div>
+    <br>
+
+<script type="text/javascript">
+
+MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });  
+
+        function erf(x) {
+            var z;
+            const ERF_A = 0.147; 
+            var the_sign_of_x;
+            if(0==x) {
+                the_sign_of_x = 0;
+                return 0;
+            } else if(x>0){
+                the_sign_of_x = 1;
+            } else {
+                the_sign_of_x = -1;
+            }
+
+            var one_plus_axsqrd = 1 + ERF_A * x * x;
+            var four_ovr_pi_etc = 4/Math.PI + ERF_A * x * x;
+            var ratio = four_ovr_pi_etc / one_plus_axsqrd;
+            ratio *= x * -x;
+            var expofun = Math.exp(ratio);
+            var radical = Math.sqrt(1-expofun);
+            z = radical * the_sign_of_x;
+            return z;
+        };
+
+// https://stackoverflow.com/questions/12556685/is-there-a-javascript-implementation-of-the-inverse-error-function-akin-to-matl
+
+function erfINV( inputX ){
+    var _a = ((8*(Math.PI - 3)) / ((3*Math.PI)*(4 - Math.PI)));
+    var _x = parseFloat(inputX);
+    var signX = ((_x < 0) ? -1.0 : 1.0 );
+
+    var oneMinusXsquared = 1.0 - (_x * _x);
+    var LNof1minusXsqrd  = Math.log( oneMinusXsquared );
+    var PI_times_a       = Math.PI * _a ;
+
+    var firstTerm  = Math.pow(((2.0 / PI_times_a) + (LNof1minusXsqrd / 2.0)), 2);
+    var secondTerm = (LNof1minusXsqrd / _a);
+    var thirdTerm  = ((2 / PI_times_a) + (LNof1minusXsqrd / 2.0));
+
+    var primaryComp = Math.sqrt( Math.sqrt( firstTerm - secondTerm ) - thirdTerm );
+
+    var scaled_R = signX * primaryComp ;
+    return scaled_R ;
+};
+
+var delay=200;
+var activ_func = document.getElementById("select_activ").value;
+
+
+var lineData = [];
+var lineData_deriv = [];
+
+      func_tags =  [{
+      "func_tex":"$f(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\0 & \\text{for } x<0\\end{cases} $",
+  "func_range" : "{0, 1}",
+  "func_contin" : "C"+"⁻¹",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "",
+   "func_primer":"More theoretical than practical, the <b>Step</b> (alternatively, <b>Binary Step</b> or <b>Heaviside</b>) activation function mimics the all-or-nothing behaviour of biological neurons. It's not useful for modern neural networks, as its derivative is zero (except at 0 where it's undefined), making gradient based approaches for optimisation impossible."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}0 & \\text{for } x\\neq0\\\\? & \\text{for } x=0\\end{cases} $",
+  "deriv_func_range" : "{0}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+    
+          axis_limits = [-3,3,-1.3,1.3];
+
+for (var i = -3; i <= 3; i=i+0.001) {
+  lineData.push({
+    x: i,
+    y: i>=0
+  });
+    lineData_deriv.push({
+    x: i,
+    y: 0
+  });
+};
+ 
+  var vis = d3.select("#visualisation"),
+    WIDTH = parseInt(document.getElementById("browser_warning").offsetWidth),
+    HEIGHT = parseInt(vis.style("height")),
+ //   HEIGHT = parseInt(document.documentElement.clientHeight)*0.8,
+    MARGINS = {
+      top: HEIGHT/25.0,
+      right: WIDTH/2.5,
+      bottom: HEIGHT/25.0,
+      left: WIDTH/50.0,
+    },
+      boxmargin=(HEIGHT-MARGINS.top)/24.0,
+      boxmargin_horizontal = MARGINS.right/2.2,
+      rect_margin = MARGINS.right/50.0,
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain(axis_limits.slice(0, 2)),
+
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain(axis_limits.slice(2, 4)),
+
+    xAxis = d3.svg.axis()
+      .scale(xRange)
+      .tickSize(5)
+      .tickSubdivide(true),
+
+    yAxis = d3.svg.axis()
+      .scale(yRange)
+      .tickSize(5)
+      .orient("left")
+      .tickSubdivide(true);
+
+  vis.append("svg:g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + (HEIGHT-MARGINS.bottom+MARGINS.top)/2 + ")")
+    .attr("id", "graph_xaxis")
+    .call(xAxis);
+
+  vis.append("svg:g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + (WIDTH-MARGINS.right+MARGINS.left)/2 + ",0)")
+    .attr("id", "graph_yaxis")
+    .call(yAxis);
+  
+  vis.selectAll(".tick")
+    .filter(function (d) { return d === 0;  })
+    .remove();
+
+  var lineFunc = d3.svg.line()
+  .x(function (d) {
+    return xRange(d.x);
+  })
+  .y(function (d) {
+    return yRange(d.y);
+  })
+  .interpolate('linear');
+  
+  vis.selectAll(".tick")
+    .filter(function (d) { return d === 0;  })
+    .remove();
+
+
+  var asymptotes = d3.svg.line()
+  .x([-3,3])
+  .y([5,5])
+  .interpolate('linear');
+
+var asymptote_top=5,
+    asymptote_bottom=-5;
+  
+//d3.select("#func").remove();
+  
+vis.append("svg:path")
+  .attr("d", lineFunc(lineData))
+  .attr("stroke", "blue")
+  .attr("stroke-width", 3)
+  .attr("id", "func")
+  .attr("fill", "none"); 
+
+vis.append("svg:path")
+  .attr("d", lineFunc(lineData_deriv))
+  .attr("stroke", "orange")
+  .attr("stroke-width", 2)
+  .attr("id", "deriv_func")
+  .attr("fill", "none");
+  
+vis.append("svg:path")
+  .attr("d", lineFunc([{"x":axis_limits[0],"y":5},
+                       {"x":axis_limits[1],"y":5}]))
+  .attr("stroke", "gray")
+  .attr("stroke-width", 2)
+  .style("stroke-dasharray", ("3, 3"))
+  .attr("id", "top_asymptote")      
+  .attr("fill", "none");
+
+vis.append("svg:path")
+  .attr("d", lineFunc([{"x":axis_limits[0],"y":-5},
+                       {"x":axis_limits[1],"y":-5}]))
+  .attr("stroke", "gray")
+  .attr("stroke-width", 2)
+  .style("stroke-dasharray", ("3, 3"))
+  .attr("id", "bottom_asymptote")      
+  .attr("fill", "none");
+
+vis.append("rect")
+   .attr("x", WIDTH-MARGINS.right+rect_margin)             
+	 .attr("y",  MARGINS.top)
+   .attr("width",  MARGINS.right-rect_margin*2.0)
+   .attr("height", (HEIGHT-MARGINS.top)/2-boxmargin)
+   .attr("rx", 10)
+   .attr("ry", 10)
+   .attr("stroke", "blue")
+   .attr('stroke-width', '5')
+   .attr('stroke-opacity', '0.4')
+   .attr('fill-opacity', '0.1')
+   .style("fill", "blue")
+   .attr("class","info_rect")
+   .attr("id","func_rect");
+
+vis.append("foreignObject")
+   .data(func_tags)
+   .attr("id", "func_equation")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)      .attr("y",  MARGINS.top+boxmargin/2)
+   .append("xhtml:div")
+   .attr("class", "func_text")
+   .text(function(d) { return d.func_tex });
+
+vis.append("text")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)      .attr("y",  MARGINS.top+boxmargin*5)
+   .attr("id", "func_range")
+   .attr("class", "func_text")
+   .text(function(d) { return "Range: " + d.func_range });
+
+vis.append("text")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)      .attr("y",  MARGINS.top+boxmargin*6.3)
+   .attr("id", "func_mono")
+   .attr("class", "func_text")
+   .text(function(d) { return "Monotonic: " + d.func_mono });
+
+vis.append("text")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)        .attr("y",  MARGINS.top+boxmargin*7.6)
+   .attr("id", "func_contin")
+   .attr("class", "func_text")
+   .text(function(d) { return "Continuity: " + d.func_contin });
+
+vis.append("text")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)        .attr("y",  MARGINS.top+boxmargin*8.9)
+   .attr("id", "func_origin")
+   .attr("class", "func_text")
+   .text(function(d) { return "Identity at Origin: " + d.func_origin});
+
+
+
+vis.append("text")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2)          
+	 .attr("y",  MARGINS.top+boxmargin*10.2)
+   .attr("id", "func_symm")
+   .attr("class", "func_text")
+   .text(function(d) { return "Symmetry: " + d.func_symm });
+
+vis.append("text")
+   .attr("x", WIDTH-boxmargin_horizontal/1.7)              
+	 .attr("y",  MARGINS.top+boxmargin*10.2)
+   .attr("xlink:href", "https://dashee87.github.io/")
+   .attr("id", "func_ref")
+   .attr("class", "func_text")
+   .attr("fill", "red")
+   .html('')
+
+
+// derivative rectangle
+
+vis.append("rect")
+   .attr("x", WIDTH-MARGINS.right+rect_margin)                   
+	 .attr("y",  MARGINS.top+HEIGHT/2)
+   .attr("width",  MARGINS.right-rect_margin*2.0)  
+   .attr("height", (HEIGHT-MARGINS.top)/2-boxmargin)
+   .attr("rx", 10)
+   .attr("ry", 10)
+   .attr("stroke", "orange")
+   .attr('stroke-width', '5')
+   .attr('stroke-opacity', '0.4')
+   .attr('fill-opacity', '0.1')
+   .style("fill", "orange")
+   .attr("class","info_rect)")
+   .attr("id","deriv_func_rect");
+
+vis.append("foreignObject")
+   .data(deriv_func_tags)
+   .attr("id", "deriv_func_equation")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)  
+	 .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin/2)
+   .append("xhtml:div")
+   .attr("class", "deriv_func_text")
+   .html(function(d) {return d.deriv_func_tex});
+
+if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+     vis.select("#func_equation")
+     .attr("width", MARGINS.right-rect_margin*2)                  .attr("height",  boxmargin*3);
+  
+       vis.select("#deriv_func_equation")
+     .attr("width", MARGINS.right-rect_margin*2)                  .attr("height",  boxmargin*3);
+}
+
+vis.append("text")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)               
+   .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*5)
+   .data(deriv_func_tags)
+   .attr("id", "deriv_func_range")
+   .attr("class", "deriv_func_text")
+   .text(function(d) { return "Range: " + d.deriv_func_range });
+
+
+vis.append("text")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)               
+   .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*6.3)
+   .data(deriv_func_tags)
+   .attr("id", "deriv_func_mono")
+   .attr("class", "deriv_func_text")
+   .style("colour","blue")
+   .text(function(d) { return "Montonic: " + d.deriv_func_mono });
+
+
+vis.append("text")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*7.6)
+   .data(deriv_func_tags)
+   .attr("id", "deriv_func_contin")
+   .attr("class", "deriv_func_text")
+   .text(function(d) { return "Continuous: " + d.deriv_func_contin });
+
+
+vis.append("text")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)              .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*8.9)
+   .attr("id", "deriv_func_van")
+   .attr("class", "deriv_func_text")
+     .append("svg:tspan").text("Vanishing Gradient: ")
+  .append("svg:tspan").style("fill", "#00e600").text(deriv_func_tags[0].deriv_func_van);
+
+vis.append("text")
+   .attr("x", WIDTH-boxmargin_horizontal)             
+   .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*8.9)
+   .attr("id", "deriv_func_exp")
+   .attr("class", "deriv_func_text")
+   .append("svg:tspan").text("Exploding Gradient: ")
+  .append("svg:tspan").style("fill", "#00e600").text(deriv_func_tags[0].deriv_func_exp);
+
+vis.append("text")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*10.3)
+   .attr("id", "deriv_func_sat")
+   .attr("class", "deriv_func_text")
+   .append("svg:tspan").text("Saturation: ")
+  .append("svg:tspan").style("fill", "#00e600").text(deriv_func_tags[0].deriv_func_sat);
+
+vis.append("text")
+   .attr("x", WIDTH-boxmargin_horizontal)            .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*10.3)
+   .attr("id", "deriv_func_dead")
+   .attr("class", "deriv_func_text")
+   .append("svg:tspan").text("Dead Neurons: ")
+  .append("svg:tspan").style("fill", "red").text(deriv_func_tags[0].deriv_func_dead);
+
+vis.append("text")
+	.attr("x", MARGINS.left)             
+	.attr("y", MARGINS.top+30)    
+	.attr("class", "legend")
+  .attr("id", "func_text")
+	.style("fill", "steelblue")         
+	.on("click", function(){
+		// Determine if current line is visible
+		var active   = func.active ? false : true,
+		  newOpacity = active ? 0 : 1;
+		// Hide or show the elements
+		d3.select("#func").style("opacity", newOpacity);
+    d3.select("#func_text").style("opacity", active ? 0.5 : 1);
+      d3.select("#func_rect")
+      .transition()
+      .duration(1000)
+      .attr("height", active ? 0 : (HEIGHT-MARGINS.top)/2-boxmargin);
+   if(active){
+   d3.selectAll(".func_text")
+      .transition()
+      .delay(function(d, i) { return 400-delay*(i); })
+      .style("opacity", active ? 0 : 1);
+   }else{
+   d3.selectAll(".func_text")
+      .transition()
+      .delay(function(d, i) { return 300+delay*(i)/2; })
+      .style("opacity", active ? 0 : 1);
+   }
+		// Update whether or not the elements are active
+		func.active = active;
+	})
+	.text("f (x)");
+
+// Add the red line title
+vis.append("text")
+	.attr("x", MARGINS.left)             
+	.attr("y", MARGINS.top+30+30) 
+	.attr("class", "legend")
+  .attr("id", "deriv_text")
+	.style("fill", "orange")
+	.on("click", function(){
+		// Determine if current line is visible
+		var active   = deriv_func.active ? false : true ,
+		  newOpacity = active ? 0 : 1;
+		// Hide or show the elements
+		d3.select("#deriv_func").style("opacity", newOpacity);
+    d3.select("#deriv_text").style("opacity", active ? 0.5 : 1);
+    d3.select("#deriv_func_rect")
+      .transition()
+      .duration(1000)
+      .attr("height", active ? 0 : (HEIGHT-MARGINS.top)/2-boxmargin);
+   if(active){
+   d3.selectAll(".deriv_func_text")
+      .transition()
+      .delay(function(d, i) { return 400-delay*(i); })
+      .style("opacity", active ? 0 : 1);
+   }else{
+   d3.selectAll(".deriv_func_text")
+      .transition()
+      .delay(function(d, i) { return 250+delay*(i)/2.5; })
+      .style("opacity", active ? 0 : 1);
+   }
+		// Update whether or not the elements are active
+		deriv_func.active = active;
+	})
+	.text("f '(x)");
+
+d3.select(window)
+  .on("resize", function() {
+  vis = d3.select("#visualisation");
+  WIDTH = parseInt(document.getElementById("browser_warning").offsetWidth);
+  HEIGHT = parseInt(vis.style("height"));
+    MARGINS = {
+      top: HEIGHT/25.0,
+      right: WIDTH/2.5,
+      bottom: HEIGHT/25.0,
+      left: WIDTH/50.0,
+    };
+      boxmargin=(HEIGHT-MARGINS.top)/24.0;
+        rect_margin = MARGINS.right/50.0;
+        boxmargin_horizontal = MARGINS.right/2.2,
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain(axis_limits.slice(0, 2));
+
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain(axis_limits.slice(2, 4));
+
+    xAxis = d3.svg.axis()
+      .scale(xRange)
+      .tickSize(5)
+      .tickSubdivide(true);
+
+    yAxis = d3.svg.axis()
+      .scale(yRange)
+      .tickSize(5)
+      .orient("left")
+      .tickSubdivide(true);
+  
+   vis.select("#graph_xaxis")
+    .attr("transform", "translate(0," + (HEIGHT-MARGINS.bottom+MARGINS.top)/2 + ")")
+    .call(xAxis);
+
+  vis.select("#graph_yaxis")
+    .attr("transform", "translate(" + (WIDTH-MARGINS.right+MARGINS.left)/2 + ",0)")
+    .call(yAxis);
+  
+  vis.selectAll(".tick")
+    .filter(function (d) { return d === 0;  })
+    .remove();
+
+  lineFunc = d3.svg.line()
+  .x(function (d) {
+    return xRange(d.x);
+  })
+  .y(function (d) {
+    return yRange(d.y);
+  })
+  .interpolate('linear');
+  
+  vis.select("#top_asymptote")
+     .attr("d", lineFunc([{"x":axis_limits[0],"y":asymptote_top},
+                       {"x":axis_limits[1],"y":asymptote_top}]))
+  
+    vis.select("#bottom_asymptote")
+       .attr("d", lineFunc([{"x":axis_limits[0],"y":asymptote_bottom},
+                       {"x":axis_limits[1],"y":asymptote_bottom}]))
+  
+//d3.select("#func").remove();
+  
+vis.select("#func")
+  .attr("d", lineFunc(lineData)); 
+
+vis.select("#deriv_func")
+  .attr("d", lineFunc(lineData_deriv));
+
+vis.select("#func_rect")
+   .attr("x", WIDTH-MARGINS.right+rect_margin)             
+	 .attr("y",  MARGINS.top)
+   .attr("width",  MARGINS.right-rect_margin*2.0)
+   .attr("height", (HEIGHT-MARGINS.top)/2-boxmargin)
+
+vis.select("#func_equation")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)           
+	 .attr("y",  MARGINS.top+boxmargin/2);
+
+vis.select("#func_range")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)                
+   .attr("y",  MARGINS.top+boxmargin*5);
+
+vis.select("#func_mono")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)                
+   .attr("y",  MARGINS.top+boxmargin*6.3);
+
+vis.select("#func_contin")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)             
+   .attr("y",  MARGINS.top+boxmargin*7.6);
+
+vis.select("#func_origin")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)                
+   .attr("y",  MARGINS.top+boxmargin*8.9);
+
+vis.select("#func_symm")
+   .data(func_tags)
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)               
+   .attr("y",  MARGINS.top+boxmargin*10.2);
+
+vis.select("#func_ref")
+   .attr("x", WIDTH-boxmargin_horizontal/1.7)              
+	 .attr("y",  MARGINS.top+boxmargin*10.2);
+
+
+// derivative rectangle
+
+vis.select("#deriv_func_rect")
+   .attr("x", WIDTH-MARGINS.right+rect_margin)             
+  .attr("y",  MARGINS.top+HEIGHT/2)
+   .attr("width",  MARGINS.right-rect_margin*2.0)
+   .attr("height", (HEIGHT-MARGINS.top)/2-boxmargin);
+
+vis.select("#deriv_func_equation")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    
+	 .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin/2);
+
+vis.select("#deriv_func_range")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)                   
+   .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*5);
+
+
+vis.select("#deriv_func_mono")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)                  
+   .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*6.3);
+
+
+vis.select("#deriv_func_contin")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*7.6);
+
+vis.select("#deriv_func_van")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*8.9);
+
+vis.select("#deriv_func_exp")
+   .attr("x", WIDTH-boxmargin_horizontal)            .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*8.9);
+
+vis.select("#deriv_func_sat")
+   .attr("x", WIDTH-MARGINS.right+rect_margin*2.0)    .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*10.3);
+
+vis.select("#deriv_func_dead")
+   .attr("x", WIDTH-boxmargin_horizontal)            .attr("y",  MARGINS.top+(HEIGHT/2)+boxmargin*10.3);
+  });
+
+
+function InitChart() {
+       var myClasses = document.getElementById("plot_inputs"),
+           mylabels= document.getElementsByTagName("label");
+    for (i=0; i < myClasses.length; i++) {
+        myClasses[i].style.display = 'none';
+        mylabels[i].style.display = 'none';
+    }
+  document.getElementById("rrelu_button").style.display = 'none';
+var activ_func = document.getElementById("select_activ").value;
+
+  
+lineData = [];
+lineData_deriv = [];
+  
+  
+ asymptote_top = 5;
+ asymptote_bottom = -5;
+
+switch(activ_func) {
+  case "relu":
+   func_tags = [{
+      "func_tex":"$f(x) =\\begin{cases}x & \\text{for } x\\geq0\\\\0 & \\text{for } x<0\\end{cases} $",
+  "func_range" : "[0, ∞)",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : 'Asymmetrical',
+   "func_ref": "http://dl.acm.org/citation.cfm?id=3104322.3104425",
+   "func_primer": "<b>Rectified linear unit</b> (<b>ReLU</b>) is considered the most common activation function in neural networks. It retains the biological motivation of the step function (neuron only fires if inputs exceed threshold), but has a non-zero derivative at positive inputs, which allows gradient based learning (though the derivative is undefined at exactly 0). It's also quite quick to compute as neither the function nor its derivative involve complex mathematical operations. However, as the derivative is 0 at non-positive inputs, ReLU may suffer from slow learning or even dead neurons, where neurons that have negative valued inputs are unable to update their weights due to the zero-valued gradients, rendering them silent for the remainder of the training phase."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\0 & \\text{for } x<0\\end{cases} $",
+  "deriv_func_range" : "{0,1}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: (i>0) * i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: i>=0
+      });
+    };
+    break;
+    case "step":
+       func_tags =  [{
+      "func_tex":"$f(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\0 & \\text{for } x<0\\end{cases} $",
+  "func_range" : "{0, 1}",
+  "func_contin" : "C"+"⁻¹",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "",
+   "func_primer":"More theoretical than practical, the <b>Step</b> (alternatively, <b>Binary Step</b> or <b>Heaviside</b>) activation function mimics the all-or-nothing behaviour of biological neurons. It's not useful for modern neural networks, as its derivative is zero (except at 0 where it's undefined), making gradient based approaches for optimisation impossible."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}0 & \\text{for } x\\neq0\\\\? & \\text{for } x=0\\end{cases} $",
+  "deriv_func_range" : "{0}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+    
+          axis_limits = [-3,3,-1.3,1.3];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: i>=0
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 0
+      });
+    };
+    break;
+    
+    case "sign":
+       func_tags =  [{
+      "func_tex":"$f(x) =\\begin{cases}1 & x>0\\\\-1 &  x<0 \\\\0 &  x=0\\end{cases} $",
+  "func_range" : "{-1,0, 1}",
+  "func_contin" : "C"+"⁻¹",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "",
+       "func_primer":"The <b>Signum</b> (or just <b>Sign</b>) is a scaled version of the binary step activation function. It takes the value -1 and 1 for negative and postive values, respectively, and zero at the origin. Though lacking the biological motivation of the step function, the function is anti-symmetrical, which is thought to be a favourable trait for an activation function."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}0 & \\text{for } x\\neq0\\\\? & \\text{for } x=0\\end{cases} $",
+  "deriv_func_range" : "{0}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      if(i==0){
+        lineData.push({
+        x: i,
+        y: 0
+      });
+      }else{
+      lineData.push({
+        x: i,
+        y: 2*(i>0)-1
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 0
+      });
+      }
+    };
+    break;
+    
+    case "identity":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x) = x\\end{align*}$",
+  "func_range" : "(-∞, ∞)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "",
+    "func_primer":"With the <b>Identity</b> activation function, node output is equal to its input. It's perfectly suited to tasks where the underlying behaviour is linear, similar to linear regression. When non-linearities exist, this activation function alone is insufficient, though it may still be employed as the activation function on the final output nodes for regression-like tasks."}];
+      
+  deriv_func_tags=
+    [{"deriv_func_tex":"$\\begin{align*}f'(x) = 1\\end{align*}$",
+  "deriv_func_range" : "{1}",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "✅",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    break;
+    case "sigmoid":
+    
+           func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x) = \\frac{1}{1 + e^{-x}} \\end{align*}$",
+  "func_range" : "(0, 1)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "",
+   "func_primer":"Well known from its role in logistic regression, ranging between 0 and 1, the <b>Logistic Sigmoid</b> (or more commonly just <b>Sigmoid</b>) activation function introduces the concept of probability to neural networks. Its derivative is non-zero and easy to compute (it's a function of its original output). However, it's gradually being replaced by Tanh as the textbook activation function for classification tasks, as the latter is anti-symmetrical and centered on the origin."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x) &= \\frac{e^{-x}}{(1+e^{-x})^2} \\\\&= f(x)(1-f(x)) \\end{align*}$",
+  "deriv_func_range" : "(0,0.25)",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      asymptote_top = 1;
+      temp_sigmoid = 1.0/(1.0+Math.exp(-i));
+      lineData.push({
+        x: i,
+        y: temp_sigmoid
+      });
+      lineData_deriv.push({
+        x: i,
+        y: temp_sigmoid * (1-temp_sigmoid)
+      });
+    };
+    break;
+        case "arctan":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x) =\\tan^{-1}(x) \\end{align*}$",
+  "func_range" : "(-π/2, π/2)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "❌",
+  "func_origin" : "✅",
+  "func_symm" : "Symmetrical",
+   "func_ref": "",
+    "func_primer":"Visually similar to the hyperbolic tangent (Tanh) function, flatter shape of the <b>ArcTan</b> activation function allows it to be discerning than its hyperbolic counterpart. By default, its output ranges between -&pi;/2 and &pi;/2. The derivative also approaches zero more slowly, meaning that it can learn more efficiently. That said, calculation of the derivative is more computationally expensive than Tanh."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\frac{1}{x^2+1} \\end{align*}$",
+  "deriv_func_range" : "(0,1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.6,1.6];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      asymptote_top = Math.PI/2;
+      asymptote_bottom = -Math.PI/2;
+      lineData.push({
+        x: i,
+        y: Math.atan(i)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1/(Math.pow(i,2)+1)
+      });
+    };
+    break;
+    case "softsign":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=\\frac{x}{1+|x|} \\end{align*}$",
+  "func_range" : "(0, ∞)",
+  "func_contin" : "C¹",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Anti-Symmetrical",
+  "func_ref":"http://www.iro.umontreal.ca/~lisa/publications2/index.php/attachments/single/205",
+    "func_primer":"<b>Softsign</b> is another alternative to Tanh activation. Like Tanh, it's anti-symmetrical, zero centered, differentiable and returns a value between -1 and 1. Its flatter shape and more slowly declining derivative suggest that it may learn more efficiently. On the other hand, calculation of the derivative is more computationally cumbersome than Tanh."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\frac{1}{(1+|x|)^2} \\end{align*}$",
+  "deriv_func_range" : "(0,1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+      
+    axis_limits = [-6,6,-1.6,1.6];    
+    for (var i = -6; i <= 6; i=i+0.002) {
+      asymptote_top = 1;
+      asymptote_bottom = -1;
+      lineData.push({
+        x: i,
+        y: i/(1+Math.abs(i))
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1/Math.pow((1+Math.abs(i)),2)
+      });
+    };
+    break;
+    case "softplus":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=\\ln(1+e^x) \\end{align*}$",
+  "func_range" : "(0, ∞)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+  "func_ref":"http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf",
+    "func_primer":"A smooth alternative to ReLU, <b>SoftPlus</b> can return any value greater than zero. Unlike ReLU, its derivative is continuous and non-zero everywhere, which guards against dead neurons. However, again unlike ReLU, it's asymmetrical and not centered on zero, which may hinder learning. Furthermore, as the derivative is always less than 1, vanishing gradients could be a concern."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\frac{1}{1+e^{-x}}\\end{align*}$",
+  "deriv_func_range" : "(0,1)",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "✅",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.log((1+Math.exp(i)),2)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1/(1+Math.exp(-i))
+      });
+    };
+    break;
+    
+    case "bentid":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=\\frac{\\sqrt{x^2 + 1} - 1}{2} + x \\end{align*}$",
+  "func_range" : "(-∞, ∞)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "",
+    "func_primer":"A sort of compromise between Identity and ReLU activation, <b>Bent Identity</b> allows non-linear behaviours, while its non-zero derivative promotes efficient learning and overcomes the issues of dead neurons associated with ReLU. As its derivative can return values either side of 1, it can be susceptible to both exploding and vanishing gradients."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\frac{x}{2\\sqrt{x^2 + 1}} + 1\\end{align*}$",
+  "deriv_func_range" : "(0.5, 1.5)",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "✅",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "Yes",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+         axis_limits = [-3,3,-3,3];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: (Math.sqrt(Math.pow(i,2)+1)-1)/2.0 + i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: i/(2*Math.sqrt(Math.pow(i,2)+1)) + 1
+      });
+    };
+    break;
+    
+     case "sinusoid":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=\\sin(x) \\end{align*}$",
+  "func_range" : "[-1, -1]",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "❌",
+  "func_origin" : "✅",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "",
+    "func_primer":"Like Cos, <b>Sinusoid</b> (or simply <b>Sin</b>) activation introduces periodicity to neural networks. It returns a value between -1 and 1, is zero centered and anti-symmetrical and its derivative is continuous."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\cos(x)\\end{align*}$",
+  "deriv_func_range" : "[-1, -1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.sin(i)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: Math.cos(i)
+      });
+    };
+    break;
+    
+    case "cos":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=\\cos(x) \\end{align*}$",
+  "func_range" : "[-1, -1]",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "❌",
+  "func_origin" : "❌",
+  "func_symm" : "Symmetrical",
+   "func_ref": "",
+    "func_primer":"Like Sin, <b>Cos</b> (or <b>Cosine</b>) activation introduces periodicity to neural networks. It returns a value between -1 and 1 and its derivative is continuous. Unlike Sinusoid, it is symmetrical and not centered on zero."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=\\-sin(x)\\end{align*}$",
+  "deriv_func_range" : "[-1, -1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.cos(i)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: -Math.sin(i)
+      });
+    };
+    break;
+    
+      case "sinc":
+    
+    func_tags =  [{
+      "func_tex":"$f(x)=\\begin{cases}1 & \\text{for } x = 0\\\\\\frac{\\sin(x)}{x} & \\text{for } x \\ne 0\\end{cases}$",
+  "func_range" : "[≈-0.2172,1]",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "❌",
+  "func_origin" : "❌",
+  "func_symm" : "Symmetrical",
+   "func_ref":"https://www.spiedigitallibrary.org/conference-proceedings-of-spie/2760/1/Function-approximation-using-a-sinc-neural-network/10.1117/12.235959.short?SSO=1",
+    "func_primer":"The <b>Sinc</b> (or <b>Cardinal Sine</b> to give its full name) function features prominently in signal processing, as it represents the Fourier transform of a rectangle function. As an activation function, it benefits from being entirely differentiable and symmetric, though it's vulnerable to vanishing gradients."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$f'(x)=\\begin{cases}0 & \\text{for } x = 0\\\\\\frac{\\cos(x)}{x} - \\frac{\\sin(x)}{x^2} & \\text{for } x \\ne 0\\end{cases}$",
+  "deriv_func_range" : "(≈-0.4362, ≈0.4362)",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+         
+    axis_limits = [-6,6,-1.5,1.5];
+    for (var i = -6; i <= 6; i=i+0.002) {
+      if(i==0){
+      lineData.push({
+        x: i,
+        y: Math.sin(i)/i
+      })
+     lineData_deriv.push({
+        x: i,
+        y: Math.sin(i)/i
+      })}else{
+        lineData.push({
+        x: i,
+        y: Math.sin(i)/i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: (Math.cos(i)/i)-(Math.sin(i)/Math.pow(i,2))
+      });}
+    };
+    break;
+    
+         case "tanh":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)&=\\tanh(x)\\\\&=\\frac{2}{1+e^{-2x}}-1\\end{align*}$",
+  "func_range" : "(-1, -1)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "",
+    "func_primer":"Gradually replacing the logistic sigmoid function as the activation function of choice for classification tasks, <b>Tanh</b> (or <b>Hyperbolic Tan</b>) possesses various traits that are favoured in neural networks. It's entirely differentiable, centered on zero and anti-symmetrical. To mitigate slow learning and/or vanishing gradients, flatter variations on this function (log-log, softsign, symmetrical sigmoid, etc.) can be employed."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)&=1-\\tanh^2(x)\\\\&=1-f(x)^2\\end{align*}$",
+  "deriv_func_range" : "(0, 1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+          asymptote_top = 1;
+          asymptote_bottom = -1;
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.tanh(i)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1-Math.pow(Math.tanh(i),2)
+      });
+    };
+    break;
+    
+             case "lctanh":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)&=1.7519\\tanh(\\frac{2}{3}x)\\end{align*}$",
+  "func_range" : "(-1.7519 , 1.7519)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf",
+    "func_primer":"<b>LeCun Tanh</b> (alternatively known as <b>Scaled Tanh</b>) is a scaled version of the Tanh activation function. It possesses several properties that supposedly improve learning: f(&plusmn; 1) = &plusmn;1; the second derivative is maximised at x=1; and the effective gain is close to 1. See the Reference in the blue box for more information."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)&=1.7519*\\frac{2}{3}(1-\\tanh^2(\\frac{2}{3}x))\\\\&=1.7519*\\frac{2}{3}-\\frac{2}{3*1.7519}f(x)^2\\end{align*}$",
+  "deriv_func_range" : "(0, 1.167933]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "Yes",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-2,2];
+          asymptote_top = 1.7519;
+          asymptote_bottom = -1.7519;
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: 1.7519*Math.tanh(2*i/3.0)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: (2.0/3.0)*1.7519*(1-Math.pow(Math.tanh(2*i/3.0),2))
+      });
+    };
+    break;
+    
+      case "leakyrelu":
+   func_tags = [{
+      "func_tex":"$f(x) =\\begin{cases}x & \\text{for } x\\geq0\\\\0.01x & \\text{for } x<0\\end{cases} $",
+  "func_range" : "(-∞, ∞)",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "https://pdfs.semanticscholar.org/367f/2c63a6f6a10b3b64b8729d601e69337ee3cc.pdf",
+   "func_primer":"A variation on the classic (and widely popular) ReLU activation, <b>Leaky Rectified Linear Unit</b> (<b>Leaky ReLU</b>) includes a very small slope for negative value inputs. This mitigates against dead neurons, as the derivative is always non-zero, allowing gradient based learning to occur (however slow)."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\0.01 & \\text{for } x<0\\end{cases} $",
+  "deriv_func_range" : "{0.01, 1}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<0){
+      lineData.push({
+        x: i,
+        y: 0.01 * i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 0.01
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y:  i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    }
+    break;
+     case "gaussian":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=e^{-x^2}\\end{align*}$",
+  "func_range" : "(0, 1]",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "❌",
+  "func_origin" : "❌",
+  "func_symm" : "Symmetrical",
+   "func_ref": "",
+    "func_primer":"Not to be confused with Gaussian kernels commonly employed in Radial Basis Function Networks (RBFNs), the Gaussian function is less popular with Multi-Layer Perceptron type models. It's entirely differentiable and symmetric, though the first derivative quickly converges towards zero."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)&=-2xe^{-x^2}\\\\ &= -2x f(x)\\end{align*}$",
+  "deriv_func_range" : "(-∞, &infin)",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.exp(-Math.pow(i,2))
+      });
+      lineData_deriv.push({
+        x: i,
+        y: -2*i*Math.exp(-Math.pow(i,2))
+      });
+    };
+    break;
+    case "absolute":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=|x|\\end{align*}$",
+  "func_range" : "[0, ∞)",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "❌",
+  "func_origin" : "❌",
+  "func_symm" : "Symmetrical",
+   "func_ref": "",
+    "func_primer":"As the name suggests, the <b>Absolute</b> activation function returns the absolute value of the input. Its derivative is easy to compute and is defined everywhere except 0. As the magnitude of the derivative is equal to 1, this activation fucntion does not suffer from vanishing/exploding gradients."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$f'(x) =\\begin{cases}-1 & \\text{for } x<0\\\\1 & \\text{for } x>0\\\\? & \\text{for } x=0\\end{cases}$",
+  "deriv_func_range" : "{-1, 1}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-2,2];
+    
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.abs(i)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 2*(i>=0)-1
+      });
+    };
+    break;
+    
+         case "probit":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)&=\\Phi(x)\\\\&=\\sqrt{2}\\,\\operatorname{erf}^{-1}(2x-1)\\end{align*}$",
+  "func_range" : "(-∞, ∞)",
+  "func_contin" : "C∞",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "❌",
+   "func_ref": "",
+    "func_primer":""}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f(x)&=\\sqrt{2\\pi}\\exp^{[\\operatorname{erf}^{-1}(2x-1)]^2}\\\\&=\\sqrt{2}\\,\\operatorname{erf}^{-1}(2x-1)\\end{align*}$",
+  "deriv_func_range" : "(0, 1]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "❌",
+  "deriv_func_sat" : "❌",
+  "deriv_func_dead" : "❌"}];
+    
+          axis_limits = [-1,1,-3,3];
+    alert(Math.exp(-Math.pow(1,2)/2)/(Math.sqrt(2*Math.PI)));
+    for (var i = 0.0005; i <= 1.0005; i=i+0.0005/3) {
+      temp_val = Math.sqrt(2)*erfINV(2*i-1)
+      lineData.push({
+        x: i,
+        y: temp_val
+      });
+      lineData_deriv.push({
+        x: i,
+        y: Math.exp(-Math.pow(temp_val,2)/2)/(Math.sqrt(2*Math.PI))
+      });
+    };
+    break;
+          case "hardsigmoid":
+       func_tags =  [{
+      "func_tex":"$f(x) =\\begin{cases}0 & \\text{for } x<-2.5\\\\0.2x + 0.5 & \\text{for } -2.5\\geq x\\leq 2.5 \\\\1 & \\text{for } x>2.5\\end{cases} $",
+  "func_range" : "[0,1]",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "https://arxiv.org/pdf/1603.00391.pdf",
+       "func_primer":"<b>Hard Sigmoid</b> is a piecewise linear approximation of the Logistic Sigmoid activation function. It's easier to compute, which makes learning computationally faster, though the zero valued first derivatives could promote dead neurons/slow learning (see ReLU)."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex":"$f(x) =\\begin{cases}0 & \\text{for } x<-2.5\\\\0.2 & \\text{for } -2.5\\geq x\\leq 2.5 \\\\0 & \\text{for } x>2.5\\end{cases} $",
+  "deriv_func_range" : "{0, 0.2}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      if(i>=-2.5 & i<=2.5){
+        lineData.push({
+        x: i,
+        y: 0.2*i + 0.5
+      });
+       lineData_deriv.push({
+        x: i,
+        y: 0.2
+      });
+      }else{
+      lineData.push({
+        x: i,
+        y: i>2.5
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 0
+      });
+      }
+    };
+      break;
+          case "hardtanh":
+       func_tags =  [{
+      "func_tex":"$f(x) =\\begin{cases}-1 & \\text{for } x<-1\\\\x & \\text{for } -1\\geq x\\leq 1 \\\\1 & \\text{for } x>1\\end{cases} $",
+  "func_range" : "[-1,1]",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "✅",
+  "func_origin" : "✅",
+  "func_symm" : "Anti-Symmetrical",
+   "func_ref": "https://arxiv.org/pdf/1603.00391.pdf",
+       "func_primer":"<b>HardTanh</b> is a piecewise linear approximation of the Tanh activation function. It's easier to compute, which makes learning computationally faster, though the zero valued first derivatives could promote dead neurons/slow learning (see ReLU)."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex":"$f(x) =\\begin{cases}0 & \\text{for } x<-1\\\\1 & \\text{for } -1\\geq x\\leq 1 \\\\0 & \\text{for } x>1\\end{cases} $",
+  "deriv_func_range" : "{0,1}",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "No",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "Yes"}];
+     
+          axis_limits = [-3,3,-1.5,1.5];
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.max(-1, Math.min(1,i))
+      });
+      lineData_deriv.push({
+        x: i,
+        y: (i>=-1 && i<=1)
+      });
+      
+    };
+    break;
+    
+     case "symmsigmoid":
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)&=\\tanh(x/2)\\\\&=\\frac{1-e^{-x}}{1+e^{-x}}\\end{align*}$",
+  "func_range" : "(-1, -1)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Symmetrical",
+   "func_ref": "",
+    "func_primer":"<b>Symmetrical Sigmoid</b> is another alternative to Tanh activation (it's actually equivalent to Tanh activation with the input halved). Like Tanh, it's anti-symmetrical, zero centered, differentiable and returns a value between -1 and 1. Its flatter shape and more slowly declining derivative suggest that it may learn more efficiently."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f(x)&=0.5(1-\\tanh^2(x/2))\\\\&=0.5(1-f(x)^2)\\end{align*}$",
+  "deriv_func_range" : "(0, 0.5]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "✅",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+    asymptote_top = 1;
+    asymptote_bottom = -1;
+    for (var i = -3; i <= 3; i=i+0.001) {
+      lineData.push({
+        x: i,
+        y: Math.tanh(i/2)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: (1-Math.pow(Math.tanh(i/2),2))/2
+      });
+    };
+    break;
+    case "loglog":
+    
+    func_tags =  [{
+      "func_tex":"$\\begin{align*}f(x)=1-e^{-e^{x}}\\end{align*}$",
+  "func_range" : "(0, 1)",
+  "func_contin" : "C"+"∞",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "",
+    "func_primer":"Returning values between 0 and 1, the <b>Complementary Log Log</b> (or just <b>Log Log</b>) activation function is a potential alternative to the classic logistic sigmoid. It saturates more quickly and has a value exceeding 0.5 at the origin."}];
+
+  deriv_func_tags=
+    [{"deriv_func_tex": "$\\begin{align*}f'(x)=e^{x}(e^{-e^{x}}) = e^{x-e^{x}}\\end{align*}$",
+  "deriv_func_range" : "(0, 1/e]",
+  "deriv_func_contin" : "✅",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+          axis_limits = [-3,3,-1.5,1.5];
+          asymptote_top = 1;
+    for (var i = -3; i <= 3; i=i+0.001) {
+      temp_val = Math.exp(-Math.exp(i))
+      lineData.push({
+        x: i,
+        y: 1-temp_val
+      });
+      lineData_deriv.push({
+        x: i,
+        y: Math.exp(i)*temp_val
+      });
+    };
+    break;
+    case "prelu":
+        document.getElementById('alpha_input_label').innerHTML = '&alpha;';
+        document.getElementById("alpha_input_label").style.display = "block";
+        document.getElementById("alpha_input").style.display = "block";
+        var alpha  = parseFloat(document.getElementById("alpha_input").value);
+   func_tags = [{
+      "func_tex":"$f_{\\alpha}(x) =\\begin{cases}x & \\text{for } x\\geq0\\\\\\alpha x & \\text{for } x<0\\end{cases} $",
+  "func_range" : "(-∞, ∞) α <0, [0, ∞) α ≥0",
+  "func_contin" : "C"+"⁰"+" (iff α ≠ 1)",
+  "func_mono" : "✅ (iff α ≥0)",
+  "func_origin" : "❌ iff α≠1",
+  "func_symm" : "asymetrical (iff |α|≠1)",
+   "func_ref": "https://arxiv.org/abs/1502.01852",
+   "func_primer": "<b>Parameteric Rectified Linear Unit</b> (<b>PReLU</b>) belongs to the rectifier family of activation functions headed up by ReLU. It shares some similarities with RReLU and Leaky ReLU, as it incorporates a linear term for negative valued inputs. The key distinction is that the slope of this line is actually learned during model training."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'_{\\alpha}(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\\\alpha & \\text{for } x<0\\end{cases} $",
+  "deriv_func_range" : "{α, 1}",
+  "deriv_func_contin" : "❌ (iff α ≠ 1)",
+  "deriv_func_mono" : "❌ (iff α ≠ 1)",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes (iff α<1)",
+  "deriv_func_exp" : "No (iff α<1)",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No (iff α≠0)"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<0){
+      lineData.push({
+        x: i,
+        y: alpha * i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: alpha
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y:  i
+      });0
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    }
+    break;
+    
+    case "rrelu":
+        document.getElementById("rrelu_button").style.display = "block";
+        var alpha  = 6*Math.random()-3;
+   func_tags = [{
+      "func_tex":"$f(x) =\\begin{cases}x & \\text{for } x\\geq0\\\\\\alpha x & \\text{for } x<0\\end{cases} $",
+  "func_range" : "(-∞, ∞) α <0, [0, ∞) α ≥0",
+  "func_contin" : "C"+"⁰"+" (iff α ≠ 1)",
+  "func_mono" : "✅ (iff α ≥0)",
+  "func_origin" : "❌ iff α≠1",
+  "func_symm" : "Asymetrical (iff |α|≠1)",
+   "func_ref": "https://arxiv.org/abs/1505.00853",
+   "func_primer": "<b>Randomized Leaky Rectified Linear Unit</b> (<b>RReLU</b>) belongs to the rectifier family of activation functions headed up by ReLU. It's very similar to Leaky ReLU and PReLU, as it incorporates a linear term for negative valued inputs. The key distinction is that the slope of this line is randomly assigned for each node (typically from a uniform distribution)."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) =\\begin{cases}1 & \\text{for } x\\geq0\\\\\\alpha & \\text{for } x<0\\end{cases} $",
+  "deriv_func_range" : "{α, 1}",
+  "deriv_func_contin" : "❌ (iff α ≠ 1)",
+  "deriv_func_mono" : "❌ (iff α ≠ 1)",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes (iff α<1)",
+  "deriv_func_exp" : "No (iff α<1)",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No (iff α≠0)"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<0){
+      lineData.push({
+        x: i,
+        y: alpha * i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: alpha
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y:  i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    }
+    break;
+        case "elu":
+         document.getElementById('alpha_input_label').innerHTML = '&alpha;';
+        document.getElementById("alpha_input_label").style.display = "block";
+        document.getElementById("alpha_input").style.display = "block";
+        var alpha  = parseFloat(document.getElementById("alpha_input").value);
+     asymptote_bottom = -alpha;
+   func_tags = [{
+      "func_tex":"$f(x) = \\begin{cases}\\alpha(e^x - 1) & \\text{for } x < 0\\\\x & \\text{for } x \\ge 0\\end{cases} $",
+  "func_range" : "(-α, ∞) α <0, [0, ∞) α ≥0",
+  "func_contin" : "C"+"⁰"+" (iff α ≠ 1)",
+  "func_mono" : "✅ (iff α ≥0)",
+  "func_origin" : "❌ iff α≠1",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "https://arxiv.org/abs/1511.07289",
+   "func_primer":"<b>Exponential Linear Unit</b> (<b>ELU</b>) belongs the rectifier family headed up by ReLU. Like PRELU and RReLU, it produces a non-zero output for negative valued inputs. It differs from its rectifier counterparts by including a negative exponential term, which protects against dead neurons and improves learning as the derivative converges towards zero."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) = \\begin{cases} \\alpha e^{x} = f(x) + \\alpha & \\text{for } x < 0\\\\1 & \\text{for } x \\ge 0\\end{cases}$",
+  "deriv_func_range" :  "{(0, α] ∪ 1}",
+  "deriv_func_contin" : "❌ (unless α = 1)",
+  "deriv_func_mono" : "✅ (unless |α|>1)",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "No (iff α<1)",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No (iff α≠0)"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<0){
+        temp_val = alpha * (Math.exp(i)-1);
+      lineData.push({
+        x: i,
+        y: temp_val
+      });
+      lineData_deriv.push({
+        x: i,
+        y: temp_val + alpha
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y:  i
+      });0
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    }
+    break;
+    case "selu":
+   func_tags = [{
+      "func_tex":"$f(x) = \\lambda \\begin{cases}\\alpha(e^x - 1) & \\text{for } x < 0\\\\x & \\text{for } x \\ge 0 \\end{cases}\\\\\\text{ with } \\lambda = 1.0507, \\alpha = 1.67326 $",
+  "func_range" : "(-λα, ∞)",
+  "func_contin" : "C"+"⁰",
+  "func_mono" : "✅",
+  "func_origin" : "❌",
+  "func_symm" : "Asymmetrical",
+   "func_ref": "https://arxiv.org/abs/1706.02515",
+   "func_primer": "<b>Scaled Exponential Linear Unit</b> (<b>SELU</b>) is simply a variation on the Exponetial Linear Unit (ELU) activation function, where &lambda; and &alpha; have been fixed (to 1.0507 and 1.67326, respectively). The reasoning behind these values (zero mean/unit variance) forms the basis of Self-Normalising Neural Networks (SNNs- see the Reference link in the blue box for more information)."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'(x) = \\begin{cases}\\lambda\\alpha e^{x} = \\lambda(f(x) + \\alpha) & \\text{for } x < 0\\\\\\lambda & \\text{for } x \\ge 0\\end{cases}$",
+  "deriv_func_range" : "(0, λα)",
+  "deriv_func_contin" : "❌",
+  "deriv_func_mono" : "❌",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes",
+  "deriv_func_exp" : "Yes",
+  "deriv_func_sat" : "Yes",
+  "deriv_func_dead" : "No"}];
+    
+     asymptote_bottom = -1.0507*1.67326;
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<0){
+        temp_val = 1.0507*1.67326 * (Math.exp(i)-1);
+      lineData.push({
+        x: i,
+        y: temp_val
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1.0507 * (temp_val + 1.67326)
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y:   1.0507 * i
+      });
+      lineData_deriv.push({
+        x: i,
+        y:  1.0507 
+      });
+    };
+    }
+    break;
+    case "srelu":
+    
+        document.getElementById("alpha_input").style.display = "block";
+        document.getElementById("alpha_input_label").style.display = "block";
+        document.getElementById("alpha_input_r").style.display = "block";
+        document.getElementById("alpha_input_r_label").style.display = "block";
+        document.getElementById("t_input_l").style.display = "block";
+        document.getElementById("t_input_l_label").style.display = "block";
+        document.getElementById("t_input_r").style.display = "block";
+        document.getElementById("t_input_r_label").style.display = "block";
+        var alpha_l  = parseFloat(document.getElementById("alpha_input").value);
+        var alpha_r  = parseFloat(document.getElementById("alpha_input_r").value);
+        var t_l  = parseFloat(document.getElementById("t_input_l").value);
+        var t_r  = parseFloat(document.getElementById("t_input_r").value);
+    
+    document.getElementById('alpha_input_label').innerHTML = '&alpha;<sub>l</sub>';
+    
+   func_tags = [{
+      "func_tex":"$f_{t_l,a_l,t_r,a_r}(x) = \\begin{cases}t_l + a_l (x - t_l) & \\text{for } x \\le t_l\\\\x & \\text{for } t_l < x < t_r\\\\t_r + a_r (x - t_r) & \\text{for } x \\ge t_r\\end{cases}$",
+  "func_range" : "(-∞, ∞)",
+  "func_contin" : "C"+"⁰"+" (unless α_l=a_r=1)",
+  "func_mono" : "✅ (unless ∃ α<0)",
+  "func_origin" : "✅ (unless t_l>0 or t_r<0)",
+  "func_symm" : "Asymmetrical (generally)",
+   "func_ref": "https://arxiv.org/abs/1512.07030",
+   "func_primer":"<b>S-shaped Rectified Linear Activation Unit</b> (<b>SReLU</b>) belongs to the rectifier family of activation functions headed up by ReLU. It's composed of three piecewise linear functions. The slopes of two of those functions, as well as the locations at which the functions meet, are learned during model training."}];
+       
+       deriv_func_tags=
+    [{"deriv_func_tex":"$f'_{t_l,a_l,t_r,a_r}(x) = \\begin{cases}a_l & \\text{for } x \\le t_l\\\\1   & \\text{for } t_l < x < t_r\\\\a_r & \\text{for } x \\ge t_r\\end{cases}$",
+  "deriv_func_range" : "{α_l, α_r, 1}",
+  "deriv_func_contin" : "❌ (unless α_l=α_r=1)",
+  "deriv_func_mono" : "❌ (unless α_l≤1 & α_r≥1)",
+  "deriv_func_symm" : "❌",
+  "deriv_func_van" : "Yes (iff ∃ α<1)",
+  "deriv_func_exp" : "Yes (iff ∃ α>1)",
+  "deriv_func_sat" : "No",
+  "deriv_func_dead" : "No (iff ∄ α=0)"}];
+    
+          axis_limits = [-3,3,-3,3];
+    for (var i = -3; i < 3; i=i+0.001) {
+      if(i<=t_l){
+      lineData.push({
+        x: i,
+        y: t_l + alpha_l*(i-t_l)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: alpha_l
+      });
+    }else if(i>=t_r){
+      lineData.push({
+        x: i,
+        y: t_r + alpha_r*(i-t_r)
+      });
+      lineData_deriv.push({
+        x: i,
+        y: alpha_r
+      });
+    }else{
+            lineData.push({
+        x: i,
+        y: i
+      });
+      lineData_deriv.push({
+        x: i,
+        y: 1
+      });
+    };
+    }
+    break;
+                 };
+
+
+xRange.domain(axis_limits.slice(0, 2));
+yRange.domain(axis_limits.slice(2, 4));
+  
+var vis = d3.select("#visualisation");
+
+var lineFunc = d3.svg.line()
+  .x(function (d) {
+    return xRange(d.x);
+  })
+  .y(function (d) {
+    return yRange(d.y);
+  })
+  .interpolate('linear');  
+  
+var axis_ratio = (axis_limits[1]-axis_limits[0])-(axis_limits[3]-axis_limits[2])/(axis_limits[1]-axis_limits[0])
+
+  
+    vis.select("#func")   // change the line
+        .transition()
+            .duration(1000)
+            .attr("d", lineFunc(lineData));
+  
+      vis.select("#deriv_func")   // change the line
+          .transition()
+            .duration(1000)
+            .attr("d", lineFunc(lineData_deriv));
+
+        vis.select(".y.axis") // change the y axis
+            .transition()
+            .duration(1000)
+            .call(yAxis);
+  
+         vis.select(".x.axis") // change the x axis
+            .transition()
+            .duration(1000)
+            .call(xAxis);
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });  
+ 
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  
+vis.select("#func_equation")
+    .select("div")
+    .text(func_tags[0].func_tex );
+  
+  vis.select("#deriv_func_equation")
+    .select("div")
+    .text(deriv_func_tags[0].deriv_func_tex );
+  
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+   vis.select("#func_contin")
+          .transition()
+      .text("Continuity: "+func_tags[0].func_contin );
+  
+     vis.select("#func_symm")
+         .transition()
+        .text( "Symmetry: " + func_tags[0].func_symm );
+  
+     vis.select("#func_range")
+        .transition()
+      .text("Range: "+func_tags[0].func_range );
+  
+      vis.select("#func_mono")
+         .transition()
+      .text("Monotonic: "+func_tags[0].func_mono );
+  
+        vis.select("#func_origin")
+           .transition()
+      .text("Identity at Origin: "+func_tags[0].func_origin);
+   
+  
+  
+  if(func_tags[0].func_ref==""){
+  vis.select("#func_ref")
+     .html('');
+  }else{
+      vis.select("#func_ref")
+     .html('<a href="'+func_tags[0].func_ref+'" target="_blank" style="fill:blue">Reference</a>');
+  }
+  
+  // update derivative info table
+  
+  vis.select("#deriv_func_contin")
+     .transition()
+      .text("Continuous: "+deriv_func_tags[0].deriv_func_contin );
+  
+     vis.select("#deriv_func_range")
+      .transition()
+      .text("Range: "+deriv_func_tags[0].deriv_func_range );
+  
+      vis.select("#deriv_func_mono")
+         .transition()
+      .text("Monotonic: "+deriv_func_tags[0].deriv_func_mono );
+  
+        vis.select("#deriv_func_origin")
+          .transition()
+      .text("Identity at Origin: "+deriv_func_tags[0].deriv_func_origin);
+  
+          vis.select("#deriv_func_symm")
+        .transition()
+      .text("Identity at Origin: "+deriv_func_tags[0].deriv_func_symm);
+  
+  
+  // update asymptote lines 
+  
+        vis.select("#top_asymptote")
+          .transition()
+           .duration(1000)
+           .attr("d", lineFunc([{"x":axis_limits[0],"y":asymptote_top},
+                                {"x":axis_limits[1],"y":asymptote_top}]))
+  
+          vis.select("#bottom_asymptote")
+          .transition()
+           .duration(1000)
+           .attr("d", lineFunc([{"x":axis_limits[0],"y":asymptote_bottom},
+                                {"x":axis_limits[1],"y":asymptote_bottom}]))
+  
+    vis.selectAll(".tick")
+    .filter(function (d) { return d === 0;  })
+    .remove();
+  
+  document.getElementById('func_primer').innerHTML=func_tags[0].func_primer;
+  
+   if(activ_func=="srelu" || activ_func=="prelu" ||  activ_func=="rrelu" || activ_func=="elu"){
+  
+     vis.select("#deriv_func_exp")
+     .select("tspan")
+     .text("Exploding: ")
+     .append("svg:tspan")
+     .style("fill",deriv_func_tags[0].deriv_func_exp.indexOf("Yes")>-1 ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_exp );
+     
+          vis.select("#deriv_func_van")
+     .select("tspan")
+     .text("Vanishing: ")
+     .append("svg:tspan")
+     .style("fill",deriv_func_tags[0].deriv_func_van.indexOf("Yes")>-1 ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_van );
+     
+   }else{
+    vis.select("#deriv_func_exp")
+     .select("tspan")
+     .text("Exploding Gradient: ")
+     .append("svg:tspan")
+     .style("fill", deriv_func_tags[0].deriv_func_exp.indexOf("Yes")>-1  ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_exp );
+
+  vis.select("#deriv_func_van")
+     .select("tspan")
+     .text("Vanishing Gradient: ")
+     .append("svg:tspan")
+     .style("fill", deriv_func_tags[0].deriv_func_van.indexOf("Yes")>-1 ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_van );
+   }
+  vis.select("#deriv_func_sat")
+     .select("tspan")
+     .select("tspan")
+     .style("fill", deriv_func_tags[0].deriv_func_sat.indexOf("Yes")>-1  ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_sat );
+
+  
+  vis.select("#deriv_func_dead")
+     .select("tspan")
+     .select("tspan")
+     .style("fill", deriv_func_tags[0].deriv_func_dead.indexOf("Yes")>-1  ? "red" : "#00e600")
+     .text(deriv_func_tags[0].deriv_func_dead );
+   
+   
+   }
+  
+
+
+</script>
+</body>
+</html>

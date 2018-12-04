@@ -1,0 +1,1814 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+      <style>
+.paginate_button{font-size: 0.8em}
+
+
+.dataTables_filter label {font-size: 0.8em; white-space: nowrap; display: inline-block;}
+
+.dataTables_length label {font-size: 0.8em}
+
+.dataTables_length select {font-size: 0.8em}
+
+.dataTables_filter input {font-size: 0.8em}
+        
+.dataTables_info {font-size: 0.8em}
+      
+    </style>
+  </head>
+
+<body >
+
+  <br>
+ <table id="league_goals_table" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+<th></th>
+  <th>country</th>
+  <th>league</th>
+  <th># games</th>
+  <th># teams</th>
+  <th>avg_goals</th>
+  <th>home_adv score</th>
+  <th>left_tail</th>
+  <th>right_tail</th>
+</tr>
+    </thead>
+  <tbody>
+      <tr>
+      <th>1</th>
+      <td>Nigeria</td>
+      <td>Premier League 2017</td>
+      <td>379</td>
+      <td>20</td>
+      <td>2.011</td>
+      <td>1.195</td>
+      <td>1.027</td>
+      <td>1.363</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Haiti</td>
+      <td>Championnat National 2017</td>
+      <td>237</td>
+      <td>16</td>
+      <td>1.717</td>
+      <td>0.741</td>
+      <td>0.533</td>
+      <td>0.949</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Algeria</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>238</td>
+      <td>16</td>
+      <td>2.092</td>
+      <td>0.698</td>
+      <td>0.512</td>
+      <td>0.884</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ghana</td>
+      <td>Premier League 2017</td>
+      <td>238</td>
+      <td>16</td>
+      <td>2.202</td>
+      <td>0.676</td>
+      <td>0.494</td>
+      <td>0.857</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Bolivia</td>
+      <td>Liga de Futbol Prof 2016/2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>3.432</td>
+      <td>0.624</td>
+      <td>0.431</td>
+      <td>0.818</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Guatemala</td>
+      <td>Liga Nacional 2016/2017</td>
+      <td>264</td>
+      <td>12</td>
+      <td>2.155</td>
+      <td>0.620</td>
+      <td>0.448</td>
+      <td>0.792</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Benin</td>
+      <td>Championnat National 2017</td>
+      <td>162</td>
+      <td>19</td>
+      <td>1.778</td>
+      <td>0.571</td>
+      <td>0.330</td>
+      <td>0.811</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>USA</td>
+      <td>MLS 2017</td>
+      <td>374</td>
+      <td>22</td>
+      <td>2.968</td>
+      <td>0.538</td>
+      <td>0.416</td>
+      <td>0.660</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Peru</td>
+      <td>Primera Division 2017</td>
+      <td>238</td>
+      <td>16</td>
+      <td>2.681</td>
+      <td>0.520</td>
+      <td>0.359</td>
+      <td>0.680</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Indonesia</td>
+      <td>Liga 1 2017</td>
+      <td>304</td>
+      <td>18</td>
+      <td>2.888</td>
+      <td>0.515</td>
+      <td>0.378</td>
+      <td>0.651</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Togo</td>
+      <td>Championnat National 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>1.934</td>
+      <td>0.510</td>
+      <td>0.293</td>
+      <td>0.726</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Uzbekistan</td>
+      <td>Professional Football League 2017</td>
+      <td>233</td>
+      <td>16</td>
+      <td>2.571</td>
+      <td>0.503</td>
+      <td>0.338</td>
+      <td>0.668</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Mozambique</td>
+      <td>Mocambola 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>1.867</td>
+      <td>0.501</td>
+      <td>0.310</td>
+      <td>0.692</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Angola</td>
+      <td>Girabola 2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.151</td>
+      <td>0.499</td>
+      <td>0.321</td>
+      <td>0.678</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Greece</td>
+      <td>Super League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.317</td>
+      <td>0.499</td>
+      <td>0.328</td>
+      <td>0.671</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Tunisia</td>
+      <td>Ligue Professionnelle 1 2016/2017</td>
+      <td>112</td>
+      <td>16</td>
+      <td>2.098</td>
+      <td>0.495</td>
+      <td>0.231</td>
+      <td>0.759</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Albania</td>
+      <td>Super League 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>1.889</td>
+      <td>0.488</td>
+      <td>0.269</td>
+      <td>0.707</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Sudan</td>
+      <td>Premier League 2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.261</td>
+      <td>0.486</td>
+      <td>0.332</td>
+      <td>0.639</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Tanzania</td>
+      <td>Ligi Kuu Bara 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>1.971</td>
+      <td>0.480</td>
+      <td>0.294</td>
+      <td>0.665</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Colombia</td>
+      <td>Liga Aguila 2017</td>
+      <td>400</td>
+      <td>20</td>
+      <td>2.145</td>
+      <td>0.465</td>
+      <td>0.328</td>
+      <td>0.603</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Ecuador</td>
+      <td>Serie A 2017</td>
+      <td>263</td>
+      <td>12</td>
+      <td>2.605</td>
+      <td>0.454</td>
+      <td>0.300</td>
+      <td>0.608</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Honduras</td>
+      <td>Liga Nacional 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.828</td>
+      <td>0.452</td>
+      <td>0.273</td>
+      <td>0.630</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Ethiopia</td>
+      <td>Premier League 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>1.837</td>
+      <td>0.433</td>
+      <td>0.241</td>
+      <td>0.625</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Morocco</td>
+      <td>Botola Pro 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.229</td>
+      <td>0.405</td>
+      <td>0.232</td>
+      <td>0.578</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>India</td>
+      <td>I-League 2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>2.500</td>
+      <td>0.405</td>
+      <td>0.139</td>
+      <td>0.672</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Montenegro</td>
+      <td>Prva Crnogorska Liga 2016/2017</td>
+      <td>197</td>
+      <td>12</td>
+      <td>2.020</td>
+      <td>0.398</td>
+      <td>0.196</td>
+      <td>0.599</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Croatia</td>
+      <td>1. HNL 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.417</td>
+      <td>0.396</td>
+      <td>0.204</td>
+      <td>0.588</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Zimbabwe</td>
+      <td>Premier Soccer League 2017</td>
+      <td>305</td>
+      <td>18</td>
+      <td>2.023</td>
+      <td>0.389</td>
+      <td>0.228</td>
+      <td>0.549</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Kosovo</td>
+      <td>Superliga 2016/2017</td>
+      <td>196</td>
+      <td>12</td>
+      <td>2.383</td>
+      <td>0.386</td>
+      <td>0.200</td>
+      <td>0.571</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Sierra Leone</td>
+      <td>Premier League 2014</td>
+      <td>90</td>
+      <td>14</td>
+      <td>1.833</td>
+      <td>0.376</td>
+      <td>0.060</td>
+      <td>0.691</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>France</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>379</td>
+      <td>20</td>
+      <td>2.615</td>
+      <td>0.375</td>
+      <td>0.248</td>
+      <td>0.502</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>Malawi</td>
+      <td>Super League 2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.331</td>
+      <td>0.372</td>
+      <td>0.203</td>
+      <td>0.541</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Costa Rica</td>
+      <td>Primera Division 2016/2017</td>
+      <td>264</td>
+      <td>12</td>
+      <td>2.689</td>
+      <td>0.370</td>
+      <td>0.221</td>
+      <td>0.520</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Norway</td>
+      <td>Eliteserien 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.842</td>
+      <td>0.368</td>
+      <td>0.215</td>
+      <td>0.520</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Bulgaria</td>
+      <td>Parva Liga 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.467</td>
+      <td>0.365</td>
+      <td>0.177</td>
+      <td>0.553</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Russia</td>
+      <td>Premier League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.133</td>
+      <td>0.363</td>
+      <td>0.187</td>
+      <td>0.539</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Kazakhstan</td>
+      <td>Premier League 2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.465</td>
+      <td>0.361</td>
+      <td>0.180</td>
+      <td>0.542</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Belgium</td>
+      <td>Jupiler League 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.736</td>
+      <td>0.359</td>
+      <td>0.203</td>
+      <td>0.515</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>FYR of Macedonia</td>
+      <td>First League 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.539</td>
+      <td>0.349</td>
+      <td>0.163</td>
+      <td>0.535</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Senegal</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>2.204</td>
+      <td>0.348</td>
+      <td>0.149</td>
+      <td>0.547</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Azerbaijan</td>
+      <td>Premier League 2016/2017</td>
+      <td>111</td>
+      <td>8</td>
+      <td>2.234</td>
+      <td>0.346</td>
+      <td>0.094</td>
+      <td>0.599</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Moldova</td>
+      <td>Divizia Nationala 2016/2017</td>
+      <td>165</td>
+      <td>11</td>
+      <td>2.539</td>
+      <td>0.341</td>
+      <td>0.147</td>
+      <td>0.536</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Slovakia</td>
+      <td>Fortuna liga 2016/2017</td>
+      <td>184</td>
+      <td>12</td>
+      <td>2.690</td>
+      <td>0.339</td>
+      <td>0.159</td>
+      <td>0.518</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Cameroon</td>
+      <td>Elite One 2017</td>
+      <td>303</td>
+      <td>18</td>
+      <td>1.795</td>
+      <td>0.337</td>
+      <td>0.166</td>
+      <td>0.508</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Jamaica</td>
+      <td>Premier League 2016/2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.192</td>
+      <td>0.336</td>
+      <td>0.145</td>
+      <td>0.527</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>RÃ©union</td>
+      <td>Regionale 1 2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.610</td>
+      <td>0.336</td>
+      <td>0.153</td>
+      <td>0.518</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Venezuela</td>
+      <td>Primera Division 2017</td>
+      <td>303</td>
+      <td>18</td>
+      <td>2.482</td>
+      <td>0.331</td>
+      <td>0.186</td>
+      <td>0.476</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Portugal</td>
+      <td>Primeira Liga 2016/2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.379</td>
+      <td>0.327</td>
+      <td>0.180</td>
+      <td>0.474</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>South Africa</td>
+      <td>Premier League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.242</td>
+      <td>0.322</td>
+      <td>0.151</td>
+      <td>0.494</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Germany</td>
+      <td>Bundesliga 2016/2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.866</td>
+      <td>0.315</td>
+      <td>0.181</td>
+      <td>0.449</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Uganda</td>
+      <td>Premier League 2016/2017</td>
+      <td>237</td>
+      <td>16</td>
+      <td>2.135</td>
+      <td>0.313</td>
+      <td>0.137</td>
+      <td>0.490</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Guinea</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>2.044</td>
+      <td>0.312</td>
+      <td>0.105</td>
+      <td>0.519</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Thailand</td>
+      <td>Thai Premier League 2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>3.389</td>
+      <td>0.309</td>
+      <td>0.186</td>
+      <td>0.432</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Yemen</td>
+      <td>Division 1 2013/2014</td>
+      <td>180</td>
+      <td>14</td>
+      <td>2.322</td>
+      <td>0.308</td>
+      <td>0.114</td>
+      <td>0.503</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>Zambia</td>
+      <td>Super League 2017</td>
+      <td>379</td>
+      <td>20</td>
+      <td>2.003</td>
+      <td>0.308</td>
+      <td>0.164</td>
+      <td>0.452</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>Kyrgyzstan</td>
+      <td>Top Liga 2017</td>
+      <td>60</td>
+      <td>6</td>
+      <td>2.950</td>
+      <td>0.307</td>
+      <td>0.009</td>
+      <td>0.606</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>Hungary</td>
+      <td>OTP Bank Liga 2016/2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.631</td>
+      <td>0.307</td>
+      <td>0.133</td>
+      <td>0.481</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Namibia</td>
+      <td>MTC Premiership 2015/2016</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.412</td>
+      <td>0.304</td>
+      <td>0.139</td>
+      <td>0.469</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>China</td>
+      <td>Super League 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>3.050</td>
+      <td>0.303</td>
+      <td>0.156</td>
+      <td>0.449</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>Niger</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>2.171</td>
+      <td>0.301</td>
+      <td>0.101</td>
+      <td>0.502</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Iraq</td>
+      <td>Super League 2016/2017</td>
+      <td>354</td>
+      <td>20</td>
+      <td>2.110</td>
+      <td>0.299</td>
+      <td>0.153</td>
+      <td>0.446</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>Netherlands</td>
+      <td>Eredivisie 2016/2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.889</td>
+      <td>0.296</td>
+      <td>0.163</td>
+      <td>0.430</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>Serbia</td>
+      <td>Super Liga 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.364</td>
+      <td>0.290</td>
+      <td>0.124</td>
+      <td>0.457</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Palestine</td>
+      <td>West Bank League 2016/2017</td>
+      <td>131</td>
+      <td>12</td>
+      <td>2.450</td>
+      <td>0.287</td>
+      <td>0.066</td>
+      <td>0.508</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>England</td>
+      <td>Premier League 2016/2017</td>
+      <td>380</td>
+      <td>20</td>
+      <td>2.800</td>
+      <td>0.284</td>
+      <td>0.162</td>
+      <td>0.405</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>Gabon</td>
+      <td>Championnat D1 2016/2017</td>
+      <td>163</td>
+      <td>14</td>
+      <td>2.307</td>
+      <td>0.282</td>
+      <td>0.077</td>
+      <td>0.486</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>Brazil</td>
+      <td>Serie A 2017</td>
+      <td>380</td>
+      <td>20</td>
+      <td>2.429</td>
+      <td>0.281</td>
+      <td>0.151</td>
+      <td>0.412</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>Turkmenistan</td>
+      <td>Yokary Liga 2017</td>
+      <td>143</td>
+      <td>9</td>
+      <td>2.916</td>
+      <td>0.278</td>
+      <td>0.084</td>
+      <td>0.472</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>Spain</td>
+      <td>LaLiga 2016/2017</td>
+      <td>380</td>
+      <td>20</td>
+      <td>2.942</td>
+      <td>0.263</td>
+      <td>0.144</td>
+      <td>0.381</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>Poland</td>
+      <td>Ekstraklasa 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.767</td>
+      <td>0.260</td>
+      <td>0.107</td>
+      <td>0.414</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>Czech Republic</td>
+      <td>1. Liga 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.488</td>
+      <td>0.259</td>
+      <td>0.098</td>
+      <td>0.421</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>Italy</td>
+      <td>Serie A 2016/2017</td>
+      <td>379</td>
+      <td>20</td>
+      <td>2.955</td>
+      <td>0.257</td>
+      <td>0.139</td>
+      <td>0.375</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>Wales</td>
+      <td>Premier League 2016/2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.970</td>
+      <td>0.246</td>
+      <td>0.047</td>
+      <td>0.446</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>New Zealand</td>
+      <td>Football Championship 2016/2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>3.567</td>
+      <td>0.244</td>
+      <td>0.024</td>
+      <td>0.465</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>Republic of the Congo</td>
+      <td>Ligue 1 2017</td>
+      <td>300</td>
+      <td>18</td>
+      <td>2.237</td>
+      <td>0.244</td>
+      <td>0.091</td>
+      <td>0.397</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>Kenya</td>
+      <td>Premier League 2017</td>
+      <td>304</td>
+      <td>18</td>
+      <td>2.026</td>
+      <td>0.244</td>
+      <td>0.084</td>
+      <td>0.403</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>Ukraine</td>
+      <td>Pari-Match League 2016/2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.462</td>
+      <td>0.241</td>
+      <td>0.022</td>
+      <td>0.460</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>Austria</td>
+      <td>Tipico Bundesliga 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.711</td>
+      <td>0.239</td>
+      <td>0.060</td>
+      <td>0.418</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>Switzerland</td>
+      <td>Super League 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>3.233</td>
+      <td>0.235</td>
+      <td>0.071</td>
+      <td>0.398</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>Mexico</td>
+      <td>Primera Division 2016/2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.634</td>
+      <td>0.234</td>
+      <td>0.095</td>
+      <td>0.373</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>Turkey</td>
+      <td>Super Lig 2016/2017</td>
+      <td>305</td>
+      <td>18</td>
+      <td>2.708</td>
+      <td>0.231</td>
+      <td>0.094</td>
+      <td>0.369</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>Bosnia and Herzegovina</td>
+      <td>Premier League 2016/2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.242</td>
+      <td>0.231</td>
+      <td>0.001</td>
+      <td>0.460</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>Romania</td>
+      <td>Liga 1 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>2.376</td>
+      <td>0.223</td>
+      <td>0.033</td>
+      <td>0.413</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>Philippines</td>
+      <td>PFL 2017</td>
+      <td>109</td>
+      <td>8</td>
+      <td>3.202</td>
+      <td>0.218</td>
+      <td>0.007</td>
+      <td>0.430</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>Malaysia</td>
+      <td>Super League 2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>3.091</td>
+      <td>0.217</td>
+      <td>0.021</td>
+      <td>0.412</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>Australia</td>
+      <td>A-League 2016/2017</td>
+      <td>135</td>
+      <td>10</td>
+      <td>3.030</td>
+      <td>0.213</td>
+      <td>0.018</td>
+      <td>0.409</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>DR Congo</td>
+      <td>Super Ligue 2016/2017</td>
+      <td>195</td>
+      <td>26</td>
+      <td>2.205</td>
+      <td>0.198</td>
+      <td>0.006</td>
+      <td>0.391</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>Syria</td>
+      <td>Premier League 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.180</td>
+      <td>0.197</td>
+      <td>0.025</td>
+      <td>0.370</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>Argentina</td>
+      <td>Primera Division 2016/2017</td>
+      <td>450</td>
+      <td>30</td>
+      <td>2.276</td>
+      <td>0.195</td>
+      <td>0.071</td>
+      <td>0.318</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>Burundi</td>
+      <td>Ligue A 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.138</td>
+      <td>0.192</td>
+      <td>0.018</td>
+      <td>0.366</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>Cyprus</td>
+      <td>First Division 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.879</td>
+      <td>0.191</td>
+      <td>0.019</td>
+      <td>0.363</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>Sweden</td>
+      <td>Allsvenskan 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.779</td>
+      <td>0.189</td>
+      <td>0.037</td>
+      <td>0.342</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>Tajikistan</td>
+      <td>Vysshaya Liga 2017</td>
+      <td>84</td>
+      <td>8</td>
+      <td>2.702</td>
+      <td>0.189</td>
+      <td>-0.077</td>
+      <td>0.456</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Northern Ireland</td>
+      <td>NIFL Premiership 2016/2017</td>
+      <td>195</td>
+      <td>12</td>
+      <td>2.933</td>
+      <td>0.188</td>
+      <td>0.023</td>
+      <td>0.353</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Scotland</td>
+      <td>Premiership 2016/2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.687</td>
+      <td>0.187</td>
+      <td>0.016</td>
+      <td>0.358</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Saudi Arabia</td>
+      <td>Saudi Professional League 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>3.016</td>
+      <td>0.186</td>
+      <td>0.018</td>
+      <td>0.354</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Iceland</td>
+      <td>Pepsideild 2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>3.053</td>
+      <td>0.184</td>
+      <td>-0.012</td>
+      <td>0.380</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Nicaragua</td>
+      <td>Primera Division 2016/2017</td>
+      <td>179</td>
+      <td>10</td>
+      <td>3.156</td>
+      <td>0.182</td>
+      <td>0.016</td>
+      <td>0.347</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Denmark</td>
+      <td>Superliga 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.632</td>
+      <td>0.180</td>
+      <td>0.000</td>
+      <td>0.360</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>Lesotho</td>
+      <td>Premier League 2016/2017</td>
+      <td>180</td>
+      <td>14</td>
+      <td>2.428</td>
+      <td>0.180</td>
+      <td>-0.009</td>
+      <td>0.368</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>Vietnam</td>
+      <td>V-League 2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.912</td>
+      <td>0.174</td>
+      <td>0.003</td>
+      <td>0.345</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>Rwanda</td>
+      <td>National Football league 2016/2017</td>
+      <td>239</td>
+      <td>16</td>
+      <td>2.134</td>
+      <td>0.174</td>
+      <td>-0.001</td>
+      <td>0.348</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>Ireland</td>
+      <td>Premier Division 2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.773</td>
+      <td>0.172</td>
+      <td>0.004</td>
+      <td>0.341</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>Estonia</td>
+      <td>Meistriliiga 2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>3.656</td>
+      <td>0.171</td>
+      <td>0.017</td>
+      <td>0.324</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>United Arab Emirates</td>
+      <td>UAE League 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>3.137</td>
+      <td>0.165</td>
+      <td>0.000</td>
+      <td>0.330</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>El Salvador</td>
+      <td>Primera Division 2016/2017</td>
+      <td>263</td>
+      <td>12</td>
+      <td>2.601</td>
+      <td>0.161</td>
+      <td>0.010</td>
+      <td>0.311</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>Luxembourg</td>
+      <td>National Division 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>3.319</td>
+      <td>0.153</td>
+      <td>-0.007</td>
+      <td>0.313</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>Bangladesh</td>
+      <td>Premier League 2016</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.591</td>
+      <td>0.152</td>
+      <td>-0.060</td>
+      <td>0.365</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>Mauritania</td>
+      <td>Championnat D1 2016/2017</td>
+      <td>181</td>
+      <td>14</td>
+      <td>2.453</td>
+      <td>0.149</td>
+      <td>-0.038</td>
+      <td>0.336</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>Swaziland</td>
+      <td>MTN Premier League 2016/2017</td>
+      <td>131</td>
+      <td>12</td>
+      <td>2.634</td>
+      <td>0.146</td>
+      <td>-0.065</td>
+      <td>0.358</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>Trinidad and Tobago</td>
+      <td>Pro League 2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>2.922</td>
+      <td>0.145</td>
+      <td>-0.098</td>
+      <td>0.387</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>Malta</td>
+      <td>Premier League 2016/2017</td>
+      <td>197</td>
+      <td>12</td>
+      <td>2.878</td>
+      <td>0.145</td>
+      <td>-0.021</td>
+      <td>0.310</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>Chile</td>
+      <td>Primera Division 2016/2017</td>
+      <td>120</td>
+      <td>16</td>
+      <td>2.892</td>
+      <td>0.145</td>
+      <td>-0.068</td>
+      <td>0.357</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>Israel</td>
+      <td>Ligat ha'Al 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.132</td>
+      <td>0.145</td>
+      <td>-0.055</td>
+      <td>0.344</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>Botswana</td>
+      <td>Premier League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.317</td>
+      <td>0.144</td>
+      <td>-0.023</td>
+      <td>0.311</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>Oman</td>
+      <td>Professional League 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>2.758</td>
+      <td>0.136</td>
+      <td>-0.040</td>
+      <td>0.311</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>Iran</td>
+      <td>Persian Gulf Pro League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.100</td>
+      <td>0.135</td>
+      <td>-0.040</td>
+      <td>0.310</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>Bermuda</td>
+      <td>Premier League 2016/2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>3.144</td>
+      <td>0.134</td>
+      <td>-0.099</td>
+      <td>0.368</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>Lithuania</td>
+      <td>A Lyga 2017</td>
+      <td>112</td>
+      <td>8</td>
+      <td>2.580</td>
+      <td>0.132</td>
+      <td>-0.099</td>
+      <td>0.363</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>Egypt</td>
+      <td>Premier League 2016/2017</td>
+      <td>305</td>
+      <td>18</td>
+      <td>2.256</td>
+      <td>0.122</td>
+      <td>-0.027</td>
+      <td>0.272</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>Faroe Islands</td>
+      <td>Premier League 2017</td>
+      <td>134</td>
+      <td>10</td>
+      <td>3.187</td>
+      <td>0.122</td>
+      <td>-0.068</td>
+      <td>0.312</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>Burkina Faso</td>
+      <td>Premier League 2016/2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>1.721</td>
+      <td>0.121</td>
+      <td>-0.072</td>
+      <td>0.314</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>Finland</td>
+      <td>Veikkausliiga 2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.737</td>
+      <td>0.120</td>
+      <td>-0.049</td>
+      <td>0.289</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>Seychelles</td>
+      <td>Division One 2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>3.303</td>
+      <td>0.114</td>
+      <td>-0.075</td>
+      <td>0.302</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>Japan</td>
+      <td>J-League 2017</td>
+      <td>306</td>
+      <td>18</td>
+      <td>2.592</td>
+      <td>0.114</td>
+      <td>-0.026</td>
+      <td>0.253</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>Myanmar</td>
+      <td>National League 2017</td>
+      <td>128</td>
+      <td>12</td>
+      <td>2.594</td>
+      <td>0.113</td>
+      <td>-0.104</td>
+      <td>0.329</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>Ivory Coast</td>
+      <td>Ligue 1 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>1.802</td>
+      <td>0.110</td>
+      <td>-0.107</td>
+      <td>0.327</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>Georgia</td>
+      <td>Erovnuli Liga 2017</td>
+      <td>179</td>
+      <td>10</td>
+      <td>2.810</td>
+      <td>0.108</td>
+      <td>-0.067</td>
+      <td>0.283</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>Qatar</td>
+      <td>Premier League 2016/2017</td>
+      <td>182</td>
+      <td>14</td>
+      <td>3.132</td>
+      <td>0.105</td>
+      <td>-0.059</td>
+      <td>0.270</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>South Korea</td>
+      <td>K-League Classic 2017</td>
+      <td>198</td>
+      <td>12</td>
+      <td>2.737</td>
+      <td>0.102</td>
+      <td>-0.067</td>
+      <td>0.271</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>Slovenia</td>
+      <td>Prva liga 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.572</td>
+      <td>0.099</td>
+      <td>-0.083</td>
+      <td>0.282</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>Lebanon</td>
+      <td>Premier League 2016/2017</td>
+      <td>131</td>
+      <td>12</td>
+      <td>2.771</td>
+      <td>0.094</td>
+      <td>-0.113</td>
+      <td>0.300</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>San Marino</td>
+      <td>Campionato Sammarinese 2016/2017</td>
+      <td>154</td>
+      <td>15</td>
+      <td>3.143</td>
+      <td>0.085</td>
+      <td>-0.095</td>
+      <td>0.264</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>Belarus</td>
+      <td>Vysshaya Liga 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.333</td>
+      <td>0.071</td>
+      <td>-0.094</td>
+      <td>0.237</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>Mali</td>
+      <td>Premiere Division 2016</td>
+      <td>162</td>
+      <td>19</td>
+      <td>2.031</td>
+      <td>0.064</td>
+      <td>-0.153</td>
+      <td>0.281</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>Gibraltar</td>
+      <td>Premier Division 2016/2017</td>
+      <td>132</td>
+      <td>10</td>
+      <td>3.288</td>
+      <td>0.064</td>
+      <td>-0.126</td>
+      <td>0.253</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>Hong Kong</td>
+      <td>Premier League 2016/2017</td>
+      <td>110</td>
+      <td>11</td>
+      <td>3.427</td>
+      <td>0.058</td>
+      <td>-0.144</td>
+      <td>0.260</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>Singapore</td>
+      <td>S.League 2017</td>
+      <td>108</td>
+      <td>9</td>
+      <td>2.981</td>
+      <td>0.056</td>
+      <td>-0.163</td>
+      <td>0.275</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>Sri Lanka</td>
+      <td>Champions League 2017</td>
+      <td>143</td>
+      <td>18</td>
+      <td>3.266</td>
+      <td>0.051</td>
+      <td>-0.133</td>
+      <td>0.235</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>Cape Verde</td>
+      <td>Campeonato Nacional 2017</td>
+      <td>36</td>
+      <td>12</td>
+      <td>2.389</td>
+      <td>0.047</td>
+      <td>-0.376</td>
+      <td>0.469</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>Djibouti</td>
+      <td>Division 1 2016/2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>3.978</td>
+      <td>0.045</td>
+      <td>-0.163</td>
+      <td>0.252</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>Uruguay</td>
+      <td>Primera Division 2017</td>
+      <td>240</td>
+      <td>16</td>
+      <td>2.729</td>
+      <td>0.034</td>
+      <td>-0.120</td>
+      <td>0.187</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>Gambia</td>
+      <td>GFA League 2016/2017</td>
+      <td>131</td>
+      <td>12</td>
+      <td>1.908</td>
+      <td>0.032</td>
+      <td>-0.218</td>
+      <td>0.281</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>Canada</td>
+      <td>CSL 2017</td>
+      <td>56</td>
+      <td>8</td>
+      <td>4.304</td>
+      <td>0.025</td>
+      <td>-0.228</td>
+      <td>0.277</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>Armenia</td>
+      <td>Premier League 2016/2017</td>
+      <td>90</td>
+      <td>6</td>
+      <td>2.200</td>
+      <td>0.020</td>
+      <td>-0.258</td>
+      <td>0.299</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>Panama</td>
+      <td>LPF 2016/2017</td>
+      <td>180</td>
+      <td>10</td>
+      <td>2.083</td>
+      <td>0.005</td>
+      <td>-0.197</td>
+      <td>0.208</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>Kuwait</td>
+      <td>Premier League 2016/2017</td>
+      <td>210</td>
+      <td>15</td>
+      <td>3.048</td>
+      <td>-0.000</td>
+      <td>-0.155</td>
+      <td>0.155</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>Mauritius</td>
+      <td>Mauritian League 2016/2017</td>
+      <td>179</td>
+      <td>10</td>
+      <td>2.922</td>
+      <td>-0.001</td>
+      <td>-0.173</td>
+      <td>0.170</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>Andorra</td>
+      <td>Primera DivisiÃ³ 2016/2017</td>
+      <td>83</td>
+      <td>8</td>
+      <td>3.265</td>
+      <td>-0.005</td>
+      <td>-0.245</td>
+      <td>0.236</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>Latvia</td>
+      <td>SynotTip VirslÄ«ga 2017</td>
+      <td>96</td>
+      <td>8</td>
+      <td>2.417</td>
+      <td>-0.006</td>
+      <td>-0.264</td>
+      <td>0.251</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>Libya</td>
+      <td>Premier League 2017</td>
+      <td>83</td>
+      <td>28</td>
+      <td>2.265</td>
+      <td>-0.015</td>
+      <td>-0.324</td>
+      <td>0.293</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>Dominican Republic</td>
+      <td>LDF 2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>2.567</td>
+      <td>-0.021</td>
+      <td>-0.280</td>
+      <td>0.239</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>Cambodia</td>
+      <td>C-League 2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>3.864</td>
+      <td>-0.031</td>
+      <td>-0.205</td>
+      <td>0.142</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>Paraguay</td>
+      <td>Primera Division 2017</td>
+      <td>264</td>
+      <td>12</td>
+      <td>2.534</td>
+      <td>-0.033</td>
+      <td>-0.184</td>
+      <td>0.119</td>
+    </tr>
+    <tr>
+      <th>155</th>
+      <td>Jordan</td>
+      <td>Premier League 2016/2017</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.235</td>
+      <td>-0.034</td>
+      <td>-0.262</td>
+      <td>0.194</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>Bahrain</td>
+      <td>Premier League 2016/2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>2.556</td>
+      <td>-0.048</td>
+      <td>-0.310</td>
+      <td>0.213</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>Pakistan</td>
+      <td>Premier League 2014/2015</td>
+      <td>132</td>
+      <td>12</td>
+      <td>2.333</td>
+      <td>-0.065</td>
+      <td>-0.288</td>
+      <td>0.159</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>Liberia</td>
+      <td>LFA First Division 2016/2017</td>
+      <td>125</td>
+      <td>12</td>
+      <td>2.248</td>
+      <td>-0.089</td>
+      <td>-0.323</td>
+      <td>0.145</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Somalia</td>
+      <td>Nation Link Telecom Championship 2016/2017</td>
+      <td>90</td>
+      <td>10</td>
+      <td>2.922</td>
+      <td>-0.153</td>
+      <td>-0.396</td>
+      <td>0.090</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Maldives</td>
+      <td>Dhivehi Premier League 2017</td>
+      <td>56</td>
+      <td>8</td>
+      <td>3.304</td>
+      <td>-0.370</td>
+      <td>-0.782</td>
+      <td>0.042</td>
+    </tr>
+</tbody>
+</table>
+<br>
+  
+    <script >
+  $.noConflict();
+jQuery( document ).ready(function( $ ) {
+    $('#league_goals_table').DataTable({
+      "pagingType": "simple_numbers"});
+});
+    </script>
+
+</body>
+
+</html>

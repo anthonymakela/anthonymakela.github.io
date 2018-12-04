@@ -1,0 +1,187 @@
+
+<html><head>  
+  
+  
+  
+  <style>  
+  
+  #betfair_table table{
+  margin: 1em 0;
+  overflow: hidden;
+  background: #FFF;
+  color: #024457;
+  text-align: left;
+}
+
+
+#betfair_table tr:nth-child(odd) {
+background-color: #EAF3F3;
+}
+
+#betfair_table th {
+display: none;
+text-align: center;
+border-bottom: 0.5em solid #FFF;
+border: 0.3em solid #FFF;
+background-color: #167F92;
+color: #FFF;
+padding: 1em;
+text-align: center;
+}
+
+#betfair_table th:first-child {
+border-right: 0.2em solid #FFF;
+border-left: 0em
+display: table-cell;
+text-align: center;
+}
+#betfair_table th:nth-child(2) {
+display: table-cell;
+}
+#betfair_table th:nth-child(2) span {
+display: none;
+}
+
+#betfair_table th:nth-child(2):after {
+content: attr(data-th);
+}
+
+td {
+display: block;
+word-wrap: break-word;
+max-width: 7em;
+text-align: center;
+border-right: 0.3em solid #FFF;
+border-left: 0.3em solid #FFF;
+}
+
+#betfair_table td:first-child {
+display: table-cell;
+text-align: center;
+border-right: 0.3em solid #FFF;
+border-left: 0.3em solid #FFF;
+}
+
+
+table#betfair_table th, td {
+text-align: center;
+margin: .4em 1em;
+display: table-cell;
+padding: 0.4em;
+}
+
+
+
+#betfair_table tr {
+font-family: Arial, sans-serif;
+color: #024457;
+}
+
+
+.button {
+background-color: #4CAF50;
+color: white;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 0.8em;
+cursor: pointer;
+margin-left: 0.3em;
+}
+
+.button:hover {
+background-color: blue; 
+color: white;
+}
+
+
+/* Define the hover highlight color for the table row */
+table#betfair_table tbody tr:hover{ 
+background-color: lightyellow; 
+}
+  
+  caption{caption-side:bottom}
+
+  table#betfair_table tbody tr:hover {
+  background-color: #ffff99;
+  }
+  
+  </style>  
+  
+  </head>  
+  
+  <body> 
+  
+  <input type="button" class = "button" id = "odds" value="Convert to Decimal Odds" onclick="return change_button(this);" />
+  
+  
+  <table style="width:80%" id = "betfair_table" align="center"> 
+  <caption><b>Chance of Occurence (EPL Fixtures 21st May 2017)</b><br/> Source: Betfair Exchange</caption>
+  <thead>
+  <tr>
+  <th>Match</th>
+  <th>Home</th>
+  <th>Draw</th>
+  <th>Away</th>
+  </tr>
+  </thead>
+  <tbody> <tr>  <td>Arsenal v Everton</td>  <td>71.4 %</td>  <td>17.5 %</td>  <td>11.6 %</td>  </tr><tr>  <td>Burnley v West Ham</td>  <td>42 %</td>  <td>27.8 %</td>  <td>30.8 %</td>  </tr><tr>  <td>Chelsea v Sunderland</td>  <td>88.5 %</td>  <td>8.7 %</td>  <td>3.4 %</td>  </tr><tr>  <td>Hull v Tottenham</td>  <td>10.9 %</td>  <td>17.2 %</td>  <td>71.9 %</td>  </tr><tr>  <td>Leicester v Bournemouth</td>  <td>53.5 %</td>  <td>24.4 %</td>  <td>23.3 %</td>  </tr><tr>  <td>Liverpool v Middlesbrough</td>  <td>87.7 %</td>  <td>9.5 %</td>  <td>3.6 %</td>  </tr><tr>  <td>Man Utd v C Palace</td>  <td>41.7 %</td>  <td>29 %</td>  <td>29.9 %</td>  </tr><tr>  <td>Southampton v Stoke</td>  <td>57.1 %</td>  <td>24.4 %</td>  <td>19.2 %</td>  </tr><tr>  <td>Swansea v West Brom</td>  <td>43.1 %</td>  <td>28.6 %</td>  <td>29 %</td>  </tr><tr>  <td>Watford v Man City</td>  <td>5.1 %</td>  <td>10.2 %</td>  <td>85.5 %</td>  </tr> 
+</tbody>
+</table>  </body>  
+  
+  
+  <script type="text/javascript">
+  var insert = document.getElementById("odds");
+  insert.addEventListener("click", function() {
+  var allTableallCells = document.getElementById("betfair_table");
+  var allTableCells = allTableallCells.getElementsByTagName("td");
+  for(var i = 0, max = allTableCells.length; i < max; i++){
+  var node = allTableCells[i];
+  if(node.cellIndex ==0){
+    continue;
+  }
+  var currentText = node.childNodes[0].nodeValue;
+  if(insert.value==="Convert to Chance"){
+  if(currentText>=2){
+  node.innerHTML = "+"+Math.round(100*(currentText-1)*100)/100;}
+  else{
+  node.innerHTML = Math.round(100*(-100)/(currentText-1)/100);}
+  }
+  else if(insert.value==="Convert to Decimal Odds"){
+  if(currentText>0){
+  node.innerHTML = Math.round(100*1/((currentText/100)+1))/100;}
+  else{
+  node.innerHTML = Math.round(1000/((-100/currentText)+1))/1000;}
+  node.innerHTML = Math.round(10000*node.innerHTML)/100 + " %"
+  }
+  else{
+  currentText = parseFloat(currentText)/100;
+  node.innerHTML = Math.round(100/currentText)/100;
+  
+  }
+  }})
+  
+  function change_button( el )
+  {
+  switch (el.value) {
+  case "Convert to Chance":
+  el.value = "Decimal Odds";
+  document.getElementById("betfair_table").caption.innerHTML = "Chance of Occurence";
+  break;
+  case "Convert to Decimal Odds":
+  el.value = "American Odds";
+  document.getElementById("betfair_table").caption.innerHTML = "Decimal Odds";
+  break;
+  case "Convert to American Odds":
+  el.value = "Chance";
+  document.getElementById("betfair_table").caption.innerHTML = "American Odds";
+  break;
+  }
+  el.value =  "Convert to " + el.value;
+  document.getElementById("betfair_table").caption.innerHTML = 
+  "<b>"+document.getElementById("betfair_table").caption.innerHTML + 
+  " (EPL Fixtures 21st May 2017)</b><br/> Source: Betfair Exchange";
+  }
+  </script>
+  
+  </html>
