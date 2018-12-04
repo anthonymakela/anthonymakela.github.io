@@ -577,7 +577,7 @@ Rather than using past values of the forecast variable in a regression, a moving
 
 In mathematical terms, a moving average model of order q __(MA(q))__ is written
 
-$$y_{t} = \mu + \epsilon_{t} + \theta_{1} \epsilon_{t-1} + ... + \theta_{q} \epsilon_{t-q} $$ 
+$$y_{t} = c + \epsilon_{t} + \theta_{1} \epsilon_{t-1} + ... + \theta_{q} \epsilon_{t-q} $$ 
 
 ``` r
 arima_fit <- auto.arima(ts(acc_yearlymon$acc, frequency = 12, start=2008),
