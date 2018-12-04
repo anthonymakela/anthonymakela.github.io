@@ -447,200 +447,208 @@ plot_ly(death_yearlymon, x = ~ YearMonth, y = ~ Kuolleet, type = "scatter",
 
 We can observe that also the accidents that lead to injuries are more likely to happen during the summer time. 
 
-<iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
-
-There's a clear distinction between the weekend and weekdays (though Friday is a sort of hybrid). The weekday rush hour peaks are apparent, while the weekend hits its maximum at around midday, with a noticeable increase in the early morning compared to weekdays. Switching gears, let's turn our attention to the longer term and plot the number of road accidents per month from 2005-2015.
-
 ``` r
-# just reformatting the days by the yearmonth (e.g. June 2008)
-yearlymon_data <- tot_accs %>% group_by(as.yearmon(Date, format="%d/%m/%Y")) %>% 
-                  summarize(num_accs=n())
-colnames(yearlymon_data)[1]="YearMonth"
+inj_yearlymon <- accidents_ %>%
+  group_by(as.yearmon(Paiva, format="%d/%m/%Y")) %>%
+  summarize(Loukkaant = sum(Loukkaant))
+  colnames(inj_yearlymon)[1]="YearMonth"
+
+format_axis <- function(plottitle,size=18,colour="black"){
+  list(
+    title = plottitle,
+    titlefont = list(
+      size = size,
+      color = colour))}
+
+line_list_inj <- list()
+for(i in 1:length(unique(year(accidents_$Paiva)))){
+  line_list_inj[[i]]=list(type      = "line",
+                      line      = list(color = "black", dash="dashdot"),
+                      opacity   = 0.3,
+                      x0        = unique(year(accidents_$Paiva))[i],
+                      x1        = unique(year(accidents_$Paiva))[i],
+                      xref      = "x",
+                      y0        = min(inj_yearlymon$Loukkaant),
+                      y1        = max(inj_yearlymon$Loukkaant),
+                      yref      = "y")
+}
+
+plot_ly(inj_yearlymon, x = ~ YearMonth, y = ~ Loukkaant, type = "scatter", 
+        mode = "lines", text = sapply(inj_yearlymon$YearMonth, toString),
+        hoverinfo = "text+y") %>% layout(shapes = line_list_inj) %>%  
+  layout(xaxis = format_axis("Vuosi"),yaxis = format_axis("Maara (Loukkaantuneet)"),
+         title = "Loukkaantuneiden maara kuukausittain (2008-2017)")
 ```
 
-<iframe  src="https://plot.ly/~dashee/15/monthly_accs_0515.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+<iframe  src="https://plot.ly/~anthonymakela/8/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
-The good news is that the number of accidents has declined significantly since 2005 (and [the UK population increased by nearly 10 % in that time period](https://www.google.co.uk/publicdata/explore?ds=d5bncppjof8f9_&met_y=sp_pop_totl&idim=country:GBR:IRL:CAN&hl=en&dl=en)). You might also detect a seasonal behaviour within the numbers. February typically has the least number of accidents (partly owing to it only have 28/29 days I imagine), while November is the worst month for accidents. So the time series appears to be composed of a trend and cyclical/seasonal component. If we include a noise term to account for random monthly variations, then we should be able to decompose this time series. We'll opt for a multiplicative model (number accidents is the product of its seasonal/trend/noise components) and use [Seasonal and Trend decomposition using Loess (STL)](https://www.otexts.org/fpp/6/5) The theory behind time series decomposition is well described [here](https://www.otexts.org/fpp/6).
+### Number of accidents monthly
+
+The good news is that it seems that the number of accidents has been slowly declining. You might also detect a seasonal behaviour within the numbers. April typically has the least number of accidents, while November and December is the worst month for accidents. This is rather different from the previous plot where we looked at the number of actual fatalities/deaths. The deaths were more common in the summer time. So the time series appears to be composed of a trend and cyclical/seasonal component.
 
 ``` r
-# the stl function only takes additive model
-# since we want a multiplicative model, we need to first take the log
-decomp_accs_ts <- stl(ts(log(yearlymon_data$num_accs),frequency = 12,start=2005),
-                      s.window = "periodic")
+acc_yearlymon <- accidents_ %>%
+  group_by(as.yearmon(Paiva, format="%d/%m/%Y")) %>%
+  summarize(acc = n())
+  colnames(acc_yearlymon)[1]="YearMonth"
+
+line_list_mon <- list()
+for(i in 1:length(unique(year(accidents_$Paiva)))){
+  line_list_mon[[i]]=list(type      = "line",
+                      line      = list(color = "black", dash = "dashdot"),
+                      opacity   = 0.3,
+                      x0        = unique(year(accidents_$Paiva))[i],
+                      x1        = unique(year(accidents_$Paiva))[i],
+                      xref      = "x",
+                      y0        = min(acc_yearlymon$acc),
+                      y1        = max(acc_yearlymon$acc),
+                      yref      = "y")
+}
+
+plot_ly(acc_yearlymon, x = ~ YearMonth, y = ~ acc, type = "scatter", 
+        mode = "lines", text = sapply(acc_yearlymon$YearMonth, toString),
+        hoverinfo = "text+y") %>% layout(shapes = line_list_mon) %>%  
+  layout(xaxis = format_axis("Vuosi"),yaxis = format_axis("Maara (Onnettomuudet)"),
+         title = "Onnettomuuksien maara kuukausittain (2008-2017)")
+```
+
+<iframe  src="https://plot.ly/~anthonymakela/10/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+
+### Decompose
+
+We should be able to decompose this time series, if we include a noise term to account for random monthly variations.
+We’ll opt for a multiplicative model (number deaths is the product of its seasonal/trend/noise components) and use Seasonal and Trend decomposition using Loess (STL) The theory behind time series decomposition is well described here.
+
+``` r
+decomp_accs_ts <- stl(ts(log(acc_yearlymon$acc), frequency = 12, start = 2008), s.window = "periodic")
 decomp_accs_ts$time.series <- exp(decomp_accs_ts$time.series)
+
+plot_ly_decomp <- function(time_series){
+  ts_df <- as.data.frame(time_series$time.series) %>% 
+    mutate(date = as.yearmon(time(time_series$time.series))) %>% 
+    tidyr::gather(variable, value, -date) %>% transform(id = as.integer(factor(variable)))
+  seas_plotly <- plot_ly(filter(ts_df, variable == "seasonal"),
+                         x = ~ date, y = ~ value, colors = "Dark2", name = "seasonal", 
+                         type = "scatter", mode = "lines",
+                         text = unique(sapply(ts_df$date,toString)),hoverinfo = "text + y") %>%
+    layout(xaxis = list(title = "", showticklabels = FALSE))
+  remain_plotly <- plot_ly(filter(ts_df, variable == "remainder"),
+                           x = ~ date, y = ~ value, colors = "Dark2", name = "noise", 
+                           type = "scatter", mode = "lines",
+                           text = unique(sapply(ts_df$date,toString)),hoverinfo = "text + y") %>%
+    add_trace(x = ~date, y = 1, mode = "lines", showlegend = FALSE, line = list(
+      color = "gray",
+      dash = "dashed"                                
+    )) %>%
+    layout(xaxis = list(title = ""))
+  trend_plotly <- plot_ly(filter(ts_df, variable == "trend"),
+                          x = ~ date, y = ~ value, colors = "Dark2", name = "trend", 
+                          type = "scatter", mode = "lines",
+                          text = unique(sapply(ts_df$date,toString)), hoverinfo = "text + y") %>%
+    layout(xaxis = list(title = "", showticklabels = FALSE))
+  data_plotly <- plot_ly(group_by(ts_df,date) %>% summarize(value = prod(value)),
+                         x = ~ date, y = ~ value, colors = "Dark2", name = "data", 
+                         type = "scatter", mode = "lines",
+                         text = unique(sapply(ts_df$date,toString)), hoverinfo = "text + y") %>%
+    layout(title = "Finland Traffic Accidents Multiplicative Model",
+           xaxis = list(title = "", showticklabels = FALSE))
+  subplot(list(data_plotly, seas_plotly, trend_plotly, remain_plotly), nrows = 4) 
+}
+
+plot_ly_decomp(decomp_accs_ts) %>% 
+  layout(legend = list(font = list(size = 14)))
 ```
 
-<iframe  src="https://plot.ly/~dashee/17/accs_mult_model_0515.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+<iframe  src="https://plot.ly/~anthonymakela/12/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
-While the plot illustrates the seasonal behaviour and trend within the data, if we want to forecast the number of accidents in 2016, we'll employ another form of time series decomposition called Autoregressive Integrated Moving Average (ARIMA). Before we apply ARIMA to our data, we'll make a little detour and first introduce some of key concepts behind ARIMA.
+### ARIMA
 
-### Stationary Processes And Friends
+While the plot illustrates the seasonal behaviour and trend within the data, if we want to forecast the number of accidents in 2019, we’ll employ another form of time series decomposition called Autoregressive Integrated Moving 
+Average (ARIMA).
 
-A time series is considered [stationary](https://people.duke.edu/~rnau/411diff.htm) if its statistical properties (mean, variance, etc) are invariant with time. In simple terms, the mean/variance/etc of all subsamples should be approximately identical. A stationary process is quite useful for forecasting: as it contains no trends or longer term changes, knowing its value today is sufficient to predict its future values. This is the principal that underpins ARIMA models.
+Key concepts behind ARIMA.
 
-``` r
-# importing Dow Jones data for 2015 from yahoo finance
-dow_jones <- read.csv(text=getURL(
-  "http://chart.finance.yahoo.com/table.csv?s=^DJI&a=0&b=1&c=2015&d=11&e=31&f=2015&g=d&ignore=.csv"), 
-                      stringsAsFactors = FALSE) %>%
-  mutate(Date=as.Date(Date)) %>% arrange(Date)
-```
+### Stationary Processes
 
-<div style="text-align:center" markdown="1">
+A stationary time series is one whose statistical properties such as mean, variance, autocorrelation, etc. are all constant over time. Stationary process is quite useful for forecasting: as it contains no trends or longer term changes, knowing its value today is sufficient to predict its future values.
 
-![Differencing]({{ base_path }}/images/stationary.png)
+### Autoregressive Models
 
-</div>
-
-
-ARIMA models actually consist of three seperate models, which we'll now treat in turn, starting with autoregressive models.
-
-##### Autoregressive Models
-
-An [autoregressive model](https://www.otexts.org/fpp/8/3) describes a model where the output is a linear combination of its p previous (or lagged) values, together with a stochastic term (e.g. white noise).
-
-In mathematical terms, an autoregressive model of order p (AR(p)) is written 
+Autoregressive models and processes operate under the premise that past values have an effect on current values. In autoregressive models the output is a linear combination of its p previous (or lagged) values, together with a stochastic term (e.g. white noise).
 
 $$ 
 y_{t} = \phi_{1} y_{t-1} + ... + \phi_{p} y_{t-p} + \epsilon_{t}
 $$
 
-where $$\epsilon_t$$ denotes the stochastic component in the series. AR(0) is simply uncorrelated noise, while AR(1) represents a [Markov process](https://en.wikipedia.org/wiki/Markov_chain) (plotted below).
+where $$\epsilon_t$$ denotes the stochastic component in the series.
 
-``` r
-### Autoregressive Models
-set.seed(100)
-#AR(0)
-ar0 = 0
-for(i in 2:365){
-  ar0[i] = rnorm(1)}
+### Moving Average Models
 
-#AR(1)
-ar1 = 0
-for(i in 2:365){
-  ar1[i] = ar1[i-1]*0.8 + rnorm(1)}
+Rather than using past values of the forecast variable in a regression, a moving average model uses past forecast errors in a regression-like model.
 
-#AR(2)
-ar2 = 0
-ar2[2] = 0
-for(i in 3:365){
-  ar2[i] = ar2[i-1]*0.5 + ar2[i-2]*0.3 + rnorm(1)}
-```
-
-<div style="text-align:center" markdown="1">
-
-![Differencing]({{ base_path }}/images/autoregressive.png)
-
-</div>
-
-#### Moving Average Models
-
-Where autoregressive (AR) models treat output variables as linear combinations of previous values, [moving average (MA) models](https://www.otexts.org/fpp/8/4) use past forecast errors in a regression-like model.
-
-In mathematical terms, a moving average model of order q (MA(q)) is written 
+In mathematical terms, a moving average model of order q __(MA(q))__ is written
 
 $$y_{t} = \mu + \epsilon_{t} + \theta_{1} \epsilon_{t-1} + ... + \theta_{q} \epsilon_{t-q} $$ 
 
-where $$\mu$$ represents the mean of the series (generally set to 0) and $$\epsilon_t$$ denotes mutually independent stochastic terms.
-
 ``` r
-##### Moving Average Model ######
-set.seed(101)
-#MA(0)
-ma0 = 0
-for(i in 2:365){
-  ma0[i] = rnorm(1)}
-
-#MA(1)
-ma1 = 0
-for(i in 2:365){
-  ma1[i] = rnorm(1)*0.5 + rnorm(1)}
-
-#MA(2)
-ma2 = 0
-ma2[2] = 0
-for(i in 3:365){
-  ma2[i] = rnorm(1)*0.5 - rnorm(1)*0.3 + rnorm(1)}
+arima_fit <- auto.arima(ts(acc_yearlymon$acc, frequency = 12, start=2008),
+                        allowdrift = TRUE, approximation=FALSE)
+arima_fit
 ```
 
-<div style="text-align:center" markdown="1">
-
-![Moving Average]({{ base_path }}/images/moving_average.png)
-
-</div>
-
-Okay, so we've covered Autoregressive and Moving Average models, the constituents of an [ARMA model](https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model). But since there's no I in ARMA, we're left wondering the significance of that I.
-
-#### Differencing
-
-The I in ARIMA stands for Integrated and refers to the process of differencing. Non-stationary time series can often be stationarised by taking the difference between successive values. The degree (typically denoted as d) of differencing is simply the number of times the data have had past values subtracted (in practise, at most 2 rounds of differencing is generally required). Going back to the Dow Jones closing price time series, we can tell by eye (and using the [augmented dickey-fuller test](https://en.wikipedia.org/wiki/Augmented_Dickey%E2%80%93Fuller_test)) that it's not stationary. However, taking the first difference, the time series has been become stationary (values follow a normal distribution centred near zero).
-
-<div style="text-align:center" markdown="1">
-
-![Differencing]({{ base_path }}/images/differencing.png)
-
-</div>
-
-``` r
-# augmented Dickey Fuller Test
-# not stationary
-adf.test(dow_jones$Close)
-```
-
-    ## 
-    ##  Augmented Dickey-Fuller Test
-    ## 
-    ## data:  dow_jones$Close
-    ## Dickey-Fuller = -1.9832, Lag order = 6, p-value = 0.5829
-    ## alternative hypothesis: stationary
-
-``` r
-# stationary
-adf.test(diff(dow_jones$Close))
-```
-
-    ## 
-    ##  Augmented Dickey-Fuller Test
-    ## 
-    ## data:  diff(dow_jones$Close)
-    ## Dickey-Fuller = -6.9543, Lag order = 6, p-value = 0.01
-    ## alternative hypothesis: stationary
-
-Bringing it all together, non-seasonal ARIMA models are generally denoted ARIMA(p,d,q), where p is the order (number of time lags) of the autoregressive model, d is the degree of differencing and q is the order of the moving-average model. Seasonal models are generally written in form of ARIMA(p,d,q)(P,D,Q)m, where the upper case letters correspond to the seasonal component and m refers to the number of periods per season (12 in our case).
-
-### Predicting Number of Road Accidents
-
-Like some people in our dataset, I've become a little distracted. Let's return to our attempt to forecast the number of monthly road accidents in 2016. I've spent some time on the theory, but ultimately you just want to know which function to use from which package. Though you can construct an ARIMA model manually (see [here](https://www.otexts.org/fpp/8/) for a tutorial), the [forecast package](https://cran.r-project.org/web/packages/forecast/forecast.pdf) includes an [auto.arima function](https://www.otexts.org/fpp/8/7), which does all of the hard work for you (determines the appropriate values of p, d and q- though be sure to validate the output, as automated approaches can sometimes throw up strange results).
-
-``` r
-# fitting ARIMA model to road accident data
-acc_arima.fit <- auto.arima(ts(yearlymon_data$num_accs,frequency = 12,start=2005),
-                     allowdrift = TRUE, approximation=FALSE)
-acc_arima.fit
-```
-
-    ## Series: ts(yearlymon_data$num_accs, frequency = 12, start = 2005) 
-    ## ARIMA(1,1,1)(2,0,0)[12]                    
+    ## Series: ts(acc_yearlymon$acc, frequency = 12, start = 2008)  
+    ## ARIMA(1,1,1)(0,1,1)[12]                    
     ## 
     ## Coefficients:
-    ##          ar1      ma1    sar1    sar2
-    ##       0.1492  -0.8702  0.3417  0.4781
-    ## s.e.  0.1054   0.0520  0.0683  0.0748
+    ##          ar1      ma1    smal  
+    ##       0.3339  -0.7191  -0.3553
+    ## s.e.  0.1566   0.1035   0.1483
     ## 
-    ## sigma^2 estimated as 495203:  log likelihood=-1049.7
-    ## AIC=2109.4   AICc=2109.88   BIC=2123.78
+    ## sigma^2 estimated as 66631:  log likelihood=-745.49
+    ## AIC=1498.98   AICc=1499.37   BIC=1509.67
 
-The `auto.arima` function settled on an ARIMA(1,1,1)(2,0,0)12 model for our dataset. We can now quite easily (and hopefully accurately) forecast the number of number of road accidents for the next 12 months.
+
+### Forecast
+
+The grey line shows how the ARIMA model compares to the observed 2008-2017 data, while the coloured regions represent the predicted number of accidents in 2018 to varying degrees of certainty. For example, monthly road accidents in 2018 are 80 % and 95 % likely to fall within the green and orange lines, respectively. A monthly value outside of the orange lines would signify an unusually high/low month for road accidents and suggest further investigation for the underlying cause.
 
 ``` r
-# forecast road accidents for next 12 months
-acc_forecast <- forecast(acc_arima.fit, h=12)
+forecast_ <- forecast(arima_fit, h=12)
+
+plot_ly(acc_yearlymon, x = ~ YearMonth, y = ~ acc, type = "scatter", mode = "lines", name = "Observed",
+        text = ~ sapply(YearMonth, toString), hoverinfo = "text+y+name") %>% 
+  add_trace(x = c(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12), 
+                max(acc_yearlymon$YearMonth) + seq(1,1/12,-1/12)),
+            y = c(forecast_$lower[,2], rev(forecast_$upper[,2])), name = "95% Confidence",
+            fill = "toself", hoveron = "points",
+            text=c(sapply(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12), toString),
+                   sapply(max(acc_yearlymon$YearMonth) + seq(1,1/12,-1/12), toString)), 
+            hoverinfo = "text+y+name", hoveron = "points") %>%
+  add_trace(x = c(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12), 
+                max(acc_yearlymon$YearMonth) + seq(1,1/12,-1/12)),
+            y = c(forecast_$lower[,1], rev(forecast_$upper[,1])), name="80% Confidence",
+            fill = "toself", hoveron = "points",
+            text = c(sapply(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12), toString),
+                   sapply(max(acc_yearlymon$YearMonth) + seq(1,1/12,-1/12), toString)), 
+            hoverinfo = "text+y+name", hoveron = "points")  %>%
+  add_trace(x = c(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12)),
+            y = as.vector(forecast_ $mean), name = "Mean Prediction",
+            text = sapply(max(acc_yearlymon$YearMonth) + seq(1/12,1,1/12), toString), 
+            hoverinfo = "text+y+name", hoveron = "points") %>%
+  add_trace(x = ~ YearMonth,
+            y = as.vector(forecast_$fitted), name = "Model",
+            text = ~ sapply(YearMonth, toString), hoverinfo = "text+y+name",
+            line = list(color = "#A9A9A9", dash = "dashed")) %>%
+  layout(xaxis = format_axis("Vuosi"), yaxis = format_axis("Maara (Onnettomuudet)"), 
+         title = "Onnettomuuksien maara kuukausittain (2008-2018)") %>%
+  layout(legend = list(x = 0.8, y = 0.99, font = list(size = 14)))
 ```
 
-<iframe  src="https://plot.ly/~dashee/19/accs_arima_model.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
-The grey line shows how the ARIMA model compares to the observed 2005-2015 data, while the coloured regions represent the predicted number of accidents in 2016 to varying degrees of certainty. For example, monthly road accidents in 2016 are 80 % and 95 % likely to fall within the green and orange lines, respectively. A monthly value outside of the orange lines would signify an unusually high/low month for road accidents and suggest further investigation for the underlying cause.
+<iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+
+
 
 ### Summary
 
-We've imported several datasets containing information about road accidents in the UK between 2005 and 2015. After some exploratory analysis and time series theory, we (well, `auto.arima`) built an ARIMA model to forecast the number of road accidents in 2016. The most interesting part of any predictive model (and any related blog post) is determining how well it performed against the actual data. Unfortunately, this can't be done until the 2016 data becomes available (probably sometime in early 2017). But the good news for me is that I get another blog post by just overlaying the 2016 lines onto the ARIMA graph. This blog stuff pretty much writes itself.
+We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Unfortunately, we cannot do this until the 2018 data becomes available.
