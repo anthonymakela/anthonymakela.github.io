@@ -95,9 +95,7 @@ accidents_$Nakos300 = NULL
 accidents_$Nakos460 = NULL
 accidents_$Runkotie = NULL
 ```
-The data suggests that women are less likely to be drivers in a road accident. I suppose there are two possible explanations for this: women are better drivers or there are significantly less female drivers on the road generally speaking. There is [some evidence](http://www.ns.umich.edu/new/releases/21035-women-drivers-outnumber-men-but-still-drive-less) to support the latter theory, but not enough to discount the notion that men are simply worse drivers. Well, worse isn't really the right word, [men tend to take more risks in life](http://www.mcmha.org/life-insurance-expensive-men-women/) and that includes driving.
 
-Having settled one of the most contentious issues around (next up, the Syrian Civil War), let's look at distribution of road accidents across the week.
 
 ``` r
 # Remove explanations (could be done more efficiently)
@@ -132,16 +130,24 @@ accidents_$Poikleikse = NULL
 accidents_$Paallksel = NULL
 ```
 
-    ## # A tibble: 7 × 3
-    ##   Day_of_Week num_accs    prop
-    ##         <chr>    <int>   <chr>
-    ## 1      Sunday   195326 10.97 %
-    ## 2      Monday   253270 14.22 %
-    ## 3     Tuesday   266706 14.98 %
-    ## 4   Wednesday   268390 15.07 %
-    ## 5    Thursday   267494 15.02 %
-    ## 6      Friday   291359 16.36 %
-    ## 7    Saturday   238108 13.37 %
+### Missing Values
+
+While analyzing the data some missing values were located. The missing values can be found in the variables "Tie", "Aosa", "Ajr" and "Lampatila". The first ones wont cause any problems since we're not going to use them, however the latter one caught my interest and there would be an opportunity to investigate it more. To do this we could use some imputation methods to fill the missing values, I'll quickly introduce here the KNN method which is found to be one of the most efficient methods.
+
+``` r
+# Count NA's
+na_count <- sapply(accidents_, function(y) sum(length(which(is.na(y)))))
+show(na_count)
+```
+
+    ##
+    ##         Tie    Aosa   Ajr    
+    ##       106274   106543 120955
+    ##
+    ##       Kuntasel Lampatila
+    ##          6       6537
+
+
 
 Perhaps unsurprisingly, the quietest day for road accidents is Sunday, while the greatest number of accidents occurs on Friday. Going a level lower, let's plot the accident time for each day of the week (note: the code for the plots can be found [here](https://github.com/dashee87/blogScripts/blob/master/R/2016-12-18-A-Road-Incident-Model-Analysis.R)).
 
