@@ -20,7 +20,7 @@ date: "04 December 2018"
 
 It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The purpose of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
 
-### Getting the Data
+### Getting the data
 
 If an injury occurs in a road accident that was reported to the police, they produce a detailed report (age/sex of casualties, vehicle/road types, etc). These reports, going back to 2005, are collated and compiled within multiple csvs, which are freely available online ([here](https://data.gov.uk/dataset/road-accidents-safety-data)). They are well formatted: missing data is marked; tidy columns with relatively intuitive names. The csvs are quite big and combined in zip files; you'll need to download them to your computer and then extract the csvs. Note that the 2015 must be downloaded separately, while the 2005-2014 data is available under the 2014 tab. Okay, so let's get started.
 
@@ -130,7 +130,7 @@ accidents_$Poikleikse = NULL
 accidents_$Paallksel = NULL
 ```
 
-### Missing Values
+### Missing values
 
 While analyzing the data some missing values were located. The missing values can be found in the variables "Tie", "Aosa", "Ajr" and "Lampatila". The first ones wont cause any problems since we're not going to use them, however the latter one caught my interest and there would be an opportunity to investigate it more. To do this we could use some imputation methods to fill the missing values, I'll quickly introduce here the KNN method which is found to be one of the most efficient methods.
 
@@ -148,13 +148,64 @@ show(na_count)
     ##          6       6537
 
 
-### KNN Imputation For Missing Values
+### KNN imputation for missing values
 
 The assumption behind using KNN for missing values is that a point value can be approximated by the values of the  $$ {k} $$ points that are closest to it, based on other variables. Essentially, two vectors that are far apart based on the distance function are less likely than two closely situated vectors to have a similar output value. The most frequently used distance metrics are the Euclidean distance metric or the Pearson correlation metric. Let $$ {X}_{i}$$ , $$ {i} $$ = 1, …, $$ {n} $$ be independent and identically distributed (iid) with mean $$ {µ} $$ $$ {X} $$ and standard deviation $$ {σ} $$ $$ {X} $$, and $$ {Y}_{i} $$, $$ {i} $$ = 1, …, $$ {n} $$ be iid with mean $$ {µ} $$ $$ {Y} $$ and standard deviation $$ {σ} $$ $$ {Y} $$. The Euclidean distance between the two sample vectors $$ {x} $$ = $$ x_{i} $$ 1, …, $$ {x} $$ $$ {n} $$ and $$ {y} $$ = $$ {y} $$ 1, …, $$ {y} $$ $${n} $$ is defined as follows:
 
 $$\begin{equation*}
 {$${d}}_{{E}}({x, y}) = \sqrt{\sum^{N}_{i=1}({x}_{i} - {y}_{i})^{2}}$$ 
 \end{equation*}$$
+
+``` r
+# knnImputation()
+```
+
+### Let's first find out the number #1 cause of deaths.
+
+The factors are defined at avoindata.fi, but i'll describe them here as well.
+
+1 – Yksittäisonnettomuus
+
+2 – Kääntymisonnettomuus
+
+3 – Ohitusonnettomuus
+
+4 – Risteämisonnettomuus
+
+5 – Kohtaamisonnettomuus
+
+6 – Peräänajo-onnettomuus
+
+7 – Mopedionnettomuus
+
+8 – Polkupyöräonnettomuus
+
+9 – Jalankulkijaonnettomuus
+
+10 – Hirvionnettomuus
+
+11 – Peura- tai kaurisonnettomuus
+
+12 – Muu eläinonnettomuus
+
+13 – Muu onnettomuus
+
+``` r
+# Number #1 cause of deaths
+cause_ <- accidents_ %>%
+    group_by(Onluokka) %>%
+    summarize(Kuolleet = sum(Kuolleet))
+
+ggplot(cause_, aes(x = as.factor(Onluokka), y = Kuolleet)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Onnettomuusluokka", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/cause_.png)
+
+</div>
 
 <iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
