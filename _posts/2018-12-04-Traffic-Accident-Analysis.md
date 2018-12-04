@@ -300,6 +300,153 @@ ggplot(death_c, aes(x = as.factor(Kuntasel), y = Kuolleet)) +
 
 </div>
 
+### Number of deaths by different weathers
+
+Here we compare the deaths to different weather conditions. This plot doesn't seem to be that informative since the weather is usually either 1 or 2.
+
+1 – Kirkas
+
+2 – Pilvipouta
+
+3 – Sumu
+
+4 – Vesisade
+
+5 – Lumisade
+
+6 – Räntäsade
+
+``` r
+# Number of deaths by different weathers
+death_w <- accidents_ %>%
+  group_by(Saa) %>%
+  summarize(Kuolleet = sum(Kuolleet)) %>%
+  arrange(desc(Kuolleet))
+
+death_w = death_w[-4, ]
+
+ggplot(death_w, aes(x = as.factor(Saa), y = Kuolleet)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Saa", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_w.png)
+
+</div>
+
+### Number of deaths depending on Winter maintenance
+
+This was rather alarming. There seems to be a bit too many deaths with the factor #2. Im not sure how they measure " tingitään öisin " but they probably should do something about it.
+
+-1 - Ei arvoa
+
+0 - Liukkaudentorjunta ilman toimenpideaikaa
+
+1 - Normaalisti aina paljaana
+
+2 - Normaalisti paljaana (tingitään öisin)
+
+3 - Osan talvea lumipintaisena
+
+4 - Taajamaassa
+
+5 - 2-luokka, pääosin lumipintainen
+
+6 - Hiekoitus vain pahimmissa tilanteissa
+
+7 - Hyvin hoidettu kevyen liikenteen väylä
+
+8 - Merkitykseltään vähäisempi kev. liik. v
+
+``` r
+# Winter maintenance
+death_wc <- accidents_ %>%
+  group_by(Talvhoitlk) %>%
+  summarize(Kuolleet = sum(Kuolleet)) %>%
+  arrange(desc(Kuolleet))
+
+death_wc = death_wc[-1, ]
+
+ggplot(death_wc, aes(x = as.factor(Talvhoitlk), y = Kuolleet)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Talvihoitoluokka", y = "Maara (Kuolleet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/death_wc.png)
+
+</div>
+
+### Number of injuries depending on Winter maintenance
+
+The plot above was something that really caught my attention. I find it pretty disturbing that we're losing lives due to " bargaining ". Here im plotting the same graph but instead of all outcomes that lead dead, we're looking at all the accidents that lead to injuries. Again we can see that the roads that aren't maintained are causing lots of potential harm and have a substantial risk of fatality.
+
+``` r
+acc_wc <- accidents_ %>%
+  group_by(Talvhoitlk) %>%
+  summarize(acc = sum(Loukkaant))
+
+acc_wc = acc_wc[-1, ]
+
+ggplot(acc_wc, aes(x = as.factor(Talvhoitlk), y = acc)) +
+  geom_bar(stat = "identity", color = "blue", fill = rgb(0.1,0.4,0.5,0.7)) + 
+  labs(x = "Talvihoitoluokka", y = "Maara (Loukkaantuneet)")
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/acc_wc.png)
+
+</div>
+
+### Number of deaths monthly
+
+Although the common assumption would be that most of the accidents that lead to death would occur in the Winter season, however this doens't seem to be the case. The graph displays that most of the deaths actually happen during summer time. Perhaps the accidents are more serious in the summer and that's why the consequences are worse.
+
+``` r
+accidents_$Paiva = as.yearmon(accidents_$Paiva, format = "%d.%m.%Y")
+
+death_yearlymon <- accidents_ %>%
+  group_by(as.yearmon(Paiva, format = "%d/%m/%Y")) %>%
+  summarize(Kuolleet = sum(Kuolleet))
+  colnames(death_yearlymon)[1]="YearMonth"
+
+format_axis <- function(plottitle,size=18,colour="black"){
+  list(
+    title = plottitle,
+    titlefont = list(
+      size = size,
+      color = colour))}
+
+line_list <- list()
+for(i in 1:length(unique(year(accidents_$Paiva)))){
+  line_list[[i]]=list(type      = "line",
+                      line      = list(color = "black", dash="dashdot"),
+                      opacity   = 0.3,
+                      x0        = unique(year(accidents_$Paiva))[i],
+                      x1        = unique(year(accidents_$Paiva))[i],
+                      xref      = "x",
+                      y0        = min(death_yearlymon$Kuolleet),
+                      y1        = max(death_yearlymon$Kuolleet),
+                      yref      = "y")
+}
+
+plot_ly(death_yearlymon, x = ~ YearMonth, y = ~ Kuolleet, type = "scatter", 
+        mode = "lines", text = sapply(death_yearlymon$YearMonth, toString),
+        hoverinfo = "text+y") %>% layout(shapes = line_list) %>%  
+  layout(xaxis = format_axis("Vuosi"), yaxis = format_axis("Maara (Kuolleet)"),
+         title = "Kuolleiden maara kuukausittain (2008-2017)")
+```
+
+<iframe  src="https://plot.ly/~anthonymakela/6/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+
+### Number of injuries monthly
+
+We can observe that also the accidents that lead to injuries are more likely to happen during the summer time. 
+
 <iframe  src="https://plot.ly/~anthonymakela/4/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
 There's a clear distinction between the weekend and weekdays (though Friday is a sort of hybrid). The weekday rush hour peaks are apparent, while the weekend hits its maximum at around midday, with a noticeable increase in the early morning compared to weekdays. Switching gears, let's turn our attention to the longer term and plot the number of road accidents per month from 2005-2015.
