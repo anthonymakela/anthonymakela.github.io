@@ -25,83 +25,111 @@ It's soon Winter again and the  $$ H_{0} $$  states that the accident severity a
 If an injury occurs in a road accident that was reported to the police, they produce a detailed report (age/sex of casualties, vehicle/road types, etc). These reports, going back to 2005, are collated and compiled within multiple csvs, which are freely available online ([here](https://data.gov.uk/dataset/road-accidents-safety-data)). They are well formatted: missing data is marked; tidy columns with relatively intuitive names. The csvs are quite big and combined in zip files; you'll need to download them to your computer and then extract the csvs. Note that the 2015 must be downloaded separately, while the 2005-2014 data is available under the 2014 tab. Okay, so let's get started.
 
 ``` r
-# loading the packages we'll need
-library(dplyr) # data manipulation/filtering
-library(ggplot2) # vanilla graphs
-library(plotly) # interactive graphs
-library(lubridate) # time manipulation functions
-library(zoo) # some more time manipulation functions
-library(forecast) # time series forecasting
-library(RCurl) # import Dow Jones data
-library(tseries) # time series statistical analysis
+# Libraries
+suppressWarnings(suppressMessages(library(ggplot2)))
+suppressWarnings(suppressMessages(library(readr))) 
+suppressWarnings(suppressMessages(library(data.table)))
+suppressWarnings(suppressMessages(library(MASS)))
+suppressWarnings(suppressMessages(library(DMwR)))
+suppressWarnings(suppressMessages(library(dplyr)))
+suppressWarnings(suppressMessages(library(lubridate)))
+suppressWarnings(suppressMessages(library(zoo)))
+suppressWarnings(suppressMessages(library(repr)))
+suppressWarnings(suppressMessages(library(gridExtra)))
+suppressWarnings(suppressMessages(library(memisc)))
+suppressWarnings(suppressMessages(library(plotly)))
+suppressWarnings(suppressMessages(library(forecast)))
+suppressWarnings(suppressMessages(library(IRdisplay)))
 
-options(stringsAsFactors = FALSE)
 
-# accidents file
-tot_accs = rbind(read.csv("/Accidents0514.csv") %>%
-                   rename_("Accidents_2015.csv")) %>%
-  mutate(Date=as.POSIXct(Date, format="%d/%m/%Y"))
-
-# casualties file
-tot_cas= rbind(read.csv("/Casualties0514.csv") %>%
-                  rename_("Accident_Index" ="ï..Accident_Index"),
- read.csv("/Casualties_2015.csv") %>%
-   select(-Casualty_IMD_Decile))
-
-# vehicles file
-tot_veh= rbind(read.csv("/Vehicles0514.csv") %>%
-                  rename_("Accident_Index" ="ï..Accident_Index"),
- read.csv("/Vehicles_2015.csv") %>%
-   select(-Vehicle_IMD_Decile))
+# ggplot options
+options(repr.plot.width = 6, repr.plot.height = 4)
 ```
 
 We now have three datasets: Accidents (time and location of accident, road type, weather conditions, etc); Casualties (age, sex, driver/passenger status, severity, etc); Vehicle (type, engine capacity, etc). We'll start off with some minor exploration of the data.
 
 ``` r
-# looking at the structure of the datasets
- explore_data=as.data.frame(t(sapply(list(tot_accs,tot_cas,tot_veh),function(x){
-  c(length(unique(x$Accident_Index)),
-    length(x),
-    nrow(x))
-})))
-
-colnames(explore_data)=c("# Accidents", "# Columns","# Rows")
-rownames(explore_data)=c("Accidents File","casualties File","Vehicles File")
-explore_data
+# Read the data(2008-2017)
+accidents_2017 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2017.csv", sep = ','))
+accidents_2016 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2016.csv", sep = ','))
+accidents_2015 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2015.csv", sep = ','))
+accidents_2014 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2014.csv", sep = ','))
+accidents_2013 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2013.csv", sep = ','))
+accidents_2012 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2012.csv", sep = ','))
+accidents_2011 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2011.csv", sep = ','))
+accidents_2010 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2010.csv", sep = ','))
+accidents_2009 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2009.csv", sep = ','))
+accidents_2008 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2008.csv", sep = ','))
 ```
 
-    ##                 # Accidents # Columns  # Rows
-    ## Accidents File      1780653        32 1780653
-    ## casualties File     1780653        15 2402909
-    ## Vehicles File       1780653        22 3262270
+``` r 
+# Row bind dataframes
+accidents_ <- rbind(accidents_2017, accidents_2016, accidents_2015, accidents_2014, accidents_2013, accidents_2012, accidents_2011, accidents_2010, accidents_2009, accidents_2008)
+```
 
-One reassuring feature is that all files have the same number of accidents, which suggests the datasets could be easily joined on the accident number. The accidents file has the most columns, while the vehicles file has the most rows (one row for each vehicle involved in the accident). Let's continue the exploratory analysis by addressing the question that has long divided mankind: Are men better drivers than women?
+Since in Finland we also have some special alphabetical characters, we have to do just a tiny bit of string manipulation here as well.
 
 ``` r
-# Drivers in road accidents split by sex
-tot_veh %>% group_by(Sex_of_Driver) %>% summarize(num_accs=n()) %>% 
-  mutate(Sex_of_Driver=c("Data Missing","Male","Female","Unknown")) %>% 
-  mutate(prop=paste(round(100*num_accs/sum(num_accs),2),"%"))
+# Replace Finnish letters
+names(accidents_2017) <- gsub(x = names(accidents_2017), pattern = "\\.", replacement = "a")
+accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\344", replacement = "a")
+accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\366", replacement = "o")
+accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\304", replacement = "aa")
+accidents_$Valsel <- gsub(x = accidents_$Valsel, pattern = "\\\344", replacement = "a")
 ```
 
-    ## # A tibble: 4 × 3
-    ##   Sex_of_Driver num_accs    prop
-    ##           <chr>    <int>   <chr>
-    ## 1  Data Missing       52     0 %
-    ## 2          Male  2147401 65.83 %
-    ## 3        Female   924565 28.34 %
-    ## 4       Unknown   190252  5.83 %
-
+``` r
+# Remove unnecessary columns
+accidents_$Aet = NULL
+accidents_$Liittyvtie = NULL
+accidents_$Kvl = NULL
+accidents_$Raskaskvl = NULL
+accidents_$Tienlev = NULL
+accidents_$X = NULL
+accidents_$Y = NULL
+accidents_$Lahliittie = NULL
+accidents_$Suuntlkm = NULL
+accidents_$Paallyslev = NULL
+accidents_$Nakos150 = NULL
+accidents_$Nakos300 = NULL
+accidents_$Nakos460 = NULL
+accidents_$Runkotie = NULL
+```
 The data suggests that women are less likely to be drivers in a road accident. I suppose there are two possible explanations for this: women are better drivers or there are significantly less female drivers on the road generally speaking. There is [some evidence](http://www.ns.umich.edu/new/releases/21035-women-drivers-outnumber-men-but-still-drive-less) to support the latter theory, but not enough to discount the notion that men are simply worse drivers. Well, worse isn't really the right word, [men tend to take more risks in life](http://www.mcmha.org/life-insurance-expensive-men-women/) and that includes driving.
 
 Having settled one of the most contentious issues around (next up, the Syrian Civil War), let's look at distribution of road accidents across the week.
 
 ``` r
-# number of road accidents by day of the week
-tot_accs %>% group_by(Day_of_Week) %>% summarize(num_accs=n()) %>% 
-  mutate(Day_of_Week=c("Sunday","Monday","Tuesday","Wednesday",
-                       "Thursday","Friday","Saturday")) %>%
-  mutate(prop=paste(round(100*num_accs/sum(num_accs),2),"%"))
+# Remove explanations (could be done more efficiently)
+accidents_$Tienpitsel = NULL
+accidents_$Vakavuus = NULL
+accidents_$Elynimi = NULL
+accidents_$Piirinimi = NULL
+accidents_$Ontyypsel = NULL
+accidents_$Onlksel = NULL
+accidents_$Taajamasel = NULL
+accidents_$Pintasel = NULL
+accidents_$Saasel = NULL
+accidents_$Onnpaiksel = NULL
+accidents_$Maakuntsel = NULL
+accidents_$Noplajisel = NULL
+accidents_$Mo_molsel = NULL
+accidents_$Toimlksel = NULL
+accidents_$Paallsel = NULL
+accidents_$Risteyssel = NULL
+accidents_$Rautatsel = NULL
+accidents_$Talvhoitsel = NULL
+accidents_$Tietyypsel = NULL
+accidents_$Tienverkse = NULL
+accidents_$Maankaytse = NULL
+accidents_$Valoohjsel = NULL
+accidents_$Lisakaisse = NULL
+accidents_$Solmutyyps = NULL
+accidents_$Liitlksel = NULL
+accidents_$Toimpidsel = NULL
+accidents_$Valomsel = NULL
+accidents_$Poikleikse = NULL
+accidents_$Paallksel = NULL
 ```
 
     ## # A tibble: 7 × 3
