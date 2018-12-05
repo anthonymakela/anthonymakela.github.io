@@ -8,7 +8,7 @@ date: "04 December 2018"
 
 
 
-It's soon Winter again and the  $$ H_{0} $$  states that the accident severity and car accidents will rise. The objective of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
+It's soon Winter again and the common assumption is that the accident severity and car accidents will rise. The objective of this analysis is to explore and gain a better understanding of this phenomena and figure out if it's actually the case. We will also explore and gain a better understanding of some of the factors that affect the likelihood of the crashes.
 
 ### Preprocessing
 
