@@ -266,7 +266,7 @@ ggplot(death_hour, aes(x = as.factor(Tunti), y = Kuolleet)) +
 
 ### Number of deaths in largest cities of Finland
 
-It looks like the most deaths occur in Helsinki and Oulu. Helsinki doesn’t come as a surprise since it’s the capital of Finland and has the most population. Oulu, on the other hand, is only the 4th most populated city and still, it has roughly about 45% difference compared to other cities.
+It looks like the most deaths occur in Helsinki and Oulu. Helsinki doesn’t come as a surprise since it’s the capital of Finland and has the most population. Oulu, on the other hand, is only the 4th most populated city and still, it has roughly about 44% difference compared to other cities.
 
 ``` r
 # Number of deaths by largest cities in Finland
