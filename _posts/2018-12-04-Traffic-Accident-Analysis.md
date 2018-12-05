@@ -548,7 +548,7 @@ plot_ly_decomp(decomp_accs_ts) %>%
   layout(legend = list(font = list(size = 14)))
 ```
 
-<iframe  src="https://plot.ly/~anthonymakela/12/#/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
+<iframe  src="https://plot.ly/~anthonymakela/12/.embed?link=false" width="100%" height="500" frameborder="no" scrolling="no"></iframe>
 
 ### ARIMA
 
