@@ -1,6 +1,6 @@
 ---
 title: "Traffic Accident Analysis"
-excerpt: "This post looks at road accidents in Finland between 2008 and 2017 and investigates whether we can forecast the number of accidents in 2018."
+excerpt: "This post looks at road accidents in Finland between 2008 and 2017 and explores whether we can forecast the number of accidents in 2018."
 layout: single
 author: "Anthony Makela"
 date: "04 December 2018"
