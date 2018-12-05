@@ -639,4 +639,4 @@ plot_ly(acc_yearlymon, x = ~ YearMonth, y = ~ acc, type = "scatter", mode = "lin
 
 ### Summary
 
-We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Sadly, we cannot do this until the 2018 data becomes available.
+We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Sadly, we cannot do this until the 2018 data becomes available. Also when data from 2018 is released we can start forecasting 2019.
