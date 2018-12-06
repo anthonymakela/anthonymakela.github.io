@@ -506,7 +506,7 @@ plot_ly(acc_yearlymon, x = ~ YearMonth, y = ~ acc, type = "scatter",
 ### Decompose
 
 We should be able to decompose this time series, if we include a noise term to account for random monthly variations.
-We’ll opt for a multiplicative model (number deaths is the product of its seasonal/trend/noise components) and use Seasonal and Trend decomposition using Loess (STL) The theory behind time series decomposition is well described here.
+We’ll opt for a multiplicative model (number deaths is the product of its seasonal/trend/noise components) and use Seasonal and Trend decomposition using Loess (STL).
 
 ``` r
 decomp_accs_ts <- stl(ts(log(acc_yearlymon$acc), frequency = 12, start = 2008), s.window = "periodic")
