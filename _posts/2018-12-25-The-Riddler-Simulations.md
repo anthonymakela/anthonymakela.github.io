@@ -54,18 +54,18 @@ scores %>%
 
 </div>
 
-We can also simply find out how often it's above 6.5. And we see that the player wins 76% of the time.
+We can also simply find out how often it's above 6.5. And we see that the player wins 52% of the time.
 
 ``` r
 scores %>%
-  summarize(mean(scores >= 6.5))
+  summarize(mean(score >= 6.5))
 ```
 
 ```
 # A tibble: 1 x 1
 #  `mean(scores >= 6.5)`
 #                  <dbl>
-# 1                 0.760
+# 1                 0.520
 
 ```
 
@@ -101,20 +101,30 @@ ngames_ %>%
 
 </div>
 
+Let's find out if we were right. Here we can find the solutions: https://fivethirtyeight.com/features/alice-and-bob-fall-in-love/
+
+" That better player wins a 12-game match about 52 percent of the time. The number of games required for those larger thresholds are, in order, 82, 248 and 773. (Call me crazy, but I’m totally game for a two-year-long World Chess Championship.) "
+
+And it seems that our simulation did a pretty good job.
+
+We got the first question(What are the chances the better player wins a 12-game match?) right as you can see from above.
+
+
 ``` r
 exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
 exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
 exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
 ```
 
-### Missing values
+And here is our results for the second question, they seem to be almost exactly the same.
 
-While analyzing the data some missing values were located. The missing values can be found in the variables "Tie", "Aosa", "Ajr" and "Lampatila". The first ones wont cause any problems since we're not going to use them however, the latter one caught my interest and there would be an opportunity to investigate it more. To do this we could use some imputation methods to fill the missing values, I'll quickly introduce here the KNN method which is found to be one of the most efficient methods.
-
-``` r
-# Count NA's
-na_count <- sapply(accidents_, function(y) sum(length(which(is.na(y)))))
-show(na_count)
+```
+# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
+# [1] 82.17202
+# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
+# [1] 249.4356
+# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
+# [1] 772.3506
 ```
 
 
