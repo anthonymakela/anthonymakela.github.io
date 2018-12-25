@@ -69,6 +69,10 @@ scores %>%
 
 ```
 
+### How many games would a match have to be in order to give the better player a 75 chance of winning the match outright? A 90 percent chance? A 99 percent chance?
+
+Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create an line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly and where it passes particular points.
+
 ``` r
 ngames_ <- crossing(trials = 1:5e4,
          ngames = round(12 * 2 ^ seq(0, 7, .5))) %>%
