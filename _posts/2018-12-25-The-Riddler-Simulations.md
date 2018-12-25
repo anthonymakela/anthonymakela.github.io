@@ -10,7 +10,7 @@ date: "26 December 2018"
 
 There are two types of problems: Riddler Express and Riddler Classic. We're going to start with the Riddler Express and then move onto the second one. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
 
-### Riddler Express
+# Riddler Express
 	
 So the first problem seems to be related with chess. 
 
