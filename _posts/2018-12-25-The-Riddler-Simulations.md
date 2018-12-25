@@ -8,116 +8,85 @@ date: "26 December 2018"
 
 
 
-There are two types of problems: Riddler Express and Riddler Classic. We're going to start with the Riddler Express and then move onto the second one.
+There are two types of problems: Riddler Express and Riddler Classic. We're going to start with the Riddler Express and then move onto the second one. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
 
 ### Riddler Express
 	
-All of the data used in this analysis is from https://www.avoindata.fi. They have some really interesting data that they make available to public.
+So the first problem seems to be related with chess. 
+
+"The World Chess Championship is underway. It is a 12-game match between the world’s top two grandmasters. Many chess fans feel that 12 games is far too short for a biennial world championship match, allowing too much variance.
+
+Say one of the players is better than his opponent to the degree that **he wins 20 percent of all games, loses 15 percent of games and that 65 percent of games are drawn.** Wins at this match are worth 1 point, draws a half-point for each player, and losses 0 points. In a 12-game match, the first player to 6.5 points wins.
+
+What are the chances the better player wins a 12-game match? How many games would a match have to be in order to give the better player a 75 chance of winning the match outright? A 90 percent chance? A 99 percent chance?"
+
+
 
 ``` r
-# Libraries
-suppressWarnings(suppressMessages(library(ggplot2)))
-suppressWarnings(suppressMessages(library(readr))) 
-suppressWarnings(suppressMessages(library(data.table)))
-suppressWarnings(suppressMessages(library(MASS)))
-suppressWarnings(suppressMessages(library(DMwR)))
-suppressWarnings(suppressMessages(library(dplyr)))
-suppressWarnings(suppressMessages(library(lubridate)))
-suppressWarnings(suppressMessages(library(zoo)))
-suppressWarnings(suppressMessages(library(repr)))
-suppressWarnings(suppressMessages(library(gridExtra)))
-suppressWarnings(suppressMessages(library(memisc)))
-suppressWarnings(suppressMessages(library(plotly)))
-suppressWarnings(suppressMessages(library(forecast)))
-suppressWarnings(suppressMessages(library(IRdisplay)))
-
-
-# ggplot options
-options(repr.plot.width = 6, repr.plot.height = 4)
+# Tidyverse
+library(tidyverse)
 ```
 
 
 
 ``` r
-# Read the data(2008-2017)
-accidents_2017 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2017.csv", sep = ','))
-accidents_2016 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2016.csv", sep = ','))
-accidents_2015 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2015.csv", sep = ','))
-accidents_2014 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2014.csv", sep = ','))
-accidents_2013 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2013.csv", sep = ','))
-accidents_2012 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2012.csv", sep = ','))
-accidents_2011 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2011.csv", sep = ','))
-accidents_2010 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2010.csv", sep = ','))
-accidents_2009 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2009.csv", sep = ','))
-accidents_2008 <- data.table(read.csv("~/Downloads/Tieliikenne/onnettomuudet_2008.csv", sep = ','))
+scores <- crossing(trials = 1:1e5,
+         game = 1:12) %>%
+  mutate(result = sample(c(1, 0, .5), n(), replace= TRUE, prob = c(.2, .15, .65))) %>%
+  group_by(trials) %>%
+  summarize(score = sum(result))
 ```
 
 ``` r 
-# Row bind dataframes
-accidents_ <- rbind(accidents_2017, accidents_2016, accidents_2015, accidents_2014, accidents_2013, accidents_2012, accidents_2011, accidents_2010, accidents_2009, accidents_2008)
+scores %>%
+  ggplot(aes(score)) +
+  geom_histogram(binwidth = .25, color="blue", fill=rgb(0.1,0.4,0.5,0.7)) +
+  geom_vline(color = 'red', xintercept = 6.5)
 ```
 
-Since in Finland we also have some special alphabetical characters, we have to do just a tiny bit of string manipulation here as well.
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/Rplot.png)
+
+</div>
 
 ``` r
-# Replace Finnish letters
-names(accidents_2017) <- gsub(x = names(accidents_2017), pattern = "\\.", replacement = "a")
-accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\344", replacement = "a")
-accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\366", replacement = "o")
-accidents_$Kuntasel <- gsub(x = accidents_$Kuntasel, pattern = "\\\304", replacement = "aa")
-accidents_$Valsel <- gsub(x = accidents_$Valsel, pattern = "\\\344", replacement = "a")
+scores %>%
+  summarize(mean(scores >= 6.5))
 ```
 
 ``` r
-# Remove unnecessary columns
-accidents_$Aet = NULL
-accidents_$Liittyvtie = NULL
-accidents_$Kvl = NULL
-accidents_$Raskaskvl = NULL
-accidents_$Tienlev = NULL
-accidents_$X = NULL
-accidents_$Y = NULL
-accidents_$Lahliittie = NULL
-accidents_$Suuntlkm = NULL
-accidents_$Paallyslev = NULL
-accidents_$Nakos150 = NULL
-accidents_$Nakos300 = NULL
-accidents_$Nakos460 = NULL
-accidents_$Runkotie = NULL
+ngames_ <- crossing(trials = 1:5e4,
+         ngames = round(12 * 2 ^ seq(0, 7, .5))) %>%
+  unnest(game = map(ngames, seq_len)) %>%
+  mutate(result = sample(c(1, 0, .5), n(), replace= TRUE, prob = c(.2, .15, .65))) %>%
+  group_by(ngames, trials) %>%
+  summarize(score = sum(result)) %>%
+  summarize(win = mean(score > ngames / 2))
 ```
 
 
 ``` r
-# Remove explanations (could be done more efficiently)
-accidents_$Tienpitsel = NULL
-accidents_$Vakavuus = NULL
-accidents_$Elynimi = NULL
-accidents_$Piirinimi = NULL
-accidents_$Ontyypsel = NULL
-accidents_$Onlksel = NULL
-accidents_$Taajamasel = NULL
-accidents_$Pintasel = NULL
-accidents_$Saasel = NULL
-accidents_$Onnpaiksel = NULL
-accidents_$Maakuntsel = NULL
-accidents_$Noplajisel = NULL
-accidents_$Mo_molsel = NULL
-accidents_$Toimlksel = NULL
-accidents_$Paallsel = NULL
-accidents_$Risteyssel = NULL
-accidents_$Rautatsel = NULL
-accidents_$Talvhoitsel = NULL
-accidents_$Tietyypsel = NULL
-accidents_$Tienverkse = NULL
-accidents_$Maankaytse = NULL
-accidents_$Valoohjsel = NULL
-accidents_$Lisakaisse = NULL
-accidents_$Solmutyyps = NULL
-accidents_$Liitlksel = NULL
-accidents_$Toimpidsel = NULL
-accidents_$Valomsel = NULL
-accidents_$Poikleikse = NULL
-accidents_$Paallksel = NULL
+ngames_ %>%
+  ggplot(aes(ngames, win)) +
+  geom_line(color = rgb(0.1,0.4,0.5,0.7)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(x = 'Number of games',
+       y = 'Probability for the better player to win')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/logplot.png)
+
+</div>
+
+``` r
+exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
+exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
+exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
 ```
 
 ### Missing values
