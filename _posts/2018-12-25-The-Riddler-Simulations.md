@@ -29,7 +29,7 @@ What are the chances the better player wins a 12-game match? How many games woul
 library(tidyverse)
 ```
 
-### Distribution of the scores
+### What are the chances the better player wins a 12-game match?
 
 We are sampling from 3 options here(1 = win, 0 = lose, .5 = draw). The respective weighted probabilities are in the vector c(.2, .15, .65). Then we're getting the players score in every "match" and plotting an histogram from them.
 
