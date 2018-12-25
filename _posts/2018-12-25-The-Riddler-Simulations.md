@@ -16,7 +16,7 @@ So the first problem seems to be related with chess.
 
 "The World Chess Championship is underway. It is a 12-game match between the world’s top two grandmasters. Many chess fans feel that 12 games is far too short for a biennial world championship match, allowing too much variance.
 
-Say one of the players is better than his opponent to the degree that **he wins 20 percent of all games, loses 15 percent of games and that 65 percent of games are drawn.** Wins at this match are worth 1 point, draws a half-point for each player, and losses 0 points. In a 12-game match, the first player to 6.5 points wins.
+Say **one of the players is better than his opponent to the degree that he wins 20 percent of all games, loses 15 percent of games and that 65 percent of games are drawn.** Wins at this match are worth 1 point, draws a half-point for each player, and losses 0 points. In a 12-game match, the first player to 6.5 points wins.
 
 What are the chances the better player wins a 12-game match? How many games would a match have to be in order to give the better player a 75 chance of winning the match outright? A 90 percent chance? A 99 percent chance?"
 
@@ -27,12 +27,14 @@ What are the chances the better player wins a 12-game match? How many games woul
 library(tidyverse)
 ```
 
+# Distribution of the scores
 
+We are sampling from 3 options here(1 = win, 0 = lose, .5 = draw). The respective weighted probabilities are in the vector c(.2, .15, .65). Then we're getting the players score in every "match" and plotting an histogram from them.
 
 ``` r
 scores <- crossing(trials = 1:1e5,
          game = 1:12) %>%
-  mutate(result = sample(c(1, 0, .5), n(), replace= TRUE, prob = c(.2, .15, .65))) %>%
+  mutate(result = sample(c(1, 0, .5), n(), replace = TRUE, prob = c(.2, .15, .65))) %>%
   group_by(trials) %>%
   summarize(score = sum(result))
 ```
@@ -49,6 +51,8 @@ scores %>%
 ![Differencing]({{ base_path }}/images/Rplot.png)
 
 </div>
+
+We can also simply find out how often it's above 6.5. And we see that the player wins 76% of the time.
 
 ``` r
 scores %>%
