@@ -55,6 +55,14 @@ scores %>%
   summarize(mean(scores >= 6.5))
 ```
 
+```
+# A tibble: 1 x 1
+#  `mean(scores >= 6.5)`
+#                  <dbl>
+# 1                 0.760
+
+```
+
 ``` r
 ngames_ <- crossing(trials = 1:5e4,
          ngames = round(12 * 2 ^ seq(0, 7, .5))) %>%
