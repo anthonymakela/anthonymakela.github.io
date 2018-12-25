@@ -109,6 +109,7 @@ And it seems that our simulation did a pretty good job.
 
 We got the first question(What are the chances the better player wins a 12-game match?) right as you can see from above.
 
+And here is our results for the second question, they seem to be almost exactly the same.
 
 ``` r
 exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
@@ -116,7 +117,6 @@ exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
 exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
 ```
 
-And here is our results for the second question, they seem to be almost exactly the same.
 
 ```
 # > exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
