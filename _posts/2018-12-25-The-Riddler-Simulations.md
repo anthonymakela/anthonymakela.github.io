@@ -10,9 +10,11 @@ date: "26 December 2018"
 
 There are two types of problems: Riddler Express and Riddler Classic. We're going to start with the Riddler Express and then move onto the second one. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
 
-### Riddler Express
+## Riddler Express
 	
 So the first problem seems to be related with chess. 
+
+Disclaimer: The Championships were already and Magnus Carlsen won!
 
 "The World Chess Championship is underway. It is a 12-game match between the world’s top two grandmasters. Many chess fans feel that 12 games is far too short for a biennial world championship match, allowing too much variance.
 
@@ -27,7 +29,7 @@ What are the chances the better player wins a 12-game match? How many games woul
 library(tidyverse)
 ```
 
-# Distribution of the scores
+### Distribution of the scores
 
 We are sampling from 3 options here(1 = win, 0 = lose, .5 = draw). The respective weighted probabilities are in the vector c(.2, .15, .65). Then we're getting the players score in every "match" and plotting an histogram from them.
 
