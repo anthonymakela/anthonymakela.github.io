@@ -183,7 +183,7 @@ games <- crossing(N = seq(3, 25, 3),
          balls = map_int(result, 2))
 ```
 
-
+Here we can see that the number of throws required grows quadratically. 
 
 ``` r
 games %>%
@@ -196,13 +196,26 @@ games %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/quadR.png)
+![Differencing]({{ base_path }}/images/Rplot1.png)
 
 </div>
 
-### Number of deaths by weekday
+And this plot illustrates how the expected number of rounds increases as the number of cups (and the number of numbers on the balls) increases — **roughly linearly**
 
-We can see that the deaths are more common on the weekends (Friday and Saturday). This doesn’t come as a surprise since on the weekends there’s more likely also alcohol involved. Too bad we don’t have access to that kind of data to investigate it. On the contrary, the amount of fatal accidents seems to be the lowest on Sundays.
+``` r
+games %>%
+  group_by(N) %>%
+  summarize(rounds = mean(rounds),
+            balls = mean(balls)) %>%
+  ggplot(aes(N, rounds)) +
+  geom_line()
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/linear.png)
+
+</div>
 
 
 ### Summary
