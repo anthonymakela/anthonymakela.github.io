@@ -173,7 +173,7 @@ simulate_game <- function(N) {
 }
 ```
 
-
+Now we can generate all the games and create an graph. The results should be so that while the number of throws required grows roughly quadratically, the number of rounds required grows roughly linearly.
 
 ``` r
 games <- crossing(N = seq(3, 25, 3),
