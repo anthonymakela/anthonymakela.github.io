@@ -220,4 +220,6 @@ games %>%
 
 ### Summary
 
-We used several datasets containing information about traffic accidents in Finland between 2008 and 2017. After some EDA and time series theory, we built an ARIMA model to forecast the number of accidents in 2018. The most interesting part of any predictive model is determining how well it performed against the actual data. Sadly, we cannot do this until the 2018 data becomes available. Also when data from 2018 is released we can start forecasting 2019.
+We used programmatic, simulation-based approaches and managed to get pretty good results. Although we could have used mathematical approaches and get the same results, the objective of this post was to illustrate an Monte Carlo Simulation examples in R and see if we can solve the puzzles with that approach. Here is an mathematical approach from Laurent Lessard https://laurentlessard.com/bookproofs/beer-pong/ 
+
+Lessard uses a Markov chain, a stochastic model describing a sequence of events that depend on the current state of events — such as the balls currently in our cups. And from there he invokes a holy Riddler trinity: absorbing states and limiting distributions and nilpotent matrices.
