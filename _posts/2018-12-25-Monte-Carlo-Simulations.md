@@ -1,5 +1,5 @@
 ---
-title: "Monte Carlo Simulation Examples for 'The Riddler' Puzzles "
+title: "Monte Carlo Simulation Examples"
 excerpt: "The Riddler offers problems related to: math, logic and probability. In this post we take a look at 2 of those problems and try to solve them using Monte Carlo simulation "
 layout: single
 author: "Anthony Makela"
