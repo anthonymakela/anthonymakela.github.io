@@ -103,7 +103,7 @@ ngames_ %>%
 
 Let's find out if we were right. Here we can find the solutions: https://fivethirtyeight.com/features/alice-and-bob-fall-in-love/
 
-" That better player wins a 12-game match about 52 percent of the time. The number of games required for those larger thresholds are, in order, 82, 248 and 773. (Call me crazy, but I’m totally game for a two-year-long World Chess Championship.) "
+" That better player wins a 12-game match about 52 percent of the time. The number of games required for those larger thresholds are, in order, **82, 248 and 773.** (Call me crazy, but I’m totally game for a two-year-long World Chess Championship.) "
 
 And it seems that our simulation did a pretty good job.
 
