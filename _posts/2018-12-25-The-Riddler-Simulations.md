@@ -196,7 +196,7 @@ games %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/Rplot1.png)
+![Differencing]({{ base_path }}/images/Rplot01.png)
 
 </div>
 
