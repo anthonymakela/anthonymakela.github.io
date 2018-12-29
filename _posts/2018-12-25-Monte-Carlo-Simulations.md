@@ -7,7 +7,7 @@ date: "26 December 2018"
 ---
 
 
-There are two types of problems given to us. We're going to go through them in order and try to come up with good estimates. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
+There are two types of problems given to us. We're going to go through them in order and try to come up with good estimates.
 
 # First
 	
