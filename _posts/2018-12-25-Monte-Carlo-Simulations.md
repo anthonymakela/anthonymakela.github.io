@@ -9,7 +9,7 @@ date: "26 December 2018"
 
 There are two types of problems given to us. We're going to go through them in order and try to come up with good estimates. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
 
-# 1
+# First
 	
 So the first problem seems to be related with chess. 
 
@@ -127,7 +127,7 @@ exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
 ```
 
 
-# 2
+# Second
 
 The second problem seems to be related with ping-pong balls. 
 
