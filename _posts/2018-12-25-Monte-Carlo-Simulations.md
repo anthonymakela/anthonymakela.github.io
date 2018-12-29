@@ -1,16 +1,15 @@
 ---
 title: "Monte Carlo Simulation Examples"
-excerpt: "The Riddler offers problems related to: math, logic and probability. In this post we take a look at 2 of those problems and try to solve them using Monte Carlo simulation "
+excerpt: "Two problems related to: math, logic and probability. In this post we're going to take a look at those two and try to solve them using Monte Carlo simulation "
 layout: single
 author: "Anthony Makela"
 date: "26 December 2018"
 ---
 
 
+There are two types of problems given to us. We're going to go through them in order and try to come up with good estimates. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
 
-There are two types of problems: Riddler Express and Riddler Classic. We're going to start with the Riddler Express and then move onto the second one. Also here is a link for the post at https://fivethirtyeight.com/features/the-riddler-just-had-to-go-and-reinvent-beer-pong/
-
-# Riddler Express
+# 1
 	
 So the first problem seems to be related with chess. 
 
@@ -71,7 +70,7 @@ scores %>%
 
 ### How many games would a match have to be in order to give the better player a 75 chance of winning the match outright? A 90 percent chance? A 99 percent chance?
 
-Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create an line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly.
+Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create a line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly.
 
 ``` r
 ngames_ <- crossing(trials = 1:5e4,
@@ -128,7 +127,7 @@ exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
 ```
 
 
-# Riddler Classic
+# 2
 
 The second problem seems to be related with ping-pong balls. 
 
