@@ -304,8 +304,57 @@ solar %>%
 
 </div>
 
+Due to a lack of granularity in the data set, it's unclear whether the non-circumbinary planets orbit a single star, are in a binary star system that isn't circumbinary, or orbit even more than 2 stars.
+
+Less than 1% of planets discovered so far are circumbinary. That is, we know of 23 planets currently orbiting binary star systems, and one could potentially be Tatooine. It remains to be seen how many have pod racing.
+
+All jokes aside, it's pretty amazing that examples of this even exist in our galaxy!
+
+``` r
+# How many planets are in each solar system?
+solar %>%
+  summarize(mean_num_planets = mean(pl_pnum))
+```
+
+```
+[1] 1.77
+```
+
+``` r
+# Percentage of solar systems with multiple planets
+solar %>%
+  filter(pl_pnum > 1) %>%
+  count(pl_pnum) %>%
+  summarize(multiple_planets_perc = sum(n) / nrow(solar) * 100)
+```
+
+```
+[1] 42.1
+```
+
+``` r
+solar %>%
+  group_by(pl_pnum) %>%
+  count(pl_pnum) %>%
+  ggplot(aes(as.factor(pl_pnum), n, label = n)) +
+  geom_col() +
+  geom_text(vjust = -0.25, size = 3.5,
+            position = position_dodge(width = 1)) +
+  labs(x = 'Number of Planets', y = 'Frequency', title = 'Number of Planets in Solar Systems')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/numsolsys.png)
+
+</div>
+
+Almost half of solar systems have multiple planets!
+
+The most we've found in another solar system so far is 7, which is still fewer than the number in our own system. It's likely that this number is low, considering our ability to detect small planets is still limited, and many of the planets in our own system would be too small to discover yet in those distant systems.
+
+Because new planets are constantly being discovered, it's likely that there are many planets yet undiscovered in these solar systems. If true, this would skew the data even more in favor of multiple planets. Considering so many solar systems have numerous planets already, it's likely the majority of systems had multiple planets.
+
 ### Summary
 
-We used programmatic, simulation-based approaches and managed to get pretty good results. Although we could have used mathematical approaches and get the same results, the objective of this post was to illustrate an Monte Carlo Simulation examples in R and see if we can solve the puzzles with that approach. Here is an mathematical approach from Laurent Lessard https://laurentlessard.com/bookproofs/beer-pong/ 
 
-Lessard uses a Markov chain, a stochastic model describing a sequence of events that depend on the current state of events — such as the balls currently in our cups. And from there he invokes a holy Riddler trinity: absorbing states and limiting distributions and nilpotent matrices.
