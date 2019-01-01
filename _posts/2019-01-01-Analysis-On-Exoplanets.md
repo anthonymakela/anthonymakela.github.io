@@ -345,7 +345,7 @@ solar %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/numsolsys.png)
+![Differencing]({{ base_path }}/images/numsolsys.png)
 
 </div>
 
