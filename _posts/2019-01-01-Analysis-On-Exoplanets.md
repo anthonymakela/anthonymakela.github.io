@@ -351,7 +351,7 @@ solar %>%
 
 Almost half of solar systems have multiple planets!
 
-The most we've found in another solar system so far is 7, which is still fewer than the number in our own system. It's likely that this number is low, considering our ability to detect small planets is still limited, and many of the planets in our own system would be too small to discover yet in those distant systems.
+The most we've found in another solar system so far is 8, which is still fewer than the number in our own system. It's likely that this number is low, considering our ability to detect small planets is still limited, and many of the planets in our own system would be too small to discover yet in those distant systems.
 
 Because new planets are constantly being discovered, it's likely that there are many planets yet undiscovered in these solar systems. If true, this would skew the data even more in favor of multiple planets. Considering so many solar systems have numerous planets already, it's likely the majority of systems had multiple planets.
 
