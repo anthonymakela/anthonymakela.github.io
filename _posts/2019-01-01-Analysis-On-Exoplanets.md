@@ -41,7 +41,7 @@ exo %>%
   count()
 ```
 
-``` r
+``` 
 [1] 3869
 ```
 
@@ -52,7 +52,7 @@ exo %>%
   summarize(min(pl_disc))
 ```
 
-``` r
+``` 
 [1] 1989
 ```
 
@@ -112,43 +112,93 @@ What the methods are:
 * **Astrometry:** Observing the star physically move because of a planet's gravitational influence.
 
 
-```
-# A tibble: 1 x 1
-#  `mean(scores >= 6.5)`
-#                  <dbl>
-# 1                 0.520
-
-```
-
-### How many games would a match have to be in order to give the better player a 75 chance of winning the match outright? A 90 percent chance? A 99 percent chance?
-
-Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create a line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly.
-
 ``` r
-ngames_ <- crossing(trials = 1:5e4,
-         ngames = round(12 * 2 ^ seq(0, 7, .5))) %>%
-  unnest(game = map(ngames, seq_len)) %>%
-  mutate(result = sample(c(1, 0, .5), n(), replace= TRUE, prob = c(.2, .15, .65))) %>%
-  group_by(ngames, trials) %>%
-  summarize(score = sum(result)) %>%
-  summarize(win = mean(score > ngames / 2))
-```
-
-
-``` r
-ngames_ %>%
-  ggplot(aes(ngames, win)) +
-  geom_line(color = rgb(0.1,0.4,0.5,0.7)) +
-  geom_point() +
-  scale_x_log10() +
-  scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = 'Number of games',
-       y = 'Probability for the better player to win')
+exo %>%
+  ggplot(aes(pl_discmethod)) +
+  geom_bar(aes(y = (..count..)/sum(..count..))) +
+  geom_text(aes(y = ((..count..)/sum(..count..)), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+  scale_y_continuous(labels = percent) +
+  labs(x = 'Planet Discovery Method', y = 'Percentage')
 ```
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/logplot.png)
+![Differencing]({{ base_path }}/images/percentagge.png)
+
+</div>
+
+Of the 10 methods that have successfully been used to find planets, 96.5% of discoveries have been made using just two methods: transit and radial velocity.
+
+### Who has discovered the majority of the planets?
+
+Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create a line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly.
+
+``` r
+# Number of exoplanet-discovering facilities
+exo %>%
+  summarize(facilities = n_distinct(pl_facility))
+```
+
+```
+[1] 56
+```
+
+``` r
+# Number which have discovered more than 5 planets
+exo %>%
+  count(pl_facility) %>%
+  filter(n > 5) %>%
+  summarize(facilities_5 = n_distinct(n))
+```
+
+```
+[1] 22
+```
+
+``` r
+# Graph facilities which have found at least 15 exoplanets
+exo %>%
+  group_by(pl_facility) %>%
+  count(sort = TRUE) %>%
+  filter(n >= 15) %>%
+  ggplot(aes(reorder(pl_facility, n), n, label = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = 'Facility', y = 'Number of Planets Discovered', title = 'Planets Discovered by Facility (at least 15 Discovered)') +
+  geom_text(hjust = -0.25, size = 4,
+            position = position_dodge(width = 1))
+```
+
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/facilities.png)
+
+</div>
+
+The large majority of exoplanets so far have been discovered by the Kepler space telescope, almost 13x what was discovered by the next most accomplished facility.
+
+### Where would we be without Kepler?
+
+The Kepler Space Telescope is the 800-pound gorilla in the room, but there's more to exoplanet discovery than just Kepler. It wasn't even launched until 2009, and there are almost 50 other facilities that have found confirmed exoplanets.
+
+What happens if we ignore Kepler?
+
+Note: We'll also ignore K2, the second mission of the Kepler Space Telescope, as we want to remove the influence of the entire telescope.
+
+``` r
+exo %>%
+  filter(pl_facility != 'Kepler' & pl_facility != 'K2') %>%
+  group_by(pl_discmethod) %>%
+  ggplot(aes(pl_discmethod)) +
+  geom_bar(aes(y = (..count..)/sum(..count..))) +
+  geom_text(aes(y = ((..count..)/sum(..count..)), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+  scale_y_continuous(labels = percent)
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/woutkepler.png)
 
 </div>
 
