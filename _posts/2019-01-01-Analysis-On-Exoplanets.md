@@ -131,8 +131,6 @@ Of the 10 methods that have successfully been used to find planets, 96.5% of dis
 
 ### Who has discovered the majority of the planets?
 
-Here we are simulating 50,000 trials with logarithmically increasing ngames to try and get solid estimates. Then we will create a line plot and scale x to be on a logarithmic scale because that usually helps to detect the trend more thoroughly.
-
 ``` r
 # Number of exoplanet-discovering facilities
 exo %>%
