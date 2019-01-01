@@ -74,12 +74,27 @@ exo %>%
 
 </div>
 
-We can also simply find out how often it's above 6.5. And we see that the player wins 52% of the time.
+Having confirmation that exoplanets even exist is a relatively new idea. The first one wasn't discovered until 1989, but in the time since, the number of exoplanets we know of has exploded.
+
+### Discovery methods
 
 ``` r
-scores %>%
-  summarize(mean(score >= 6.5))
+exo %>%
+  group_by(pl_discmethod) %>%
+  count() %>%
+  ggplot(aes(pl_discmethod, n, label = n)) +
+  geom_col() +
+  coord_flip() +
+  geom_text(hjust = -0.23, size = 4,
+            position = position_dodge(width = 1)) +
+  labs(x = 'Number of Planets Discovered', y = 'Planet Discovery Method', title = 'Planets Discovered by Method')
 ```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/methods_disc.png)
+
+</div>
 
 ```
 # A tibble: 1 x 1
