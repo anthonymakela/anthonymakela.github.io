@@ -95,6 +95,23 @@ exo %>%
 
 </div>
 
+
+Many methods have been proposed to find exoplanets, but only 10 have ever been successfully used (by NASA's definitions).
+
+What the methods are:
+
+* **Transit:** Analyzing how the star dims when the planet passes between us and the star.
+* **Radial Velocity:** Using the Doppler effect to measure how much the planet's gravity makes the star wobble. Used to discover the first exoplanet in 1989.
+* **Imaging:** Taking a picture of the planet.
+Microlensing: Detecting planet's gravity's effect on the star's light.
+Transit Timing Variations: Finding additional planets in a solar system through variations in an already-detected planet's transit timing.
+Eclipse Timing Variations: When one star in a binary star system eclipses the other, there are certain predictable points of minimum brightness. This method tracks variations from what's expected to find a planet affecting the stars' orbits and thus causing the variations.
+Orbital Brightness Modulation: I had difficulty finding a concrete definition for this method, but my best guess is it's similar to the radial velocity method, tracking brightness variations instead of frequency variations.
+Pulsar Timing: Watching for variations in pulsar pulse timing to measure how much the planet's gravity makes the star wobble. Second method to ever be successfully used.
+Pulsation Timing Variations: Same as the pulsar method, but for other types of pulsating variable stars.
+Astrometry: Observing the star physically move because of a planet's gravitational influence.
+
+
 ```
 # A tibble: 1 x 1
 #  `mean(scores >= 6.5)`
