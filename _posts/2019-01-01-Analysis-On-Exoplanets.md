@@ -200,121 +200,79 @@ exo %>%
 
 </div>
 
-Let's find out if we were right. Here we can find the solutions: https://fivethirtyeight.com/features/alice-and-bob-fall-in-love/
+Turns out Kepler is a massive leader for the transit method. Without Kepler in the picture, transit is no longer the most successful method of planetary discovery by a long shot. Radial velocity is now the most productive, with fully twice the success record of transit.
 
-" That better player wins a 12-game match about 52 percent of the time. The number of games required for those larger thresholds are, in order, **82, 248 and 773.** (Call me crazy, but I’m totally game for a two-year-long World Chess Championship.) "
-
-And it seems that our simulation did a pretty good job.
-
-We got the first question(What are the chances the better player wins a 12-game match?) right as you can see from above.
-
-And here is our results for the second question, they seem to be almost exactly the same.
+This could be because radial velocity is the oldest successful method, and thus has had the most time to rack up confirmed finds. Radial velocity has been used successfully since 1989, whereas transit didn't complete its first find until 2002.
 
 ``` r
-exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
-exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
-exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
-```
-
-
-```
-# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .75)$y)
-# [1] 82.17202
-# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .9)$y)
-# [1] 249.4356
-# > exp(approx(ngames_$win, log(ngames_$ngames), xout = .99)$y)
-# [1] 772.3506
-```
-
-
-# Second
-
-The second problem seems to be related with ping-pong balls. 
-
-"You’re going to play a game. Like many probability games, this one involves an infinite supply of ping-pong balls. No, this game is not quite beer pong.
-
-The balls are numbered 1 through N. There is also a group of N cups, labeled 1 through N, each of which can hold an unlimited number of ping-pong balls. The game is played in rounds. A round is composed of two phases: throwing and pruning.
-
-During the throwing phase, the player takes balls randomly, one at a time, from the infinite supply and tosses them at the cups. The throwing phase is over when every cup contains at least one ping-pong ball.
-Next comes the pruning phase. During this phase the player goes through all the balls in each cup and removes any ball whose number does not match the containing cup.
-Every ball drawn has a uniformly random number, every ball lands in a uniformly random cup, and every throw lands in some cup. The game is over when, after a round is completed, there are no empty cups.
-
-How many rounds would you expect to need to play to finish this game? How many balls would you expect to need to draw and throw to finish this game?"
-
-Let's first create an function to simulate a game.
-
-
-``` r
-simulate_game <- function(N) {
-  
-  # Row = ball, Col = cup
-  m <- matrix(0L, nrow = N, ncol = N)
-  
-  rounds <- 0L
-  balls <- 0L
-  
-  while (any(colSums(m) == 0)) {
-    rounds <- rounds + 1L
-    while (any(colSums(m) == 0)) {
-      balls <- balls + 1L
-      ball <- sample.int(N, 1)
-      cup <- sample.int(N, 1)
-      
-      m[ball, cup] <- m[ball, cup] + 1L
-    }
-    
-    # Empty non diagonal cups 
-    m[lower.tri(m)] <- 0L
-    m[upper.tri(m)] <- 0L
-  }
-  
-  list(rounds, balls)
-}
-```
-
-Now we can generate all the games and create an graph. The results should be so that while the number of throws required grows roughly quadratically, the number of rounds required grows roughly linearly.
-
-``` r
-games <- crossing(N = seq(3, 25, 3),
-                   game = 1:1e3) %>%
-  mutate(result = map(N, simulate_game),
-         rounds = map_int(result, 1),
-         balls = map_int(result, 2))
-```
-
-Here we can see that the number of throws required grows quadratically. 
-
-``` r
-games %>%
-  group_by(N) %>%
-  summarize(rounds = mean(rounds),
-            balls = mean(balls)) %>%
-  ggplot(aes(N, balls)) +
-  geom_line()
+exo %>%
+  filter(pl_facility != 'Kepler' & pl_facility != 'K2') %>%
+  group_by(pl_discmethod) %>%
+  count(sort = TRUE) %>%
+  ggplot(aes(reorder(pl_discmethod, n), n, label = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = 'Planet Discovery Method', y = 'Number of Planets Discovered', title = 'Planets Discovered by Method - Without Kepler') +
+  geom_text(hjust = -0.5, size = 4,
+                position = position_dodge(width = 1))
 ```
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/Rplot01.png)
+![Differencing]({{ base_path }}/images/keplerw.png)
 
 </div>
 
-And this plot illustrates how the expected number of rounds increases as the number of cups (and the number of numbers on the balls) increases — **roughly linearly**
+Since two methods are now completely missing, it appears Kepler is the only facility to have ever successfully used the transit timing variations or orbital brightness modulation methods to discover a planet.
+
+### Are certain methods more successful at discovering particular types of planets?
 
 ``` r
-games %>%
-  group_by(N) %>%
-  summarize(rounds = mean(rounds),
-            balls = mean(balls)) %>%
-  ggplot(aes(N, rounds)) +
-  geom_line()
+exo %>%
+  filter(!is.na(pl_rade)) %>%
+  group_by(pl_discmethod) %>%
+  summarize(mean_rad = mean(pl_rade)) %>%
+  ggplot(aes(reorder(pl_discmethod, mean_rad), mean_rad, label = round(mean_rad, 2))) +
+  geom_col() +
+  coord_flip() +
+  geom_text(hjust = -0.2, size = 3.5,
+            position = position_dodge(width = 1)) +
+  labs(x = 'Average Radius of Discovered Planets (Number of Earths)', y = 'Planet Discovery Method', title = 'Planet Radius by Discovery Method')
 ```
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/linear.png)
+![Differencing]({{ base_path }}/images/avg_rad.png)
 
 </div>
+
+
+As expected, imaging is best at discovering larger planets.
+
+Interestingly, transit generally discovers larger planets than transit timing variations. It's possible that once the first planet is discovered helping find smaller planets.
+
+Note: Some methods are missing because no radius data is available for the planets they've discovered.
+
+``` r
+exo %>%
+  filter(!is.na(pl_rade)) %>%
+  group_by(pl_locale) %>%
+  summarize(mean_rad = mean(pl_rade)) %>%
+  ggplot(aes(reorder(pl_locale, mean_rad), mean_rad, label = round(mean_rad, 2))) +
+  geom_col() +
+  coord_flip() +
+  geom_text(hjust = -0.2, size = 3.5,
+            position = position_dodge(width = 1)) +
+  labs(x = 'Average Radius of Discovered Planets (Number of Earths)', y = 'Facility Locale', title = 'Planet Radius by Locale')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/rad_locale.png)
+
+</div>
+
+Also not surprisingly, space telescopes are better at discovering smaller planets than ground-based telescopes. Because space telescopes avoid atmosphere-induced errors, they're more precise, accurate, and consistent than ground-based telescopes.
 
 
 ### Summary
