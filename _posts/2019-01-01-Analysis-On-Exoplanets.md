@@ -268,12 +268,41 @@ exo %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/rad_locale.png)
+![Differencing]({{ base_path }}/images/plot_locale.png)
 
 </div>
 
 Also not surprisingly, space telescopes are better at discovering smaller planets than ground-based telescopes. Because space telescopes avoid atmosphere-induced errors, they're more precise, accurate, and consistent than ground-based telescopes.
 
+### Solar Systems
+
+``` r
+url_solar <- 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?format=json&&table=exoplanets&select=pl_cbflag,pl_pnum,pl_masse'
+solar <- jsonlite::fromJSON(url_solar, simplifyDataFrame = TRUE, flatten = TRUE)
+```
+
+### How many planets orbit multiple stars?
+
+In a binary star system, two stars orbit each other. A circumbinary planet is a planet orbiting around both stars in a binary star system.
+
+``` r
+solar %>%
+  group_by(pl_cbflag) %>%
+  mutate(pl_cbflag_recode = recode(pl_cbflag, 
+                    "0" = "Not Tatooine", 
+                    "1" = "Circumbinary")) %>%
+  ggplot(aes(pl_cbflag_recode)) +
+  geom_bar(aes(y = (..count..)/sum(..count..))) +
+  geom_text(aes(y = ((..count..)/sum(..count..)), label = scales::percent((..count..)/sum(..count..))), stat = "count", vjust = -0.25) +
+  scale_y_continuous(labels = percent) +
+  labs(x = 'Circumbinary Flag', y = 'Percentage')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/cbflag.png)
+
+</div>
 
 ### Summary
 
