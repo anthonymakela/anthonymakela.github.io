@@ -330,6 +330,35 @@ exo %>%
 
 The majority of the discovered planets are less dense than ours. As a trivia, the densest thing naturally occurring on Earth is a metal called Osmium, with a density = 22.59 grams per cm3. So, for planets with density reaching almost 80 g/cm3, these are pretty dense objects.
 
+### Gravity
+
+[Here](http://www.world-builders.org/lessons/less/les1/gravity.html) is a link that explains a neat way to approximate a planets gravity:
+
+
+$$ {planetdensity \over earthdensity}{planetRadius} $$
+
+``` r
+exo$gravity <- (exo$density/5.5)*(exo$pl_radj*10.97)
+
+exo %>%
+  filter(gravity < 30) %>%
+  ggplot(aes(gravity)) +
+  geom_histogram(binwidth = 0.4) +
+  geom_vline(aes(xintercept = 1), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_vline(aes(xintercept = 2.6), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_text(aes(x = 1, label = "Earth", y = 80), color = '#80cdc1', vjust = 2.2) +
+  geom_text(aes(x = 2.6, label = "Jupiter", y = 90), color = '#80cdc1', vjust = 2.2) +
+  labs(x = "Surface Gravity (Earth's G)", title = 'Exoplanets Gravity')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/plot_gravity.png)
+
+</div>
+
+It wasn’t possible to compute the surface gravity for the majority of the planets, mainly due to the missing mass value in the dataset. However, for the ones we could, the majority are approximately around Earth’s gravity (Provided that the equation we found is correct). Note that the outliers were removed from this graph, there were some planets with crushing tens of g’s at their surface.
+
 # Solar Systems
 
 ``` r
