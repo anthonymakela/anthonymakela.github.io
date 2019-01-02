@@ -306,7 +306,7 @@ $$ p = {m \over V} $$
 
 When calculating the density of a planet, look up its mass and radius, the latter of which is the distance from the surface to the center. Because planets are **roughly spherical**, calculate the volume of a sphere using the radius.
 
-$$ {4 \over 3}{pi}{r}^{3} $$
+$$ {4 \over 3}{\pi}{r}^{3} $$
 
 ``` r
 exo$density = (1.898*10^27*1000*exo$pl_bmassj)/((4/3)*pi*(exo$pl_radj*69911*100000)^3)
