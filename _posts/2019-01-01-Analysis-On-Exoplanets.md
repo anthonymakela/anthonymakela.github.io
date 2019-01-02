@@ -276,7 +276,7 @@ Also not surprisingly, space telescopes are better at discovering smaller planet
 
 ### Mass of the Exoplanets
 
-There is plenty of extremely large planets! But still, the largest amount has approximately the same mass as Earth.
+There is plenty of extremely large planets. But still, the largest amount has approximately the same mass as Earth.
 
 ``` r
 exo %>%
