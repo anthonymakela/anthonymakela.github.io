@@ -73,7 +73,7 @@ exo %>%
 
 </div>
 
-Having confirmation that exoplanets even exist is a relatively new idea. The first one wasn't discovered until 1989, but in the time since, the number of exoplanets we know of has exploded.
+Having evidence that exoplanets even exist is a relatively new idea. The first one wasn’t discovered until 1989, but in the time since the number of exoplanets we know of has exploded.
 
 ### Discovery methods
 
@@ -96,9 +96,9 @@ exo %>%
 </div>
 
 
-Many methods have been proposed to find exoplanets, but only 10 have ever been successfully used (by NASA's definitions).
+Numerous methods have been suggested to find exoplanets, but only 10 have ever been successfully used (by NASA’s definitions).
 
-What the methods are:
+The methods are described here:
 
 * **Transit:** Analyzing how the star dims when the planet passes between us and the star.
 * **Radial Velocity:** Using the Doppler effect to measure how much the planet's gravity makes the star wobble. Used to discover the first exoplanet in 1989.
@@ -127,7 +127,7 @@ exo %>%
 
 </div>
 
-Of the 10 methods that have successfully been used to find planets, 96.5% of discoveries have been made using just two methods: transit and radial velocity.
+Of the 10 methods that have successfully been used to find planets, 96% of discoveries are made using just two methods: transit and radial velocity.
 
 ### Who has discovered the majority of the planets?
 
@@ -178,7 +178,7 @@ The large majority of exoplanets so far have been discovered by the Kepler space
 
 ### Where would we be without Kepler?
 
-The Kepler Space Telescope is the 800-pound gorilla in the room, but there's more to exoplanet discovery than just Kepler. It wasn't even launched until 2009, and there are almost 50 other facilities that have found confirmed exoplanets.
+The Kepler Space Telescope is the top of its class, but there's more to exoplanet discovery than just Kepler. It wasn't even launched until 2009, and there are almost 50 other facilities that have found confirmed exoplanets.
 
 What happens if we ignore Kepler?
 
