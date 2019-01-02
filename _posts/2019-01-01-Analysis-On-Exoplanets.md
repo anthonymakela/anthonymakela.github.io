@@ -290,7 +290,7 @@ exo %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/exo_mass.png)
+![Differencing]({{ base_path }}/images/mass_plot.png)
 
 </div>
 
