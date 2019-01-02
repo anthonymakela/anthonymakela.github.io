@@ -300,6 +300,8 @@ I would like to approximate the gravity of these planets. Gravity depends on the
 
 ### Density
 
+The density is mass $${m}$$ divided by the volume $${V}$$:
+
 $$ p = {m \over V} $$
 
 ``` r
