@@ -276,6 +276,8 @@ Also not surprisingly, space telescopes are better at discovering smaller planet
 
 ### Mass of the Exoplanets
 
+There is plenty of extremely large planets! But still, the largest amount has approximately the same mass as Earth.
+
 ``` r
 exo %>%
   filter(pl_bmassj < 10) %>%
@@ -285,12 +287,34 @@ exo %>%
   geom_vline(aes(xintercept = 317.83), linetype = 'dashed', size = .5, color = '#80cdc1') +
   geom_text(aes(x = 1, label = "Earth", y = 300), color = '#80cdc1', vjust = 2.2) +
   geom_text(aes(x = 317.83, label = "Jupiter", y = 250), color = '#80cdc1', vjust = 3.0) +
-  labs(x = 'Planet Mass (Earth Mass)', title = 'Mass of the Exoplanets')
+  labs(x = expression(Earth~mass~(M['\u2295'])), title = 'Mass of the Exoplanets')
 ```
 
 <div style="text-align:center" markdown="1">
 
 ![Differencing]({{ base_path }}/images/mass_plot.png)
+
+</div>
+
+I would like to approximate the gravity of these planets. Gravity depends on the mass and density of the planet, unfortunately, we don’t have density available at our dataset. But if we assume that the planets are perfectly spherical, we can derive their density from their radius and mass.
+
+``` r
+exo$density = (1.898*10^27*1000*exo$pl_bmassj)/((4/3)*pi*(exo$pl_radj*69911*100000)^3)
+
+exo %>%
+  filter(density < 90) %>%
+  ggplot(aes(density)) +
+  geom_histogram(binwidth = 3) +
+  geom_vline(aes(xintercept = 5.51), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_vline(aes(xintercept = 1.33), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_text(aes(x = 5.51, label = "Earth", y = 300), color = '#80cdc1', vjust = 2.2) +
+  geom_text(aes(x = 1.33, label = "Jupiter", y = 350), color = '#80cdc1', vjust = 2.2) +
+  labs(x = expression(Planet~Density~(g/cm^{3})), title = 'Density of the Exoplanets')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/planet_density.png)
 
 </div>
 
