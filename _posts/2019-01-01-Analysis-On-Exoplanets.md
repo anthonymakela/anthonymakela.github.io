@@ -69,7 +69,7 @@ exo %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/discov.png)
+![Differencing]({{ base_path }}/images/num_discoveries.png)
 
 </div>
 
@@ -273,6 +273,26 @@ exo %>%
 </div>
 
 Also not surprisingly, space telescopes are better at discovering smaller planets than ground-based telescopes. Because space telescopes avoid atmosphere-induced errors, they're more precise, accurate, and consistent than ground-based telescopes.
+
+### Mass of the Exoplanets
+
+``` r
+exo %>%
+  filter(pl_bmassj < 10) %>%
+  ggplot(aes(pl_bmassj*317.83)) +
+  geom_histogram(binwidth = 60) +
+  geom_vline(aes(xintercept = 1), linetype="dashed", size=.5, color = '#80cdc1') +
+  geom_vline(aes(xintercept = 317.83), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_text(aes(x = 1, label = "Earth", y = 300), color = '#80cdc1', vjust = 2.2) +
+  geom_text(aes(x = 317.83, label = "Jupiter", y = 250), color = '#80cdc1', vjust = 3.0) +
+  labs(x = 'Planet Mass (Earth Mass)', title = 'Mass of the Exoplanets')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/exo_mass.png)
+
+</div>
 
 ### Solar Systems
 
