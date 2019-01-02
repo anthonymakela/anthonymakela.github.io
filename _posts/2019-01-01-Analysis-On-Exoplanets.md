@@ -486,7 +486,7 @@ solar %>%
 
 It seems that majority is the Sun’s size, although there exists some huge ones.
 
-### Metallicity
+### Metallicity of the stars
 
 In astronomy, metallicity is used to describe the abundance of elements present in an object that are heavier than hydrogen or helium. Anything that is not hydrogen nor helium is considered to be metal (Even carbon, nitrogen and oxygen atoms). The reason is that at the extreme pressure and temperature found in stars, atoms lose their usual properties (even chemical reactions do not occur), so the metal\non-metal differentiation is not valid there.
 
