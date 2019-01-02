@@ -300,7 +300,7 @@ I would like to approximate the gravity of these planets. Gravity depends on the
 
 ### Density
 
-$ p = {m \over V} $
+$$ p = {m \over V} $$
 
 ``` r
 exo$density = (1.898*10^27*1000*exo$pl_bmassj)/((4/3)*pi*(exo$pl_radj*69911*100000)^3)
