@@ -361,6 +361,18 @@ Unfortunately it wasn’t possible to compute the surface gravity for the majori
 
 ### Distance from Host Star
 
+``` r
+exo %>%
+  filter(pl_orbsmax< 10) %>%
+  ggplot(aes(pl_orbsmax)) +
+  geom_histogram(binwidth = 0.5) +
+  geom_vline(aes(xintercept = 1), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_vline(aes(xintercept = 5.2), linetype = 'dashed', size = .5, color = '#80cdc1') +
+  geom_text(aes(x = 1, label = "Earth", y = 1000), color = '#80cdc1', vjust = 2.2) +
+  geom_text(aes(x = 5.2, label = "Jupiter", y = 900), color = '#80cdc1', vjust = 2.2) +
+  labs(x = 'Orbit Semi-Major Axis (AU)', title = 'Distance From Host Star')
+```
+
 <div style="text-align:center" markdown="1">
 
 ![Differencing]({{ base_path }}/images/plot_au.png)
