@@ -357,7 +357,7 @@ exo %>%
 
 </div>
 
-Unfortunately it wasn’t possible to compute the surface gravity for the majority of the planets, mainly due to the missing mass value in the dataset. However, for the ones we could, the majority are approximately around Earth’s gravity (Provided that the equation we found is correct). Note that the outliers were removed from this graph, there were some planets crushing tens or even hundreds of g’s at their surface.
+Unfortunately it wasn’t possible to compute the surface gravity for the majority of the planets, mainly due to the missing mass value in the dataset. However, for the ones we could, the majority are approximately around Earth’s gravity (Provided that the equation we found is correct). Note that the biggest outliers were removed from this graph, there is some planets crushing tens or even hundreds of g’s at their surface.
 
 # Solar Systems
 
