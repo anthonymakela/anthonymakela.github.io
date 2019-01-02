@@ -328,6 +328,8 @@ exo %>%
 
 </div>
 
+The majority of the discovered planets are less dense than ours. As a trivia, the densest thing naturally occurring on Earth is a metal called Osmium, with a density = 22.59 grams per cm3. So, for planets with density reaching almost 80 g/cm3, these are pretty dense objects.
+
 # Solar Systems
 
 ``` r
