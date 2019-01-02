@@ -30,7 +30,7 @@ library(scales)
 
 ``` r
 # Data
-url <- 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?format=json&table=exoplanets&select=pl_discmethod,pl_disc,pl_facility,pl_locale,pl_rade,pl_orbper'
+url <- 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?format=json&table=exoplanets&select=pl_discmethod,pl_disc,pl_facility,pl_locale,pl_rade,pl_orbper,pl_bmassj,pl_radj,pl_orbsmax'
 exo <- jsonlite::fromJSON(url, simplifyDataFrame = TRUE, flatten = TRUE)
 ```
 
