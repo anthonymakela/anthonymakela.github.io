@@ -298,6 +298,10 @@ exo %>%
 
 I would like to approximate the gravity of these planets. Gravity depends on the mass and density of the planet, unfortunately, we don’t have density available at our dataset. But if we assume that the planets are perfectly spherical, we can derive their density from their radius and mass.
 
+### Density
+
+$ p = {m \over V} $
+
 ``` r
 exo$density = (1.898*10^27*1000*exo$pl_bmassj)/((4/3)*pi*(exo$pl_radj*69911*100000)^3)
 
