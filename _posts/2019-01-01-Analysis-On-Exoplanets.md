@@ -335,7 +335,7 @@ The majority of the discovered planets are less dense than ours. As a trivia, th
 [Here](http://www.world-builders.org/lessons/less/les1/gravity.html) is a link that explains a neat way to approximate a planets gravity:
 
 
-$$ {planetdensity \over earthdensity}{planetRadius} $$
+$$ {planetDensity \over earthDensity}{planetRadius} $$
 
 ``` r
 exo$gravity <- (exo$density/5.5)*(exo$pl_radj*10.97)
