@@ -359,6 +359,16 @@ exo %>%
 
 Unfortunately it wasn’t possible to compute the surface gravity for the majority of the planets, mainly due to the missing mass value in the dataset. However, for the ones we could, the majority are approximately around Earth’s gravity (Provided that the equation we found is correct). Note that the biggest outliers were removed from this graph, there is some planets crushing tens or even hundreds of g’s at their surface.
 
+### Distance from Host Star
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/plot_au.png)
+
+</div>
+
+Most of the exoplanets discovered so far are extremely close to their host star. For comparison, Mercury’s distance is roughly 0.4 AU. The other thing to notice is that even Jupiter is an outlier. I think that this is more of a limitation of the instruments than it is the rarity of planets far from their stars, our solar system has the majority of its planetary mass far from the Sun.
+
 # Solar Systems
 
 ``` r
