@@ -86,7 +86,7 @@ exo %>%
   coord_flip() +
   geom_text(hjust = -0.23, size = 4,
             position = position_dodge(width = 1)) +
-  labs(x = 'Number of Planets Discovered', y = 'Planet Discovery Method', title = 'Planets Discovered by Method')
+  labs(x = 'Planet Discovery Method', y = 'Number of Planets Discovered', title = 'Planets Discovered by Method')
 ```
 
 <div style="text-align:center" markdown="1">
