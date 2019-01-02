@@ -298,7 +298,7 @@ exo %>%
 
 I would like to approximate the gravity of these planets. Gravity depends on the mass and density of the planet, unfortunately, we don’t have density available at our dataset. But if we assume that the planets are perfectly spherical, we can derive their density from their radius and mass.
 
-### Density
+### Density of the Exoplanets
 
 The physical density of any object is simply its mass $${m}$$ divided by its volume $${V}$$; density is measured in units such as pounds per cubic foot, grams per cubic centimeter or kilograms per cubic meter. 
 
@@ -330,7 +330,7 @@ exo %>%
 
 The majority of the discovered planets are less dense than ours. As a trivia, the densest thing naturally occurring on Earth is a metal called Osmium, with a density = 22.59 grams per cm3. So, for planets with density reaching almost 80 g/cm3, these are pretty dense objects.
 
-### Gravity
+### Gravity of the Exoplanets
 
 [Here](http://www.world-builders.org/lessons/less/les1/gravity.html) is a link that explains a neat way to approximate a planets gravity:
 
@@ -462,6 +462,48 @@ The most we've found in another solar system so far is 8, which is still fewer t
 
 Because new planets are constantly being discovered, it's likely that there are many planets yet undiscovered in these solar systems. If true, this would skew the data even more in favor of multiple planets. Considering so many solar systems have numerous planets already, it's likely the majority of systems had multiple planets.
 
-### Summary
+### Stars
+
+Let's take a quick look at the Host Stars before we wrap up this EDA.
+
+### Mass of the stars
+
+``` r
+solar %>%
+  filter(st_mass < 10) %>%
+  ggplot(aes(st_mass)) +
+  geom_histogram(binwidth = 0.2) +
+  geom_vline(aes(xintercept = 1), linetype="dashed", size=.5, color = '#dfc27d') +
+  geom_text(aes(x = 1, label = "Sun", y = 850), color = '#dfc27d', vjust = 2.2) +
+  labs(x = expression(Solar~mass~(M['\u2609'])), title = 'Mass of the Stars')
+```
+
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/plot_solar_mass.png)
+
+</div>
+
+It seems that majority is the Sun’s size, although there exists some huge ones.
+
+### Metallicity
+
+In astronomy, metallicity is used to describe the abundance of elements present in an object that are heavier than hydrogen or helium. Anything that is not hydrogen nor helium is considered to be metal (Even carbon, nitrogen and oxygen atoms). The reason is that at the extreme pressure and temperature found in stars, atoms lose their usual properties (even chemical reactions do not occur), so the metal\non-metal differentiation is not valid there.
+
+The importance of metallicity is that it is an indicator to the star’s age.
+
+``` r
+solar %>%
+  ggplot(aes(st_metfe)) +
+  geom_histogram(binwidth = 0.1) +
+  geom_vline(aes(xintercept = 0.02), linetype="dashed", size=.5, color = '#dfc27d') +
+  geom_text(aes(x = 0.02, label = "Sun", y = 850), color = '#dfc27d', vjust = 2.2) +
+  labs(x = 'Star metallicity (dex)', title = 'Metallicity of the Stars')
+```
 
 
+<div style="text-align:center" markdown="1">
+
+![Differencing]({{ base_path }}/images/plot_metallicity.png)
+
+</div>
