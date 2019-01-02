@@ -91,7 +91,7 @@ exo %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/methods_disc.png)
+![Differencing]({{ base_path }}/images/plot_disc_method.png)
 
 </div>
 
