@@ -294,7 +294,7 @@ exo %>%
 
 </div>
 
-### Solar Systems
+# Solar Systems
 
 ``` r
 url_solar <- 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?format=json&&table=exoplanets&select=pl_cbflag,pl_pnum,pl_masse'
