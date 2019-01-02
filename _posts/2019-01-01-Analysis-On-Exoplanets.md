@@ -300,9 +300,13 @@ I would like to approximate the gravity of these planets. Gravity depends on the
 
 ### Density
 
-The density is mass $${m}$$ divided by the volume $${V}$$:
+The physical density of any object is simply its mass $${m}$$ divided by its volume $${V}$$; density is measured in units such as pounds per cubic foot, grams per cubic centimeter or kilograms per cubic meter. 
 
 $$ p = {m \over V} $$
+
+When calculating the density of a planet, look up its mass and radius, the latter of which is the distance from the surface to the center. Because planets are **roughly spherical**, calculate the volume of a sphere using the radius.
+
+$$ {4 \over 3}{pi}{r}^{3} $$
 
 ``` r
 exo$density = (1.898*10^27*1000*exo$pl_bmassj)/((4/3)*pi*(exo$pl_radj*69911*100000)^3)
