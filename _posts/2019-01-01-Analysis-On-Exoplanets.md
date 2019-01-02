@@ -174,7 +174,7 @@ exo %>%
 
 </div>
 
-The large majority of exoplanets so far have been discovered by the Kepler space telescope, almost 13x what was discovered by the next most accomplished facility.
+The large majority of exoplanets so far have been discovered by the Kepler space telescope, almost 7x what was discovered by the next most accomplished facility.
 
 ### Where would we be without Kepler?
 
