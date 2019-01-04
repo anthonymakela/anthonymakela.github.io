@@ -505,3 +505,13 @@ solar %>%
 ![Differencing]({{ base_path }}/images/plot_metallicity.png)
 
 </div>
+
+### Resources
+
+[Table Data Columns](https://exoplanetarchive.ipac.caltech.edu/docs/API_exoplanet_columns.html)
+
+[Data Sources](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
+
+[FAQ](https://exoplanetarchive.ipac.caltech.edu/docs/faq.html)
+
+
