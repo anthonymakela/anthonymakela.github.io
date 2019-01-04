@@ -506,9 +506,12 @@ solar %>%
 
 </div>
 
+### Summary
+We created an EDA for Exoplanetary data and discovered some relatively insightful stuff. We could have gone deeper and take a look at correaltions for example, unfortunately time is of the essence. Im open to discussions and feedback if anyone is interested in this. In the future i'll be probably posting more Space/Astronomy related stuff since that's a passion of mine.
+
 ### Resources
 
-Understanding the columns:
+For understanding the columns:
 [Table Data Columns](https://exoplanetarchive.ipac.caltech.edu/docs/API_exoplanet_columns.html)
 
 [Data Sources](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
