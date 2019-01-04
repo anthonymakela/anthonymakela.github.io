@@ -508,6 +508,7 @@ solar %>%
 
 ### Resources
 
+Understanding the columns:
 [Table Data Columns](https://exoplanetarchive.ipac.caltech.edu/docs/API_exoplanet_columns.html)
 
 [Data Sources](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
