@@ -242,7 +242,7 @@ exo %>%
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/avg_rad.png)
+![Differencing]({{ base_path }}/images/Rplot3.png)
 
 </div>
 
