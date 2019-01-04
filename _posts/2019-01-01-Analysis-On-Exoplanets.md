@@ -413,9 +413,7 @@ solar %>%
 
 Due to a lack of granularity in the data set, it's unclear whether the non-circumbinary planets orbit a single star, are in a binary star system that isn't circumbinary, or orbit even more than 2 stars.
 
-Less than 1% of planets discovered so far are circumbinary. That is, we know of 23 planets currently orbiting binary star systems, and one could potentially be Tatooine. It remains to be seen how many have pod racing.
-
-All jokes aside, it's pretty amazing that examples of this even exist in our galaxy!
+Less than 1% of planets discovered so far are circumbinary. That is, we know of 23 planets currently orbiting binary star systems, and one could potentially be Tatooine.
 
 ``` r
 # How many planets are in each solar system?
