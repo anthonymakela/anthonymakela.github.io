@@ -507,7 +507,7 @@ solar %>%
 </div>
 
 ### Summary
-We created an EDA for Exoplanetary data and discovered some relatively insightful stuff. We could have gone deeper and take a look at correaltions for example, unfortunately time is of the essence. Im open to discussions and feedback if anyone is interested in this. In the future i'll be probably posting more Space/Astronomy related stuff since that's a passion of mine.
+We created an EDA for Exoplanetary data and discovered some relatively insightful stuff. We could have gone deeper with this but, unfortunately time is of the essence. Im open to discussions and feedback if anyone is interested in this. In the future i'll be probably posting more Space/Astronomy related stuff since that's a passion of mine.
 
 ### Resources
 
