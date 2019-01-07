@@ -516,6 +516,5 @@ For understanding the columns:
 
 [Data Sources](https://exoplanetarchive.ipac.caltech.edu/docs/data.html)
 
-[FAQ](https://exoplanetarchive.ipac.caltech.edu/docs/faq.html)
 
 
