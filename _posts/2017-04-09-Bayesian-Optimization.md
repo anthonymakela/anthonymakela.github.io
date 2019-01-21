@@ -180,7 +180,7 @@ plot_gp(opt, x, y)
 
     |   iter    |  target   |     x     |
     -------------------------------------
-    | [0m 3       [0m | [0m 0.2017  [0m | [0m-2.0     [0m |
+    | 3         | 0.2017    | -2.0      |
     =====================================
 
 <div style="text-align:center" markdown="1">
@@ -202,16 +202,16 @@ plot_gp(opt, x, y)
 
     |   iter    |  target   |     x     |
     -------------------------------------
-    | [0m 4       [0m | [0m 0.2118  [0m | [0m 10.0    [0m |
-    | [95m 5       [0m | [95m 0.9898  [0m | [95m 5.327   [0m |
-    | [95m 6       [0m | [95m 1.024   [0m | [95m 6.141   [0m |
-    | [0m 7       [0m | [0m 0.9227  [0m | [0m 0.6438  [0m |
-    | [95m 8       [0m | [95m 1.32    [0m | [95m 1.682   [0m |
-    | [95m 9       [0m | [95m 1.367   [0m | [95m 2.203   [0m |
-    | [0m 10      [0m | [0m 0.7036  [0m | [0m-0.6686  [0m |
-    | [0m 11      [0m | [0m 0.4608  [0m | [0m 8.833   [0m |
-    | [0m 12      [0m | [0m 0.827   [0m | [0m 4.403   [0m |
-    | [95m 13      [0m | [95m 1.401   [0m | [95m 1.975   [0m |
+    | 4         | 0.2118    | 10.0      |
+    | 5         | 0.9898    | 5.327     |
+    | 6         | 1.024     | 6.141     |
+    | 7         | 0.9227    | 0.6438    |
+    | 8         | 1.32      | 1.682     |
+    | 9         | 1.367     | 2.203     |
+    | 10        | 0.7036    | -0.6686   |
+    | 11        | 0.4608    | 8.833     |
+    | 12        | 0.827     | 4.403     |
+    | 13        | 1.401     | 1.975     |
     =====================================
 
 <div style="text-align:center" markdown="1">
@@ -225,7 +225,3 @@ plot_gp(opt, x, y)
 
 After just a few points the algorithm was able to get pretty close to the true maximum. It is important to notice that the trade off between exploration (exploring the parameter space) and exploitation (probing points near the current known maximum) is fundamental to a succesful bayesian optimization procedure. The utility function being used here (Upper Confidence Bound - UCB) has a free parameter $\kappa$ that allows the user to make the algorithm more or less conservative. Additionally, a the larger the initial set of random points explored, the less likely the algorithm is to get stuck in local minima due to being too conservative.
 
-
-```python
-
-```
