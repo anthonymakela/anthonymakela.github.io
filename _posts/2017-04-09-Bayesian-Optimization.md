@@ -17,15 +17,6 @@ and quantifies the uncertainty in that surrogate using a Bayesian machine learni
 process regression, and then uses an acquisition function defined from this surrogate to decide where to
 sample.
 
-The outline of Bayesian optimization is as follows:
-
-* Compute the value of your black-box function at a point
-
-* Store this point and function value in your history of points previously sampled
-
-* Use this history to decide what point to inspect next
-
-* Repeat 
 
 ```python
 from bayes_opt import BayesianOptimization
