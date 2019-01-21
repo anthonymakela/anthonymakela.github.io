@@ -71,9 +71,12 @@ plt.plot(x, y, color = 'teal')
     [<matplotlib.lines.Line2D at 0x7fd1284116a0>]
 
 
+<div style="text-align:center" markdown="1">
 
+![Differencing]({{ base_path }}/images/output_5_1.png)
 
-![png](output_5_1.png)
+</div>
+
 
 
 ### Optimizer object
@@ -157,8 +160,12 @@ After we probe two points at random, we can fit a Gaussian Process and start the
 plot_gp(opt, x, y)
 ```
 
+<div style="text-align:center" markdown="1">
 
-![png](output_11_0.png)
+![Differencing]({{ base_path }}/images/output_11_0.png)
+
+</div>
+
 
 
 The green line represents the true value of the target function as a function of our hypothetical hyper-parameter X. The black dots represent our two random points. The dashed line is our regression model trying to predict the value of the target function. Shaded area around the dashed line represents the 95% CI.
@@ -176,9 +183,11 @@ plot_gp(opt, x, y)
     | [0m 3       [0m | [0m 0.2017  [0m | [0m-2.0     [0m |
     =====================================
 
+<div style="text-align:center" markdown="1">
 
+![Differencing]({{ base_path }}/images/output_14_1.png)
 
-![png](output_14_1.png)
+</div>
 
 
 ## 10 iterations
@@ -205,9 +214,11 @@ plot_gp(opt, x, y)
     | [95m 13      [0m | [95m 1.401   [0m | [95m 1.975   [0m |
     =====================================
 
+<div style="text-align:center" markdown="1">
 
+![Differencing]({{ base_path }}/images/output_16_1.png)
 
-![png](output_16_1.png)
+</div>
 
 
 ## Conclusions
