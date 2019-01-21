@@ -174,7 +174,7 @@ plot_gp(opt, x, y)
 
 The green line represents the true value of the target function as a function of our hypothetical hyper-parameter X. The black dots represent our two random points. The dashed line is our regression model trying to predict the value of the target function. Shaded area around the dashed line represents the 95% CI.
 
-## Let's take one step 
+## One iteration
 
 
 ```python
@@ -194,7 +194,7 @@ plot_gp(opt, x, y)
 </div>
 
 
-## 10 iterations
+## Ten iterations
 
 Let's do 10 iterations here for the sake of not wasting time on plotting every single time we take a step.
 
