@@ -43,7 +43,7 @@ One-dimensional function with multiple local maxima.
 
 $$f(x) = e^{-(x - 2)^2} + e^{-\frac{(x - 6)^2}{10}} + \frac{1}{x^2 + 1}, $$
 
-its maximum is at $x = 2$ and we will restrict the interval of interest to $x \in (-2, 10)$.
+its maximum is at $$x = 2$$ and we will restrict the interval of interest to $$x \in (-2, 10)$$.
 
 In practice, this function is unknown, the only information we have is obtained by sequentialy probing it at different points. Bayesian Optimization works by contructing a posterior distribution of functions that best fit the data observed and chosing the next probing point by balancing exploration and exploitation.
 
