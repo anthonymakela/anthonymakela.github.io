@@ -1,4 +1,3 @@
-
 ---
 title: "Bayesian Optimization"
 excerpt: "Quick introduction to Bayesian Optimization and some of it's properties."
