@@ -1,9 +1,9 @@
 ---
 title: "Bayesian Optimization"
-excerpt: "Quick introduction to Bayesian Optimization and some of it's properties."
+excerpt: "Strategy for optimizing black-box functions. Generally, Bayesian optimization is useful when the function you want to optimize is not differentiable. As such, it is a natural candidate for hyperparameter tuning."
 layout: single
 author: "Anthony Makela"
-date: "04 December 2018"
+date: "09 April 2017"
 ---
 
 
