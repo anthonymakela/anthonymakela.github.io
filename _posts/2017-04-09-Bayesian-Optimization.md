@@ -8,15 +8,24 @@ date: "09 April 2017"
 
 
 
-The process of fitting a single classifier isn't a long process but, fitting hundreds takes a while. To find the best hyperparameters you need to fit a lot of classifiers. Here we explore an way to achieve this.
+The process of fitting a single classifier isn't a long process but, fitting hundreds takes a while. To find the best hyperparameters you need to fit a lot of classifiers.
 
-This post explores the inner workings of an algorithm you can use to reduce the number of hyperparameter sets you need to try before finding the best set. The algorithm goes under the name of Bayesian optimisation.
+This post explores the inner workings of an algorithm you can use to reduce the number of hyperparameter sets you need to try before finding the best set. The algorithm goes under the name of Bayesian optimization.
 
 Bayesian optimization is an approach to optimizing objective functions that take a long time (minutes or hours) to evaluate. It builds a surrogate for the objective
 and quantifies the uncertainty in that surrogate using a Bayesian machine learning technique, Gaussian
 process regression, and then uses an acquisition function defined from this surrogate to decide where to
-sample
+sample.
 
+The outline of Bayesian optimization is as follows:
+
+* Compute the value of your black-box function at a point
+
+* Store this point and function value in your history of points previously sampled
+
+* Use this history to decide what point to inspect next
+
+* Repeat 
 
 ```python
 from bayes_opt import BayesianOptimization
