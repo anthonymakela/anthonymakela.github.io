@@ -1,5 +1,13 @@
 
-# Bayesian Optimization
+---
+title: "Bayesian Optimization"
+excerpt: "Quick introduction to Bayesian Optimization and some of it's properties."
+layout: single
+author: "Anthony Makela"
+date: "04 December 2018"
+---
+
+
 
 The process of fitting a single classifier isn't a long process but, fitting hundreds takes a while. To find the best hyperparameters you need to fit a lot of classifiers. Here we explore an way to achieve this.
 
