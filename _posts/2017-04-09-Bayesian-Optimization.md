@@ -66,11 +66,6 @@ plt.plot(x, y, color = 'teal')
 ```
 
 
-
-
-    [<matplotlib.lines.Line2D at 0x7fd1284116a0>]
-
-
 <div style="text-align:center" markdown="1">
 
 ![Differencing]({{ base_path }}/images/output_5_1.png)
@@ -95,8 +90,8 @@ opt.maximize(init_points=2, n_iter=0, kappa=5)
 
     |   iter    |  target   |     x     |
     -------------------------------------
-    | [0m 1       [0m | [0m 0.8198  [0m | [0m 3.109   [0m |
-    | [0m 2       [0m | [0m 0.746   [0m | [0m 7.775   [0m |
+    | 1         | 0.8198    | 3.109     |
+    | 2         | 0.746     | 7.775     |
     =====================================
 
 
