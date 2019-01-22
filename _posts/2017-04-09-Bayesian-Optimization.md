@@ -3,7 +3,7 @@ title: "Bayesian Optimization"
 excerpt: "Strategy for optimizing black-box functions. Generally, Bayesian optimization is useful when the function you want to optimize is not differentiable. As such, it is a natural candidate for hyperparameter tuning."
 layout: single
 author: "Anthony Makela"
-date: "09 April 2017"
+date: "2017-04-09"
 ---
 
 
