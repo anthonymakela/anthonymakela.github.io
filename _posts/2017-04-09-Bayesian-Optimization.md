@@ -17,6 +17,13 @@ and quantifies the uncertainty in that surrogate using a Bayesian machine learni
 process regression, and then uses an acquisition function defined from this surrogate to decide where to
 sample.
 
+In the case of hyperparameter tuning, the 'black-box function' generally consists of two steps:
+
+* Training a model
+* Computing a performance metric
+
+This black-box function takes values of hyperparameters as inputs, and returns a performance metric. The performance metric can be anything (f1-score, AUC-ROC, accuracy, etc.), and it can take into account penalties for undesirable features (training time, evaluation time, memory use, etc).
+
 
 ```python
 from bayes_opt import BayesianOptimization
