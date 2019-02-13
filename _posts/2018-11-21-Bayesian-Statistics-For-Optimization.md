@@ -54,7 +54,7 @@ g.map(sns.distplot, 'yield', kde = False);
 ```
 
 
-![png](output_8_0.png)
+![png](/images/output_8_0.png)
 
 
 This is the data we have in our use to estimate the true yield of every one of the suppliers.
@@ -99,7 +99,7 @@ plt.xlabel('In stock'); plt.ylabel('Profit (neg loss)'); sns.despine(); plt.lege
 ```
 
 
-![png](output_14_0.png)
+![png](/images/output_14_0.png)
 
 
 We can observe that, if the customer demand is 50 launches, we maximize our profit if we have 50 engines in stock. Having fewer engines eats our profits at a greater rate than ordering excess engines because in this setup our margins are larger than the holding cost.
@@ -113,7 +113,7 @@ sns.distplot(demand_est);
 ```
 
 
-![png](output_17_0.png)
+![png](/images/output_17_0.png)
 
 
 We can evaluate our objective function over every demand we observed historically (setting engines in stock to 100):
@@ -126,7 +126,7 @@ plt.legend();
 ```
 
 
-![png](output_19_0.png)
+![png](/images/output_19_0.png)
 
 
 In response to demand, the loss-function behaves differently. With less demand than what we have in stock, we earn less (because we sell less launches, but also have to pay the holding costs), but we can observe that when demand exceeds the number of engines we have in stock our profit stays flat because we can't sell more than what we have.
@@ -165,7 +165,7 @@ az.plot_energy(trace);
 ```
 
 
-![png](output_23_0.png)
+![png](/images/output_23_0.png)
 
 
 ## Possible future scenarios
@@ -191,7 +191,7 @@ g.map(sns.distplot, 'yield', kde = False);
 ```
 
 
-![png](output_26_0.png)
+![png](/images/output_26_0.png)
 
 
 This plot shows, given the data and our model, what we can expect to observe. Note that these predictions take the uncertainty into account. For supplier 2 we have a lot of uncertainty because we only had very few data points.
@@ -461,7 +461,7 @@ plt.legend(); plt.xlabel('Profit (negative loss)'); plt.ylabel('Occurances');
 ```
 
 
-![png](output_49_0.png)
+![png](/images/output_49_0.png)
 
 
 
