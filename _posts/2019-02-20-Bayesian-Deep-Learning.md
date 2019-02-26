@@ -134,7 +134,7 @@ neural_network = construct_nn(ann_input, ann_output)
 
 ## Variational Inference: Scaling model complexity
 
-we will use ADVI variational inference. Note, that this is a mean-field approximation so we ignore correlations in the posterior.
+We will use ADVI variational inference. Note, that this is a mean-field approximation so we ignore correlations in the posterior.
 
 
 ```python
