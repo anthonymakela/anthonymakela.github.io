@@ -75,7 +75,7 @@ ax.set(xlabel = 'X', ylabel = 'Y', title = 'Example dataset');
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/output_11_0.png)
+![Differencing]({{ base_path }}/images/output_35_0.png)
 
 </div>
 
