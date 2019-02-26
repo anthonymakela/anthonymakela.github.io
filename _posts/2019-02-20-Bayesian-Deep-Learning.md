@@ -1,3 +1,11 @@
+---
+title: "Bayesian Deep Learning"
+excerpt: "Bayesian way to construct and utilize deep learning methods. Why they are so widely applicable and must be applied when we want to solve more complex tasks."
+layout: single
+author: "Anthony Makela"
+date: "2019-02-20"
+---
+
 
 ## Bayesian Deep Learning
 
@@ -65,8 +73,11 @@ sns.despine(); ax.legend()
 ax.set(xlabel = 'X', ylabel = 'Y', title = 'Example dataset');
 ```
 
+<div style="text-align:center" markdown="1">
 
-![png](output_11_0.png)
+![Differencing]({{ base_path }}/images/output_11_0.png)
+
+</div>
 
 
 ## Model specification
