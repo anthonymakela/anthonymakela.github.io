@@ -23,7 +23,7 @@ Let's first go through uncertainty and understand the fundamental concept of it.
 
 Epistemic uncertainty captures our ignorance about which model generated our collected data. This uncertainty can be explained away given enough data, and is often referred to as model uncertainty. Example of this might be:
 
--  The drag in an experiment designed to measure the acceleration of gravity near the earth's surface. The commonly used gravitational acceleration of 9.8 m/s^2 ignores the effects of air resistance, but the air resistance for the object could be measured and incorporated into the experiment to reduce the resulting uncertainty in the calculation of the gravitational acceleration.
+-  The __[drag](https://en.wikipedia.org/wiki/Drag_(physics))__ in an experiment designed to measure the acceleration of gravity near the earth's surface. The commonly used gravitational acceleration of 9.8 m/s^2 ignores the effects of air resistance, but the air resistance for the object could be measured and incorporated into the experiment to reduce the resulting uncertainty in the calculation of the gravitational acceleration.
    
 
 ## Aleatoric uncertainty
