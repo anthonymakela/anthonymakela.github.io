@@ -19,7 +19,7 @@ In this post I’m going to introduce a field known as Bayesian deep learning. B
 
 Let's first go through uncertainty and understand the fundamental concept of it. There are different types of uncertainty and we need to understand which types are required for different applications. I’m going to discuss the two most important types – **Epistemic** and **Aleatoric** uncertainty.
 
-### Epistemic uncertainty
+## Epistemic uncertainty
 
 Epistemic uncertainty captures our ignorance about which model generated our collected data. This uncertainty can be explained away given enough data, and is often referred to as model uncertainty. Example of this might be:
 
