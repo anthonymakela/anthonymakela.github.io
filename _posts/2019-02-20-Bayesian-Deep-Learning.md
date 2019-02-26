@@ -7,7 +7,7 @@ date: "2019-02-20"
 ---
 
 
-## Bayesian Deep Learning
+## Uncertainty and deep learning
 
 Understanding where the model lacks and what it doesn't know is a crucial part of many deep learning systems. Unfortunately, current deep learning algorithms are usually incapable to understand their **uncertainty**. These models are often taken too blindly and assumed to be accurate, which is not always the case.
 
