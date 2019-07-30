@@ -258,6 +258,6 @@ plt.show()
 
 <div style="text-align:center" markdown="1">
 
-![Differencing]({{ base_path }}/images/danske_preds.png)
+![Differencing]({{ base_path }}/images/danske_predictions.png)
 
 </div>
