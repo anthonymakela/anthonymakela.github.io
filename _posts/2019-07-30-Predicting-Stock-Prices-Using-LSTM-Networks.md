@@ -188,6 +188,8 @@ model.add(Dense(1, activation='linear'))
 print(model.summary())
 
 
+lookahead = Lookahead(k=5, alpha=0.5)
+lookahead.inject(model)
 model.compile(loss='mean_squared_error', optimizer=Adam(lr=0.0005), metrics=['mean_squared_error'])
 
 history = model.fit(X_train, y_train, epochs=100 , batch_size=128 , 
