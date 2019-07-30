@@ -164,7 +164,8 @@ plt.show()
 
 ## Model architecture
 
-Here we specify the architecture of our LSTM network.
+Here we specify the architecture of our LSTM network. Upon writing this notebook, there has just come out a paper from the University of Toronto about something called [Lookahead Optimizer](https://arxiv.org/pdf/1907.08610.pdf). This should lead to improved convergence over the inner optimizer, unfortunately there's not yet many implementations of this.
+
 
 
 ```python
