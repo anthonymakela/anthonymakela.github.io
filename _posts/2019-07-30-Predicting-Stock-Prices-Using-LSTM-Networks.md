@@ -11,7 +11,8 @@ date: "2019-07-30"
 
 This notebook focuses on using a LSTM Neural Network to provide time series forecasting using Keras - specifically on Danske Bank's stock data.
 
-The best property to describe the motion of a stock market time series would be a random walk. As a stochastic process, a true random walk has no predictable patterns and so attempting to model it would be pointless. Fortunately there are on-going arguments by many sides to say that a stock market isn't a pure stochastic process, which allows us to theorize that the time series may well have some kind of hidden pattern. And it is these hidden patterns that LSTM networks are prime candidates to predict.
+The best property to describe the motion of a stock market time series would be a random walk. As a stochastic process, a true random walk has no predictable patterns and so attempting to model it would be pointless. Fortunately, there are on-going arguments by many sides to say that a stock market isn’t a purely stochastic process, which allows us to hypothesize that the time series may well have some kind of hidden pattern. And it is these hidden patterns that LSTM networks are excellent candidates to predict.
+
 
 ```python
 # Libraries
@@ -111,9 +112,9 @@ danske['Adj Close'] = min_max_scaler.fit_transform(danske['Adj Close'].values.re
 
 ## Splitting the data into training and testing sets
 
-Working with time series has always represented a serious issue. The fact that the data is naturally ordered denies the possibility to apply the common Machine Learning Methods which by default tend to shuffle the entries losing the time information.
+Working with time series has always represented a serious issue. The fact that the data is naturally ordered denies the possibility to apply the common machine learning methods which by default tend to shuffle the entries losing the time information.
 
-LSTM takes in a sequence of samples that is **chronologically connected**. This means that the train/test data must be split in such a way as to respect the temporal ordering and the model is never trained on data from the future and only tested on data from the future.
+LSTM takes in a sequence of samples that are chronologically connected. This means that the train/test data must be split in such a way as to respect the temporal ordering and the model is never trained on data from the future and only tested on data from the future.
 
 
 ```python
@@ -227,7 +228,7 @@ print(mse)
 
 Whilst this notebook aims to give a working example of LSTM neural networks in practice, it has only scratched the surface of their potential and application in sequential and temporal problems.
 
-LSTMs have been successfully used in a multitude of real-world problems from classical time series issues as described here, to text auto-correct, anomaly detection and fraud detection, to having a core in self-driving car technologies being developed.
+LSTMs have been successfully used in a number of real-world problems from classical time-series issues as described here, to text auto-correct, anomaly detection, and fraud detection, to having a core in self-driving car technologies being developed.
 
 
 ```python
