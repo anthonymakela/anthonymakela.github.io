@@ -1,15 +1,15 @@
 ---
-title: "Bayesian Deep Learning"
-excerpt: "Bayesian way to construct and utilize deep learning methods. Why they are so widely applicable and must be applied when we want to solve more complex tasks."
+title: "Predicting Stock Prices With LSTM Networks"
+excerpt: "LSTM Neural Network to provide time series forecasting using Keras."
 layout: single
 author: "Anthony Makela"
-date: "2019-02-20"
+date: "2019-07-30"
 ---
 
 
 ## Time series prediction using LSTM
 
-This notebook focuses on using a LSTM Neural Network to provide multidimensional time series forecasting using Keras - specifically on Danske Bank's stock data.
+This notebook focuses on using a LSTM Neural Network to provide time series forecasting using Keras - specifically on Danske Bank's stock data.
 
 The best property to describe the motion of a stock market time series would be a random walk. As a stochastic process, a true random walk has no predictable patterns and so attempting to model it would be pointless. Fortunately there are on-going arguments by many sides to say that a stock market isn't a pure stochastic process, which allows us to theorize that the time series may well have some kind of hidden pattern. And it is these hidden patterns that LSTM networks are prime candidates to predict.
 
