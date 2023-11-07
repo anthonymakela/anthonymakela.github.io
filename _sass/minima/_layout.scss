@@ -2,7 +2,7 @@
  * Site header
  */
 .site-header {
-  border-top: 5px solid $border-color-03;
+  border-top: 5px solid #680530;
   border-bottom: 1px solid $border-color-01;
   min-height: $spacing-unit * 1.865;
   line-height: $base-line-height * $base-font-size * 2.25;
@@ -296,8 +296,8 @@
     a {
       display: block;
       padding: 10px 12px;
-      border: 1px solid $border-color-01;
-      &:hover { border-color: $border-color-02 }
+      border: 1px solid #680530;
+      &:hover { border-color: #680530 }
     }
   }
 }

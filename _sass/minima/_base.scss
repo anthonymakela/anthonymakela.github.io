@@ -98,7 +98,6 @@ li {
 }
 
 
-
 /**
  * Headings
  */
@@ -112,15 +111,15 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $link-base-color;
+  color: #1e293b;
   text-decoration: none;
 
   &:visited {
-    color: $link-visited-color;
+    color: #1e293b;
   }
 
   &:hover {
-    color: $link-hover-color;
+    color: #1e293b;
     text-decoration: underline;
   }
 
@@ -278,4 +277,74 @@ table {
     -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
   }
+}
+
+.theorem {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.theorem:before {
+  content: "Theorem.";
+  font-weight: bold;
+  font-style: normal;
+}
+.proposition {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.proposition:before {
+  content: "Proposition.";
+  font-weight: bold;
+  font-style: normal;
+}
+.proposition[text]:before {
+  content: "Proposition " attr(text) " ";
+}
+.lemma {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.lemma:before {
+  content: "Lemma.";
+  font-weight: bold;
+  font-style: normal;
+}
+.example {
+  display: block;
+  margin: 12px 0;
+  font-style: italic;
+}
+.example:before {
+  content: "Example.";
+  font-weight: bold;
+  font-style: normal;
+}
+.proof {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.proof:before {
+  content: "Proof.";
+  font-style: italic;
+}
+.proof:after {
+  content: "\25FC";
+  float:right;
+}
+.proof[text]:before {
+  content: "Proof (" attr(text) ") ";
+}
+.definition {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.definition:before {
+  content: "Definition.";
+  font-weight: bold;
+  font-style: normal;
 }
