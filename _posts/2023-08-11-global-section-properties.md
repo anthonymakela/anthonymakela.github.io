@@ -17,27 +17,29 @@ $$
 
 makes $fs$ a smooth section of $E$ over $U$.
 
-<div class="proposition" text="1.">
+<div class="proposition">
 There is a canonical isomorphism 
 $$
 \Gamma(T^\ast M) \cong \operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), C^\infty(M)).
 $$
 </div>
 
-For the proof we are going to need a couple of lemmas.
-
-<div class="lemma">
-Let $\alpha \in \operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), C^\infty(M))$ and let $U \subset M$ be an open set. If $X \in \Gamma(TM)$ and $X\vert_U \equiv 0$, then $\alpha(X)\vert_U \equiv 0$.
-</div>
+For the proof we need couple of lemmas from the post on Local Properties.
 
 <div class="proof">
-
-</div>
-
-<div class="proof" text="Proposition 1">
-Consider $\omega \in \Gamma(T^\ast M)$ and $X \in \Gamma(TM)$. We get $\omega(X) \in C^\infty(M)$ by
+Consider the map $\Phi : \Gamma(T^\ast M) \to \Gamma(TM)^\ast$ given by
 $$
-\omega(X)(p) := \omega_p(X_p).
+\omega \longmapsto (X \longmapsto \omega(X)).
 $$
-For $f \in C^\infty(M)$ we have that $\omega(fX) = f\omega(X)$ so we can view $\omega$ as an element of $\operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), C^\infty(M))$. We therefore have an injective $C^\infty(M)$-module homomorphism $\Gamma(T^\ast M) \hookrightarrow \operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), C^\infty(M))$.
-</div>
+This map is $C^\infty(M)$-linear and to see that it's injective suppose that $\Phi(\omega)=\Phi(\alpha)$, then $$\Phi(\omega)(X)=\Phi(\alpha)(X)$$ that is $$\omega(X)=\alpha(X)$$ for all $X \in \Gamma(TM)$. Now for any $p \in M$ $$\omega(X)(p)=\omega_p(X_p)=\alpha(X)(p)=\alpha_p(X_p).$$ Thus $\Phi$ is injective.
+
+To show that this map is surjective consider $\tau \in \Gamma(TM)^\ast$. We want to exhibit $\eta \in \Gamma(T^\ast M)$ such that $\Phi(\eta) = \tau$ or $\Phi(\eta)(X) = \eta(X) = \tau(X)$ and $\eta_p(X_p) = \tau(X)(p)$ for every $X \in \Gamma(TM)$ and $p \in M$. We proceed as follows: given $p  \in M$ and $X_p \in T_pM$ we extend $X_p$ to $X \in \Gamma(TM)$ and set $\eta_p(X_p) = \tau(X)(p)$. Even though this seems like it should not be well-defined as we extended $X_p$ arbitarily it is since we know that $\tau$ is a local operator.
+
+<br>
+<br>
+
+For the sake of completeness here is the argument that $\tau$ depends only on $X_p$. It suffices to show that if $X_p = 0$, then for any extension $X$ the equality $\tau(X)(p) = 0$ holds. Consider a neighborhood $U \ni p$ in $M$ and choose a bump function $\rho$ such that $\rho(p)=1$ and $\operatorname{supp}\rho \subset U$. Now $\rho X$ is $0$ at $p$ and so $\tau(\rho X)(p) = 0$. Since $\tau$ is $C^\infty(M)$-linear
+$$
+0 = \tau(\rho X)(p) = \rho(p)\tau(X)(p) 
+$$
+which implies that $\tau(X)(p) = 0$.
