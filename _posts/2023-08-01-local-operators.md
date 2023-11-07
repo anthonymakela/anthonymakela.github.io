@@ -61,7 +61,7 @@ If $\sigma \in \Gamma(E)$ is another global section with $\sigma = s$ in $W$, th
 
 It's relatively simple to show also that if $\alpha :\Gamma(E) \to \Gamma(F)$ is $C^\infty(M)$-linear, then $\alpha\vert_U : \Gamma(U, E) \to \Gamma(U, F)$ is $C^\infty(U)$-linear.
 
-Let's go over one last lemma beofre our main result.
+Let's go over couple more lemmas before our main result.
 
 <div class="lemma">
 A fiber-preserving map $\Phi : E \to F$ that is linear on each fiber is smooth if and only if the induced map $\widetilde{\Phi} : \Gamma(E) \to \Gamma(F)$ takes smooth sections of $E$ to smooth sections of $F$.
@@ -72,5 +72,87 @@ Suppose that $\Phi : E \to F$ is smooth. Then for a smooth section $s \in \Gamma
 $$
 \Phi \circ e_j = \sum_i b^i_jf_i.
 $$
+Then
+$$
+\Phi\left(\sum_{j}a^je_j\right) = \sum_{i,j} a^jb^i_jf_i.
+$$
+Taking local coordinates on $E\vert_U$ to be $(x^1,\dots,x^n,a^1,\dots,a^r)$ we have
+$$
+\Phi(x^1,\dots,x^n,a^1,\dots,a^r) = \left(x^1,\dots,x^n, \sum_ja^j b^1_j,\dots,\sum_ja^j b^m_j\right)
+$$
+which is smooth.
+</div>
 
+<div class="lemma">
+An $C^\infty(M)$-linear map $\alpha : \Gamma(E) \to \Gamma(F)$ is a point operator.
+</div>
+
+<div class="proof">
+Suppose that $s \in \Gamma(E)$ such that $s$ vanishes at $p \in M$. Let $U$ be an open neighborhood of $p$ over which $E$ is trivial. Consider a frame $e_1,\dots,e_r$ of $E$ over $U$. We can write 
+$$
+s\vert_U = \sum_i a^ie_i
+$$
+where the $a^i$'s are smooth functions on $U$. Since 
+$$
+0 = s\vert_U(p) = \sum_i a^i(p)e_i(p)
+$$
+we conclude that $a^i(p) = 0$ for every $i$. By our theorem before we know that $\alpha$ restricts to a unique map $\alpha\vert_U : \Gamma(U,E) \to \Gamma(U,F)$ and so
+$$
+\begin{align*}
+\alpha(s)(p) &= \alpha\vert_U(s\vert_U)(p) \\
+&= \alpha\vert_U(\sum_i a^ie_i)(p) \\
+&= \left(\sum_i a^i \alpha\vert_U(e_i)\right)(p) \\
+&= \sum_i a^i(p)\alpha\vert_U(e_i)(p) \\
+&= 0.
+\end{align*}
+$$
+</div>
+
+<div class="lemma">
+If $\alpha : \Gamma(E) \to \Gamma(F)$ is $C^\infty(M)$-linear, then for each $p \in M$, there is a unique linear map $\Phi_p : E_p \to F_p$ such that for all $s \in \Gamma(E)$,
+$$
+\Phi_p(s(p)) = \alpha(s)(p).
+$$
+</div>
+
+<div class="proof">
+Given $v \in E_p$ choose any $s \in \Gamma(E)$ such that $s(p) = v$ and set
+$$
+\Phi_p(v) = \alpha(s)(p) \in F_p.
+$$
+This definition is independent of the choice of $s$ since as we saw previously $\alpha$ is a point operator. To show that $\Phi_p$ is linear suppose that $v_1,v_2 \in E_p$ and $a_1,a_2 \in \Bbb R$. Let $s_1$ and $s_2$ be global sections of $E$ with $s_i(p) = v_i$. Now
+$$
+\begin{align*}
+\Phi_p(a_1v_1+a_2v_2) &= \alpha(a_1s_1 + a_2s_2)(p) \\
+&= a_1\alpha(s_1)(p) + a_2\alpha(s_2)(p) \\
+&= a_1\Phi_p(v_1) + a_2\Phi_p(v_2).
+\end{align*}
+$$
+</div>
+
+Alright now onto the fun stuff. It turns out that the following is true.
+
+<div class="theorem">
+There is a one-to-one correspondence between bundle maps $\Phi : E \to F$ and $C^\infty(M)$-linear maps $\alpha :\Gamma(E) \to \Gamma(F)$ given by $\Phi \mapsto \widetilde{\Phi}$.
+</div>
+<div class="proof">
+Suppose that $\alpha :\Gamma(E) \to \Gamma(F)$ is $C^\infty(M)$-linear. For each $p \in M$ there is a linear map $\Phi_p : E_p \to F_p$ such that for any $s \in \Gamma(E)$,
+$$
+\Phi_p(s(p)) = \alpha(s)(p).
+$$
+Define $\Phi : E \to F$ by setting $\Phi(v) = \Phi_p(v)$ if $v \in E_p$. Now for any $s \in \Gamma(E)$ and $p \in M$
+$$
+\widetilde{\Phi}(s)(p) = \Phi(s(p)) = \alpha(s)(p),
+$$
+and so $\alpha = \widetilde{\Phi}$ which prove surjectivity. Consider then bundle maps $\Phi, \Psi : E \to F$ with $\widetilde{\Phi} = \widetilde{\Psi}$. For any $v \in E_p$ pick $s \in \Gamma(E)$ with $s(p) = e$. Then
+$$
+\begin{align*}
+\Phi(v) &= \Phi(s(p))\\
+&= \widetilde{\Phi}(s)(p)\\
+&= \widetilde{\Psi}(s)(p) \\
+&= \Psi(s(p)) \\
+&= \Psi(v).
+\end{align*}
+$$
+i.e. $\Phi = \Psi$.
 </div>
