@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Connections"
-categories: differential-geometry
+categories: [Differential Geometry]
 mathjax: true
 ---
 
@@ -59,7 +59,17 @@ $$
 \mathcal{L}_X\left(\frac{\partial}{\partial y}\right) = \mathcal{L}_Y\left(\frac{\partial}{\partial y}\right)
 $$
 
-but it turns out that $\mathcal{L}_X\left(\frac{\partial}{\partial y}\right) = 0$ and $\mathcal{L}_Y\left(\frac{\partial}{\partial y}\right) = -e^y\frac{\partial}{\partial y}$, so what gives? The issue here is that $\mathcal{L}$ is missing a property that $\nabla$ enjoys. Namely the $C^\infty$-linearity.
+but it turns out that $\mathcal{L}_X\left(\frac{\partial}{\partial y}\right) = 0$ and $\mathcal{L}_Y\left(\frac{\partial}{\partial y}\right) = -e^y\frac{\partial}{\partial y}$, so what gives? The issue here is that $\mathcal{L}$ is missing a property that $\nabla$ enjoys. Namely the $C^\infty$-linearity. It's worth noting that the Lie derivative is canonically defined using the smooth structure of a manifold, but on the other hand for the connection we need some extra geometric structure on the manifold.
+
+So about parallel transports. In general if we have a vector field $Y \in \Gamma(TM)$ we say that $X$ is parallel if $\nabla_X Y \equiv 0$ for all $X \in \Gamma(TM)$. Now given a tangent vector $Y_p \in T_pM$ and a curve $\gamma : [0,1] \to M$ starting at $p$ with $\gamma'(0) = Y_p$ there exists a unique parallel vector field $Y$ along $\gamma$ with $Y(0) = Y_p$. We then say that $Y(t) = Y_{\gamma(t)}$ is the parallel transport of $Y_p$ from $p$ to $\gamma(t)$ along $\gamma$.
+
+Effectively we have obtained a well-defined linear map
+
+$$
+P^\gamma_{p,q} : T_pM \to T_qM
+$$
+
+which turns out to be an isomorphism with inverse $P^\gamma_{q,p}$.
 
 ---
 

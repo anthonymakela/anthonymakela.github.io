@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sections, Tensor Products and Duals"
-categories: differential-geometry
+categories: [Differential Geometry]
 mathjax: true
 ---
 

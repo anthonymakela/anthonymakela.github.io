@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Local Operators"
-categories: differential-geometry
+categories: [Differential Geometry]
 mathjax: true
 ---
 
@@ -13,7 +13,7 @@ For vector bundles $E$ and $F$ over a smooth manifold $M$ we call an $\Bbb R$-li
 
 There is also a notion of a <b>point operator</b> which replaces $U$ with a single point $p \in M$.
 
-Before we look at the first example note that for a trivial bundle $M \times \Bbb R \to M$ a section $s$ of $M \times \Bbb R$ is a map $s(p) = (p, f(p))$ for some function $f : M \to \Bbb R$. In particular we have a one-to-one correspondence
+Before we look at the first example note that for a trivial bundle $M \times \Bbb R \to M$ a section $s$ of $M \times \Bbb R$ is a map $s(p) = (p, f(p))$ for some function $f : M \to \Bbb R$. We thus have a one-to-one correspondence
 
 $$
 \{ \text{sections of } M \times \Bbb R \} \longleftrightarrow \{f \mid f : M \to \Bbb R\}.

@@ -30,6 +30,11 @@ layout: base
           <a class="post-link" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
           </a>
+          <div style="font-size: medium;">
+              <p>
+                {{post.categories | join: ', ' }}
+              </p>
+          </div>
         </h3>
         
           {{ post.excerpt }}
