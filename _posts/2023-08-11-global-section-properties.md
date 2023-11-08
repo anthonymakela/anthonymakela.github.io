@@ -43,3 +43,92 @@ $$
 0 = \tau(\rho X)(p) = \rho(p)\tau(X)(p) 
 $$
 which implies that $\tau(X)(p) = 0$.
+</div>
+
+The main topic of this post is to focus on the behavior of $\Gamma(-)$ with the tensor product $\otimes$. It would not be farfethced to suspect that for vector bundles $E$ and $F$ over $M$ the natural map
+
+$$
+\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)
+$$
+
+is an isomorphism. It turns out that this holds, but before this let's go over some results regarding the map $\alpha$.
+
+<div class="lemma">
+If $E$ and $F$ are both trivial bundles, then $\alpha$ is an isomorphism of $C^\infty(M)$-modules.
+</div>
+
+<div class="proof">
+Since the bundles are trivial we can choose global frames $(\sigma_1,\dots,\sigma_n)$ and $(\tau_1,\dots,\tau_m)$ of $E$ and $F$ respectively. These form free bases for $\Gamma(E)$ and $\Gamma(F)$ and so 
+$$
+\{\sigma_i \otimes_{C^\infty(M)} \tau_j \mid 1 \le i \le n, \ 1 \le j \le m \}
+$$
+is a free basis for $\Gamma(E) \otimes_{C^\infty(M)} \Gamma(F)$. Since  
+$$
+\{\sigma_i \otimes \tau_j \mid 1 \le i \le n, \ 1 \le j \le m \}
+$$
+trivializes $E \otimes F$ and is a free basis for $\Gamma(E \otimes F)$. Now
+$$
+\alpha(\sigma_i \otimes_{C^\infty(M)} \tau_j) = \sigma_i \otimes \tau_j
+$$
+yields that $\alpha$ is an isomorphism.
+</div>
+
+Now in order to prove the genral case we need the following theorem which I won't be proving here.
+
+<div class="theorem">
+Given a vector bundle $E \to M$, there exists a vector bundle $E^\perp \to M$ such that $E \oplus E^\perp$ is trivial. 
+</div>
+
+The proof is rather technical, but this will be the main workhorse in proving that $\alpha$ is an isomorphism in the general case.
+
+A quick digression in linear algebra. If we have finite-dimensional vector spaces $V_1,V_2$ and $W$ there is a linear isomorphism
+$$
+\varphi : (V_1 \oplus V_2) \otimes W \to (V_1 \otimes W) \oplus (V_2 \otimes W).
+$$
+
+Consider the map $\varphi : (V_1 \oplus V_2) \times W \to (V_1 \otimes W) \oplus (V_2 \otimes W)$ given by $((v_1,v_2),w) \longmapsto v_1 \otimes w + v_2 \otimes w$.
+
+This map is bilinear since the tensor product distributes over sums and we can pull out scalars so it induces a linear map $\varphi : (V_1 \oplus V_2) \otimes W \to (V_1 \otimes W) \oplus (V_2 \otimes W)$. To see that this is a linear isomorphism instead of getting our hands dirty with explicit constructions we will take the abstract nonsense approach. Note that $- \otimes W$ is left-adjoint to $\operatorname{Hom}(W,-)$ and so for $U \in \textbf{FDVect}_k$
+
+$$
+\begin{align*}
+\operatorname{Hom}((V_1 \oplus V_2)\otimes W,U) &\cong \operatorname{Hom}(V_1 \oplus V_2,\operatorname{Hom}(W,U)) \\
+&\cong \operatorname{Hom}(V_1,\operatorname{Hom}(W,U)) \oplus \operatorname{Hom}(V_2,\operatorname{Hom}(W,U)) \\
+&\cong \operatorname{Hom}(V_1 \otimes W,U) \oplus \operatorname{Hom}(V_2 \otimes W,U) \\
+&\cong \operatorname{Hom}((V_1 \otimes W) \oplus (V_2 \otimes W), U)
+\end{align*}
+$$
+
+and since this holds for every object $U \in \textbf{FDVect}_k$ the Yoneda lemma yields that $(V_1 \oplus V_2)\otimes W$ and $(V_1 \otimes W) \oplus (V_2 \otimes W)$ are isomorphic.
+
+The reason we did this is that now we can conclude that there is a natural isomorphism of bundles $(E \oplus E^{\perp}) \otimes (F \oplus F^{\perp}) \cong (E \otimes F) \oplus (E \otimes F^{\perp}) \oplus (E^{\perp} \otimes F) \oplus (E^{\perp} \otimes F^{\perp})$ which contains $E \otimes F$.
+
+Onto the main event.
+
+<div class="theorem">
+The $C^\infty(M)$-linear map $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)$ is a canonical isomorphism of $C^\infty(M)$-modules.
+</div>
+
+<div class="proof">
+Consider the following commutative diagram and the maps $\iota : E \otimes F \to (E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})$ and $\rho : (E \oplus E^{\perp}) \otimes (F \oplus F^{\perp}) \to E \otimes F$
+
+$$
+\require{AMScd}
+\begin{CD}
+\Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) @<{\alpha}<< \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \\
+@AA{\iota_\ast}A @A{\iota_\ast \otimes \iota_\ast}AA \\
+\Gamma(E \otimes F) @<{\alpha}<< \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F)
+\end{CD}
+$$
+by our previous results the map on the top is an isomorphism of $C^{\infty}(M)$-modules. Since $\rho \circ \iota = \operatorname{id}_{E \otimes F}$ the functoriality of $\Gamma$ implies that the vertical arrows are injective from which it follows that $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)$ is injective. Consider now the diagram
+
+$$
+\require{AMScd}
+\begin{CD}
+\Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) @<{\alpha}<< \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \\
+@VV{\rho_\ast}V @V{\rho_\ast \otimes \rho_\ast}VV \\
+\Gamma(E \otimes F) @<{\alpha}<< \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F)
+\end{CD}
+$$
+in which the vertical arrows are surjective by the same reasoning. It follows that $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)$ is surjective which yields the result.
+</div>
