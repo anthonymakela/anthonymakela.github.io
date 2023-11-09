@@ -282,7 +282,7 @@ table {
 .theorem {
   display: block;
   margin: 12px 0;
-  font-style: italic;
+  font-style: normal;
 }
 .theorem:before {
   content: "Theorem.";
@@ -292,7 +292,7 @@ table {
 .proposition {
   display: block;
   margin: 12px 0;
-  font-style: italic;
+  font-style: normal;
 }
 .proposition:before {
   content: "Proposition.";
@@ -305,7 +305,7 @@ table {
 .lemma {
   display: block;
   margin: 12px 0;
-  font-style: italic;
+  font-style: normal;
 }
 .lemma:before {
   content: "Lemma.";
@@ -315,10 +315,30 @@ table {
 .example {
   display: block;
   margin: 12px 0;
-  font-style: italic;
+  font-style: normal;
 }
 .example:before {
   content: "Example.";
+  font-weight: bold;
+  font-style: normal;
+}
+.exercise {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.exercise:before {
+  content: "Exercise.";
+  font-weight: bold;
+  font-style: normal;
+}
+.non-example {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.non-example:before {
+  content: "Non-Example.";
   font-weight: bold;
   font-style: normal;
 }

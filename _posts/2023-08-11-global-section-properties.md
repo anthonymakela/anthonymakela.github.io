@@ -113,22 +113,18 @@ The $C^\infty(M)$-linear map $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F)
 Consider the following commutative diagram and the maps $\iota : E \otimes F \to (E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})$ and $\rho : (E \oplus E^{\perp}) \otimes (F \oplus F^{\perp}) \to E \otimes F$
 
 $$
-\require{AMScd}
-\begin{CD}
-\Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) @<{\alpha}<< \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \\
-@AA{\iota_\ast}A @A{\iota_\ast \otimes \iota_\ast}AA \\
-\Gamma(E \otimes F) @<{\alpha}<< \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F)
-\end{CD}
+\xymatrix{
+  \Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) \ar[d]^{\iota_\ast} & \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \ar[l]_{\alpha} \ar[d]^{\iota_\ast \otimes \iota_\ast} \\
+  \Gamma(E \otimes F) & \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F) \ar[l]_{\alpha}
+}
 $$
 by our previous results the map on the top is an isomorphism of $C^{\infty}(M)$-modules. Since $\rho \circ \iota = \operatorname{id}_{E \otimes F}$ the functoriality of $\Gamma$ implies that the vertical arrows are injective from which it follows that $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)$ is injective. Consider now the diagram
 
 $$
-\require{AMScd}
-\begin{CD}
-\Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) @<{\alpha}<< \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \\
-@VV{\rho_\ast}V @V{\rho_\ast \otimes \rho_\ast}VV \\
-\Gamma(E \otimes F) @<{\alpha}<< \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F)
-\end{CD}
+\xymatrix{
+  \Gamma((E \oplus E^{\perp}) \otimes (F \oplus F^{\perp})) \ar@<0.5ex>[d]^{\rho_\ast} & \Gamma(E \oplus E^{\perp}) \otimes_{C^{\infty}(M)} \Gamma(F \oplus F^{\perp}) \ar[l]_{\alpha} \ar@<0.5ex>[d]^{\rho_\ast \otimes \rho_\ast} \\
+  \Gamma(E \otimes F) & \Gamma(E) \otimes_{C^{\infty}(M)} \Gamma(F) \ar[l]_{\alpha}
+}
 $$
 in which the vertical arrows are surjective by the same reasoning. It follows that $\alpha : \Gamma(E) \otimes_{C^\infty(M)} \Gamma(F) \to \Gamma(E \otimes F)$ is surjective which yields the result.
 </div>

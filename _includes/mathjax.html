@@ -1,16 +1,27 @@
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    "HTML-CSS": { linebreaks: { automatic: true } },
-    CommonHTML: { linebreaks: { automatic: true } },
-    TeX: {
+<script>
+  MathJax = {
+    loader: {
+      load: ['[custom]/xypic.js'],
+      paths: {
+        custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'
+      }
+    },
+    tex: {
+      packages: {'[+]': ['xypic']},
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true,
       equationNumbers: {
         autoNumber: "AMS"
       }
     },
-    tex2jax: {
-      inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
-      processEscapes: true,
+    chtml: {
+      linebreaks: { automatic: true }
+    },
+    svg: {
+      fontCache: 'global'
     }
-  });
-</script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  };
+  </script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
