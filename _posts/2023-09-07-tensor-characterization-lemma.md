@@ -2,12 +2,11 @@
 layout: post
 title: "Tensor Characterization Lemma"
 categories: [Differential Geometry]
-published: false
 mathjax: true
 excerpt_separator: <!--more-->
 ---
 
-Some of my classmates found it challenging to grasp the concept that the torsion tensor, defined as $T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y]$ is a $(1,2)$-tensor field. Therefore, the aim of this post is to elucidate this concept. I'll try to avoid abstract nonsense as much as possible to make things more concrete.
+Some of my classmates found it challenging to grasp the concept that the torsion tensor, defined as $T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y]$ is a $(1,2)$-tensor field. Therefore, the aim of this post is to elucidate this concept. I apologize in advance for the notational overload.
 
 <!--more-->
 
@@ -49,7 +48,7 @@ $$
 F^{i_1,\dots,i_k}_{j_1,\dots,j_l} = F(\varepsilon^{i_1},\dots,\varepsilon^{i_k}, e_{j_1},\dots,e_{j_l}).
 $$
 
-Notice the switching of the indices. The following calculation may or may not make this a bit more clear. Let $\omega^1,\dots,\omega^k \in V^\ast$ and $v_1,\dots,v_l \in V$. Then
+Notice the switching of the indices in the basis vectors. The following calculation may or may not make this a bit more clear. Let $\omega^1,\dots,\omega^k \in V^\ast$ and $v_1,\dots,v_l \in V$. Then
 
 $$
 \begin{align*}
@@ -68,13 +67,13 @@ e_{i_1}\otimes\dots\otimes e_{i_k} \otimes \varepsilon^{j_1} \otimes \dots \otim
 \end{align*}
 $$
 
-I'm just going to take a moment to elaborate on this "switching" between the vector space and it's dual since it might result in some confusion. Effectively what is happening is that we are identifying a multilinear map 
+The key thing to keep in mind is that we have a one-to-one correspondence between multilinear maps 
 
 $$ 
 \underbrace{V^\ast \times \dots \times V^\ast}_{k \text{ times }} \times  \underbrace{V \times \dots \times V}_{l \text{ times }} \to \Bbb R
 $$
 
-with an element in
+and elements in
 
 $$
 \underbrace{V \otimes \dots \otimes V}_{k \text{ times }} \otimes  \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{l \text{ times }}.
@@ -82,7 +81,7 @@ $$
 
 For example if $F = v \otimes \omega \in V \otimes V^\ast$, then $F$ "eats" a pair $(\alpha, u)$ in $ V^\ast \times V$ not in $ V \times V^\ast$ in order for $F(\alpha,u) = v\otimes \omega(\alpha,u) = \alpha(v)\omega(u)$ to make sense.
 
-Now something related to the actual aim of this post.
+Now, let's discuss something related to the actual aim of this post.
 
 <div class="proposition">
 There is a natural basis independent isomorphism between the space $T^{(k+1,l)}(V)$ of $(k+1,l)$-tensors over $V$ and the space of multilinear maps
@@ -93,27 +92,79 @@ Note the target here is $V$ instead of the underlying field of $V$.
 </div>
 
 <div class="proof">
-Let's first go over the case with $k = 0$ and $l = 1$ as it will be quite informative. In this case the space of multilinear maps $V \to V$ is just $\operatorname{End}(V)$. Define $\Phi : \operatorname{End}(V) \to T^{(1,1)}(V)$ by
-$$
-\Phi(f)(\omega,v) = \omega(f(v)).
-$$
-Linearity of this map is straightforward and to see that it is injective, if $f \in \ker(\Phi)$, then 
+Consider a multilinear map 
 
 $$
-\Phi(f)(\omega,v) = 0 \implies \omega(f(v)) = 0
-$$
-and since this holds for all $\omega \in V^\ast$ we have $f(v) = 0$ for every $v \in V$ which means that $f = 0$. Surjectivity follows since $\dim \operatorname{End}(V) = n^2$ and likewise $\dim T^{(1,1)}(V) = n^2$.
-
-For the general case define $\Phi$ as
-
-$$
-\Phi(f)(\omega^1,\dots,\omega^{k+1}, v_1,\dots,v_l) = \omega^{k+1}(f(\omega^1,\dots,\omega^k,v_1,\dots,v_l))
+F : \underbrace{V^\ast \times \dots \times V^\ast}_{k \text{ times }} \times  \underbrace{V \times \dots \times V}_{l \text{ times }} \to V.
 $$
 
-The proof that this is an isomorphism is the same as for the case $k=0$ and $l = 1$.
+By the universal property of tensor products this induces a unique linear map
+
+$$
+\widetilde{F} : \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{l \text{ times }} \otimes  \underbrace{V \otimes \dots \otimes V}_{l \text{ times }} \to V.
+$$
+
+such that $\widetilde{F}(\omega^1\otimes\dots\otimes \omega^k \otimes v_1\otimes\dots\otimes v_l) = F(\omega^1,\dots,\omega^k, v_1,\dots,v_l)$ for any $\omega^1,\dots,\omega^k, v_1,\dots,v_l \in V^\ast \times \dots \times V^\ast \times V \times \dots \times V$.
+
+It follows that $\widetilde{F} \in \operatorname{Hom}(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V, V)$, but
+
+$$
+\begin{align*}
+\operatorname{Hom}(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V, V) &\cong \left(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V\right)^\ast \otimes V \\
+&= \underbrace{V \otimes \dots \otimes V}_{k+1 \text{ times }} \otimes \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{l \text{ times }}
+\end{align*}
+$$
+
+which concludes the result.
+
 </div>
 
-Now onto tensor fields. 
+Before we march onto tensor fields let's go over a lemma we are going to need soon. 
+
+<div class="lemma">
+Let $E, F$ and $G$ be vector bundles over $M$. If
+
+$$
+\Phi : \Gamma(E) \times \Gamma(G) \to \Gamma(F)
+$$
+
+is a $C^\infty(M)$-bilinear map, then for any $p \in M$ there exists a unique $\Bbb R$-linear map on the fibers
+
+$$
+\Phi_p : E_p \times G_p \to F_p
+$$
+
+such that for every $s \in \Gamma(E)$ and $t \in \Gamma(G)$ we have
+
+$$
+\Phi_p(s(p),t(p)) = \Phi(s,t)(p).
+$$
+</div>
+
+<div class="proof">
+Let $(v,u) \in E_p \times G_p$ and choose sections $s \in \Gamma(E)$ and $t \in \Gamma(G)$ with $s(p) = v$ and $t(p) = u$. Define 
+$$
+\Phi_p(v,u) = \Phi(s,t)(p).
+$$
+We will first argue that this choice is independent of the sections $s$ and $t$. Suppose that $s'$ and $t'$ are two sections with $s'(p) = v$ and $t'(p) = u$, then $(s-s')(p) = 0$ and $(t-t')(p) = 0$ and since we know by our previous results <a href="https://anthonymakela.com/differential%20geometry/2023/08/01/local-operators.html" style="color:#680530; text-decoration: underline;">here</a> that $\Phi$ is a point operator it follows that $\Phi(s-s',t-t')(p) = 0$ which yields that
+
+$$
+\Phi(s,t)(p) = \Phi(s',t')(p).
+$$
+
+I will show that it's linear in the first arguement and the argument carries over similarly to the second argument mutatis mutandis. Let $v_1,v_2 \in E_p, u \in G_p$ and $a_1,a_2 \in \Bbb R$ as well as $s_i \in \Gamma(E)$ be global sections such that $s_i(p) = v_i$ and lastly $t \in \Gamma(G)$ with $t(p) = u$. We have that
+
+$$
+\begin{align*}
+\Phi_p(a_1v_1+a_2v_2, u) &= \Phi(a_1s_1 + a_2s_2, t)(p) \\
+&= a_1\Phi(s_1,t)(p) + a_2\Phi(s_2,t)(p) \\
+&= a_1\Phi_p(v_1,u) + a_2\Phi(v_2,u)
+\end{align*}
+$$
+which concludes the proof.
+</div>
+
+So onto tensor fields then.
 
 <div>
 A $(k,l)$-tensor field on a manifold $M$ is a section of the vector bundle
@@ -206,7 +257,32 @@ $$
 \widetilde{F}_p : \underbrace{T_p^\ast M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }} \to T_pM
 $$
 
+i.e. $\widetilde{F}_p \in \operatorname{Hom}(\underbrace{T_p^\ast M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }}, T_pM)$, but
 
+$$
+\begin{align*}
+\operatorname{Hom}(\underbrace{T_p^\ast M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }}, T_pM) &\cong \left(T_p^\ast M \otimes \dots \otimes T^\ast_p M \otimes T_pM \otimes \dots \otimes T_pM \right)^\ast \otimes T_pM \\
+&= \underbrace{T_p M \otimes \dots \otimes T_p M}_{k+1 \text{ times }} \otimes \underbrace{T^\ast_pM \otimes \dots \otimes T^\ast_pM}_{l \text{ times }}
+\end{align*}
+$$
+
+and so $\widetilde{F}$ is a $(k+1,l)$-tensor field. We could have just as easily deduced this from the proposition above since we reduced this to the realm of vector spaces.
 </div>
 
+So after all this trouble it should be quite clear now why the torsion $T : \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM)$ is a $(1,2)$-tensor field. We just identify it with the induced map we get from the Tensor Characterization Lemma.
 
+Before I end this there might be a question on your mind that's bugging you (at least it was bugging me), what if we consider for example the curvature tensor $R$ of a vector bundle $E$ over $M$? We know that, for $X,Y \in \Gamma(TM)$ and $s \in \Gamma(E)$
+
+$$
+R(X,Y)s = \nabla_X\nabla_Y s - \nabla_Y\nabla_X s - \nabla_{[X,Y]}s \in \Gamma(E)
+$$
+
+So $R$ is a map $\Gamma(TM) \times \Gamma(TM) \times \Gamma(E) \to \Gamma(E)$. The issue now is that our lemma doesn't say anything about maps with target space something else than $\Gamma(TM)$ or $C^\infty(M)$. What can we do here? Looking at this on the fibers we have a map $R_p : T_pM \times T_pM \times E_p \to E_p$ which we can curry to get an alternating bilinear map $R_p : T_pM \times T_pM \to \operatorname{Hom}(E_p,E_p)$. So it would seem that $R$ is a section of the bundle $\left(\bigotimes^2 T^\ast M \right) \otimes \operatorname{End}(E)$. We call such a thing an $\operatorname{End}(E)$-valued $(0,2)$-tensor field.
+
+In general if $E$ is a vector bundle over $M$, then an $E$-<b>valued</b> tensor field of type $(k,l)$ is a section of the bundle
+
+$$
+\left(\bigotimes^k TM \right) \otimes \left(\bigotimes^k T^\ast M \right) \otimes E.
+$$
+
+This post ended up being quite a bit longer than I expected, but hopefully you'll be able to gain some insights from this.
