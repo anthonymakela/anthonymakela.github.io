@@ -101,7 +101,7 @@ $$
 By the universal property of tensor products this induces a unique linear map
 
 $$
-\widetilde{F} : \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{l \text{ times }} \otimes  \underbrace{V \otimes \dots \otimes V}_{l \text{ times }} \to V.
+\widetilde{F} : \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{k \text{ times }} \otimes  \underbrace{V \otimes \dots \otimes V}_{l \text{ times }} \to V.
 $$
 
 such that $\widetilde{F}(\omega^1\otimes\dots\otimes \omega^k \otimes v_1\otimes\dots\otimes v_l) = F(\omega^1,\dots,\omega^k, v_1,\dots,v_l)$ for any $\omega^1,\dots,\omega^k, v_1,\dots,v_l \in V^\ast \times \dots \times V^\ast \times V \times \dots \times V$.
@@ -110,7 +110,7 @@ It follows that $\widetilde{F} \in \operatorname{Hom}(V^\ast \otimes \dots \otim
 
 $$
 \begin{align*}
-\operatorname{Hom}(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V, V) &\cong \left(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V\right)^\ast \otimes V \\
+\operatorname{Hom}(\underbrace{V^\ast \otimes \dots \otimes V^\ast}_{k \text{ times }} \otimes \underbrace{V \otimes \dots \otimes V}_{l \text{ times }}, V) &\cong \left(V^\ast \otimes \dots \otimes V^\ast \otimes V \otimes \dots \otimes V\right)^\ast \otimes V \\
 &= \underbrace{V \otimes \dots \otimes V}_{k+1 \text{ times }} \otimes \underbrace{V^\ast \otimes \dots \otimes V^\ast}_{l \text{ times }}
 \end{align*}
 $$
@@ -207,13 +207,13 @@ is induced by a smooth $(k+1,l)$-tensor field if and only if it is multilinear o
 Suppose that 
 
 $$
-F : \underbrace{\Gamma(T^\ast M) \times \dots \times \Gamma(T^\ast M)}_{k \text{ times }} \times \underbrace{\Gamma(TM) \times \dots \times \Gamma(TM)}_{l \text{ times }} \to C^\infty(M)
+F : \Gamma(T^\ast M) \times \dots \times \Gamma(T^\ast M) \times \Gamma(TM) \times \dots \times \Gamma(TM) \to C^\infty(M)
 $$
 
 is multilinear over $C^\infty(M)$. For each $p \in M$ there is a unique $\Bbb R$-multilinear map 
 
 $$
-F_p : \underbrace{T^\ast_p M \times \dots \times T^\ast_p M}_{k \text{ times }} \times \underbrace{T_pM \times \dots \times T_pM}_{l \text{ times }} \to \Bbb R
+F_p : T^\ast_p M \times \dots \times T^\ast_p M \times T_pM \times \dots \times T_pM \to \Bbb R
 $$
 
 such that for all $\omega^1,\dots,\omega^k \in \Gamma(T^\ast M) \times \dots \times \Gamma(T^\ast M)$ and $X_1,\dots,X_l \in \Gamma(TM) \times \dots \times \Gamma(TM)$
@@ -228,7 +228,7 @@ $$
 $$
 such that $\widetilde{F}_p(\omega^1_p \otimes \dots \otimes \omega^k_p, X_{1,p} \otimes \dots \otimes X_{l,p}) = F(\omega^1,\dots,\omega^k, X_{1},\dots,X_{l})(p)$.
 
-Now since $\widetilde{F}_p \in \operatorname{Hom}(\underbrace{T^\ast_p M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }}, \Bbb R)$ and
+Now since $\widetilde{F}_p \in \operatorname{Hom}(T^\ast_p M \otimes \dots \otimes T^\ast_p M \otimes T_pM \otimes \dots \otimes T_pM, \Bbb R)$ and
 
 $$
 \begin{align*}
@@ -242,13 +242,13 @@ In other words $\widetilde{F}_p$ is a section of $\left(\bigotimes^k TM\right) \
 Similarly if
 
 $$
-F : \underbrace{\Gamma(T^\ast M) \times \dots \times \Gamma(T^\ast M)}_{k \text{ times }} \times \underbrace{\Gamma(TM) \times \dots \times \Gamma(TM)}_{l \text{ times }} \to \Gamma(TM)
+F : \Gamma(T^\ast M) \times \dots \times \Gamma(T^\ast M) \times \Gamma(TM) \times \dots \times \Gamma(TM) \to \Gamma(TM)
 $$
 
 is multilinear over $C^\infty(M)$, then for each $p \in M$ we get a unique $\Bbb R$-multilinear map on the fibers
 
 $$
-F_p : \underbrace{T_p^\ast M \times \dots \times T^\ast_p M}_{k \text{ times }} \times \underbrace{T_pM \times \dots \times T_pM}_{l \text{ times }} \to T_pM.
+F_p : T_p^\ast M \times \dots \times T^\ast_p M \times T_pM \times \dots \times T_pM \to T_pM.
 $$
 
 Again the universality of the tensor product yields a unique map 
@@ -257,7 +257,7 @@ $$
 \widetilde{F}_p : \underbrace{T_p^\ast M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }} \to T_pM
 $$
 
-i.e. $\widetilde{F}_p \in \operatorname{Hom}(\underbrace{T_p^\ast M \otimes \dots \otimes T^\ast_p M}_{k \text{ times }} \otimes \underbrace{T_pM \otimes \dots \otimes T_pM}_{l \text{ times }}, T_pM)$, but
+i.e. $\widetilde{F}_p \in \operatorname{Hom}(T_p^\ast M \otimes \dots \otimes T^\ast_p M \otimes T_pM \otimes \dots \otimes T_pM, T_pM)$, but
 
 $$
 \begin{align*}
