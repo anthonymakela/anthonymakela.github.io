@@ -7,7 +7,7 @@ mathjax: true
 
 I'm currently tasked to give a short presentation about the Bochner Technique and I thought that it would probably be beneficial to track my thoughts prior to the presentation. As you might know, the Bochner Technique is a way to relate the Laplacian to the curvature tensor. Before this, however, we need to understand what the gradient, divergence, and Laplacian are on a Riemannian manifold. This is going to be the topic for this post. 
 
-For the remaining of this post, $(M,g)$ is a Riemannian $n$-manifold.
+For the remaining of this post, $(M,g)$ denotes a Riemannian $n$-manifold.
 
 Let's begin with the gradient. Notation-wise the gradient of a smooth function $f \in C^\infty(M)$ is denoted either via $\nabla f$ or $\operatorname{grad} f$. I will most likely end up using both since the former is more convenient to write, but since it might result in confusion with the symbol we use for connections in some cases I might resort to the latter. 
 
