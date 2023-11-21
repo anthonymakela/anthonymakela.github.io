@@ -103,6 +103,8 @@ and since this holds for every object $U \in \textbf{FDVect}_k$ the Yoneda lemm
 
 The reason we did this is that now we can conclude that there is a natural isomorphism of bundles $(E \oplus E^{\perp}) \otimes (F \oplus F^{\perp}) \cong (E \otimes F) \oplus (E \otimes F^{\perp}) \oplus (E^{\perp} \otimes F) \oplus (E^{\perp} \otimes F^{\perp})$ which contains $E \otimes F$.
 
+---
+
 Onto the main event.
 
 <div class="theorem">

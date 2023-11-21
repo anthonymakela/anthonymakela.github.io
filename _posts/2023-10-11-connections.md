@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Connections"
-categories: [Differential Geometry]
+categories: [Differential Geometry, Riemannian Geometry]
 mathjax: true
 ---
 

@@ -61,6 +61,8 @@ If $\sigma \in \Gamma(E)$ is another global section with $\sigma = s$ in $W$, th
 
 It's relatively simple to show also that if $\alpha :\Gamma(E) \to \Gamma(F)$ is $C^\infty(M)$-linear, then $\alpha\vert_U : \Gamma(U, E) \to \Gamma(U, F)$ is $C^\infty(U)$-linear.
 
+---
+
 Let's go over couple more lemmas before our main result.
 
 <div class="lemma">

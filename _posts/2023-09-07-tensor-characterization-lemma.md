@@ -81,6 +81,8 @@ $$
 
 For example if $F = v \otimes \omega \in V \otimes V^\ast$, then $F$ "eats" a pair $(\alpha, u)$ in $ V^\ast \times V$ not in $ V \times V^\ast$ in order for $F(\alpha,u) = v\otimes \omega(\alpha,u) = \alpha(v)\omega(u)$ to make sense.
 
+---
+
 Now, let's discuss something related to the actual aim of this post.
 
 <div class="proposition">
@@ -163,6 +165,8 @@ $$
 $$
 which concludes the proof.
 </div>
+
+---
 
 So onto tensor fields then.
 
