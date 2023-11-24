@@ -47,6 +47,8 @@ $$
   \nabla(fs) = df\otimes s + f\nabla s.
 $$
 
+Note that we are implicitly using the isomorphism[^2] $T^\ast M \otimes E \cong \operatorname{Hom}(TM,E)$ in the above calculation to justify this "dropping $X$". The map $X \longmapsto df(X)s \in \operatorname{Hom}(TM,E)$ corresponds exactly to the element $df \otimes s \in T^\ast M \otimes E$.
+
 This isn't very informative considering the fact that we are essentially looking for a way to generalize the notion of differentiating vector fields to differentiating sections of arbitrary vector bundles over $M$. 
 
 You might have heard the usual story that if we naively try to define a way to differentiate vector fields on a smooth manifold we run into the issue of needing to compare vectors living in different tangent spaces. The is indeed not defined on a general manifold which might or might not be a surprise since we do this kind of things in the familiar $\Bbb R^n$ constantly, but we are actually exploiting the fact that at any point $p \in \Bbb R^n$ we have a canonical isomorphism $T_p\Bbb R^n \cong \Bbb R^n$ that allows us to compare vectors living in different tangent spaces.
@@ -74,4 +76,6 @@ which turns out to be an isomorphism with inverse $P^\gamma_{q,p}$.
 ---
 
 [^1]: We actually have $\Gamma(T^\ast M \otimes E) \cong \Gamma(TM)^\ast \otimes_{C^\infty(M)} \Gamma(E)$ and $\Gamma(TM)^\ast \otimes_{C^\infty(M)} \Gamma(E) \cong \operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), \Gamma(E))$ so the first definition is just a curried version of the second one.
+
+[^2]: If this is the first time you are seeing this, then here is a quick justification. In the realm of fintite-dimensional vector spaces we have an isomorphism $V^\ast \otimes W \cong \operatorname{Hom}(V,W)$ and the map is given by $(\alpha \otimes w) \mapsto \alpha(-)w$. That is for $v \in V$ we have $(\alpha\otimes w)(v) = \alpha(v)w$.
 
