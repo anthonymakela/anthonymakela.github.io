@@ -241,7 +241,7 @@ $$
 \end{align*}
 $$
 
-In other words $\widetilde{F}_p$ is a section of $\left(\bigotimes^k TM\right) \otimes \left(\bigotimes^l T^\ast M \right)$ i.e. a $(k,l)$-tensor field.
+In other words $\widetilde{F}$ is a section of $\left(\bigotimes^k TM\right) \otimes \left(\bigotimes^l T^\ast M \right)$ i.e. a $(k,l)$-tensor field.
 
 Similarly if
 
