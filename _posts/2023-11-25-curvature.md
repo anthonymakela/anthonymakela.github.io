@@ -2,7 +2,6 @@
 layout: post
 title: "Curvature"
 categories: [Differential Geometry, Riemannian Geometry]
-published: false
 mathjax: true
 ---
 
@@ -114,9 +113,7 @@ $$
 \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z = \nabla_{[X,Y]}Z
 $$
 
-holds for $X,Y,Z \in \Gamma(TM)$. This yields a necessary condition for a Riemannian manifold to be flat.
-
-Since the Levi-Civita connection is natural[^2], if $M$ is flat, then $\nabla$ satisfies the flatness criterion.
+holds for $X,Y,Z \in \Gamma(TM)$. Since the Levi-Civita connection is natural[^2], if $M$ is flat, then $\nabla$ satisfies the flatness criterion. All in all we have managed to come up with a necessary condition for a Riemannian manifold to be flat.
 
 ---
 
@@ -170,8 +167,210 @@ $$
 R = R^l_{ijk} dx^i \otimes dx^j \otimes dx^k \otimes \partial_l.    
 $$
 
+Occasionally its useful to lower the upper index and so we define the <b>Riemann curvature tensor</b> to be the $(0,4)$-tensor field $Rm = R^\flat$. The action on vector fields is given by
+
+$$
+Rm(X,Y,Z,W) = \langle R(X,Y)Z,W\rangle_g.
+$$
+
+In coordinates:
+
+$$
+Rm = R_{ijkl} dx^i\otimes dx^j \otimes dx^k \otimes dx^l
+$$
+
+with $R_{ijkl} = g_{lm}R_{ijk}^m$.
+
+The important take away here is that the Riemann endomorphism and curvature tensor are both local isometry invariants. That is the following proposition holds.
+
+<div class="proposition">
+If $(M,g)$ and $(\widetilde{M}, \widetilde{g})$ are Riemannian manifolds and $\varphi : M \to \widetilde{M}$ is a local isometry, then $\varphi^* \widetilde{Rm} = Rm$ and $\widetilde{R}(\varphi_\ast X, \varphi_\ast Y)\varphi_\ast Z = \varphi_\ast(R(X,Y)Z)$.
+</div>
+
+<div class="proof">
+Let's first begin by reminding ourselves what it means for $\varphi$ to be an isometry. If $X, Y \in \Gamma(TM)$ and $p \in M$, then 
+
+$$
+g(X_p,Y_p) = \widetilde{g}(d\varphi_p(X_p), d\varphi_p(Y_p)) = \widetilde{g}((\varphi_\ast X)_{\varphi(p)},(\varphi_\ast Y)_{\varphi(p)})
+$$
+
+where the last equality follows since $\varphi_\ast X \in \Gamma\left(T\widetilde{M}\right)$ is defined to be the <i markdown=1>unique[^3]</i> vector field for which $(\varphi_\ast X)_{\varphi(p)} = d\varphi_p(X_p)$. It follows that $g(X,Y) = \widetilde{g}(\varphi_\ast X, \varphi_\ast Y) \circ \varphi$.
+
+<div style="line-height:100%;">
+    <br>
+</div>
+
+Suppose now that $\varphi : M \to \widetilde{M}$ is a local isometry. Let $X,Y,Z$ and $W$ be smooth vector fields on $M$. Let's first prove that $\widetilde{R}(\varphi_\ast X, \varphi_\ast Y)\varphi_\ast Z = \varphi_\ast(R(X,Y)Z)$.  We have:
+
+$$
+\begin{align*}
+\varphi_\ast(R(X,Y)Z) &= \varphi_\ast(\nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]}Z) \\
+&= \varphi_\ast(\nabla_X \nabla_Y Z)  - \varphi_\ast(\nabla_Y \nabla_X Z) - \varphi_\ast(\nabla_{[X,Y]}Z)) \\
+&= \widetilde{\nabla}_{\varphi_\ast X} \varphi_\ast(\nabla_Y Z) - \widetilde{\nabla}_{\varphi_\ast Y} \varphi_\ast(\nabla_X Z) - \widetilde{\nabla}_{\varphi_\ast[X,Y]}\varphi_\ast Z \\
+&= \widetilde{\nabla}_{\varphi_\ast X} \widetilde{\nabla}_{\varphi_\ast Y} \varphi_\ast Z - \widetilde{\nabla}_{\varphi_\ast Y} \widetilde{\nabla}_{\varphi_\ast X} \varphi_\ast Z - \widetilde{\nabla}_{[\varphi_\ast X,\varphi_\ast Y]}\varphi_\ast Z \\
+&= \widetilde{R}(\varphi_\ast X, \varphi_\ast Y)\varphi_\ast Z.
+\end{align*}
+$$
+
+Now
+
+$$
+\begin{align*}
+(\varphi^\ast \widetilde{Rm})(X,Y,Z,W) &= \widetilde{Rm}(\varphi_\ast X,\varphi_\ast Y,\varphi_\ast Z,\varphi_\ast W) \circ \varphi \\
+&= \widetilde{g}(\widetilde{R}(\varphi_\ast X, \varphi_\ast Y)\varphi_\ast Z, \varphi_\ast W) \circ \varphi \\
+&= \widetilde{g}(\varphi_\ast(R(X,Y)Z), \varphi_\ast W) \circ \varphi \\
+&= g(R(X,Y)Z, W) \\
+&= Rm(X,Y,Z,W)
+\end{align*}
+$$
+
+which concludes the proof.
+</div>
+
+Now the remarkable thing is that the curvature tensor is precisely the obstruction for a Riemannian manifold to be locally isometric to Euclidean space. We already concluded the necessary condition, but it turns out that it's also sufficient.
+
+A key ingredient in the proof will be the following lemma which I won't be proving here. You can find the proof in Lee's book on Riemannian manifolds (Lemma $7.8$).
+
+<div class="lemma">
+Let $M$ be a smooth manifold and $\nabla$ any connection on $M$ that satisfies the flatness criterion. Then for any $p \in M$ and $v \in T_pM$, there exists a parallel vector field $V$ on a neighborhood of $p$ such that $V_p = v$.
+</div>
+
+Given this lemma, we can proceed to prove the following:
+
+<div class="theorem">
+A Riemannian manifold is flat if and only if its curvature tensor vanishes identically.
+</div>
+
+<div class="proof">
+If $M$ is flat, then locally its isometric to $\Bbb R^n$, and since the Euclidean connection satisfies the flatness criterion the curvature endomorphism vanishes identically which implies that the curvature tensor is also zero. Naturality yields that the curvature tensor on $M$ is also zero.
+
+<div style="line-height:100%;">
+    <br>
+</div>
+
+Conversely suppose that $(M,g)$ has a vanishing curvature tensor. The non-degeneracy of the metric implies that the curvature endomorphism vanishes as well, so the Levi-Civita connection satisfies the flatness criterion. Let $p \in M$  and choose an orthonormal basis $(b_1,\dots,b_n)$ for $T_pM$. Using the lemma above we can choose parallel vector fields $E_1, \dots,E_n$ on a neighborhood $U \ni p$ such that $E_i\vert_p = b_i$. Since parallel transport preserves inner products the vector fields are orthonormal in all of $U$. Since the Levi-Civita connection is torsion-free we have:
+
+$$
+[E_i,E_j] = \nabla_{E_i}E_j - \nabla_{E_j}E_i = 0.
+$$
+
+The vector fields $(E_i)$ therefore form a <i>commuting orthonormal frame</i> on $U$. We can thus find coordinates $(y^i)$ in a neighborhood of $p$ such that $E_i = \partial/\partial y^i$. Since in any such coordinates $g(E_i,E_j) = g(\partial_i,\partial_j) = \delta_{ij}$, the map $y = (y^1,\dots,y^n)$ is an isometry from a neighborhood of $p$ to an open subset of an Euclidean space.
+</div>
+
+
+---
+
+Working with tensor fields of type $(1,3)$ or $(0,4)$ can be quite burdensome so we ask whether we can come up with a tensor field or simpler type such that we don't lose too much information. The answer to this is found, not surprisingly using the trace[^4] operation. 
+
+<div class="definition">
+The <b>Ricci curvature</b> or <b>Ricci tensor</b> denoted by $Ric$ is the $(0,2)$-tensor field defined by
+$$
+Ric(X,Y) = \operatorname{tr}(Z \longmapsto R(Z,X)Y).
+$$
+</div>
+
+The components of $Ric$ are given by
+
+$$
+R_{ij} = R^k_{kij} = g^{km}R_{kijm}.
+$$
+
+At the moment we don't have much to say about the Ricci tensor or its geometric significance, but rest assured there is one and I will try to cover it in a future post. Right now, since we are building up to the Bochner technique, we are interested in a formula called <b>Bochner's formula</b> which is given by:
+
+$$
+\Delta\left(\frac{1}{2}|\operatorname{grad} u|^2\right) = \left|\nabla^2u\right|^2 + \langle \operatorname{grad}(\Delta u), \operatorname{grad} u\rangle + Ric(\operatorname{grad}u,\operatorname{grad}u)
+$$
+
+for $u \in C^\infty(M)$. To see why this equality holds let's fix $p \in M$ and let $(E_i)$ be a local geodesic frame at $p$. We have that
+
+$$
+\begin{align*}
+\frac{1}{2} \Delta\left(|\operatorname{grad} u|^2\right) &= \frac{1}{2}\operatorname{div}\left(\operatorname{grad}\left(|\operatorname{grad} u|^2\right)\right) \\
+&= \frac{1}{2} \operatorname{tr}\left(Y \longmapsto \nabla_Y \left(\operatorname{grad}\left(|\operatorname{grad} u|^2\right)\right)\right) \\
+&= \frac{1}{2} \sum_i \left\langle \nabla_{E_i} \left(\operatorname{grad}\left(|\operatorname{grad} u|^2\right)\right), E_i\right\rangle.
+\end{align*}
+$$
+
+
+Let's work with the term $\nabla_{E_i} \left(\operatorname{grad}\left(\lvert\operatorname{grad} u\rvert^2\right)\right)$ first. Notice that in a local geodesic frame $\operatorname{grad} f = E_i(f)E_i$, since if $\operatorname{grad} f = a^iE_i$, then $E_j f = \langle \operatorname{grad} f, E_j\rangle = a^i\delta_{ij} = a^j$. We therefore have
+
+$$
+\begin{align*}
+\nabla_{E_i} \left(\operatorname{grad}\left(\lvert\operatorname{grad} u\rvert^2\right)\right) &= \nabla_{E_i} \left(E_j\left(\lvert\operatorname{grad} u\rvert^2\right)E_j\right) \\
+&= E_j\left(\lvert\operatorname{grad} u\rvert^2\right)\nabla_{E_i}E_j + E_i\left(E_j\left(\lvert\operatorname{grad} u\rvert^2\right)\right)E_j \\
+&= E_i\left(E_j\left(\lvert\operatorname{grad} u\rvert^2\right)\right)E_j.
+\end{align*}
+$$
+
+Now
+
+$$
+\begin{align*}
+\frac{1}{2} \Delta\left(|\operatorname{grad} u|^2\right) &= \frac{1}{2} \sum_i \left\langle \nabla_{E_i} \left(\operatorname{grad}\left(|\operatorname{grad} u|^2\right)\right), E_i\right\rangle \\
+&= \frac{1}{2} \sum_i \left\langle E_i\left(E_j\left(\lvert\operatorname{grad} u\rvert^2\right)\right)E_j, E_i\right\rangle \\
+&= \frac{1}{2} \sum_i  E_i\left(E_i\left(\lvert\operatorname{grad} u\rvert^2\right)\right) \\
+&= \frac{1}{2} \sum_i  E_i\left(E_i\langle \operatorname{grad} u, \operatorname{grad} u \rangle \right) \\
+&= \sum_i E_i \langle \nabla_{E_i} \operatorname{grad} u, \operatorname{grad} u \rangle \\
+&= \sum_i E_i\left(\operatorname{Hess} u (E_i, \operatorname{grad} u)\right) \\
+&= \sum_i E_i\left(\operatorname{Hess} u (\operatorname{grad} u, E_i)\right) \\
+&= \sum_i E_i \langle \nabla_{\operatorname{grad} u} \operatorname{grad} u, E_i\rangle \\
+&= \sum_i \left( \langle \nabla_{E_i} \nabla_{\operatorname{grad} u} \operatorname{grad} u, E_i\rangle + \langle \nabla_{\operatorname{grad} u} \operatorname{grad} u, \nabla_{E_i} E_i\rangle \right) \\
+&= \sum_i  \langle \nabla_{E_i} \nabla_{\operatorname{grad} u} \operatorname{grad} u, E_i\rangle \\
+&= \sum_i \langle R(E_i, \operatorname{grad} u)\operatorname{grad} u, E_i\rangle + \sum_i \langle \nabla_{\operatorname{grad} u} \nabla_{E_i} \operatorname{grad} u, E_i \rangle + \sum_i \langle \nabla_{[E_i, \operatorname{grad} u]}\operatorname{grad} u, E_i\rangle.
+\end{align*}
+$$
+
+From here we see that the first term given by $\sum_i \langle R(E_i, \operatorname{grad} u)\operatorname{grad} u, E_i\rangle $ is exactly $Ric(\operatorname{grad} u, \operatorname{grad} u)$. For the second term using metric compatibility we have 
+
+$$
+\begin{align*}
+\sum_i \langle \nabla_{\operatorname{grad} u} \nabla_{E_i} \operatorname{grad} u, E_i \rangle &= \sum_i \operatorname{grad} u\langle \nabla_{E_i} \operatorname{grad} u, E_i \rangle + \sum_i \langle \nabla_{E_i}\operatorname{grad} u, \underbrace{\nabla_{\operatorname{grad} u} E_i}_{0 \text{ at } p}\rangle \\
+&= \sum_i \operatorname{grad} u\langle \nabla_{E_i} \operatorname{grad} u, E_i \rangle \\
+&= \operatorname{grad} u \sum_i \langle \nabla_{E_i} \operatorname{grad} u, E_i \rangle \\
+&= \operatorname{grad} u \operatorname{tr}(Y \longmapsto \nabla_Y(\operatorname{grad} u)) \\
+&= (\operatorname{grad} u) (\Delta f) \\
+&= \langle \operatorname{grad}(\Delta u),  \operatorname{grad} u\rangle.
+\end{align*} 
+$$
+
+For the last term
+
+$$
+\begin{align*}
+    \sum_i \langle \nabla_{[E_i, \operatorname{grad} u]}\operatorname{grad} u, E_i\rangle &= \sum_i \operatorname{Hess} u ([E_i,\operatorname{grad} u], E_i) \\
+    &= \sum_i \operatorname{Hess} u(\nabla_{E_i}\operatorname{grad} u - \nabla_{\operatorname{grad} u} E_i, E_i) \\
+    &= \sum_i \operatorname{Hess} u(\nabla_{E_i}\operatorname{grad} u, E_i) \\
+    &= \sum_i \operatorname{Hess} u(E_i, \nabla_{E_i}\operatorname{grad} u) \\
+    &= \sum_i \langle \nabla_{E_i} \operatorname{grad} u, \nabla_{E_i}\operatorname{grad} u\rangle. \\    
+    &= \sum_i \left|\nabla_{E_i}\operatorname{grad} u\right|^2 \\
+    &= \sum_i \left|\sum_j \nabla_{E_i}(E_j(u)E_j)\right|^2 \\
+    &= \sum_i \left|\sum_j E_i(E_j(u))E_j + E_j(u)\nabla_{E_i}E_j\right|^2 \\
+    &= \sum_i \left|\sum_j E_i(E_j(u))E_j\right|^2 \\
+    &= \sum_{i,j} \left(E_i(E_j(u))\right)^2.
+\end{align*}
+$$
+
+The next part is going to be a bit tricky. Note that $\operatorname{Hess u} = (E_i(E_j(u)) - \Gamma_{ij}^k E_k(u))\varepsilon^i \otimes \varepsilon^j$, when $(\varepsilon^i)$ is the dual coframe. In our local geodesic frame the Christoffel symbols vanish at $p$ so $\operatorname{Hess u} = (E_i(E_j(u)))\varepsilon^i \otimes \varepsilon^j$ which is a $(0,2)$-tensor field. We know that the norm of such a thing is given by
+
+$$
+\begin{align*}
+|\operatorname{Hess u}|^2 &= \langle \operatorname{Hess u}, \operatorname{Hess u} \rangle \\
+&= \langle E_i(E_j(u)))\varepsilon^i \otimes \varepsilon^j, E_k(E_l(u)))\varepsilon^k \otimes \varepsilon^l\rangle \\
+&= E_i(E_j(u))E_k(E_l(u))\langle \varepsilon^i \otimes \varepsilon^j, \varepsilon^k \otimes \varepsilon^l\rangle \\
+&= E_i(E_j(u))E_k(E_l(u)) \langle \varepsilon^i, \varepsilon^k\rangle \cdot \langle \varepsilon^j, \varepsilon^l \rangle \\
+&= E_i(E_j(u))E_k(E_l(u)) \delta^{ik}\delta^{jl} \\
+&= \sum_{i,j}\left(E_i(E_j(u))\right)^2.
+\end{align*}
+$$
+
+Putting these together yields the Bochner formula.
+
 ---
 
 [^1]: Being locally isometric to $\Bbb R^n$
 
 [^2]: If $(M,g)$ and $(\widetilde{M}, \widetilde{g})$ are Riemannian manifolds with Levi-Civita connections $\nabla$ and $\widetilde{\nabla}$ an isometry between them $\varphi : M \to \widetilde{M}$ yields that $\varphi^\ast \widetilde{\nabla} = \nabla$.
+
+[^3]: This is exactly the same thing as related vector fields. For a smooth map $F : M \to N$ a vector field $X \in \Gamma(TM)$ is $F$-related to a vector field $Y \in \Gamma(TN)$ if for all $p \in M$ we have that $dF_p(X_p) = Y_{F(p)}$. In particular if $F$ is a diffeomorphism and $X \in \Gamma(TM)$, then $F_\ast X$ makes sense and is by definition the vector field to which $X$ is $F$-related.
+
+[^4]: If $T^{(k,l)}V$ denotes the space of $(k,l)$ tensors the trace operation $\operatorname{tr} : T^{(k+1,l+1)}V \to T^{(k,l)}V$ is defined by $(\operatorname{tr}F)(\omega^1,\dots,\omega^k,v_1,\dots,v_l) = \operatorname{tr}(F(\omega^1,\dots,\omega^k, -, v_1,\dots,v_l, -)$ where the operator in the right-hand side is the usual trace operation of a linear map since $F(\omega^1,\dots,\omega^k, -, v_1,\dots,v_l, -)$ is a $(1,1)$-tensor i.e. a linear map due to the tensor characterization lemma.
