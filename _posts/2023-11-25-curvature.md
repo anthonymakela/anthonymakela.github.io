@@ -363,7 +363,7 @@ $$
 \end{align*}
 $$
 
-Putting these together yields the Bochner formula.
+Putting these together yields the Bochner formula. The remarkable thing here is the freedom of choice for the function $u$, we merely require that $u$ is three times differentiable.
 
 ---
 
