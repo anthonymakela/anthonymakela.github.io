@@ -14,7 +14,7 @@ Let's begin with the definition.
 <div class="definition">
 Let $A = [a_{ij}]$ be an $n \times n$ matrix with indeterminate entries $a_{ij}$. A polynomial $P(A)$ on $\mathfrak{gl}(n,F) = F^{n \times n}$ is an element of the commutative $F$-algebra $F[a_{ij}]$. A polynomial on $\mathfrak{gl}(n,F)$ is said to be <b>invariant</b> if
 $$
-P(XAX^{-1}) = P(A)
+P(X^{-1}AX) = P(A)
 $$
 is true for all $X \in \mathrm{GL}(n,F)$.
 </div>
@@ -70,7 +70,7 @@ we have that
 
 $$
 \begin{align*}
-XAX^{-1} = \begin{pmatrix} a_{11}+a_{21} & -a_{11}+a_{12}-a_{21}+a_{22} \\ a_{21} & -a_{21}+a_{22} \end{pmatrix}.
+X^{-1}AX = \begin{pmatrix} a_{11}-a_{21} & a_{11}-a_{21}+a_{12}-a_{22} \\ a_{21} & a_{21}+a_{22} \end{pmatrix}.
 \end{align*}
 $$
 
@@ -78,7 +78,7 @@ It follows that
 
 $$
 \begin{align*}
-P(XAX^{-1}) &= (a_{11}+a_{21})(-a_{21}+a_{22}) - (-a_{11}+a_{12}-a_{21}+a_{22})(a_{21}) \\
+P(X^{-1}AX) &= (a_{11}-a_{21})(a_{21}+a_{22}) - (a_{11}-a_{12}+a_{21}-a_{22})(a_{21}) \\
 &= a_{11}a_{22} - a_{12}a_{21} \\
 &= P(A).
 \end{align*}
@@ -88,8 +88,8 @@ So we've found one matrix $X$ for which $P(XAX^{-1}) = P(A)$. If this would be t
 
 $$
 \begin{align*}
-P(XAX^{-1}) &= \det\left(XAX^{-1}\right) \\
-&= \det(X)\det(A)\det\left(X^{-1}\right) \\
+P(X^{-1}AX) &= \det\left(X^{-1}AX\right) \\
+&= \det(X^{-1})\det(A)\det\left(X\right) \\
 &= \det(A) \\
 &= P(A).
 \end{align*}
@@ -107,15 +107,15 @@ $$
 are polynomials on $\mathfrak{gl}(n,\Bbb R)$. Notice that for any $X \in \mathrm{GL}(n,\Bbb R)$ we have that
 
 $$
-\det(X(\lambda I + A)X^{-1})  = \det(\lambda I + A).
+\det(X^{-1}(\lambda I + A)X)  = \det(\lambda I + A).
 $$
 
-Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(XAX^{-1}) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$.
+Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$.
 
 Lastly we consider the <b>trace polynoimals</b> defined by $\sum_k X = \operatorname{tr}(A^k)$. Now as $\operatorname{tr}(A) = f_1(A)$ we have that
 
 $$
-\sum_k(XAX^{-1}) = \operatorname{tr}(XA^kX^{-1}) = \operatorname{tr}(A^k) = \sum_k A.
+\sum_k(X^{-1}AX) = \operatorname{tr}(X^{-1}A^kX) = \operatorname{tr}(A^k) = \sum_k A.
 $$
 
 ---
@@ -123,7 +123,7 @@ $$
 Before we wrap this up let's turn our attention to the special case when $F = \Bbb C$. Suppose that $A \in \mathfrak{gl}(n, \Bbb C)$ is a diagonalizable matrix with complex entries. Since $A$ is diagonalizable, there exists a nonsingular $X \in \mathrm{GL}(n,\Bbb C)$ such that
 
 $$
-XAX^{-1} = \operatorname{diag}(\lambda_1,\dots,\lambda_n)
+X^{-1}AX = \operatorname{diag}(\lambda_1,\dots,\lambda_n)
 $$
 
 where the $\lambda$'s are now the eigenvalues of $A$. Since the trace and determinant of such matrix are the sum and product of the eigenvalues respectively it follows that both can be expressed as symmetric polynomials of their eigenvalues.
