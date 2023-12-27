@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gradient, Divergence and the Laplacian"
-categories: [Differential Geometry, Riemannian Geometry]
+categories: [Differential Geometry]
 mathjax: true
 ---
 
