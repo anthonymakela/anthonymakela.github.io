@@ -84,7 +84,7 @@ P(X^{-1}AX) &= (a_{11}-a_{21})(a_{21}+a_{22}) - (a_{11}-a_{12}+a_{21}-a_{22})(a_
 \end{align*}
 $$
 
-So we've found one matrix $X$ for which $P(XAX^{-1}) = P(A)$. If this would be to hold for all matrices $X$ in say $\mathrm{GL}(n, \Bbb R)$, then $P(A)$ would be invariant. It's a simple matter to verify this using the properties of the determinant as for any $X \in \mathrm{GL}(n, \Bbb R)$
+So we've found one matrix $X$ for which $P(X^{-1}AX) = P(A)$. If this would be to hold for all matrices $X$ in say $\mathrm{GL}(n, \Bbb R)$, then $P(A)$ would be invariant. It's a simple matter to verify this using the properties of the determinant as for any $X \in \mathrm{GL}(n, \Bbb R)$
 
 $$
 \begin{align*}
