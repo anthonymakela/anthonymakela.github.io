@@ -151,7 +151,7 @@ In matrix notation, the above can be written as $\Omega = d\omega + \omega \wedg
 
 ---
 
-Before we wrap this up, let's consider how the connection $1$-forms and curvature $2$-forms transform under a change of frame. Recalling that the curvature endomorphism is a section of the bundle $\left(\bigotimes^2 T^\ast M \right) \otimes \operatorname{End}(E)$ i.e. an $\operatorname{End}(E)$-valued $(0,2)$-tensor field these two observations will end up looking awfully similar to what we discussed in Invariant Polynomials, guiding us towards characteristic classes.
+Before we wrap this up, let's consider how the connection $1$-forms and curvature $2$-forms transform under a change of frame. Recalling that the curvature endomorphism is a section of the bundle $\left(\bigotimes^2 T^\ast M \right) \otimes \operatorname{End}(E)$ i.e. an $\operatorname{End}(E)$-valued $(0,2)$-tensor field these two observations will end up looking awfully similar to what we discussed in <a href="https://anthonymakela.com/algebra/2023/12/17/invariant-polynomials.html" style="color:#680530; text-decoration: underline;">Invariant Polynomials</a>, guiding us towards characteristic classes.
 
 Suppose that $U \subset M$ is an open set and $(e_i)$ a local frame over $U$. Writing the frame as a row vector $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$, then in matrix notation we can write $\nabla_X e_j = \sum \omega^i_j(X)e_i$ as
 
