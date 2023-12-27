@@ -41,7 +41,11 @@ is injective.
 </div>
 
 <div class="proof">
-If $P$ is the zero polynomial, then $\operatorname{ev}(P)(a_1,\dots,a_n) = \widetilde{P}(a_1,\dots,a_n) = P(a_1,\dots,a_n) = 0$. To prove the converse we proceed by induction. For $n = 1$ suppose that $P(x)$ is a polynomial of degree $m$ such that $\widetilde{P}$ is the zero function. Since a nonzero polynomial of degree $m$ can have at most $m$ zeros, and $P(x)$ vanishes on an infinite field, $P(x)$ must be the zero polynomial.
+If $P$ is the zero polynomial, then 
+$$
+\operatorname{ev}(P)(a_1,\dots,a_n) = \widetilde{P}(a_1,\dots,a_n) = P(a_1,\dots,a_n) = 0.
+$$
+To prove the converse we proceed by induction. For $n = 1$ suppose that $P(x)$ is a polynomial of degree $m$ such that $\widetilde{P}$ is the zero function. Since a nonzero polynomial of degree $m$ can have at most $m$ zeros, and $P(x)$ vanishes on an infinite field, $P(x)$ must be the zero polynomial.
 
 We proceed by making the induction hypothesis that $\operatorname{ev}$ is injective when the number of variables is less than or equal to $n-1$. Let
 $$
