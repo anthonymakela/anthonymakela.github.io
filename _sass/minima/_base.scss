@@ -375,3 +375,9 @@ blockquote {
   font-size: 16px;
   border-left: 5px solid #eee;
 }
+
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
