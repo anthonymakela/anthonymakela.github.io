@@ -289,6 +289,9 @@ table {
   font-weight: bold;
   font-style: normal;
 }
+.theorem[text]:before {
+  content: "Theorem " attr(text) ". ";
+}
 .proposition {
   display: block;
   margin: 12px 0;
@@ -300,7 +303,7 @@ table {
   font-style: normal;
 }
 .proposition[text]:before {
-  content: "Proposition " attr(text) " ";
+  content: "Proposition " attr(text) ". ";
 }
 .lemma {
   display: block;
