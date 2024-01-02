@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Connection & Curvature Forms"
+title: "Connection and Curvature Forms"
 categories: [Differential Geometry]
 mathjax: true
 excerpt_separator: <!--more-->
