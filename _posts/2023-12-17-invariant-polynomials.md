@@ -104,7 +104,7 @@ So $P(A)$ is indeed invariant. Another example is the trace $\operatorname{tr}(A
 Another interesting example of invariant polynomials is <b>coefficients of the characteristic polynomial</b> $\det(\lambda I + A)$ of $-A$. If $A = [a_{ij}]$ is an $n \times n$ matrix of indeterminates and $\lambda$ is another indeterminate, then the coefficients $f_k(A)$ of $\lambda^{n-k}$ in
 
 $$
-\det(\lambda I + A) = \lambda^n + f_1(A)\lambda^{n-1} + \dots f_{n-1}(A)\lambda + f_{n}(X)
+\det(\lambda I + A) = \lambda^n + f_1(A)\lambda^{n-1} + \dots + f_{n-1}(A)\lambda + f_{n}(X)
 $$
 
 are polynomials on $\mathfrak{gl}(n,\Bbb R)$. Notice that for any $X \in \mathrm{GL}(n,\Bbb R)$ we have that

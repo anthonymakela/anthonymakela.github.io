@@ -277,7 +277,7 @@ The above proof shows that for $P(A) \in \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R))$,
 This is a good place to stop for a moment and appreciate what we have done:
 
 <ol>
-  <li>We started of with a smooth manifold $M$ and a rank $n$ vector bundle $E \to M$.</li>
+  <li>We started off with a smooth manifold $M$ and a rank $n$ vector bundle $E \to M$.</li>
   <li>We equipped $E$ with a connection $\nabla$ which gave us a notion of curvature.</li>
   <li>We expressed this curvature locally by the curvature matrix $\Omega$.</li>
   <li>We observed that the curvature matrix transformed by conjugation under a change of frame.</li>
