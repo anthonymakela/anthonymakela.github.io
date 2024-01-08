@@ -130,7 +130,7 @@ $$
 \end{align*}
 $$
 
-Now, I'm just going to pull of a description[^2] from the magician's hat for $\Gamma^i_{ij}$ and you should convince yourself that it is true. We end up with
+Now, I'm just going to pull up a description[^2] from the magician's hat for $\Gamma^i_{ij}$ and you should convince yourself that it is true. We end up with
 
 $$
 \begin{align*}

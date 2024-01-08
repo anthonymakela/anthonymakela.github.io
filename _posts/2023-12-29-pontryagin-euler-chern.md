@@ -7,7 +7,7 @@ published: false
 excerpt_separator: <!--more-->
 ---
 
-Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler and Chern classes afterwards.
+Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler and Chern classes afterward.
 
 <!--more-->
 
@@ -64,7 +64,7 @@ Suppose that a homogeneous invariant polynomial $P(A)$ on $\mathfrak{gl}(n,\Bbb 
 </div>
 
 <div class="proof">
-Equip $E$ with a Riemannian metric and let $\widetilde{\nabla}$ be the Levi-Civita connection on $E$, with curvature matrix $\widetilde{\Omega}$ on a framed open set. Since $P(A)$ is a linear combination with real coefficients in the trace polynomials and $k$ is odd, every monomial term of $P(A)$ has odd degree i.e. must contain a trace polynomial $\Sigma_m$ of odd degree $m$ as a factor. Since $\Sigma_m(\widetilde{\Omega}) = 0$ implies $P(\widetilde{\Omega}) = 0$ for the trace polynomials with odd degrees, we conclude using the independence of the connection that if $\nabla$ is any connection on $E$ with curvature matrix $\Omega$, then $[P(\Omega)] = [P(\widetilde{\Omega}) ] = 0$.
+Equip $E$ with a Riemannian metric and let $\widetilde{\nabla}$ be the Levi-Civita connection on $E$, with curvature matrix $\widetilde{\Omega}$ on a framed open set. Since $P(A)$ is a linear combination with real coefficients in the trace polynomials and $k$ is odd, every monomial term of $P(A)$ has an odd degree i.e. must contain a trace polynomial $\Sigma_m$ of odd degree $m$ as a factor. Since $\Sigma_m(\widetilde{\Omega}) = 0$ implies $P(\widetilde{\Omega}) = 0$ for the trace polynomials with odd degrees, we conclude using the independence of the connection that if $\nabla$ is any connection on $E$ with curvature matrix $\Omega$, then $[P(\Omega)] = [P(\widetilde{\Omega}) ] = 0$.
 </div>
 
 ---
@@ -86,7 +86,7 @@ From the theorem above we concluded that for odd $k$, the polynomials $\Sigma_k(
     </li>    
 </ol>
 
-Using these we will get the following definition.
+Using these we'll get the following definition.
 
 <div class="definition">
 The $k$'th Pontryagin class $p_k(E)$ of a vector bundle $E \to M$ is defined to be
@@ -97,11 +97,11 @@ $$
 
 The factor of $i$ is there to make sure that other formulas will be sign-free and the factor of $1/2\pi$ is there to ensure that $p_k(E)$ is the class of an integral form[^1].
 
-Note that we can collect the Pontryagin classes in a single formula given by
+Note that we can collect the Pontryagin classes in a single formula[^2] given by
 
 $$
 \begin{align*}
-    \left[\det\left(\lambda I + \frac{i}{2\pi} \Omega\right)\right] &= \lambda^n + p_1(E)\lambda^{n-1} + \dots + p_{\lfloor n/2\rfloor}(E)\lambda^{n-2\lfloor n/2\rfloor}
+    \left[\det\left(\lambda I + \frac{i}{2\pi} \Omega\right)\right] &= \lambda^n + p_1(E)\lambda^{n-2} + \dots + p_{\lfloor n/2\rfloor}(E)\lambda^{n-2\lfloor n/2\rfloor}
 \end{align*}
 $$
 
@@ -111,8 +111,102 @@ $$
 p(E) := \left[\det\left(I + \frac{i}{2\pi} \Omega\right)\right] = 1 + p_1(E) + \dots + p_{\lfloor n/2\rfloor}(E).
 $$
 
+Now as $\Omega$ is a $\mathfrak{gl}(n,\Bbb R)$-valued $2$-form, $f_{2k}\left(\frac{i}{2\pi} \Omega\right)$ is a $4k$-form. It follows that $p_k(E)^{a_i}$ has degree $4ka_i$ and so the monomial $p_1(E)^{a_1}p_2(E)^{a_2}\cdots p_{\lfloor n/2\rfloor}(E)^{a_{\lfloor n/2\rfloor}}$ has degree
 
+$$
+4a_1 + 8a_2 + \dots + 4\lfloor \frac{n}{2}\rfloor a_{\lfloor n/2\rfloor} = 4\left(a_1 + a_2 + \dots + \lfloor \frac{n}{2}\rfloor a_{\lfloor n/2\rfloor}\right).
+$$
+
+When this equals, say $\dim M = 4m$, we can compute the integral
+
+$$
+\int_M p_1(E)^{a_1}p_2(E)^{a_2}\cdots p_{\lfloor n/2\rfloor}(E)^{a_{\lfloor n/2\rfloor}}
+$$
+
+which we will call a <b>Pontryagin number</b> of $E$. The following theorem gives us a neat way to calculate total Pontryagin classes for direct sums of vector bundles.
+
+<div class="theorem" text="(Whitney)">
+Let $E$ and $F$ be vector bundles over $M$, then
+
+$$
+p(E \oplus F) = p(E) \smile p(F).
+$$
+
+</div>
+
+<div class="proof">
+Let $\nabla$ and $\widetilde{\nabla}$ be connections on $E$ and $F$ respectively. Then there is a natural direct sum connection $\nabla \oplus \widetilde{\nabla}$ on $E \oplus F$. If $\Omega$ and $\widetilde{\Omega}$ are the curvature matrices of $E$ and $F$, then the curvature matrix of the sum $E \oplus F$ is given by
+
+$$
+\Omega' = \begin{pmatrix}\Omega &0\\ 0&\widetilde{\Omega}\end{pmatrix}.
+$$
+
+It follows that the total Pontryagin class of the sum $E \oplus F$ is given by
+
+$$
+\begin{align*}
+p(E \oplus F) &= \left[\det\left(I + \frac{i}{2\pi} \Omega'\right)\right] \\
+&= \left[\det\begin{pmatrix}I + \frac{i}{2\pi}\Omega &0\\ 0&I + \frac{i}{2\pi}\widetilde{\Omega}\end{pmatrix}\right] \\
+&= \left[\det\left(I + \frac{i}{2\pi} \Omega\right) \wedge \det\left(I + \frac{i}{2\pi} \widetilde{\Omega}\right)\right] \\
+&= p(E)\smile p(F)
+\end{align*}
+$$
+
+which yields our desired result.
+
+</div>
+
+Here $[\alpha] \smile [\beta]$ is the cup product which in the case of de Rham cohomology is represented by $[\alpha \wedge \beta]$. I might occasionally drop the $\smile$ and just write $[\alpha][\beta]$.
+
+---
+
+The <b>Euler class</b> can be defined in a few different ways. One way to do this is to use something called a <b>Thom class</b> which you can find in the book "Differential Forms in Algebraic Topology" by Bott & Tu. Instead of this, we will be using the <b>Pfaffian</b> which we can use later on to prove the Generalized Gauss–Bonnet Theorem. 
+
+The key idea with the Euler class is that it is an obstruction to the existence of a nowhere-vanishing section. To get an intuition for the Euler class the following might be a good way to think about it: Whenever you attempt to create a nowhere-vanishing section on a manifold, you'll end up with difficulties in getting the section to function properly on a submanifold. Different approaches might lead to issues on different submanifolds, but interestingly, all these problematic submanifolds represent the same homology class. If this homology class is non-zero, it will be impossible to construct the nowhere-vanishing section successfully.
+
+The following picture illustrates this with $\Bbb S^2$. Trying to construct a nowhere-vanishing section of the tangent bundle i.e. a vector field is not possible due to the Hairy Ball Theorem.
+
+<p align="center">
+    <img src="/assets/images/hb.png" alt="image" width="400" height="auto">
+</p>
+
+The caveat of Euler classes is that they are only defined for orientable vector bundles. Let's quickly recall how we define an orientation on a vector bundle.
+
+<div class="definition">
+An <b>orientation</b> on a vector bundle $E \to M$ of rank $n$ is an equivalence class of nowhere-vanishing sections of the determinant line bundle $\bigwedge^n E$, two such sections $s$ and $\sigma$ being equivalent if and only if they are related by multiplication with a positive function on $M$. That is $\sigma = fs$ for $f >0$.
+</div>
+
+Nowhere-vanishing sections and line bundles play together quite nicely giving us the following proposition.
+
+<div class="proposition">
+A vector bundle $E \to M$ of rank $n$ has an orientation if and only if the determinant line bundle is trivial.
+</div>
+
+<div class="proof">
+It suffices to show that $\bigwedge^n E$ is trivial if and only if it has a nowhere-vanishing section. Suppose that $\varphi : \bigwedge^n E \to M \times \Bbb R$ is an isomorphism. Define 
+
+$$
+\begin{align*}
+s : M &\to \bigwedge^n E \\
+p &\longmapsto \varphi^{-1}(p, 1).
+\end{align*}
+$$
+
+The map $s$ is now a nowhere-vanishing section. Conversely, if $\sigma : M \to \bigwedge^n E$ is a nowhere-vanishing section, we can define
+
+$$
+\begin{align*}
+\psi : M \times \Bbb R &\to \bigwedge^n E \\
+(p,\lambda) &\longmapsto \lambda \sigma(p).
+\end{align*}
+$$
+
+To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{p\} \times \Bbb R \to \bigwedge^n E_p$ are isomorphisms. Note that $\psi_p$ is injective as $\psi_p(p,\lambda) = \lambda\sigma(p) = 0 \implies \lambda = 0$ since $\sigma$ is a nowhere-vanishing section. Finally, notice that $\psi_p$ is an injective linear map of vector spaces with the same dimension and therefore an isomorphism.
+
+</div>
 
 ---
 
 [^1]: A closed $p$-form is said to be <b>integral</b> if it results in an integer when integrated over any compact oriented submanifold of $M$ with dimension $p$.
+
+[^2]: A quick explanation for the floor function here. Note that for each even integer $2k \le n$ we get a Pontryagin class $p_k(E) = \left[f_{2k}\left(\frac{i}{2\pi}\Omega\right)\right]$. If $n$ is even, then $2\lfloor n/2\rfloor = n$ and if $n$ is odd, then $2\lfloor n/2\rfloor = n-1$. In other words $2\lfloor n/2\rfloor$ is the smallest even integer less than or equal to $n$ and hence $p_{\lfloor n/2\rfloor}(E) = \left[f_{2\lfloor n/2\rfloor}\left(\frac{i}{2\pi}\Omega\right)\right]$ is the last term of our sum. It is also worth mentioning that a bunch of the summands here could potentially be zero depending on the dimension of $M$. To get the last potentially non-zero class one should consider $\min\\{\lfloor n/2\rfloor, \dim M\\}$.

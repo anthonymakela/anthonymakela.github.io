@@ -110,10 +110,10 @@ $$
 are polynomials on $\mathfrak{gl}(n,\Bbb R)$. Notice that for any $X \in \mathrm{GL}(n,\Bbb R)$ we have that
 
 $$
-\det(X^{-1}(\lambda I + A)X)  = \det(\lambda I + A).
+\det(\lambda I + X^{-1}AX)  = \det(\lambda I + A).
 $$
 
-Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$.
+Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$. Alternatively you might notice that $f_k(A)$ is exactly the sum of the $k \times k$ principal minors of $A$. 
 
 Lastly we consider the <b>trace polynoimals</b> defined by $\sum_k X = \operatorname{tr}(A^k)$. Now as $\operatorname{tr}(A) = f_1(A)$ we have that
 
