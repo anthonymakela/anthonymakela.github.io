@@ -3,11 +3,10 @@ layout: post
 title: "Pontryagin and Euler Classes"
 categories: [Differential Geometry]
 mathjax: true
-published: false
 excerpt_separator: <!--more-->
 ---
 
-Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler classes afterward. The next post will be about complex vector bundles and Chern classes.
+Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular, we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler classes afterward. The next post will be about complex vector bundles and Chern classes.
 
 <!--more-->
 
@@ -57,7 +56,7 @@ and so $[f_1(\Omega)] = [\operatorname{tr}(\Omega)] = 0$. It would be reasonable
 If $A$ is a skew-symmetric matrix of $2$-forms on $M$, then $A^k$ is symmetric for even $k$ and skew-symmetric for odd $k$.
 </div>
 
-The proof of the above lemma is a simple induction and will be left for the reader as an exercise. Using this we can conclude that $\Omega^k$ is skew-symmetric for odd $k$. You might have noticed that we have been assuming orthonormality of the frame and the compatibility of the connection with the metric in the above calculations. Neither of these will be a problem for us, since $\operatorname{tr}(\Omega^k)$ is invariant under conjugation and the cohomology class $[\operatorname{tr}(\Omega^k)]$ is independent of the connection. It is actually quite nice that we are able to use the Levi-Civita connection for example to calculate characteristic classes.
+The proof of the above lemma is a simple induction and will be left for the reader as an exercise. Using this we can conclude that $\Omega^k$ is skew-symmetric for odd $k$. You might have noticed that we have been assuming the orthonormality of the frame and the compatibility of the connection with the metric in the above calculations. Neither of these will be a problem for us, since $\operatorname{tr}(\Omega^k)$ is invariant under conjugation and the cohomology class $[\operatorname{tr}(\Omega^k)]$ is independent of the connection. It is actually quite nice that we are able to use the Levi-Civita connection for example to calculate characteristic classes.
 
 <div class="theorem">
 Suppose that a homogeneous invariant polynomial $P(A)$ on $\mathfrak{gl}(n,\Bbb R)$ has odd degree $k$, then for any connection $\nabla$ on any vector bundle $E \to M$ with curvature matrix $\Omega$, the cohomology class $[P(\Omega)]$ is zero in $H^{2k}(M)$.
@@ -205,7 +204,7 @@ To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{
 
 </div>
 
-Since we gave more structure to the bundle $E \to M$ by introducing orientation we can consider local frames $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ of $E$ over an open set $U$ which are positively oriented[^3] and orthonormal. If $\nabla$ is a connection on $E$ we recall that relative to $e$ the matrices $\omega$ and $\Omega$ are both skew-symmetric. For another positively oriented orthonormal local frame $\bar{e}$ over $U$ the frame $e$ transforms as 
+Since we gave more structure to the bundle $E \to M$ by introducing orientation we can consider local frames $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ of $E$ over an open set $U$ which are positively oriented[^3] and orthonormal. If $\nabla$ is a connection on $E$ we recall that relative to $e$ the matrices $\omega$ and $\Omega$ are both skew-symmetric. For another positively oriented orthonormal local frame $\bar{e}$ over $U$ the frame $e$ transforms as 
 
 $$
 \bar{e} = ea
@@ -219,7 +218,7 @@ $$
 
 The important thing now is that $a$ is a special orthogonal matrix at each point. This means that, in order to get a global form $P(\Omega)$ on $M$ we do not need $P(\Omega)$ to be invariant under conjugation by all of $\mathrm{GL}(n,\Bbb R)$, but only for elements in $\mathrm{SO}(n)$. Evidently, every $\mathrm{GL}(n,\Bbb R)$-invariant polynomial is also $\mathrm{SO}(n)$-invariant, but could there be an $\mathrm{SO}(n)$-invariant polynomial which isn't $\mathrm{GL}(n,\Bbb R)$-invariant? This would give us a new characteristic class. Turns out that for odd $n$ the only $\mathrm{SO}(n)$-invariant polynomials are the trace polynomials and the coefficients of the characteristic polynomial, but for even $n$ the ring of $\mathrm{SO}(n)$-invariant polynomials has an additional generator, namely the Pfaffian which I mentioned earlier. You might now guess how we are going to define the Euler class.
 
-Let's take a quick excursion to understand the Pfaffian before defining the Euler class. There is a neat fact from linear algebra that if $A$ is an skew-symmetric $n \times n$ matrix with entries in a field $F$, then $\det(A)$ is a perfect square in $F$. Using this it is not too difficult to show that if $A= [a^i_j]$ is an $2m \times 2m$ skew-symmetric matrix of indeterminates, then $\det(A)$ is a perfect square in the ring $\Bbb Z[a^i_j]$. This leads us to the definition for the Pfaffian.
+Let's take a quick excursion to understand the Pfaffian before defining the Euler class. There is a neat fact from linear algebra that if $A$ is a skew-symmetric $n \times n$ matrix with entries in a field $F$, then $\det(A)$ is a perfect square in $F$. Using this it is not too difficult to show that if $A= [a^i_j]$ is an $2m \times 2m$ skew-symmetric matrix of indeterminates, then $\det(A)$ is a perfect square in the ring $\Bbb Z[a^i_j]$. This leads us to the definition of the Pfaffian.
 
 <div class="definition">
 The Pfaffian of a $2m \times 2m$ skew-symmetric matrix $A$ is defined to be a polynomial $\operatorname{Pf}(A)$ such that
@@ -249,7 +248,7 @@ Note that
 
 $$
 \begin{align*}
-\det(X^TAX) &= \det\left(X^T\right)\det(A)\det(X) \\
+\det(X^TAX) &= \det\left(X^T\right)\det(A)\det(X) \\
 &= \det(X)^2\det(A).
 \end{align*}
 $$
@@ -305,6 +304,101 @@ $$
 
 ---
 
+Before I wrap this up, I want to show you how calculating the Euler class $e\left(T\Bbb S^2\right)$ will hint us towards the Generalized Gauss–Bonnet Theorem.
+
+A Riemannian metric on $\Bbb S^2$ with coordinates $(\theta,\varphi)$ given by the inverse of the parametrization $X(\theta,\varphi) = (\cos\theta\sin\varphi,\sin\theta\sin\varphi,\cos\varphi)$ is given by 
+
+$$
+g = d\varphi \otimes d\varphi + \sin^2(\varphi)d\theta \otimes d\theta.
+$$
+
+An orthonormal frame is given by $e_1 = \frac{\partial}{\partial \varphi}, e_1 = \frac{1}{\sin(\varphi)}\frac{\partial}{\partial \theta}$, with the corresponding dual coframe $\varepsilon^1 = d\varphi, \varepsilon^2 = \sin(\varphi)d\theta$. Now, in an orthonormal frame the matrix $\omega = [\omega^i_j]$ of connection $1$-forms is skew-symmetric i.e.
+
+$$
+\omega = \begin{bmatrix} 0 & \omega^1_2 \\ -\omega^1_2 & 0 \end{bmatrix}
+$$
+
+so let's first find $\omega^1_2$. Note that 
+
+$$
+\begin{gather*} 
+d\varepsilon^1 = 0 \\ 
+d\varepsilon^2 = \cos(\varphi)d\varphi \wedge d\theta.
+\end{gather*}
+$$
+
+Since the form $\omega^1_2$ is a linear combination $\omega^1_2 = ad\varphi + bd\theta$ we can solve for $a$ and $b$ using the first structural equation[^5]:
+
+$$
+\begin{align*} 
+d\varepsilon^1 &= -\omega^1_2 \wedge \varepsilon^2 \\ 
+d\varepsilon^2 &= -\omega^2_1 \wedge \varepsilon^1 = \omega^1_2 \wedge \varepsilon^1.
+\end{align*}
+$$
+
+The first equation yields
+
+$$
+\begin{align*} 
+0 &= -(ad\varphi + bd\theta)\wedge \sin(\varphi)d\theta \\
+&= -a\sin(\varphi)d\varphi \wedge d\theta\\
+&\implies a = 0.
+\end{align*} 
+$$
+
+From the second equation
+
+$$
+\begin{align*} 
+\cos(\varphi)d\varphi \wedge d\theta &= (ad\varphi + bd\theta)\wedge d\varphi \\
+&= bd\theta \wedge d\varphi \\
+&\implies b = -\cos(\varphi).
+\end{align*} 
+$$
+
+The connection matrix thus reads as
+
+$$
+\omega = \begin{bmatrix} 0 & -\cos(\varphi)d\theta \\ \cos(\varphi)d\theta & 0 \end{bmatrix}.
+$$
+
+Now note that 
+
+$$
+\begin{align*}
+\omega \wedge \omega &= \begin{bmatrix} 0 & \omega^1_2 \\ -\omega^1_2 & 0 \end{bmatrix} \wedge \begin{bmatrix} 0 & \omega^1_2 \\ -\omega^1_2 & 0 \end{bmatrix} \\
+&= \begin{bmatrix} -\omega^1_2 \wedge \omega^1_2 & 0 \\ 0 & -\omega^1_2 \wedge \omega^1_2 \end{bmatrix} \\
+&= \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}.
+\end{align*}
+$$
+
+This is nice as the second structural equation $\Omega = d\omega + \omega \wedge \omega$ simplifies to $\Omega = d\omega$. We obtain
+
+$$
+\Omega = \begin{bmatrix} 0 & \sin(\varphi)d\varphi \wedge d\theta \\ -\sin(\varphi)d\varphi \wedge d\theta & 0 \end{bmatrix}.
+$$
+
+The Pfaffian of a $2\times 2$ skew-symmetric matrix is just the $(1,2)$'th entry and so
+
+$$
+\operatorname{Pf}(\Omega) = \sin(\varphi)d\varphi \wedge d\theta.
+$$
+
+The Euler class is thus given by $e\left(T\Bbb S^2\right) = \left[\frac{1}{2\pi}\sin(\varphi)d\varphi \wedge d\theta\right]$. Now if you are bored enough you might think that since the form $1/2\pi\sin(\varphi)d\varphi \wedge d\theta$ is so simple, let's just see what happens when we integrate it over the manifold. You'll find that
+
+$$
+\begin{align*}
+\frac{1}{2\pi}\int_{\Bbb S^2} \sin(\varphi)\ d\varphi \wedge d\theta &= \frac{1}{2\pi}\int_{0}^\pi \int_{0}^{2\pi} \sin(\varphi)\ d\varphi \ d\theta \\
+&= \frac{1}{2\pi} 4\pi \\
+&= 2 \\
+&= \chi(\Bbb S^2).
+\end{align*}
+$$
+
+That is, we've recovered the Euler characteristic of the sphere. This is not a coincidence and is an instance of a generalization of the Gauss-Bonnet theorem. Next time we'll look at complex vector bundles and Chern classes.
+
+---
+
 [^1]: A closed $p$-form is said to be <b>integral</b> if it results in an integer when integrated over any compact oriented submanifold of $M$ with dimension $p$.
 
 [^2]: A quick explanation for the floor function here. Note that for each even integer $2k \le n$ we get a Pontryagin class $p_k(E) = \left[f_{2k}\left(\frac{i}{2\pi}\Omega\right)\right]$. If $n$ is even, then $2\lfloor n/2\rfloor = n$ and if $n$ is odd, then $2\lfloor n/2\rfloor = n-1$. In other words $2\lfloor n/2\rfloor$ is the smallest even integer less than or equal to $n$ and hence $p_{\lfloor n/2\rfloor}(E) = \left[f_{2\lfloor n/2\rfloor}\left(\frac{i}{2\pi}\Omega\right)\right]$ is the last term of our sum. It is also worth mentioning that a bunch of the summands here could potentially be zero depending on the dimension of $M$. To get the last potentially non-zero class one should consider $\min\\{\lfloor n/2\rfloor, \dim M\\}$.
@@ -312,3 +406,5 @@ $$
 [^3]: Positively oriented meaning that at each point $p$ in $M$ it agrees with the orientation on $E$.
 
 [^4]: The proof for this follows from a more general result proven in Milnor & Stasheff's book "Characteristic Classes".
+
+[^5]: Given an orthonormal frame $(e_i)$ and a dual coframe $(\varepsilon^j)$, we have that $d\varepsilon^i + \sum_{j}\omega^i_j \wedge \varepsilon^j = 0$ for all $i$.
