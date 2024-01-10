@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Pontryagin, Euler, and Chern classes"
+title: "Pontryagin and Euler Classes"
 categories: [Differential Geometry]
 mathjax: true
 published: false
 excerpt_separator: <!--more-->
 ---
 
-Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler and Chern classes afterward.
+Last time we finished with a quite general description of  <a href="https://anthonymakela.com/differential%20geometry/2023/12/28/characteristic-classes.html" style="color:#680530; text-decoration: underline;">Characteristic Classes</a>. In particular we gave a construction for the Chern–Weil homomorphism $c_E : \mathrm{Inv}(\mathfrak{gl}(n,\Bbb R)) \to H^\ast(M)$. The goal today is to look at different types of characteristic classes. We'll begin with Pontryagin classes and look at Euler classes afterward. The next post will be about complex vector bundles and Chern classes.
 
 <!--more-->
 
@@ -201,7 +201,105 @@ $$
 \end{align*}
 $$
 
-To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{p\} \times \Bbb R \to \bigwedge^n E_p$ are isomorphisms. Note that $\psi_p$ is injective as $\psi_p(p,\lambda) = \lambda\sigma(p) = 0 \implies \lambda = 0$ since $\sigma$ is a nowhere-vanishing section. Finally, notice that $\psi_p$ is an injective linear map of vector spaces with the same dimension and therefore an isomorphism.
+To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{p\} \times \Bbb R \to \bigwedge^n E_p$ are isomorphisms. Note that $\psi_p$ is injective as $\psi_p(p,\lambda) = \lambda\sigma(p) = 0 \implies \lambda = 0$ since $\sigma$ is a nowhere-vanishing section. Finally, notice that $\psi_p$ is an injective linear map of vector spaces with the same dimension and therefore an isomorphism. I should probably point out that there is nothing special about the bundle $\bigwedge^n E$ here. The proof generalizes to any line bundle.
+
+</div>
+
+Since we gave more structure to the bundle $E \to M$ by introducing orientation we can consider local frames $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ of $E$ over an open set $U$ which are positively oriented[^3] and orthonormal. If $\nabla$ is a connection on $E$ we recall that relative to $e$ the matrices $\omega$ and $\Omega$ are both skew-symmetric. For another positively oriented orthonormal local frame $\bar{e}$ over $U$ the frame $e$ transforms as 
+
+$$
+\bar{e} = ea
+$$
+
+for a smooth function $a : U \to \mathrm{SO}(n)$. Similarly the matrix $\Omega$ transforms via
+
+$$
+\bar{\Omega} = a^{-1}\Omega a.
+$$
+
+The important thing now is that $a$ is a special orthogonal matrix at each point. This means that, in order to get a global form $P(\Omega)$ on $M$ we do not need $P(\Omega)$ to be invariant under conjugation by all of $\mathrm{GL}(n,\Bbb R)$, but only for elements in $\mathrm{SO}(n)$. Evidently, every $\mathrm{GL}(n,\Bbb R)$-invariant polynomial is also $\mathrm{SO}(n)$-invariant, but could there be an $\mathrm{SO}(n)$-invariant polynomial which isn't $\mathrm{GL}(n,\Bbb R)$-invariant? This would give us a new characteristic class. Turns out that for odd $n$ the only $\mathrm{SO}(n)$-invariant polynomials are the trace polynomials and the coefficients of the characteristic polynomial, but for even $n$ the ring of $\mathrm{SO}(n)$-invariant polynomials has an additional generator, namely the Pfaffian which I mentioned earlier. You might now guess how we are going to define the Euler class.
+
+Let's take a quick excursion to understand the Pfaffian before defining the Euler class. There is a neat fact from linear algebra that if $A$ is an skew-symmetric $n \times n$ matrix with entries in a field $F$, then $\det(A)$ is a perfect square in $F$. Using this it is not too difficult to show that if $A= [a^i_j]$ is an $2m \times 2m$ skew-symmetric matrix of indeterminates, then $\det(A)$ is a perfect square in the ring $\Bbb Z[a^i_j]$. This leads us to the definition for the Pfaffian.
+
+<div class="definition">
+The Pfaffian of a $2m \times 2m$ skew-symmetric matrix $A$ is defined to be a polynomial $\operatorname{Pf}(A)$ such that
+
+$$
+\det(A) = \left(\operatorname{Pf}(A)\right)^2.
+$$
+</div>
+
+More explicitly the Pfaffian of $A$ could be defined as
+
+$$
+\operatorname{Pf} (A)={\frac {1}{2^{m}m!}}\sum _{\sigma \in S_{2m}}\operatorname {sgn} (\sigma )\prod _{i=1}^{m}a^{\sigma (2i-1)}_{\sigma (2i)}.
+$$
+
+<div class="proposition">
+Let $A = [a^i_j]$ be a $2m \times 2m$ skew-symmetric matrix and $X = [x^i_j]$ a $2m \times 2m$ matrix of indeterminates. Then
+
+$$
+\operatorname{Pf}(X^TAX) = \det(X) \operatorname{Pf}(A) \in \Bbb Z[a^i_j, x^i_j].
+$$
+
+</div>
+
+<div class="proof">
+Note that
+
+$$
+\begin{align*}
+\det(X^TAX) &= \det\left(X^T\right)\det(A)\det(X) \\
+&= \det(X)^2\det(A).
+\end{align*}
+$$
+
+Since $A$ is skew-symmetric the matrix $X^TAX$ is also skew-symmetric so
+
+$$
+\left(\operatorname{Pf}(X^TAX)\right)^2 = \det(X)^2\left(\operatorname{Pf}(A)\right)^2.
+$$
+
+This yields that
+
+$$
+\operatorname{Pf}(X^TAX) = \pm \det(X)\operatorname{Pf}(A).
+$$
+
+To get the sign correctly, note that if $\operatorname{Pf}(A) = 0$ we win. If $\operatorname{Pf}(A) \ne 0$ and we had $\operatorname{Pf}(X^TAX) = -\det(X)\operatorname{Pf}(A)$, then taking $X = I$ would give $\operatorname{Pf}(A) = - \operatorname{Pf}(A)$ which would result in a contradiction.
+</div>
+
+From the above proposition it follows that if $A$ is a $n \times n$ skew-symmetric matrix and $X \in \mathrm{SO}(n)$, then
+
+$$
+\begin{align*}
+\operatorname{Pf}(X^{-1}AX) &= \operatorname{Pf}(X^{T}AX) \\
+&= \det(X)\operatorname{Pf}(A) \\
+&= \operatorname{Pf}(A)
+\end{align*}
+$$
+
+yielding that $\operatorname{Pf}(A)$ is an $\mathrm{SO}(n)$-invariant polynomial on $n \times n$ skew-symmetric matrices.
+
+All in all we see that if $a \in \mathrm{SO}(2m)$, then $\det(a) = 1$ and if $\bar{\Omega}$ is the curvature matrix of a connection $\nabla$ on a vector bundle $E \to M$ with respect to a positively oriented local orthonormal frame $\bar{e}$, then
+
+$$
+\begin{align*}
+\operatorname{Pf}(\bar{\Omega}) &= \operatorname{Pf}(a^{-1}\Omega a) \\
+&= \operatorname{Pf}(a^{T}\Omega a) \\
+&= \det(a)\operatorname{Pf}(\Omega) \\
+&= \operatorname{Pf}(\Omega).
+\end{align*}
+$$
+
+So $\operatorname{Pf}(\Omega)$ is independent of the frame and therefore defines a global form on $M$. This form is also closed and independent of the connection[^4], hence it gives a well-defined cohomology class $[\operatorname{Pf}(\Omega)] \in H^{2m}(M)$. 
+
+<div class="definition">
+The Euler class $e(E)$ of the real oriented vector bundle $E \to M$ equipped with a Riemannian metric is defined to be
+
+$$
+e(E) = \left[\operatorname{Pf}\left(\frac{1}{2\pi}\Omega\right)\right] \in H^{2n}(M).
+$$
 
 </div>
 
@@ -210,3 +308,7 @@ To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{
 [^1]: A closed $p$-form is said to be <b>integral</b> if it results in an integer when integrated over any compact oriented submanifold of $M$ with dimension $p$.
 
 [^2]: A quick explanation for the floor function here. Note that for each even integer $2k \le n$ we get a Pontryagin class $p_k(E) = \left[f_{2k}\left(\frac{i}{2\pi}\Omega\right)\right]$. If $n$ is even, then $2\lfloor n/2\rfloor = n$ and if $n$ is odd, then $2\lfloor n/2\rfloor = n-1$. In other words $2\lfloor n/2\rfloor$ is the smallest even integer less than or equal to $n$ and hence $p_{\lfloor n/2\rfloor}(E) = \left[f_{2\lfloor n/2\rfloor}\left(\frac{i}{2\pi}\Omega\right)\right]$ is the last term of our sum. It is also worth mentioning that a bunch of the summands here could potentially be zero depending on the dimension of $M$. To get the last potentially non-zero class one should consider $\min\\{\lfloor n/2\rfloor, \dim M\\}$.
+
+[^3]: Positively oriented meaning that at each point $p$ in $M$ it agrees with the orientation on $E$.
+
+[^4]: The proof for this follows from a more general result proven in Milnor & Stasheff's book "Characteristic Classes".
