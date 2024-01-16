@@ -157,6 +157,21 @@ which yields our desired result.
 
 Here $[\alpha] \smile [\beta]$ is the cup product which in the case of de Rham cohomology is represented by $[\alpha \wedge \beta]$. I might occasionally drop the $\smile$ and just write $[\alpha][\beta]$.
 
+<!--
+---
+
+Since we can characterize reasonably well Riemannian manifolds with constant curvature, suppose $M$ is such with constant curvature $K$. What can we say about the Pontryagin classes of $M$?
+
+Recall that in an local orthonormal coframe $(\varepsilon^i)$, the curvature $2$-forms of $M$ are of the form 
+
+$$
+\Omega^i_j = -K\varepsilon^j \wedge \varepsilon^i.
+$$
+
+Also the matrix $\Omega$ is skew-symmetric.
+
+-->
+
 ---
 
 The <b>Euler class</b> can be defined in a few different ways. One way to do this is to use something called a <b>Thom class</b> which you can find in the book "Differential Forms in Algebraic Topology" by Bott & Tu. Instead of this, we will be using the <b>Pfaffian</b> which we can use later on to prove the Generalized Gauss–Bonnet Theorem. 
