@@ -157,21 +157,45 @@ which yields our desired result.
 
 Here $[\alpha] \smile [\beta]$ is the cup product which in the case of de Rham cohomology is represented by $[\alpha \wedge \beta]$. I might occasionally drop the $\smile$ and just write $[\alpha][\beta]$.
 
-<!--
+<!---
 ---
 
 Since we can characterize reasonably well Riemannian manifolds with constant curvature, suppose $M$ is such with constant curvature $K$. What can we say about the Pontryagin classes of $M$?
 
-Recall that in an local orthonormal coframe $(\varepsilon^i)$, the curvature $2$-forms of $M$ are of the form 
+Recall that if $U$ is a framed open set and $(e_i)$ the local frame, then given the dual coframe $(\varepsilon^i)$ we have that
 
 $$
-\Omega^i_j = -K\varepsilon^j \wedge \varepsilon^i.
+\begin{align*}
+
+\Omega^j_i &= \sum \Omega^j_i(e_k,e_l) \varepsilon^k \wedge \varepsilon^l \\
+&= \sum \varepsilon^j(R(e_k,e_l)e_i) \varepsilon^k \wedge \varepsilon^l \\
+&= \sum \langle R(e_k,e_l)e_i, e_j\rangle \varepsilon^k \wedge \varepsilon^l \\
+&= \sum R_{klij} \varepsilon^k \wedge \varepsilon^l \\
+&= -\sum K (\delta_{ki}\delta_{lj} - \delta_{kj}\delta_{li})\varepsilon^k \wedge \varepsilon^l \\
+&= -K \varepsilon^i \wedge \varepsilon^j.
+
+\end{align*}
 $$
 
-Also the matrix $\Omega$ is skew-symmetric.
+Also the matrix $\Omega$ is skew-symmetric and hence takes the form
+
+$$
+\begin{pmatrix}
+0 & -K\varepsilon^1 \wedge \varepsilon^2 & -K\varepsilon^1 \wedge \varepsilon^3 & \cdots & -K\varepsilon^1 \wedge \varepsilon^n \\
+K\varepsilon^1 \wedge \varepsilon^2 & 0 & -K\varepsilon^2 \wedge \varepsilon^3 & \cdots & -K\varepsilon^2 \wedge \varepsilon^n \\
+K\varepsilon^1 \wedge \varepsilon^3 & K\varepsilon^2 \wedge \varepsilon^3 & 0 & \cdots & -K\varepsilon^3 \wedge \varepsilon^n \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+K\varepsilon^1 \wedge \varepsilon^n & K\varepsilon^2 \wedge \varepsilon^n & K\varepsilon^3 \wedge \varepsilon^n & \cdots & 0
+\end{pmatrix}.
+$$
+
+Observe now that the polynomials $f_{2k}\left(\frac{i}{2\pi}\Omega\right)$ are the sums of the principal $2k \times 2k$ minors of $\Omega$. More explicitly[^3]
+
+$$
+f_{2k}\left(\frac{i}{2\pi}\Omega\right) = \frac{(-1)^k}{(2\pi)^{2k}(2k)!}\sum \delta^{i_1,\dots,i_{2k}}_{j_1,\dots,j_{2k}}\Omega^{i_1}_{j_1}\wedge\dots\wedge\Omega^{i_{2k}}_{j_{2k  }}
+$$
 
 -->
-
 ---
 
 The <b>Euler class</b> can be defined in a few different ways. One way to do this is to use something called a <b>Thom class</b> which you can find in the book "Differential Forms in Algebraic Topology" by Bott & Tu. Instead of this, we will be using the <b>Pfaffian</b> which we can use later on to prove the Generalized Gauss–Bonnet Theorem. 
@@ -219,7 +243,7 @@ To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{
 
 </div>
 
-Since we gave more structure to the bundle $E \to M$ by introducing orientation we can consider local frames $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ of $E$ over an open set $U$ which are positively oriented[^3] and orthonormal. If $\nabla$ is a connection on $E$ we recall that relative to $e$ the matrices $\omega$ and $\Omega$ are both skew-symmetric. For another positively oriented orthonormal local frame $\bar{e}$ over $U$ the frame $e$ transforms as 
+Since we gave more structure to the bundle $E \to M$ by introducing orientation we can consider local frames $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ of $E$ over an open set $U$ which are positively oriented[^4] and orthonormal. If $\nabla$ is a connection on $E$ we recall that relative to $e$ the matrices $\omega$ and $\Omega$ are both skew-symmetric. For another positively oriented orthonormal local frame $\bar{e}$ over $U$ the frame $e$ transforms as 
 
 $$
 \bar{e} = ea
@@ -306,7 +330,7 @@ $$
 \end{align*}
 $$
 
-So $\operatorname{Pf}(\Omega)$ is independent of the frame and therefore defines a global form on $M$. This form is also closed and independent of the connection[^4], hence it gives a well-defined cohomology class $[\operatorname{Pf}(\Omega)] \in H^{2m}(M)$. 
+So $\operatorname{Pf}(\Omega)$ is independent of the frame and therefore defines a global form on $M$. This form is also closed and independent of the connection[^5], hence it gives a well-defined cohomology class $[\operatorname{Pf}(\Omega)] \in H^{2m}(M)$. 
 
 <div class="definition">
 The Euler class $e(E)$ of the real oriented vector bundle $E \to M$ equipped with a Riemannian metric is defined to be
@@ -342,7 +366,7 @@ d\varepsilon^2 = \cos(\varphi)d\varphi \wedge d\theta.
 \end{gather*}
 $$
 
-Since the form $\omega^1_2$ is a linear combination $\omega^1_2 = ad\varphi + bd\theta$ we can solve for $a$ and $b$ using the first structural equation[^5]:
+Since the form $\omega^1_2$ is a linear combination $\omega^1_2 = ad\varphi + bd\theta$ we can solve for $a$ and $b$ using the first structural equation[^6]:
 
 $$
 \begin{align*} 
@@ -418,8 +442,11 @@ That is, we've recovered the Euler characteristic of the sphere. This is not a c
 
 [^2]: A quick explanation for the floor function here. Note that for each even integer $2k \le n$ we get a Pontryagin class $p_k(E) = \left[f_{2k}\left(\frac{i}{2\pi}\Omega\right)\right]$. If $n$ is even, then $2\lfloor n/2\rfloor = n$ and if $n$ is odd, then $2\lfloor n/2\rfloor = n-1$. In other words $2\lfloor n/2\rfloor$ is the smallest even integer less than or equal to $n$ and hence $p_{\lfloor n/2\rfloor}(E) = \left[f_{2\lfloor n/2\rfloor}\left(\frac{i}{2\pi}\Omega\right)\right]$ is the last term of our sum. It is also worth mentioning that a bunch of the summands here could potentially be zero depending on the dimension of $M$. To get the last potentially non-zero class one should consider $\min\\{\lfloor n/2\rfloor, \dim M\\}$.
 
-[^3]: Positively oriented meaning that at each point $p$ in $M$ it agrees with the orientation on $E$.
+[^3]: 
 
-[^4]: The proof for this follows from a more general result proven in Milnor & Stasheff's book "Characteristic Classes".
+[^4]: Positively oriented meaning that at each point $p$ in $M$ it agrees with the orientation on $E$.
 
-[^5]: Given an orthonormal frame $(e_i)$ and a dual coframe $(\varepsilon^j)$, we have that $d\varepsilon^i + \sum_{j}\omega^i_j \wedge \varepsilon^j = 0$ for all $i$.
+[^5]: The proof for this follows from a more general result proven in Milnor & Stasheff's book "Characteristic Classes".
+
+[^6]: Given an orthonormal frame $(e_i)$ and a dual coframe $(\varepsilon^j)$, we have that $d\varepsilon^i + \sum_{j}\omega^i_j \wedge \varepsilon^j = 0$ for all $i$.
+

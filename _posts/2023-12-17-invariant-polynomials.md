@@ -101,7 +101,7 @@ $$
 So $P(A)$ is indeed invariant. Another example is the trace $\operatorname{tr}(A)$. Note that each of the above examples follows directly from the proposition above since each of them holds for $n \times n$ matrices of real numbers.
 
 
-Another interesting example of invariant polynomials are <b>coefficients of the characteristic polynomial</b> $\det(\lambda I + A)$ of $-A$. If $A = [a_{ij}]$ is an $n \times n$ matrix of indeterminates and $\lambda$ is another indeterminate, then the coefficients $f_k(A)$ of $\lambda^{n-k}$ in
+Another interesting example of invariant polynomials are the <b>coefficients of the characteristic polynomial</b> $\det(\lambda I + A)$ of $-A$. If $A = [a_{ij}]$ is an $n \times n$ matrix of indeterminates and $\lambda$ is another indeterminate, then the coefficients $f_k(A)$ of $\lambda^{n-k}$ in
 
 $$
 \det(\lambda I + A) = \lambda^n + f_1(A)\lambda^{n-1} + \dots + f_{n-1}(A)\lambda + f_{n}(X)
@@ -113,7 +113,7 @@ $$
 \det(\lambda I + X^{-1}AX)  = \det(\lambda I + A).
 $$
 
-Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$. Alternatively you might notice that $f_k(A)$ is exactly the sum of the $k \times k$ principal minors of $A$. 
+Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$. You might notice here that $f_k(A)$'s are exactly the sums of the $k \times k$ principal minors of $A$. 
 
 Lastly we consider the <b>trace polynoimals</b> defined by $\sum_k X = \operatorname{tr}(A^k)$. Now as $\operatorname{tr}(A) = f_1(A)$ we have that
 
