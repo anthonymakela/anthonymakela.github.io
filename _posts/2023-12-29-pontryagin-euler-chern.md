@@ -447,7 +447,7 @@ That is, we've recovered the Euler characteristic of the sphere. This is not a c
 
 [^2]: A quick explanation for the floor function here. Note that for each even integer $2k \le n$ we get a Pontryagin class $p_k(E) = \left[f_{2k}\left(\frac{i}{2\pi}\Omega\right)\right]$. If $n$ is even, then $2\lfloor n/2\rfloor = n$ and if $n$ is odd, then $2\lfloor n/2\rfloor = n-1$. In other words $2\lfloor n/2\rfloor$ is the smallest even integer less than or equal to $n$ and hence $p_{\lfloor n/2\rfloor}(E) = \left[f_{2\lfloor n/2\rfloor}\left(\frac{i}{2\pi}\Omega\right)\right]$ is the last term of our sum. It is also worth mentioning that a bunch of the summands here could potentially be zero depending on the dimension of $M$. To get the last potentially non-zero class one should consider $\min\\{\lfloor n/2\rfloor, \dim M\\}$.
 
-[^3]: 
+[^3]: See the end of the post <a href="https://anthonymakela.com/algebra/2023/12/18/coefficients-of-the-characteristic-polynomial.html" style="color:#680530; text-decoration: underline;">Coefficients and Characteristic Polynomials</a> 
 
 [^4]: Positively oriented meaning that at each point $p$ in $M$ it agrees with the orientation on $E$.
 
