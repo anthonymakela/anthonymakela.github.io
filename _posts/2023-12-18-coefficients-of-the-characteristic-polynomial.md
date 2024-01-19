@@ -231,7 +231,7 @@ which shows up in the sum $\sum_{i=1}^n\operatorname{tr}(\operatorname{adj}(t I 
 Before wrapping this up, I want to give a different viewpoint on the matter. The classical definition of the determinant for an $n \times n$ matrix $A$ is given by
 
 $$
-\det(A) = \sum_{\pi \in S_n} \operatorname{sgn}(\pi)a^1_{\pi(1)}\cdots a^n_\pi(n).
+\det(A) = \sum_{\pi \in S_n} \operatorname{sgn}(\pi)a^1_{\pi(1)}\cdots a^n_{\pi(n)}.
 $$
 
 Now, there might be a time[^1] in your life when you would like to have an alternative description for this, and turns out there is one. The Levi-Civita symbol is defined by
