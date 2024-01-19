@@ -157,7 +157,6 @@ which yields our desired result.
 
 Here $[\alpha] \smile [\beta]$ is the cup product which in the case of de Rham cohomology is represented by $[\alpha \wedge \beta]$. I might occasionally drop the $\smile$ and just write $[\alpha][\beta]$.
 
-<!---
 ---
 
 Since we can characterize reasonably well Riemannian manifolds with constant curvature, suppose $M$ is such with constant curvature $K$. What can we say about the Pontryagin classes of $M$?
@@ -192,10 +191,16 @@ $$
 Observe now that the polynomials $f_{2k}\left(\frac{i}{2\pi}\Omega\right)$ are the sums of the principal $2k \times 2k$ minors of $\Omega$. More explicitly[^3]
 
 $$
-f_{2k}\left(\frac{i}{2\pi}\Omega\right) = \frac{(-1)^k}{(2\pi)^{2k}(2k)!}\sum \delta^{i_1,\dots,i_{2k}}_{j_1,\dots,j_{2k}}\Omega^{i_1}_{j_1}\wedge\dots\wedge\Omega^{i_{2k}}_{j_{2k  }}
+\begin{align*}
+f_{2k}\left(\frac{i}{2\pi}\Omega\right) &= \frac{(-1)^k}{(2\pi)^{2k}(2k)!}\sum \delta^{i_1,\dots,i_{2k}}_{j_1,\dots,j_{2k}}\Omega^{i_1}_{j_1}\wedge\dots\wedge\Omega^{i_{2k}}_{j_{2k}} \\
+&= \frac{(-1)^kK^{2k}}{(2\pi)^{2k}(2k)!}\sum \delta^{i_1,\dots,i_{2k}}_{j_1,\dots,j_{2k}}\varepsilon^{i_1}\wedge \varepsilon^{j_1}\wedge\dots\wedge\varepsilon^{i_k}\wedge \varepsilon^{j_k}.
+\end{align*}
 $$
 
--->
+Now, notice that the $\delta$'s vanish unless $j_1,\dots,j_{2k}$ is a permutation of $i_1,\dots,i_{2k}$, but if that's the case, then the wedge product of these $\varepsilon$'s has repeated factors yielding that $f_{2k}\left(\frac{i}{2\pi}\Omega\right)$ will vanish no matter what.
+
+There is actually an even stronger result by Chern and Simons stating conformal invariance for Pontryagin classes. This means that for a locally conformally flat manifold the Pontryagin classes vanish.
+
 ---
 
 The <b>Euler class</b> can be defined in a few different ways. One way to do this is to use something called a <b>Thom class</b> which you can find in the book "Differential Forms in Algebraic Topology" by Bott & Tu. Instead of this, we will be using the <b>Pfaffian</b> which we can use later on to prove the Generalized Gauss–Bonnet Theorem. 

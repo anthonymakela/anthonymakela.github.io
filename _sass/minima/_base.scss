@@ -379,6 +379,17 @@ blockquote {
   border-left: 5px solid #eee;
 }
 
+.corollary {
+  display: block;
+  margin: 12px 0;
+  font-style: normal;
+}
+.corollary:before {
+  content: "Corollary.";
+  font-weight: bold;
+  font-style: normal;
+}
+
 mjx-container {
   overflow-x: auto;
   overflow-y: hidden;
