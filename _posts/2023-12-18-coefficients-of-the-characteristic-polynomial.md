@@ -224,7 +224,7 @@ a^4_2 & a^4_4
 \end{vmatrix}
 $$
 
-which shows up in the sum $\sum_{i=1}^n\operatorname{tr}(\operatorname{adj}(t I - A_i))$ first when $i = 1$ and for the second time when $i = 3$ as illustrated above.
+which shows up in the sum $\sum_{i=1}^n\operatorname{tr}(\operatorname{adj}(t I - A_i))$ first when $i = 1$ and for the second time when $i = 3$ as illustrated above. Similar reasoning shows that the $1 \times 1$ minors appear $6 = 3!$ times.
 
 ---
 
