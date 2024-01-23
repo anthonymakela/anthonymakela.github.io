@@ -138,7 +138,36 @@ $$
 
 ---
 
-For the sake of concreteness, let's calculate the Chern classes of the complex projective space $\Bbb CP^n.$ Before we do this we need to go over a few results on vector bundles
+For the sake of concreteness, let's calculate the Chern classes of the complex projective space $\Bbb CP^n.$ Recall that the cohomology ring of $\Bbb CP^n$ is given by 
+
+$$
+H^\ast(\Bbb CP^n, \Bbb Z) \cong \Bbb Z[x]/(x^{n+1}).
+$$
+
+Now before we go any further, we are going to need the following proposition for the calculation.
+
+<div class="proposition">
+Let $\mathcal{O}(-1)$ be the tautological line bundle over $\Bbb CP^n$ and $\epsilon$ the trivial complex line bundle. Then
+
+$$
+T\Bbb CP^n \oplus \epsilon \cong \mathcal{O}(1) \oplus \dots \oplus \mathcal{O}(1)
+$$
+
+where $\mathcal{O}(1)$ is the dual bundle of $\mathcal{O}(-1)$.
+</div>
+
+<div class="proof" markdown=1>
+This follows directly from the Euler sequence[^3]
+
+$$
+0\longrightarrow \epsilon \longrightarrow {\mathcal {O}}(1)^{\oplus (n+1)}\longrightarrow {T\Bbb CP^n}\longrightarrow 0
+$$
+
+being split in the smooth category.
+
+</div>
+
+We are also going to need that for $\mathcal{O}(-1)$ the first Chern class is $c_1(\mathcal{O}(-1)) = -x$. To see this, note that if $\iota : \Bbb CP^1 \hookrightarrow \Bbb CP^n$ is the inclusion map, then $\iota^\ast(\mathcal{O}(-1)) = \mathcal{O}(-1)$. The naturality of Chern classes yields that $c_k(\mathcal{O}(-1)) = c_k(\iota^\ast(\mathcal{O}(-1))) = \iota^\ast(c_k(\mathcal{O}(-1)))$. 
 
 ---
 
@@ -146,3 +175,5 @@ For the sake of concreteness, let's calculate the Chern classes of the complex p
 [^1]: Note that $C^\infty(M,\Bbb C) = C^\infty(M) \otimes \Bbb C$.
 
 [^2]: The definition here follows the practices from Bott & Tu. The usual way to define Pontryagin classes in terms of the Chern classes is to set $p_k(E) = (-1)^kc_{2k}(E \otimes \Bbb C)$ to ignore the odd Chern classes. Had we defined $p_k(E) = \left[f_{2k}\left(\frac{1}{2\pi}\Omega\right)\right]$, we would indeed have ended up with $p_k(E) =  \left[f_{2k}\left(\frac{1}{2\pi}\Omega\right)\right] =  \left[\left(\frac{1}{2\pi}\right)^{2k}f_{2k}\left(\Omega\right)\right]$. If you're careful enough with the coefficient $\left(1/2\pi\right)^{2k}$, you'll see that it equals $(-1)^k\left(i/2\pi\right)^{2k}$ and hence $p_k(E) = (-1)^kc_{2k}(E \otimes \Bbb C)$.
+
+[^3]: If you have seen the Euler sequence defined as an exact sequence of sheaves instead of vector bundles, just note that there is a correspondence between vector bundles and locally free sheaves.
