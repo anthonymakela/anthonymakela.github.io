@@ -3,7 +3,7 @@ layout: post
 title: "Sheaf Cohomology"
 categories: [Algebraic Topology, Category Theory]
 mathjax: true
-published: false
+published: true
 excerpt_separator: <!--more-->
 ---
 
@@ -98,7 +98,7 @@ Let $X$ be a topological space. The category of sheaves of abelian groups $\text
 For a scheme $X$, the categories $\textbf{Coh}(X)$ and $\textbf{Qcoh}(X)$ of coherent and quasi-coherent sheaves on $X$ are also both abelian.
 </div>
 
-These conditions let us adapt the ideas used in homological algebra for modules to any abelian category. Basically, this means we can apply important concepts like exactness, complexes, chain homotopies, and cohomology objects more broadly. Plus, well-known theorems, such as the snake lemma, can be extended to this wider context too. 
+These conditions let us adapt the ideas used in homological algebra for modules to any abelian category. This means we can apply important concepts like exactness, complexes, chain homotopies, and cohomology objects more broadly. Plus, well-known theorems, such as the snake lemma, can be extended to this wider context too. 
 
 Actually, for many purposes, it's enough to understand homological algebra through modules. This idea is rooted in the Freyd-Mitchell embedding theorem. This theorem states that for any small abelian category, there's a corresponding commutative ring $R$ and a full, faithful, and exact functor to $R$-$\textbf{Mod}$. As a result, using something like diagram-chasing as a proof method is perfectly valid, even in categories that don't inherently incorporate this concept.
 
@@ -168,7 +168,7 @@ $$
 
 for every $i$.
 
-We need a few more lemmas for the main result, the first of which I'm going to present here without a proof. The proof is quite technical but follows from some rather elementary homological algebra. See for example "Methods of Homological Algebra" by Manin and Gelfand.
+We need a few more lemmas for the main result, the first of which I'm going to present here without proof. The proof is quite technical but follows from some rather elementary homological algebra. See for example "Methods of Homological Algebra" by Manin and Gelfand.
 
 <div class="lemma" text="(Horseshoe)">
 Let $\mathscr{C}$ be an abelian category with enough injectives. If 
@@ -288,9 +288,9 @@ $$
 is an injective resolution, then the complex $F(I^\bullet)$ is exact in degrees $i > 0$. Hence $R^iF(A) = H^i(F(I^\bullet)) = 0$ for $i > 0$.
 
 ---
-While we defined right derived functors using injective resolutions, these can be computationally cumbersome. Fortunately, they can also be calculated using more flexible classes of resolutions, simplifying practical applications.
+While we defined right-derived functors using injective resolutions, these can be computationally cumbersome. Fortunately, they can also be calculated using more flexible classes of resolutions, simplifying practical applications.
 
-Given a functor $F$ between abelian categories $\mathscr{C}$ and $\mathscr{D}$, with $\mathscr{D}$ having enough injectives, we call an object $A \in \mathscr{C}$ $F$-acyclic if $R^iF(A) = 0$ for $i > 0$.
+Given a functor $F$ between abelian categories $\mathscr{C}$ and $\mathscr{D}$, with $\mathscr{D}$ having enough injectives, we call an object $A \in \mathscr{C}$ $F$-acyclic if $R^iF(A) = 0$ for $i > 0$.
 
 
 In particular, this implies that if 
@@ -423,7 +423,7 @@ The category $\mathcal{O}_X$-$\textbf{Mod}$ has enough injectives.
 </div>
 
 <div class="proof">
-Let $\mathcal{F}$ be an $\mathcal{O}_X$-module. For each $x \in X$ there exists an immersion $i_x : \mathcal{F}_x \to I_x$ of the stalk $\mathcal{F}_x$ into an injective $\mathcal{O}_{X,x}$-module $I_x$. Let $j: \{x\} \to X$ be the inclusion of the one-point space and define
+Let $\mathcal{F}$ be an $\mathcal{O}_X$-module. For each $x \in X$ there exists an immersion $i_x : \mathcal{F}_x \to I_x$ of the stalk $\mathcal{F}_x$ into an injective $\mathcal{O}_{X,x}$-module $I_x$. Let $j: \{x\} \to X$ be the inclusion of the one-point space and define
 
 $$
 I = \prod_{x \in X} j_{\ast}(I_x).
@@ -452,7 +452,7 @@ Since the functor from $\mathcal{O}_X$-$\textbf{Mod}$ to $\mathcal{O}_{X,x}$-$\t
 Considering the global sections functor $\Gamma$ as a functor from $\mathcal{O}_X$-$\textbf{Mod}$ to $\Gamma(X,\mathcal{O}_X)$-$\textbf{Mod}$ we end up with the following definition.
 
 <div class="definition" text="Sheaf Cohomology">
-The sheaf cohomology groups are the right derived functors of the global section functor. If $\mathcal{F}$ is an $\mathcal{O}_X$-module, we denote
+The sheaf cohomology groups are the right-derived functors of the global section functor. If $\mathcal{F}$ is an $\mathcal{O}_X$-module, we denote
 
 $$
 H^i(X,\mathcal{F}) = R^i\Gamma(\mathcal{F}).
@@ -464,11 +464,199 @@ Just as we have seen before, a short exact sequence of $\mathcal{O}_X$-modules i
 
 ---
 
-Injective resolutions are hard to come by in sheaf theory, however, since we can compute cohomology using acyclic resolutions, finding some simpler classes of sheaves would provide useful for us. An important category of $\Gamma$-acyclic sheaves is that of <i>flasque</i> sheaves.
+Injective resolutions are hard to come by in sheaf theory, however, since we can compute cohomology using acyclic resolutions, finding some simpler classes of sheaves would be useful for us. Fortunately,
+there is a class of sheaves known as flasque sheaves (due to Godement) which are $\Gamma$-acyclic, and every sheaf has a resolution by flasque sheaves.
 
 <div class="definition">
 A sheaf $\mathcal{F}$ of $\mathcal{O}_X$-modules is flasque if for every inclusion of open sets $V \subset U$, the restriction morphism
 $\mathcal{F}(U) \to \mathcal{F}(V)$ is surjective.
+</div>
+
+<div class="example">
+Skyscraper sheaves are flasque.
+</div>
+
+
+<div class="example">
+For a sheaf $\mathcal{F}$, the sheaf of all sections of the étale space, continuous or not, is flasque.
+</div>
+
+<div class="non-example">
+Consider the continuous map $\sec : (-\pi/2, \pi/2) \to \Bbb R$. This map blows up at the endpoints $-\pi/2$ and $\pi/2$ which means that it cannot be extended to a continuous function on all of $\Bbb R$. It follows that the sheaf of continuous functions on $\Bbb R$ is not flasque.
+
+<p align="center" style="margin-top: 10px">
+    <img src="/assets/images/sec-removebg-preview.png" alt="image" width="270" height="auto">
+</p>
+
+</div>
+
+<div class="proposition">
+Every injective $\mathcal{O}_X$-module is flasque.
+</div>
+
+<div class="proof">
+For an open set $U \subset X$, let $j : U \hookrightarrow X$ be the inclusion map and consider the $\mathcal{O}_X$-module $j_!(\mathcal{O}_X)$ where $j_!$ is extension by zero of $\mathcal{O}_U$ along $j$. Suppose that $\mathcal{F}$ is an injective $\mathcal{O}_X$-module and $V \subset U \subset X$ open sets. Then there is an injective morphism $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$. Applying the contravariant functor $\operatorname{Hom}_{\mathcal{O}_X}(-, \mathcal{F})$ to this the inclusion $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$ yields a surjection 
+
+$$
+\operatorname{Hom}_{\mathcal{O}_X}( j_!(\mathcal{O}_U), \mathcal{F}) \to \operatorname{Hom}_{\mathcal{O}_X}( j_!(\mathcal{O}_V), \mathcal{F}).
+$$
+
+Since $j_!$ and $j^\ast$ form an adjoint pair this yields an isomorphism
+
+$$
+\operatorname{Hom}_{\mathcal{O}_X}( j_!(\mathcal{O}_U), \mathcal{F}) \cong \operatorname{Hom}_{\mathcal{O}_X}( \mathcal{O}_U, j^\ast\mathcal{F}) = \mathcal{F}(U)
+$$
+
+and likewise for $V$. We obtain a surjection $\mathcal{F}(U) \to \mathcal{F}(V)$, i.e. $\mathcal{F}$ is flasque.
+</div>
+
+Taking $\mathcal{O}_X = \underline{\Bbb Z}$ the above proposition yields that injective sheaves of abelian groups are flasque.
+
+<div class="theorem">
+Flasque sheaves of $\mathcal{O}_X$-modules are acyclic for sheaf cohomology.
+</div>
+
+<div class="proof">
+Let $\mathcal{F}$ be a flasque $\mathcal{O}_X$-module and embed it into an injective $\mathcal{O}_X$-module $I$. The quotient $\mathcal{Q} = I/\mathcal{F}$ is flasque. Passing to cohomology and using the fact that  $I$ is acyclic we get
+
+$$
+0 \longrightarrow \mathcal{F}(X) \longrightarrow I(X) \longrightarrow \mathcal{Q}(X) \longrightarrow H^1(X,\mathcal{F}) \longrightarrow 0
+$$
+
+and 
+
+$$
+0 \longrightarrow  H^i(X, \mathcal{Q}) \longrightarrow H^{i+1}(X,\mathcal{F}) \longrightarrow  0, \quad i \ge 2.
+$$
+
+Since $0 \longrightarrow \mathcal{F}(X) \longrightarrow I(X) \longrightarrow \mathcal{Q}(X) \longrightarrow 0$ is exact, $H^1(X,\mathcal{F}) = 0$ and since $\mathcal{Q}$ is flasque the proof follows by induction on $i$.
+</div>
+
+Yet another interesting class of sheaves is that of <i>fine</i> sheaves. Before we define these we need to define partitions of unity for sheaves.
+
+<div class="definition">
+Let $\mathcal{U} = \{U_i\}_{i\in I}$ be a locally finite cover of $X$ and $\mathcal{F}$ a sheaf on $X$. A partition of unity for $\mathcal{F}$ subordinate to $\mathcal{U}$ is a collection of morphisms of sheaves $\{\eta_i : \mathcal{F} \to \mathcal{F}\}_{i \in I}$ such that for each $i \in I$
+
+$$
+\operatorname{supp}(\eta_i) := \overline{\{x \in X \mid \eta_{i,x} \ne 0\}} \subset U_i,
+$$
+
+and for all $x \in X$, $\sum_{i\in I} \eta_{i,x} = \operatorname{id}_{\mathcal{F}_x}, $where $\eta_{i,x} : \mathcal{F}_x \to \mathcal{F}_x$ is the map on stalks.
+</div>
+
+<div class="definition">
+A sheaf $\mathcal{F}$ on a topological space $X$ is fine if it admits partitions of unity subordinate to any locally finite cover of $X$.
+</div>
+
+The most important property of a fine sheaf is that it is acyclic on sufficiently nice spaces. 
+
+<div class="theorem">
+Let $\mathcal{R}$ be a fine sheaf of rings on a paracompact space $X$ and let $\mathcal{F}$ be a sheaf of $\mathcal{R}$-modules. Then $\mathcal{F}$ is acyclic.
+</div>
+
+The above theorem implies that the class of fine sheaves is suited very well for studying manifolds. The rest of this post will develop on this idea and its implications on de Rham cohomology.
+
+Let $X$ be a smooth $n$-manifold with tangent bundle $\pi : TX \to X$ and denote by $\Omega^k_X := \Gamma\left(-, \bigwedge^k T^\ast X\right)$ the sheaf of $k$-forms. By convention $\Omega^0_X = \mathcal{O}_X$ is the structure sheaf on $X$, i.e. the sheaf of continuous functions.
+
+<div class="proposition">
+Sheaves of modules over a fine sheaf of rings are fine.
+</div>
+
+<div class="proof">
+Let $(X, \mathcal{O}_X)$ be a ringed space and suppose that $\mathcal{U} = \{U_i\}_{i\in I}$ is a locally finite cover of $X$ and $\mathcal{O}_X$ admits a partition of unity $\{s_i \in \mathcal{O}_X(X)\}_{i \in I}$ subordinate to $\mathcal{U}$. Let $\mathcal{F}$ be an $\mathcal{O}_X$-module. The maps
+
+$$
+\begin{align*}
+\eta_{i,U} : \mathcal{F}(U) &\to \mathcal{F}(U) \\
+\sigma &\longmapsto s_i\vert_{U} \cdot \sigma
+\end{align*}
+$$ 
+
+assemble to a partition of unity $\{\eta_i : \mathcal{F} \to \mathcal{F} \}$ for $\mathcal{F}$ subordinate to $\mathcal{U}$.
+</div>
+
+<div class="proposition">
+For each $k \ge 0$, $\Omega^k_X$ is a fine sheaf. In particular, $\Omega^k_X$ is acyclic.
+</div>
+
+<div class="proof">
+Since $\mathcal{O}_X$ is a fine sheaf on $X$, and since each $\Omega^k_X$ is an $\mathcal{O}_X$-module, the first assertation follows from the proposition above and the second follows since fine sheaves on $X$ are acyclic.
+</div>
+
+<div class="definition">
+The sheaf cohomology of $\Omega^\bullet_X$ is called the <b>de Rham cohomology</b> of $X$, written
+
+$$
+H^i_{dR}(X) := H^i(\Gamma(X, \Omega^\bullet_X)).
+$$
+</div>
+
+<div class="theorem">
+For a smooth manifold $X$, the complex of sheaves
+
+$$
+0 \longrightarrow \underline{\Bbb R} \longrightarrow \Omega^0_X \longrightarrow \Omega^1_X \longrightarrow \dots
+$$ 
+
+is acyclic, where $\underline{\Bbb R}$ denotes the constant sheaf on $X$ with stalks $\Bbb R$.
+</div>
+
+<div class="proof">
+This is the exercise I left for you in the beginning and I highly suggest doing this the nuts and bolts way. Anyway, it suffices to compute this on stalks, where for each $x \in X$ we have a coordinate chart $U \cong \Bbb R^n$. The Poincaré lemma implies that $H^i_{dR}(U) = 0$ for all $i > 0$. Since direct limits commute with cohomology this yields
+
+$$
+\begin{align*}
+H^i(X, \Omega^\bullet_{X,x}) &= \varinjlim_{U \ni x} H^i(U, \Omega^\bullet_{X}) \\
+&= \varinjlim_{U \ni x} H^i_{dR}(U) \\
+&= 0.
+\end{align*}
+$$
+
+</div>
+
+<div class="corollary">
+For a smooth manifold $X$, there is an isomorphism
+
+$$
+H^\bullet_{dR}(X) \cong H^\bullet(X,\underline{\Bbb R})
+$$
+
+where $\underline{\Bbb R}$ is the constant sheaf.
+</div>
+
+To prove the de Rham theorem we are going to need the following theorem which I'm not going to prove here.
+
+<div class="theorem">
+Let $X$ be a topological space, $A$ an abelian group, and $\underline{A}$ the constant sheaf on $X$ with stalks $A$. Then
+$$
+H^i(X,\underline{A}) \cong H^i(X, A).
+$$
+where $H^i(X,A)$ denotes the ordinary cohomology of $X$ with coefficients in $A$.
+</div>
+
+The de Rham theorem follows now follow from the two results above.
+
+<div class="corollary" text="de Rham">
+For a smooth manifold $X$, there is an isomorphism between de Rham cohomology and singular cohomology:
+$$
+H^\bullet_{dR}(X) \cong H^\bullet(X,\Bbb R).
+$$
+</div>
+
+
+To end this, let's prove that for a smooth, compact manifold $X$, the groups $H^i_{dR}(X)$ are finite-dimensional. This is going to need you to know some Riemannian geometry and a bit about Čech cohomology.
+
+<div class="theorem">
+For a smooth, compact manifold $X$, the groups $H^i_{dR}(X)$ are finite-dimensional for all $i \ge 0$.
+</div>
+
+<div class="proof">
+Equip $X$ with a Riemannian metric. Then, every point in $X$ admits a geodesically convex neighborhood, meaning any two points in the neighborhood lie on a geodesic that is contained in the neighborhood. The compactness of $X$ allows us to choose a finite cover $\mathcal{U} = \{U_1,\dots, U_k\}$ consisting of geodesically convex open sets. Since for any choice of indices $i_1,\dots,i_m \in \{1,\dots,k\}$, the intersection $U_{i_1,\dots, i_k} = U_{i_1}\cap \dots \cap U_{i_k}$ is also geodesically convex and such as set has vanishing de Rham cohomology, the de Rham theorem yields that
+
+$$
+H^i(U_{i_1,\dots,i_k}, \underline{\Bbb R}\vert_{U_{i_1,\dots,i_k}}) \cong H^{i}_{dR}(U_{i_1,\dots,i_k}) = 0
+$$
+for all $i > 0$. It follows that $\underline{\Bbb R}$ is acyclic for the cover $\mathcal{U}$. Leray's theorem yields that $H^i(X,\underline{\Bbb R}) = \check{H}(\mathcal{U}, \underline{\Bbb R})$, and since each $C^i(\mathcal{U}, \underline{\Bbb R})$ in the Čech complex is a finite product of one-dimensional vector spaces, its cohomology thus consists of finite-dimensional vector spaces.
 </div>
 
 ---

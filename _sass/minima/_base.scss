@@ -394,6 +394,9 @@ blockquote {
   font-weight: bold;
   font-style: normal;
 }
+.corollary[text]:before {
+  content: "Corollary (" attr(text) "). ";
+}
 
 mjx-container {
   overflow-x: auto;
