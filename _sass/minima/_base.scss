@@ -315,6 +315,9 @@ table {
   font-weight: bold;
   font-style: normal;
 }
+.lemma[text]:before {
+  content: "Lemma " attr(text) ". ";
+}
 .example {
   display: block;
   margin: 12px 0;
@@ -371,7 +374,9 @@ table {
   font-weight: bold;
   font-style: normal;
 }
-
+.definition[text]:before {
+  content: "Definition (" attr(text) "). ";
+}
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
