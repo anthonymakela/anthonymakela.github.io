@@ -7,11 +7,11 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-We'll be continuing our journey on sheaves and their cohomology today. Last time we ended up in a situation where we considered a short exact sequence of sheaves 
+We'll be continuing our journey on sheaves and their cohomology today. Last time we ended up in a situation where we considered a short exact sequence of sheaves
 
 $$
 0 \longrightarrow \mathcal{F} \longrightarrow \mathcal{G} \longrightarrow \mathcal{H} \longrightarrow 0,
-$$ 
+$$
 
 on a topological space $X$. This gave us a short exact sequence of sections
 
@@ -19,7 +19,7 @@ $$
 0 \longrightarrow \mathcal{F}(U) \longrightarrow \mathcal{G}(U) \longrightarrow \mathcal{H}(U),
 $$
 
-for every open set $U \subset X$. 
+for every open set $U \subset X$.
 
 <!--more-->
 
@@ -34,19 +34,19 @@ More formally, sheaf cohomology is a theory that is used to compute and understa
 Last time we went over the example using the exact sequence of sheaves on $\Bbb R^2 \setminus \\{0\\}$ given by
 
 $$
-0 \longrightarrow \underline{\Bbb R}\to \Omega^0 \longrightarrow \Omega^1 \longrightarrow 0. 
+0 \longrightarrow \underline{\Bbb R}\to \Omega^0 \longrightarrow \Omega^1 \longrightarrow 0.
 $$
 
 We noted that even though this is exact, passing to global sections
 
 $$
-0 \longrightarrow \underline{\Bbb R}(\Bbb R^2 \setminus \\{0\\})\to \Omega^0(\Bbb R^2 \setminus \\{0\\}) \longrightarrow \Omega^1(\Bbb R^2 \setminus \\{0\\}),
+0 \longrightarrow \underline{\Bbb R}(\Bbb R^2 \setminus \{0\})\to \Omega^0(\Bbb R^2 \setminus \{0\}) \longrightarrow \Omega^1(\Bbb R^2 \setminus \{0\}),
 $$
 
-ended up causing an issue with the surjectivity of the last map as the differential form 
+ended up causing an issue with the surjectivity of the last map as the differential form
 
 $$
-d\theta = \frac{-ydx + xdy}{x^2+y^2} \in \Omega^1(\Bbb R^2 \setminus \\{0\\}),
+d\theta = \frac{-ydx + xdy}{x^2+y^2} \in \Omega^1(\Bbb R^2 \setminus \{0\}),
 $$
 
 is closed, but not exact. As mentioned above, this failure of surjectivity is measured by the group $H^1(\Bbb R^2 \setminus \\{0\\}, \underline{\Bbb R}) = \Bbb R$. What this is saying is that even though every closed form is locally exact[^2] (a local property) we cannot expect this to hold globally on all of $\Bbb R^2 \setminus \\{0\\}$ (a global property).
@@ -62,9 +62,11 @@ is exact. Recall that it suffices to prove exactness on stalks.
 </div>
 
 ---
+
 We'll begin by quickly going over additive and abelian categories. The motivation for this is that we mainly want to be able to do homological algebra on $\mathbf{Sh}(X)$ like we are able to do in $\mathbf{Ab}$ or $R$-$\textbf{Mod}$.
 
 A category $\mathscr{C}$ is called <b>additive</b> if for every two objects $A, B \in \mathscr{C}$ the Hom-set $\operatorname{Hom}(A,B)$ has an abelian group structure and
+
 <ul>
     <li>The compositions $\operatorname{Hom}(A_1,A_2) \times \operatorname{Hom}(A_2,A_3) \to \operatorname{Hom}(A_1,A_3)$ given by $(f,g) \mapsto g \circ f$ are bilinear.</li>
     <li>$\mathscr{C}$ has an zero object.</li>
@@ -80,7 +82,7 @@ The above condition pretty much says that for any morphism $f : A \to B$ we have
 $$
 \xymatrix{
 \ker(f) \ar@{->}[r]^{i} & A \ar@{->}[d] \ar@{->}[rr]^{f} &  & B \ar@{->}[r]^{\pi} & \operatorname{coker}(f). \\
- & \operatorname{coker}(i) \ar@{->}[rr]_{\sim} &  & \ker(\pi) \ar@{->}[u] & 
+ & \operatorname{coker}(i) \ar@{->}[rr]_{\sim} &  & \ker(\pi) \ar@{->}[u] &
 }
 $$
 
@@ -98,7 +100,7 @@ Let $X$ be a topological space. The category of sheaves of abelian groups $\text
 For a scheme $X$, the categories $\textbf{Coh}(X)$ and $\textbf{Qcoh}(X)$ of coherent and quasi-coherent sheaves on $X$ are also both abelian.
 </div>
 
-These conditions let us adapt the ideas used in homological algebra for modules to any abelian category. This means we can apply important concepts like exactness, complexes, chain homotopies, and cohomology objects more broadly. Plus, well-known theorems, such as the snake lemma, can be extended to this wider context too. 
+These conditions let us adapt the ideas used in homological algebra for modules to any abelian category. This means we can apply important concepts like exactness, complexes, chain homotopies, and cohomology objects more broadly. Plus, well-known theorems, such as the snake lemma, can be extended to this wider context too.
 
 Actually, for many purposes, it's enough to understand homological algebra through modules. This idea is rooted in the Freyd-Mitchell embedding theorem. This theorem states that for any small abelian category, there's a corresponding commutative ring $R$ and a full, faithful, and exact functor to $R$-$\textbf{Mod}$. As a result, using something like diagram-chasing as a proof method is perfectly valid, even in categories that don't inherently incorporate this concept.
 
@@ -112,17 +114,15 @@ An object $I$ in an abelian category is said to be injective if, for every monom
 $$
 \xymatrix{
 A \ar@{->}[d]_{f} \ar@{->}[r]^{g} & I \\
-B \ar@{-->}[ru]_{h} & 
+B \ar@{-->}[ru]_{h} &
 }.
 $$
+
 </div>
-
-
 
 For example, the injective objects in $\textbf{Ab}$ are the divisible groups [^3].
 
 A complex $(A^\bullet, d^\bullet)$ in an abelian category is a sequence of objects $A^i$ and maps $d^i : A^i \to A^{i+1}$ such that $d^{i+1} \circ d^i = 0$. A morphism of complexes $f : (A^\bullet, d^\bullet_{A}) \to (B^\bullet, d^\bullet_{B})$ is a collection of morphisms $f^i : A^i \to B^i$ such that $d^i_{B}\circ f^{i}=f^{i-1}\circ d^i_{A}$.
-
 
 <div class="definition">
 The degree $i$ cohomology of a complex $(A^\bullet, d^\bullet)$ is the object
@@ -130,6 +130,7 @@ The degree $i$ cohomology of a complex $(A^\bullet, d^\bullet)$ is the object
 $$
 H^i(A^\bullet) = \operatorname{coker}(\operatorname{im}(d^{i-1}) \to \ker(d^i)).
 $$
+
 </div>
 
 For every $i$, a morphism of complexes $f : (A^\bullet, d^\bullet_{A}) \to (B^\bullet, d^\bullet_{B})$ induces morphisms $H^i(f) : H^i(A^\bullet) \to H^i(B^\bullet)$. A morphism $f$ of complexes is called a <b>quasi-isomorphism</b> if the induced morphisms $H^i(f)$ are isomorphisms for every $i$.
@@ -142,6 +143,7 @@ $$
 $$
 
 is exact.
+
 </div>
 
 We say that the abelian category $\mathscr{C}$ has <b>enough injective objects</b> if every object $A$ of $\mathscr{C}$, there exists a monomorphism from $A$ to an injective object.
@@ -160,7 +162,7 @@ Now, here is the key lemma that is going to be of utmost importance.
 Let $0 \longrightarrow A \longrightarrow I^\bullet$ be any resolution of an object $A$ and $0 \longrightarrow B \longrightarrow J^\bullet$ an injective resolution of $B$. Then any morphism $f : A \to B$ induces a morphism of complexes $f^\bullet : I^\bullet \to J^\bullet$ that is unique up to homotopy.
 </div>
 
-This implies that any two injective resolutions $0 \longrightarrow A \longrightarrow I^\bullet$ and $0 \longrightarrow A \longrightarrow J^\bullet$ of the same object $A$ are homotopy equivalent, thus it holds also for the complexes $F(I^\bullet)$ and $F(J^\bullet)$, which guarantees that 
+This implies that any two injective resolutions $0 \longrightarrow A \longrightarrow I^\bullet$ and $0 \longrightarrow A \longrightarrow J^\bullet$ of the same object $A$ are homotopy equivalent, thus it holds also for the complexes $F(I^\bullet)$ and $F(J^\bullet)$, which guarantees that
 
 $$
 H^i(F(I^\bullet)) \cong H^i(F(J^\bullet))
@@ -184,6 +186,7 @@ $$
 0 \ar@{->}[r] & I^\bullet \ar@{->}[r] & J^\bullet \ar@{->}[r] & K^\bullet \ar@{->}[r] & 0.
 }
 $$
+
 </div>
 
 <div class="lemma">
@@ -200,6 +203,7 @@ $$
 $$
 
 is exact and splits in $\mathscr{D}$.
+
 </div>
 
 <div class="proof">
@@ -240,7 +244,7 @@ $$
 To see that $R^0F(A) = F(A)$, note that since $F$ is left-exact, the sequence
 
 $$
-0 \longrightarrow F(A) \longrightarrow F(I^0) \longrightarrow F(I^1) 
+0 \longrightarrow F(A) \longrightarrow F(I^0) \longrightarrow F(I^1)
 $$
 
 is exact. It follows that
@@ -255,19 +259,19 @@ $$
 
 Also, $R^iF(A)$ does not depend, up to isomorphism, on the choice of the resolution due to the resolutions being unique up to homotopy.
 
-Now, let 
+Now, let
 
 $$
 0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0
 $$
 
-be a short exact sequence in $\mathscr{C}$. The horseshoe lemma implies that there exists injective resolutions $I^\bullet, J^\bullet$ and $K^\bullet$ of $A, B$ and $C$ respectively such that 
+be a short exact sequence in $\mathscr{C}$. The horseshoe lemma implies that there exists injective resolutions $I^\bullet, J^\bullet$ and $K^\bullet$ of $A, B$ and $C$ respectively such that
 
 $$
 0 \longrightarrow I^\bullet \longrightarrow J^\bullet \longrightarrow K^\bullet \longrightarrow 0
-$$ 
+$$
 
-is a short exact sequence of complexes. Since every short exact sequence of injective objects is split we obtain a short exact sequence 
+is a short exact sequence of complexes. Since every short exact sequence of injective objects is split we obtain a short exact sequence
 
 $$
 0 \longrightarrow F(I^\bullet) \longrightarrow F(J^\bullet) \longrightarrow F(K^\bullet) \longrightarrow 0
@@ -279,7 +283,7 @@ To see the last point, note that if $I$ is injective we can consider the injecti
 
 </div>
 
-Note that if $F$ is an exact functor, then $R^iF(A) = 0$ for any object $A$ and $i > 0$. If 
+Note that if $F$ is an exact functor, then $R^iF(A) = 0$ for any object $A$ and $i > 0$. If
 
 $$
 0 \longrightarrow A \longrightarrow I^0 \longrightarrow I^1 \longrightarrow \dots
@@ -288,24 +292,24 @@ $$
 is an injective resolution, then the complex $F(I^\bullet)$ is exact in degrees $i > 0$. Hence $R^iF(A) = H^i(F(I^\bullet)) = 0$ for $i > 0$.
 
 ---
+
 While we defined right-derived functors using injective resolutions, these can be computationally cumbersome. Fortunately, they can also be calculated using more flexible classes of resolutions, simplifying practical applications.
 
 Given a functor $F$ between abelian categories $\mathscr{C}$ and $\mathscr{D}$, with $\mathscr{D}$ having enough injectives, we call an object $A \in \mathscr{C}$ $F$-acyclic if $R^iF(A) = 0$ for $i > 0$.
 
-
-In particular, this implies that if 
+In particular, this implies that if
 
 $$
 0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0
 $$
 
-is exact and $A$ is $F$-acyclic, then 
+is exact and $A$ is $F$-acyclic, then
 
 $$
 0 \longrightarrow F(A) \longrightarrow F(B) \longrightarrow F(C) \longrightarrow 0
 $$
 
-is exact. 
+is exact.
 
 <div class="proposition">
 If $0 \longrightarrow A \longrightarrow J^\bullet$ is an $F$-acyclic resolution of $A$, then there exists a natural isomorphism $R^iF(A) = H^i(F(J^\bullet))$.  In other words, cohomology can be computed using acyclic objects.
@@ -346,11 +350,12 @@ $$
 where $J_1^\bullet$ denotes the complex with $J^0$ excluded.
 
 The left-exactness of $F$ implies that $F(B) = \ker(F(J^1) \to F(J^2))$, and the second equality above is exactly $R^1F(A) = H^1(F(J^\bullet))$.
+
 </div>
 
 ---
 
-The category in which we are going to develop this theory is that of $\mathcal{O}_X$-modules, where $\mathcal{O}_X$ is a sheaf of rings on $X$. This category is abelian and has enough injectives. Moreover, this includes sheaves of abelian groups as a special case[^4]. 
+The category in which we are going to develop this theory is that of $\mathcal{O}_X$-modules, where $\mathcal{O}_X$ is a sheaf of rings on $X$. This category is abelian and has enough injectives. Moreover, this includes sheaves of abelian groups as a special case[^4].
 
 Let's recall first how a ringed space and morphisms between ringed spaces are defined.
 
@@ -392,9 +397,9 @@ Let $(X, \mathcal{O}_X)$ be a ringed space. A <i>sheaf of $\mathcal{O}_X$-module
 </ul>
 </div>
 
-To get the idea, consider $(M, C^\infty_M)$ where $M$ is a smooth manifold. The sheaf of sections of the tangent bundle $\Gamma$ has a natural $C^\infty_M$-module structure[^5]. 
+To get the idea, consider $(M, C^\infty_M)$ where $M$ is a smooth manifold. The sheaf of sections of the tangent bundle $\Gamma$ has a natural $C^\infty_M$-module structure[^5].
 
-Given a ringed space $(X, \mathcal{O}_X)$, denote the cateogry of $\mathcal{O}_X$-modules by $\mathcal{O}_X$-$\textbf{Mod}$. It's not too difficult to see that if, $\mathcal{F}$ is an $\mathcal{O}_X$-module, then $f\_\ast \mathcal{F}$ has a natural $f\_\ast\mathcal{O}_X$-module structure. The morphism $f^\sharp : \mathcal{O}_Y \to f\_\ast \mathcal{O}_X$ then gives $f\_\ast \mathcal{F}$ a natural $\mathcal{O}_Y$-module structure. 
+Given a ringed space $(X, \mathcal{O}_X)$, denote the cateogry of $\mathcal{O}_X$-modules by $\mathcal{O}_X$-$\textbf{Mod}$. It's not too difficult to see that if, $\mathcal{F}$ is an $\mathcal{O}_X$-module, then $f\_\ast \mathcal{F}$ has a natural $f\_\ast\mathcal{O}_X$-module structure. The morphism $f^\sharp : \mathcal{O}_Y \to f\_\ast \mathcal{O}_X$ then gives $f\_\ast \mathcal{F}$ a natural $\mathcal{O}_Y$-module structure.
 
 On the other hand, for an $\mathcal{O}_Y$-module $\mathcal{G}$, the inverse image $f^{-1}\mathcal{G}$ is an $f^{-1}\mathcal{O}_Y$-module, but <i>not</i> an $\mathcal{O}_X$-module. However, $\mathcal{O}_X$ does have an $f^{-1}\mathcal{O}_Y$-module structure, obtained using the fact that $f^{-1}$ and $f\_\ast$ form an adjoint pair. Indeed, we have a morphism $f^\sharp : \mathcal{O}_Y \to f\_\ast\mathcal{O}_X$ which by adjunction yields a morphism $f^{-1}\mathcal{O}_Y \to \mathcal{O}_X$. Using this $\mathcal{O}_X$ can be viewed as an $f^{-1}\mathcal{O}_Y$-module by "restriction of scalars" and then by "extension of scalars", one can make $f^{-1}\mathcal{G}$ into an $\mathcal{O}_X$-module by defining
 
@@ -408,7 +413,7 @@ $$
 \operatorname{Hom}(f^{-1}\mathcal{G}, \mathcal{F}) = \operatorname{Hom}(\mathcal{G}, f_\ast\mathcal{F})
 $$
 
-extends to 
+extends to
 
 $$
 \operatorname{Hom}_{\mathcal{O}_X}(f^{\ast}\mathcal{G}, \mathcal{F}) = \operatorname{Hom}_{\mathcal{O}_Y}(\mathcal{G}, f_\ast\mathcal{F})
@@ -435,7 +440,7 @@ $$
 \operatorname{Hom}_{\mathcal{O}_X}(\mathcal{F}, j_\ast I_x) = \operatorname{Hom}_{\mathcal{O}_{X,x}}(\mathcal{F}_x, I_x).
 $$
 
-To see that $I$ is injective, note that 
+To see that $I$ is injective, note that
 
 $$
 \begin{align*}
@@ -476,7 +481,6 @@ $\mathcal{F}(U) \to \mathcal{F}(V)$ is surjective.
 Skyscraper sheaves are flasque.
 </div>
 
-
 <div class="example">
 For a sheaf $\mathcal{F}$, the sheaf of all sections of the étale space, continuous or not, is flasque.
 </div>
@@ -495,7 +499,7 @@ Every injective $\mathcal{O}_X$-module is flasque.
 </div>
 
 <div class="proof">
-For an open set $U \subset X$, let $j : U \hookrightarrow X$ be the inclusion map and consider the $\mathcal{O}_X$-module $j_!(\mathcal{O}_X)$ where $j_!$ is extension by zero of $\mathcal{O}_U$ along $j$. Suppose that $\mathcal{F}$ is an injective $\mathcal{O}_X$-module and $V \subset U \subset X$ open sets. Then there is an injective morphism $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$. Applying the contravariant functor $\operatorname{Hom}_{\mathcal{O}_X}(-, \mathcal{F})$ to this the inclusion $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$ yields a surjection 
+For an open set $U \subset X$, let $j : U \hookrightarrow X$ be the inclusion map and consider the $\mathcal{O}_X$-module $j_!(\mathcal{O}_X)$ where $j_!$ is extension by zero of $\mathcal{O}_U$ along $j$. Suppose that $\mathcal{F}$ is an injective $\mathcal{O}_X$-module and $V \subset U \subset X$ open sets. Then there is an injective morphism $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$. Applying the contravariant functor $\operatorname{Hom}_{\mathcal{O}_X}(-, \mathcal{F})$ to this the inclusion $j_!(\mathcal{O}_V) \hookrightarrow j_!(\mathcal{O}_U)$ yields a surjection
 
 $$
 \operatorname{Hom}_{\mathcal{O}_X}( j_!(\mathcal{O}_U), \mathcal{F}) \to \operatorname{Hom}_{\mathcal{O}_X}( j_!(\mathcal{O}_V), \mathcal{F}).
@@ -508,6 +512,7 @@ $$
 $$
 
 and likewise for $V$. We obtain a surjection $\mathcal{F}(U) \to \mathcal{F}(V)$, i.e. $\mathcal{F}$ is flasque.
+
 </div>
 
 Taking $\mathcal{O}_X = \underline{\Bbb Z}$ the above proposition yields that injective sheaves of abelian groups are flasque.
@@ -523,13 +528,14 @@ $$
 0 \longrightarrow \mathcal{F}(X) \longrightarrow I(X) \longrightarrow \mathcal{Q}(X) \longrightarrow H^1(X,\mathcal{F}) \longrightarrow 0
 $$
 
-and 
+and
 
 $$
 0 \longrightarrow  H^i(X, \mathcal{Q}) \longrightarrow H^{i+1}(X,\mathcal{F}) \longrightarrow  0, \quad i \ge 2.
 $$
 
 Since $0 \longrightarrow \mathcal{F}(X) \longrightarrow I(X) \longrightarrow \mathcal{Q}(X) \longrightarrow 0$ is exact, $H^1(X,\mathcal{F}) = 0$ and since $\mathcal{Q}$ is flasque the proof follows by induction on $i$.
+
 </div>
 
 Yet another interesting class of sheaves is that of <i>fine</i> sheaves. Before we define these we need to define partitions of unity for sheaves.
@@ -542,13 +548,14 @@ $$
 $$
 
 and for all $x \in X$, $\sum_{i\in I} \eta_{i,x} = \operatorname{id}_{\mathcal{F}_x}, $where $\eta_{i,x} : \mathcal{F}_x \to \mathcal{F}_x$ is the map on stalks.
+
 </div>
 
 <div class="definition">
 A sheaf $\mathcal{F}$ on a topological space $X$ is fine if it admits partitions of unity subordinate to any locally finite cover of $X$.
 </div>
 
-The most important property of a fine sheaf is that it is acyclic on sufficiently nice spaces. 
+The most important property of a fine sheaf is that it is acyclic on sufficiently nice spaces.
 
 <div class="theorem">
 Let $\mathcal{R}$ be a fine sheaf of rings on a paracompact space $X$ and let $\mathcal{F}$ be a sheaf of $\mathcal{R}$-modules. Then $\mathcal{F}$ is acyclic.
@@ -570,9 +577,10 @@ $$
 \eta_{i,U} : \mathcal{F}(U) &\to \mathcal{F}(U) \\
 \sigma &\longmapsto s_i\vert_{U} \cdot \sigma
 \end{align*}
-$$ 
+$$
 
 assemble to a partition of unity $\{\eta_i : \mathcal{F} \to \mathcal{F} \}$ for $\mathcal{F}$ subordinate to $\mathcal{U}$.
+
 </div>
 
 <div class="proposition">
@@ -589,6 +597,7 @@ The sheaf cohomology of $\Omega^\bullet_X$ is called the <b>de Rham cohomology</
 $$
 H^i_{dR}(X) := H^i(\Gamma(X, \Omega^\bullet_X)).
 $$
+
 </div>
 
 <div class="theorem">
@@ -596,9 +605,10 @@ For a smooth manifold $X$, the complex of sheaves
 
 $$
 0 \longrightarrow \underline{\Bbb R} \longrightarrow \Omega^0_X \longrightarrow \Omega^1_X \longrightarrow \dots
-$$ 
+$$
 
 is acyclic, where $\underline{\Bbb R}$ denotes the constant sheaf on $X$ with stalks $\Bbb R$.
+
 </div>
 
 <div class="proof">
@@ -622,6 +632,7 @@ H^\bullet_{dR}(X) \cong H^\bullet(X,\underline{\Bbb R})
 $$
 
 where $\underline{\Bbb R}$ is the constant sheaf.
+
 </div>
 
 To prove the de Rham theorem we are going to need the following theorem which I'm not going to prove here.
@@ -643,7 +654,6 @@ H^\bullet_{dR}(X) \cong H^\bullet(X,\Bbb R).
 $$
 </div>
 
-
 To end this, let's prove that for a smooth, compact manifold $X$, the groups $H^i_{dR}(X)$ are finite-dimensional. This is going to need you to know some Riemannian geometry and a bit about Čech cohomology.
 
 <div class="theorem">
@@ -656,17 +666,15 @@ Equip $X$ with a Riemannian metric. Then, every point in $X$ admits a geodesical
 $$
 H^i(U_{i_1,\dots,i_k}, \underline{\Bbb R}\vert_{U_{i_1,\dots,i_k}}) \cong H^{i}_{dR}(U_{i_1,\dots,i_k}) = 0
 $$
+
 for all $i > 0$. It follows that $\underline{\Bbb R}$ is acyclic for the cover $\mathcal{U}$. Leray's theorem yields that $H^i(X,\underline{\Bbb R}) = \check{H}(\mathcal{U}, \underline{\Bbb R})$, and since each $C^i(\mathcal{U}, \underline{\Bbb R})$ in the Čech complex is a finite product of one-dimensional vector spaces, its cohomology thus consists of finite-dimensional vector spaces.
+
 </div>
 
 ---
 
 [^1]: What this is saying is that the global sections functor $\Gamma(X,-) : \mathbf{Sh}(X) \to \mathbf{Ab}$ is not exact, but only left-exact.
-
 [^2]: Poincaré Lemma!
-
 [^3]: A group $G$ is divisible if, for every $g \in G$ and $n \in \Bbb N$, there exists $g' \in G$ such that $ng' = g$. Equivalently $nG = G$.
-
 [^4]: Take $\mathcal{O}_X$ to be the constant sheaf $\underline{\Bbb Z}$.
-
 [^5]: You can multiply vector fields with smooth functions.
