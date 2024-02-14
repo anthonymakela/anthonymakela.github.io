@@ -486,7 +486,7 @@ For a sheaf $\mathcal{F}$, the sheaf of all sections of the étale space, contin
 </div>
 
 <div class="non-example">
-Consider the continuous map $\sec : (-\pi/2, \pi/2) \to \Bbb R$. This map blows up at the endpoints $-\pi/2$ and $\pi/2$ which means that it cannot be extended to a continuous function on all of $\Bbb R$. It follows that the sheaf of continuous functions on $\Bbb R$ is not flasque.
+Consider the continuous map $\sec : (-\pi/2, \pi/2) \to \Bbb R$. This map blows up at the endpoints $-\pi/2$ and $\pi/2$ which means that it cannot be extended to a continuous function on all of $\Bbb R$. It follows that the sheaf of continuous functions on $\Bbb R$ is not flasque since $C^\infty(\Bbb R) \to C^\infty((-\pi/2,\pi/2))$ is not surjective.
 
 <p align="center" style="margin-top: 10px">
     <img src="/assets/images/sec-removebg-preview.png" alt="image" width="270" height="auto">
