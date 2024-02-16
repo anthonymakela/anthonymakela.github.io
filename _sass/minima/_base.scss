@@ -282,6 +282,9 @@ table {
 .theorem {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .theorem:before {
@@ -295,6 +298,9 @@ table {
 .proposition {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .proposition:before {
@@ -308,6 +314,9 @@ table {
 .lemma {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .lemma:before {
@@ -321,6 +330,9 @@ table {
 .example {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .example:before {
@@ -331,6 +343,9 @@ table {
 .exercise {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .exercise:before {
@@ -341,6 +356,9 @@ table {
 .non-example {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .non-example:before {
@@ -365,8 +383,11 @@ table {
   content: "Proof (" attr(text) ") ";
 }
 .definition {
-  display: block;
+  display: block;  
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .definition:before {
@@ -387,6 +408,9 @@ blockquote {
 .corollary {
   display: block;
   margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
   font-style: normal;
 }
 .corollary:before {
