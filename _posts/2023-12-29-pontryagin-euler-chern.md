@@ -216,7 +216,7 @@ The following picture illustrates this with $\Bbb S^2$. Trying to construct a no
 The caveat of Euler classes is that they are only defined for orientable vector bundles. Let's quickly recall how we define an orientation on a vector bundle.
 
 <div class="definition">
-An <b>orientation</b> on a vector bundle $E \to M$ of rank $n$ is an equivalence class of nowhere-vanishing sections of the determinant line bundle $\bigwedge^n E$, two such sections $s$ and $\sigma$ being equivalent if and only if they are related by multiplication with a positive function on $M$. That is $\sigma = fs$ for $f >0$.
+An <b>orientation</b> on a vector bundle $E \to M$ of rank $n$ is an equivalence class of nowhere-vanishing sections of the determinant line bundle $\Lambda^n E$, two such sections $s$ and $\sigma$ being equivalent if and only if they are related by multiplication with a positive function on $M$. That is $\sigma = fs$ for $f >0$.
 </div>
 
 Nowhere-vanishing sections and line bundles play together quite nicely giving us the following proposition.
@@ -226,25 +226,25 @@ A vector bundle $E \to M$ of rank $n$ has an orientation if and only if the dete
 </div>
 
 <div class="proof">
-It suffices to show that $\bigwedge^n E$ is trivial if and only if it has a nowhere-vanishing section. Suppose that $\varphi : \bigwedge^n E \to M \times \Bbb R$ is an isomorphism. Define 
+It suffices to show that $\Lambda^n E$ is trivial if and only if it has a nowhere-vanishing section. Suppose that $\varphi : \Lambda^n E \to M \times \Bbb R$ is an isomorphism. Define 
 
 $$
 \begin{align*}
-s : M &\to \bigwedge^n E \\
+s : M &\to \Lambda^n E \\
 p &\longmapsto \varphi^{-1}(p, 1).
 \end{align*}
 $$
 
-The map $s$ is now a nowhere-vanishing section. Conversely, if $\sigma : M \to \bigwedge^n E$ is a nowhere-vanishing section, we can define
+The map $s$ is now a nowhere-vanishing section. Conversely, if $\sigma : M \to \Lambda^n E$ is a nowhere-vanishing section, we can define
 
 $$
 \begin{align*}
-\psi : M \times \Bbb R &\to \bigwedge^n E \\
+\psi : M \times \Bbb R &\to \Lambda^n E \\
 (p,\lambda) &\longmapsto \lambda \sigma(p).
 \end{align*}
 $$
 
-To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{p\} \times \Bbb R \to \bigwedge^n E_p$ are isomorphisms. Note that $\psi_p$ is injective as $\psi_p(p,\lambda) = \lambda\sigma(p) = 0 \implies \lambda = 0$ since $\sigma$ is a nowhere-vanishing section. Finally, notice that $\psi_p$ is an injective linear map of vector spaces with the same dimension and therefore an isomorphism. I should probably point out that there is nothing special about the bundle $\bigwedge^n E$ here. The proof generalizes to any line bundle.
+To show that $\psi$ is an isomorphism we need to show that the maps $\psi_p : \{p\} \times \Bbb R \to \Lambda^n E_p$ are isomorphisms. Note that $\psi_p$ is injective as $\psi_p(p,\lambda) = \lambda\sigma(p) = 0 \implies \lambda = 0$ since $\sigma$ is a nowhere-vanishing section. Finally, notice that $\psi_p$ is an injective linear map of vector spaces with the same dimension and therefore an isomorphism. I should probably point out that there is nothing special about the bundle $\Lambda^n E$ here. The proof generalizes to any line bundle.
 
 </div>
 

@@ -26,7 +26,7 @@ The most basic example of a local operator is $\frac{d}{dx} : C^\infty(\Bbb R) \
 </div>
 
 <div class="example">
-Another great example is the exterior derivative $d : \Gamma\left(\bigwedge^k T^\ast M\right) \to \Gamma\left(\bigwedge^{k+1} T^\ast M\right)$.
+Another great example is the exterior derivative $d : \Gamma\left(\Lambda^k T^\ast M\right) \to \Gamma\left(\Lambda^{k+1} T^\ast M\right)$.
 </div>
 
 <div class="proposition">

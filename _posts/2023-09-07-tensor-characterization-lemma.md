@@ -179,7 +179,7 @@ $$
 
 An example you might have already encountered is the metric tensor $g$ on a Riemannian manifold $M$. Infact $g$ is a smooth $(0,2)$-tensor field.
 
-Similarly any differential $k$-form is a smooth section of the exterior bundle $\bigotimes^k(T^\ast M)$ that corresponds to an alternating $k$-linear and is thus a smooth $(0,k)$-tensor field. To be more specific a differential $k$-form is a section of the exterior bundle $\bigwedge^k T^\ast M$.
+Similarly any differential $k$-form is a smooth section of the exterior bundle $\bigotimes^k(T^\ast M)$ that corresponds to an alternating $k$-linear and is thus a smooth $(0,k)$-tensor field. To be more specific a differential $k$-form is a section of the exterior bundle $\Lambda^k T^\ast M$.
 
 An important property that tensor fields have is that they are multilinear over $C^\infty(M)$. If $F$ is a $(k,l)$-tensor field, then for $1$-forms $\omega^1,\dots,\omega^k$ and vector fields $X_1,\dots,X_l$ the <i>function</i> $F(\omega^1,\dots,\omega^k, X_1,\dots,X_l)$ from $M$ to $\Bbb R$ is smooth.
 

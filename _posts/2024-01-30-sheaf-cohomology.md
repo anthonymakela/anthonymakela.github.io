@@ -563,7 +563,7 @@ Let $\mathcal{R}$ be a fine sheaf of rings on a paracompact space $X$ and let $\
 
 The above theorem implies that the class of fine sheaves is suited very well for studying manifolds. The rest of this post will develop on this idea and its implications on de Rham cohomology.
 
-Let $X$ be a smooth $n$-manifold with tangent bundle $\pi : TX \to X$ and denote by $\Omega^k_X := \Gamma\left(-, \bigwedge^k T^\ast X\right)$ the sheaf of $k$-forms. By convention $\Omega^0_X = \mathcal{O}_X$ is the structure sheaf on $X$, i.e. the sheaf of continuous functions.
+Let $X$ be a smooth $n$-manifold with tangent bundle $\pi : TX \to X$ and denote by $\Omega^k_X := \Gamma\left(-, \Lambda^k T^\ast X\right)$ the sheaf of $k$-forms. By convention $\Omega^0_X = \mathcal{O}_X$ is the structure sheaf on $X$, i.e. the sheaf of continuous functions.
 
 <div class="proposition">
 Sheaves of modules over a fine sheaf of rings are fine.

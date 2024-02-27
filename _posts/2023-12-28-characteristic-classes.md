@@ -26,7 +26,7 @@ For each invariant polynomial $P(A)$ of degree $k$, the class $[P(\Omega)] \in H
 
 Let's try to make the above discussion a bit more formal. Let $E \to M$ be a vector bundle over a smooth manifold $M$ and suppose that $\nabla$ is a connection on $E$. Let $e = \begin{bmatrix} e_1 & \cdots & e_n\end{bmatrix}$ and $\bar e = \begin{bmatrix} \bar{e}_1 & \cdots & \bar{e}_n\end{bmatrix}$ be two local frames over an open set $U$. We know from our previous discussions that $\bar{e} = ea$ for some smooth function $a : U \to \mathrm{GL}(n,\Bbb R)$.
 
-Let $P$ be a <i>homogeneous</i> invariant polynomial of degree $k$ on $\mathfrak{gl}(n,\Bbb R)$. If $\Omega = [\Omega^i_j]$ is the curvature matrix of $\nabla$ relative to $e$, then for each $p \in U$ we have that $\Omega_p \in \mathcal{A}^{n\times n}$ where $\mathcal{A}$ is the commutative $\Bbb R$-algebra given by $\mathcal{A} = \bigoplus_{i=0}^\infty \bigwedge^{2i}\left(T^\ast_p M\right)$[^1]. Also 
+Let $P$ be a <i>homogeneous</i> invariant polynomial of degree $k$ on $\mathfrak{gl}(n,\Bbb R)$. If $\Omega = [\Omega^i_j]$ is the curvature matrix of $\nabla$ relative to $e$, then for each $p \in U$ we have that $\Omega_p \in \mathcal{A}^{n\times n}$ where $\mathcal{A}$ is the commutative $\Bbb R$-algebra given by $\mathcal{A} = \bigoplus_{i=0}^\infty \Lambda^{2i}\left(T^\ast_p M\right)$[^1]. Also 
 
 $$
 \bar{\Omega}_p = a^{-1}(p)\Omega_p a(p)
@@ -37,11 +37,11 @@ for $a(p) \in \mathrm{GL}(n,\Bbb R)$. Since $P$ is invariant under conjugation t
 $$
 \begin{align*}
 P(\bar{\Omega}_p) &= P(a^{-1}(p)\Omega_p a(p)) \\
-&= P(\Omega_p) \in \bigwedge^{2k}\left(T^\ast_p M\right).
+&= P(\Omega_p) \in \Lambda^{2k}\left(T^\ast_p M\right).
 \end{align*}
 $$
 
-Varying $p$ gives $P(\bar{\Omega}) = P(\Omega) \in \Gamma\left(\bigwedge^{2k}T^\ast U\right)$. This means that the $2k$-form[^2] $P(\Omega)$ on $U$ is independent of the frame.
+Varying $p$ gives $P(\bar{\Omega}) = P(\Omega) \in \Gamma\left(\Lambda^{2k}T^\ast U\right)$. This means that the $2k$-form[^2] $P(\Omega)$ on $U$ is independent of the frame.
 
 Using this if we consider a trivializing open cover $\\{U_\alpha\\}$ of $E$, frames $e^\alpha$ for each $U_\alpha$ and curvature matrices $\Omega_\alpha$, we can patch[^3] together the collection $\\{P(\Omega_\alpha)\\}$ to get a global $2k$-form on $M$ denoted by $P(\Omega)$.
 
@@ -309,7 +309,7 @@ $$
 
 ---
 
-[^1]: If this is confusing, you can think of it as follows: $\Omega$ is a matrix consisting of sections of the bundle $\bigwedge^2(T^\ast M)$ i.e. $2$-forms. Evaluating at $p$, a section of this bundle (a $2$-form) gives an alternating map $T_pM \times T_pM \to \Bbb R$. $\mathcal{A}$ is now the commutative $\Bbb R$-algebra of such things. There is an unfortunate coincidence in notation as usually, we denote by $\Omega^k(M) := \Gamma\left(\bigwedge^k T^\ast M\right)$ the global $k$-forms on a manifold $M$, but we reserve the symbol $\Omega$ now for the curvature matrix.
+[^1]: If this is confusing, you can think of it as follows: $\Omega$ is a matrix consisting of sections of the bundle $\Lambda^2(T^\ast M)$ i.e. $2$-forms. Evaluating at $p$, a section of this bundle (a $2$-form) gives an alternating map $T_pM \times T_pM \to \Bbb R$. $\mathcal{A}$ is now the commutative $\Bbb R$-algebra of such things. There is an unfortunate coincidence in notation as usually, we denote by $\Omega^k(M) := \Gamma\left(\Lambda^k T^\ast M\right)$ the global $k$-forms on a manifold $M$, but we reserve the symbol $\Omega$ now for the curvature matrix.
 
 [^2]: Make sure you understand why this is a $2k$-form. It clarifies the intuition for considering $\mathcal{A}$ also.
 

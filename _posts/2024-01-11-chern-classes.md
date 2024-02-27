@@ -454,17 +454,17 @@ c(E \otimes E') &= c\left(\bigoplus_{i,j} L_i \otimes L'_j\right) \\
 \end{align*}
 $$
 
-Similarly for the exterior power $\bigwedge^k E$ we have that, if $E$ splits as $E = \bigoplus_i L_i$, then 
+Similarly for the exterior power $\Lambda^k E$ we have that, if $E$ splits as $E = \bigoplus_i L_i$, then 
 
 $$
-\bigwedge^k E = \bigoplus_{1 \le i_1 \le \dots \le i_k \le n} L_{i_1} \otimes \dots \otimes L_{i_k}.
+\Lambda^k E = \bigoplus_{1 \le i_1 \le \dots \le i_k \le n} L_{i_1} \otimes \dots \otimes L_{i_k}.
 $$
 
 Again it follows that
 
 $$
 \begin{align*}
-c\left(\bigwedge^k E\right) &= c\left(\bigoplus_{1 \le i_1 \le \dots \le i_k \le n} L_{i_1} \otimes \dots \otimes L_{i_k}\right) \\
+c\left(\Lambda^k E\right) &= c\left(\bigoplus_{1 \le i_1 \le \dots \le i_k \le n} L_{i_1} \otimes \dots \otimes L_{i_k}\right) \\
 &= \prod_{1 \le i_1 \le \dots \le i_k \le n}(1+ c_1(L_{i_1}) + \dots + c_1(L_{i_k})).
 \end{align*}
 $$
