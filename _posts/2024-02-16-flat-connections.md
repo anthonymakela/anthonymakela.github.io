@@ -350,7 +350,15 @@ due to Deligne. I wont go into these this time around, but to end this, lets go 
 
 Let $E \to X$ be a vector bundle of rank $k$ over a smooth manifold $X$. Consider $\mathcal{O}_X$-module $\Gamma$ given by the sheaf of sections of $E$. For each open $U \subset X$ the sheaf $\Gamma \vert_U$ is locally free, that is $\Gamma \vert_U \cong \bigoplus\_{i=1}^k \mathcal{O}_X \vert_U$. The reason being that we can identify sections $s : U \to E\vert_U \cong U \times \Bbb R^k$ with maps $U \to \Bbb R^k$.
 
-Conversely, if $\mathcal{F}$ is a locally free sheaf of rank $k$ on $X$. Then 
+Conversely, if $\mathcal{F}$ is a locally free sheaf of rank $k$ on $X$ and $\\{U_i\\}$ a cover which trivializes $\mathcal{F}$, i.e. $\mathcal{F}\vert\_{U_i} \cong \bigoplus\_{i=1}^k \mathcal{O}_X\vert\_{U_i}$. On $U_i \cap U_j$ we have maps 
+
+$$
+\xymatrix{
+\bigoplus_{i=1}^k \mathcal{O}_X\vert_{U_j} & \mathcal{F}\vert_{U_i \cap U_j} \ar@{->}[r] \ar@{->}[l] & \bigoplus_{i=1}^k\mathcal{O}_X\vert_{U_i} \ar@/^1pc/@{->}[ll]
+}
+$$
+
+with $$
 
 ---
 
