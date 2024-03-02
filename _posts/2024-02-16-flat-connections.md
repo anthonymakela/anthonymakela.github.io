@@ -3,7 +3,7 @@ layout: post
 title: "Flat Connections"
 categories: [Differential Geometry]
 mathjax: true
-published: false
+published: true
 excerpt_separator: <!--more-->
 ---
 
@@ -189,10 +189,14 @@ $$
 The same story holds for general vector bundles. Consider for example a bundle $E$ over $M$ and the End-bundle $\operatorname{End}(E)$. We have an obvious bilinear pairing $\operatorname{End}(E_p) \times E_p \to E_p$, given by $(\varphi, e) \mapsto \varphi(e)$ which gives a map $\operatorname{End}(E) \times E \to E$ defined pointwise. This gives us a way to consider products of $E$ and $\operatorname{End}(E)$-valued forms. That is a bilinear map
 
 $$
-\Omega^l(\operatorname{End}(E)) \times \Omega^k(E)  \to \Omega^{k+l}(E).
+\Omega^l(\operatorname{End}(E)) \times \Omega^k(E)  \to \Omega^{k+l}(E),
 $$
 
+with
 
+$$
+\left(\sum_i \omega_i \otimes F_i,  \sum_j \alpha_j \otimes s_j \right) \mapsto \sum_{ij} \omega_i \wedge \alpha_j \otimes  F_i(s_j).
+$$
 
 <div class="proposition">
 Let $\nabla$ be a connection in a vector bundle $E \to M$, and let $R$ be the curvature of $\nabla$. Then for all $\omega \in \Omega^k(E)$ 
@@ -300,7 +304,7 @@ $$
 \end{align*}
 $$
 
-where $dg$ is the matrix $[dg^i_j]$. Since $e_i$ and $e_j$ are both parallel we obtain that $e_idg = 0$ which implies that $dg = 0$ i.e. $g$ is constant. The local trivializations corresponding to these frames and transition maps yield a trivializing open cover with constant transition maps.
+where $dg$ is the matrix $[dg^i_j]$. Since $e_i$ and $e_j$ are both parallel we obtain that $e_idg = 0$ which implies that $dg = 0$ i.e. $g$ is constant. The local trivializations corresponding to these frames and transition functions yield a trivializing open cover with constant transition functions.
 
 Conversely, if the collection $\{(U_i, \varphi_i : E\vert_{U_i} \to U_i \times \Bbb R^k) \}$ is a trivializing open cover with constant transition functions $g_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R)$, then on each $U_i$ we can define a flat connection $\nabla_i$ by specifying that the local frames associated to the trivializations are parallel. That is $\nabla_i e_i = 0$. Since the transition functions are constant $\nabla_i$ and $\nabla_j$ agree on $U_i \cap U_j$. Gluing these $\nabla_i$'s together we obtain a global flat connection.
  
@@ -318,7 +322,7 @@ To see that the condition on vanishing characteristic classes is not necessary, 
 
 Heuristically speaking, the reason for this is that if we pick any point $p$ on $M$, the flatness of the connection yields that the parallel transport $P_\gamma$ along a loop $\gamma$ depends only on the homotopy class of $\gamma$. Since $\pi_1(\Bbb S^2) = 0$, we are free to move vectors around the sphere to generate a nowhere-vanishing vector field. This contradicts the Poincaré–Hopf theorem and so $T\Bbb S^2$ cannot admit a flat connection.
 
-The reasoning above is actually part of a more general theory. The parallel transport gives rise to a representation 
+The reasoning above is actually part of a more general theory. Parallel transport gives rise to a representation 
 
 $$
 \rho : \pi_1(M,p_0) \to \mathrm{GL}(k,\Bbb C),
@@ -346,19 +350,21 @@ There is actually a whole chain of equivalences between the three categories
     <li>Vector bundles $E \to M$ with a flat connection $\nabla$,</li>
 </ol>
 
-due to Deligne. I wont go into these this time around, but to end this, lets go over the correspondence of vector bundles and locally free $\mathcal{O}_X$-modules which we will need in a future post. This correspondence turns out to be infact an equivalence of categories.
+due to Deligne. I won't go into these this time around, but to end this, let's go over the correspondence of vector bundles and locally free $\mathcal{O}_X$-modules which we will need in a future post. This correspondence turns out to be in fact an equivalence of categories.
 
-Let $E \to X$ be a vector bundle of rank $k$ over a smooth manifold $X$. Consider $\mathcal{O}_X$-module $\Gamma$ given by the sheaf of sections of $E$. For each open $U \subset X$ the sheaf $\Gamma \vert_U$ is locally free, that is $\Gamma \vert_U \cong \bigoplus\_{i=1}^k \mathcal{O}_X \vert_U$. The reason being that we can identify sections $s : U \to E\vert_U \cong U \times \Bbb R^k$ with maps $U \to \Bbb R^k$.
+Let $E \to X$ be a vector bundle of rank $k$ over a smooth manifold $X$. Consider $\mathcal{O}_X$-module $\Gamma$ given by the sheaf of sections of $E$. For each open $U \subset X$ the sheaf $\Gamma \vert_U$ is locally free, that is $\Gamma \vert_U \cong \bigoplus\_{i=1}^k \mathcal{O}_X \vert_U$. The reason is that we can identify sections $s : U \to E\vert_U \cong U \times \Bbb R^k$ with maps $U \to \Bbb R^k$.
 
-Conversely, if $\mathcal{F}$ is a locally free sheaf of rank $k$ on $X$ and $\\{U_i\\}$ a cover which trivializes $\mathcal{F}$, i.e. $\mathcal{F}\vert\_{U_i} \cong \bigoplus\_{i=1}^k \mathcal{O}_X\vert\_{U_i}$. On $U_i \cap U_j$ we have maps 
+Conversely, if $\mathcal{F}$ is a locally free sheaf of rank $k$ on $X$ and $\\{U_i\\}$ a cover which trivializes $\mathcal{F}$, i.e. $\mathcal{F}\vert\_{U_i} \cong \bigoplus\_{i=1}^k \mathcal{O}_X\vert\_{U_i}$. On $U_i \cap U_j$ we have maps of sheaves
 
 $$
 \xymatrix{
-\bigoplus_{i=1}^k \mathcal{O}_X\vert_{U_j} & \mathcal{F}\vert_{U_i \cap U_j} \ar@{->}[r] \ar@{->}[l] & \bigoplus_{i=1}^k\mathcal{O}_X\vert_{U_i} \ar@/^1pc/@{->}[ll]
+\bigoplus_{i=1}^k \mathcal{O}_X\vert_{U_i \cap U_j} \ar@/_1pc/@{->}[rr]_{\varphi_i\circ\varphi_j^{-1}} & \mathcal{F}\vert_{U_i\cap U_j} \ar@{->}[l]_{\varphi_j} \ar@{->}[r]^{\varphi_i} & \bigoplus_{i=1}^k \mathcal{O}_X\vert_{U_i \cap U_j},
 }
 $$
 
-with $$
+with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem.
+
+That's all this time around, in the near future I'll probably come back to this topic from the viewpoint of local systems and those representations of the fundamental group.
 
 ---
 
