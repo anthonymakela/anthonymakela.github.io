@@ -362,7 +362,7 @@ $$
 }
 $$
 
-with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem.
+with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem[^5].
 
 That's all this time around, in the near future I'll probably come back to this topic from the viewpoint of local systems and those representations of the fundamental group.
 
@@ -375,3 +375,5 @@ That's all this time around, in the near future I'll probably come back to this 
 [^3]: It's probably worth emphasizing here that "flatness" is a property of the connection, _not_ the bundle. Curvature is always defined with respect to some connection on the bundle and thus is not an inherent property of the bundle. Asking something about the "flatness of a bundle" does not make sense. It's like asking how fast a car is without considering any wheels on it. Think about the torus in $\Bbb R^3$. The picture that comes to your head is probably a donut sitting in three-space. You are implicitly assuming that it is equipped with a non-flat connection, but the tangent bundle of the torus actually admits a flat connection as well.
 
 [^4]: Stably trivial meaning that $T\Bbb S^n \oplus \Bbb R$ is trivial. 
+
+[^5]: For the theorem, see exercise $10$-$6$ from Introduction to Smooth Manifolds by John M. Lee.
