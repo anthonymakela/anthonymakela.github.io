@@ -310,6 +310,10 @@ Conversely, if the collection $\{(U_i, \varphi_i : E\vert_{U_i} \to U_i \times \
  
 </div>
 
+
+
+---
+
 Recall from our discussions about the Pontryagin and Chern classes that each of them is defined using the curvature matrix $\Omega$ of a connection. We thus obtain a sufficient condition for a vector bundle to admit a flat[^3] connection.
 
 <div class="proposition">
