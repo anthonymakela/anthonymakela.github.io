@@ -340,6 +340,9 @@ table {
   font-weight: bold;
   font-style: normal;
 }
+.example[text]:before {
+  content: "Example (" attr(text) ") ";
+}
 .exercise {
   display: block;
   margin: 12px 0;
@@ -370,6 +373,7 @@ table {
   display: block;
   margin: 12px 0;
   font-style: normal;
+  position: relative;
 }
 .proof:before {
   content: "Proof.";
@@ -377,7 +381,10 @@ table {
 }
 .proof:after {
   content: "\25FC";
-  float:right;
+  float:right;  
+  position: absolute;
+  right: 0px;
+  bottom: -2px;
 }
 .proof[text]:before {
   content: "Proof (" attr(text) ") ";

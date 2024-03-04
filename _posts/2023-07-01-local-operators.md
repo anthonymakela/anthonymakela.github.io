@@ -132,7 +132,7 @@ $$
 $$
 </div>
 
-Alright now onto the fun stuff. It turns out that the following is true.
+Alright now onto the good stuff. It turns out that the following is true.
 
 <div class="theorem">
 There is a one-to-one correspondence between bundle maps $\Phi : E \to F$ and $C^\infty(M)$-linear maps $\alpha :\Gamma(E) \to \Gamma(F)$ given by $\Phi \mapsto \widetilde{\Phi}$.
@@ -146,7 +146,7 @@ Define $\Phi : E \to F$ by setting $\Phi(v) = \Phi_p(v)$ if $v \in E_p$. Now for
 $$
 \widetilde{\Phi}(s)(p) = \Phi(s(p)) = \alpha(s)(p),
 $$
-and so $\alpha = \widetilde{\Phi}$ which prove surjectivity. Consider then bundle maps $\Phi, \Psi : E \to F$ with $\widetilde{\Phi} = \widetilde{\Psi}$. For any $v \in E_p$ pick $s \in \Gamma(E)$ with $s(p) = e$. Then
+and so $\alpha = \widetilde{\Phi}$ which proves surjectivity. Consider then bundle maps $\Phi, \Psi : E \to F$ with $\widetilde{\Phi} = \widetilde{\Psi}$. For any $v \in E_p$ pick $s \in \Gamma(E)$ with $s(p) = e$. Then
 $$
 \begin{align*}
 \Phi(v) &= \Phi(s(p))\\
