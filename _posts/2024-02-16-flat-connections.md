@@ -7,7 +7,7 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-I've been currently reading about results considering certain characteristic classes on holomorphic vector bundles on Kähler manifolds and the notion of a <i>flat connection</i> plays an important role in the theory. This is by no means a surprise, if you think about it, the condition $d^2_\nabla = 0$ gives us a chain complex and lets us wonder about all things cohomology. It turns out that the cohomology theory we obtain from this is very useful and appears, for example in the Riemann-Hilbert correspondence.
+I've been currently reading about results considering certain characteristic classes on holomorphic vector bundles on Kähler manifolds and the notion of a <i>flat connection</i> plays an important role in the theory. This is by no means a surprise, if you think about it, the condition $d^2_\nabla = 0$ gives us a cochain complex and lets us wonder about all things cohomology. It turns out that the cohomology theory we obtain from this is very useful and appears, for example in the Riemann-Hilbert correspondence.
 
 <!--more-->
 
