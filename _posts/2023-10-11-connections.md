@@ -141,6 +141,8 @@ Thus $\nabla + A$ satisfies the Leibniz rule and is, therefore, a connection. Si
 The set of all connections on a vector bundle $E$ is an affine space over the space of $\operatorname{End}(E)$-valued $1$-forms.
 </div>
 
+In an upcoming post on connection $1$-forms and curvature $2$-forms, I'll go more in depth on how we describe these things locally on a framed open set.
+
 ---
 
 [^1]: We actually have $\Gamma(T^\ast M \otimes E) \cong \Gamma(TM)^\ast \otimes_{C^\infty(M)} \Gamma(E)$ and $\Gamma(TM)^\ast \otimes_{C^\infty(M)} \Gamma(E) \cong \operatorname{Hom}_{C^\infty(M)}(\Gamma(TM), \Gamma(E))$ so the first definition is just a curried version of the second one.
