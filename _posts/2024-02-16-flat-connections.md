@@ -322,7 +322,7 @@ If a real or complex vector bundle possesses a flat connection then all of its P
 
 For example, the tangent bundle of $\Bbb CP^2$ does not admit a flat connection. The above proposition illustrates that vector bundles admitting flat connections are quite rare.
 
-To see that the condition on vanishing characteristic classes is not necessary, note that the Pontryagin classes of the tangent bundles of $\Bbb S^n$ for any $n$ vanish as the spheres are stably trivial[^4]. However, $T\Bbb S^n$ does _not_ admit any flat connections.
+To see that the condition on vanishing characteristic classes is not necessary, note that the Pontryagin classes of the tangent bundles of $\Bbb S^n$ for any $n$ vanish as the spheres are stably trivial[^4]. However, $T\Bbb S^2$ does _not_ admit any flat connections.
 
 Heuristically speaking, the reason for this is that if we pick any point $p$ on $M$, the flatness of the connection yields that the parallel transport $P_\gamma$ along a loop $\gamma$ depends only on the homotopy class of $\gamma$. Since $\pi_1(\Bbb S^2) = 0$, we are free to move vectors around the sphere to generate a nowhere-vanishing vector field. This contradicts the Poincaré–Hopf theorem and so $T\Bbb S^2$ cannot admit a flat connection.
 
