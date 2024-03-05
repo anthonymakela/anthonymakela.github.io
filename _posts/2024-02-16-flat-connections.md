@@ -103,7 +103,7 @@ which yields $d_\nabla(\omega \otimes s) = d\omega \otimes s + (-1)^k\omega \wed
 </div>
  
 
-Alternatively, we could have alternatively defined $d_\nabla$ by setting $d_\nabla(\omega \otimes s) = d\omega \wedge s + (-1)^k\omega \wedge \nabla s$ for $\omega \in \Omega^k(M)$ and $s \in \Omega^0(E)$. Showing that this satisfies
+Alternatively, we could have defined $d_\nabla$ by setting $d_\nabla(\omega \otimes s) = d\omega \wedge s + (-1)^k\omega \wedge \nabla s$ for $\omega \in \Omega^k(M)$ and $s \in \Omega^0(E)$. Showing that this satisfies
 
 <ol>
     <li>
