@@ -101,16 +101,22 @@ $$
 </div>
 
 <div class="example">
-Suppose that $E = M \times \Bbb R^k$ is the trivial bundle of rank $k$ over $M$. Then section any $s \in \Gamma(M \times \Bbb R^k)$ can be identified with a map $s : M \to \Bbb R^k$ with $s = (s_1,\dots, s_k)$ and $s_i : M \to \Bbb R $. Setting $\nabla s = ds$ yields a connection on $E$. Here, for $X \in \Gamma(TM)$
+Suppose that $E = M \times \Bbb R^k$ is the trivial bundle of rank $k$ over $M$. Then there exists a global frame $e = (e_1,\dots, e_k)$ and any global section $s \in \Gamma(E)$ can be written as $s = \sum s^ie_i$ with $s^i : M \to \Bbb R$. For $X \in \Gamma(TM)$, the Leibniz rule yields
 
 $$
 \begin{align*}
-\nabla_X s &= (\nabla_X s_1,\dots, \nabla_X s_k) \\
-&= (ds_1(X),\dots,ds_k(X)),
+\nabla_X s &= \sum ds^i(X)e_i + s^i\nabla_X e_i.
 \end{align*}
 $$
 
-which under the identification is a section of $M \times \Bbb R^k$.
+Declaring the sections $e_i$ to be flat, we obtain a connection by setting
+
+$$
+\nabla s = ds,
+$$
+
+where $ds$ is understood to be the exterior derivative of a $E$-valued differential form. That is, $ds = \sum_i ds^i \otimes e_i \in \Gamma(T^\ast M \otimes E)$.
+
 </div>
 
 Notice that if we have two connections $\nabla_1$ and $\nabla_2$ on a vector bundle $E$, then for all smooth functions $f$ on $M$ and sections $s$ of $E$ we have
@@ -141,7 +147,13 @@ Thus $\nabla + A$ satisfies the Leibniz rule and is, therefore, a connection. Si
 The set of all connections on a vector bundle $E$ is an affine space over the space of $\operatorname{End}(E)$-valued $1$-forms.
 </div>
 
-In an upcoming post on connection $1$-forms and curvature $2$-forms, I'll go more in depth on how we describe these things locally on a framed open set.
+The above proposition gives us a neat way to describe connections locally since any connection can be obtained from fixed "basepoint connection". If $U \subset M$ is a trivializing open set, then $E\vert_U \cong U \times \Bbb R^k$. Hence we can take $d$ as our "basepoint connection". It follows that any connection on $U$ can be written as 
+
+$$
+\nabla = d + A,
+$$
+
+where $A$ is a matrix-valued $1$-form. In an upcoming post on connection $1$-forms and curvature $2$-forms, I’ll go more in depth on how we describe these things locally on a framed open set.
 
 ---
 
