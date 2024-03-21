@@ -286,7 +286,7 @@ So $R$ is a map $\Gamma(TM) \times \Gamma(TM) \times \Gamma(E) \to \Gamma(E)$. T
 In general if $E$ is a vector bundle over $M$, then an $E$-<b>valued</b> tensor field of type $(k,l)$ is a section of the bundle
 
 $$
-\left(\bigotimes^k TM \right) \otimes \left(\bigotimes^k T^\ast M \right) \otimes E.
+\left(\bigotimes^k TM \right) \otimes \left(\bigotimes^l T^\ast M \right) \otimes E.
 $$
 
 This post ended up being quite a bit longer than I expected, but hopefully you'll be able to gain some insights from this.

@@ -211,10 +211,10 @@ It suffices to show this for a pure tensor $\omega = \alpha \otimes s$ with $\al
 
 $$
 \begin{align}
-    d^\nabla(d^\nabla \omega)  &= d^\nabla(d^\nabla(\alpha \otimes s)) \\ 
-    &= d^\nabla(d\alpha \otimes s + (-1)^k \alpha \wedge \nabla s) \\
-    &= d^\nabla(d\alpha \otimes s) + (-1)^{k} d^\nabla (\alpha \wedge \nabla s) \\
-    &= d^2 \alpha \otimes s + (-1)^{k+1} d\alpha \wedge \nabla s + (-1)^k (d\alpha\wedge \nabla s + \alpha \wedge d^\nabla \circ \nabla s) \\
+    d_\nabla(d_\nabla \omega)  &= d_\nabla(d_\nabla(\alpha \otimes s)) \\ 
+    &= d_\nabla(d\alpha \otimes s + (-1)^k \alpha \wedge \nabla s) \\
+    &= d_\nabla(d\alpha \otimes s) + (-1)^{k} d_\nabla (\alpha \wedge \nabla s) \\
+    &= d^2 \alpha \otimes s + (-1)^{k+1} d\alpha \wedge \nabla s + (-1)^k (d\alpha\wedge \nabla s + \alpha \wedge d_\nabla \circ \nabla s) \\
     &= \alpha \wedge R s \\
     &= R \wedge (\alpha \otimes s) \\
     &= R \wedge \omega.
@@ -285,10 +285,10 @@ $$
 As $s$ is associated to $\varphi_U$ and $\sigma$ to $\varphi_V$ this gives the relationship 
 
 $$
-\sigma_j(p) = \sum_i g^i_j(p)s_j(p)
+\sigma_j(p) = \sum_i g^i_j(p)s_i(p)
 $$
 
-which in terms of matrices is $\sigma = sg_{UV}$.
+which in terms of matrices[^3] is $\sigma = sg_{UV}$.
 
 <div class="proposition">
 A vector bundle $E \to M$ admits a flat connection if and only if it admits a trivializing open cover in which all the transition functions are constant.
@@ -311,10 +311,9 @@ Conversely, if the collection $\{(U_i, \varphi_i : E\vert_{U_i} \to U_i \times \
 </div>
 
 
-
 ---
 
-Recall from our discussions about the Pontryagin and Chern classes that each of them is defined using the curvature matrix $\Omega$ of a connection. We thus obtain a sufficient condition for a vector bundle to admit a flat[^3] connection.
+Recall from our discussions about the Pontryagin and Chern classes that each of them is defined using the curvature matrix $\Omega$ of a connection. We thus obtain a necessary condition for a vector bundle to admit a flat[^4] connection.
 
 <div class="proposition">
 If a real or complex vector bundle possesses a flat connection then all of its Pontryagin or Chern classes with rational coefficients are zero.
@@ -322,7 +321,7 @@ If a real or complex vector bundle possesses a flat connection then all of its P
 
 For example, the tangent bundle of $\Bbb CP^2$ does not admit a flat connection. The above proposition illustrates that vector bundles admitting flat connections are quite rare.
 
-To see that the condition on vanishing characteristic classes is not necessary, note that the Pontryagin classes of the tangent bundles of $\Bbb S^n$ for any $n$ vanish as the spheres are stably trivial[^4]. However, $T\Bbb S^2$ does _not_ admit any flat connections.
+To see that the condition on vanishing characteristic classes is not sufficient, note that the Pontryagin classes of the tangent bundles of $\Bbb S^n$ for any $n$ vanish as the spheres are stably trivial[^5]. However, $T\Bbb S^2$ does _not_ admit any flat connections.
 
 Heuristically speaking, the reason for this is that if we pick any point $p$ on $M$, the flatness of the connection yields that the parallel transport $P_\gamma$ along a loop $\gamma$ depends only on the homotopy class of $\gamma$. Since $\pi_1(\Bbb S^2) = 0$, we are free to move vectors around the sphere to generate a nowhere-vanishing vector field. This contradicts the Poincaré–Hopf theorem and so $T\Bbb S^2$ cannot admit a flat connection.
 
@@ -366,7 +365,7 @@ $$
 }
 $$
 
-with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem[^5].
+with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem[^6].
 
 That's all this time around, in the near future I'll probably come back to this topic from the viewpoint of local systems and those representations of the fundamental group.
 
@@ -376,8 +375,10 @@ That's all this time around, in the near future I'll probably come back to this 
 
 [^2]: When $E = M \times \Bbb R$ we have that $\Omega^k(E) = \Gamma\left(\Lambda^k T^\ast M \otimes (M \times \Bbb R)\right)$ which gives $\Omega^k(M) \otimes_{C^\infty(M)} \Gamma(M \times \Bbb R)$, but $\Gamma(M \times \Bbb R)$ can be identified with $C^\infty(M)$ which yields $\Omega^k(M \times \Bbb R) = \Omega^k(M)$.
 
-[^3]: It's probably worth emphasizing here that "flatness" is a property of the connection, _not_ the bundle. Curvature is always defined with respect to some connection on the bundle and thus is not an inherent property of the bundle. Asking something about the "flatness of a bundle" does not make sense. It's like asking how fast a car is without considering any wheels on it. Think about the torus in $\Bbb R^3$. The picture that comes to your head is probably a donut sitting in three-space. You are implicitly assuming that it is equipped with a non-flat connection, but the tangent bundle of the torus actually admits a flat connection as well.
+[^3]: It is worth mentioning here that we are thinking about $s$ and $\sigma$ as row vectors. In literature, you may see this as $\sigma = g_{UV}s$, in which case the authors are treating $s$ and $\sigma$ as column vectors. This is just transposing the equation $\sigma = sg_{UV}$ we obtained.
 
-[^4]: Stably trivial meaning that $T\Bbb S^n \oplus \Bbb R$ is trivial. 
+[^4]: It's probably worth emphasizing here that "flatness" is a property of the connection, _not_ the bundle. Curvature is always defined with respect to some connection on the bundle and thus is not an inherent property of the bundle. Asking something about the "flatness of a bundle" does not make sense. It's like asking how fast a car is without considering any wheels on it. Think about the torus in $\Bbb R^3$. The picture that comes to your head is probably a donut sitting in three-space. You are implicitly assuming that it is equipped with a non-flat connection, but the tangent bundle of the torus actually admits a flat connection as well.
 
-[^5]: For the theorem, see exercise $10$-$6$ from Introduction to Smooth Manifolds by John M. Lee.
+[^5]: Stably trivial meaning that $T\Bbb S^n \oplus \Bbb R$ is trivial. 
+
+[^6]: For the theorem, see exercise $10$-$6$ from Introduction to Smooth Manifolds by John M. Lee.

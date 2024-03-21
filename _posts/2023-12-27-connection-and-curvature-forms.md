@@ -52,13 +52,40 @@ and the result follows.
 
 Now since local operators can be restricted to any open subset, a connection on a vector bundle can be restricted to any open subset.
 
-Suppose now that $U$ is a trivializing open set for $E$ and $(e_i)$ a frame for $E$ over $U$. Let $X \in \Gamma(U, TM)$. Since any local section $s \in \Gamma(U, E)$ is a linear combination $s = \sum a^je_j$, the section $\nabla_X s$ can be computed from $\nabla_X e_j$ by using linearity and the Leibniz rule. Describing $\nabla_X e_j$ is merely linear algebra. Let $(\varepsilon^i)$ be the dual coframe, we have that
+Suppose now that $U$ is a trivializing open set for $E$ and $(e_i)$ a frame for $E$ over $U$. Let $X \in \Gamma(U, TM)$. Since any local section $s \in \Gamma(U, E)$ is a linear combination $s = \sum s^je_j$, the section $\nabla_X s$ can be computed from $\nabla_X e_j$ by using linearity and the Leibniz rule. Indeed, we have that
+
+$$
+\begin{align*}
+\nabla_X s &= \nabla_X \left(s^j e_j\right) \\
+&= ds^j(X)e_j + s^j\nabla_X e_j.
+\end{align*}
+$$
+
+Describing $\nabla_X e_j$ is merely linear algebra. Let $(\varepsilon^i)$ be the dual coframe, we have that
 
 $$
 \nabla_X e_j = \sum_i \varepsilon^i(\nabla_X e_j)e_i.
 $$
 
-We set $\omega^i_j(X) := \varepsilon^i(\nabla_X e_j)$ and call these the <b>connection $1$-forms</b>[^1]. The matrix $[\omega^i_j]$ is called the <b>connection matrix</b> of the connection $\nabla$ relative to the local frame.
+We set $\omega^i_j(X) := \varepsilon^i(\nabla_X e_j)$ and call these the <b>connection $1$-forms</b>[^1]. The matrix $[\omega^i_j]$ is called the <b>connection matrix</b> of the connection $\nabla$ relative to the local frame. Without fixing $X \in \Gamma(U, TM)$, we have
+
+$$
+\nabla e_j = \sum \omega^i_j \otimes e_i
+$$
+
+and 
+
+$$
+\begin{align*}
+\nabla s &= \nabla(s^je_j) \\
+&= ds^j \otimes e_j + s^j\nabla e_j \\
+&= ds^j \otimes e_j + s^j \omega^i_j \otimes e_i \\ 
+&= ds^j \otimes e_j + \omega^i_js^j \otimes e_i \\
+&= ds + As,
+\end{align*}
+$$
+
+which, if you recall, is exactly in the form we described in <a href="https://anthonymakela.com/differential%20geometry/2023/10/11/connections.html" style="color:#680530; text-decoration: underline;">Connections</a>.
 
 So a connection $\nabla$ on $E\vert_U$ determines a unique connection matrix $[\omega^i_j]$ relative to the local frame. Conversely, any matrix $[\omega^i_j]$ of $1$-forms determines a connection on $E\vert_U$ as follows. For $X, Y \in \Gamma(U,TM)$ set
 

@@ -43,7 +43,7 @@ $$
 
 Varying $p$ gives $P(\bar{\Omega}) = P(\Omega) \in \Gamma\left(\Lambda^{2k}T^\ast U\right)$. This means that the $2k$-form[^2] $P(\Omega)$ on $U$ is independent of the frame.
 
-Using this if we consider a trivializing open cover $\\{U_\alpha\\}$ of $E$, frames $e^\alpha$ for each $U_\alpha$ and curvature matrices $\Omega_\alpha$, we can patch[^3] together the collection $\\{P(\Omega_\alpha)\\}$ to get a global $2k$-form on $M$ denoted by $P(\Omega)$.
+Using this if we consider a trivializing open cover $\\{U_\alpha\\}$ of $E$, frames $e_\alpha$ for each $U_\alpha$ and curvature matrices $\Omega_\alpha$, we can patch[^3] together the collection $\\{P(\Omega_\alpha)\\}$ to get a global $2k$-form on $M$ denoted by $P(\Omega)$.
 
 ---
 

@@ -147,13 +147,43 @@ Thus $\nabla + A$ satisfies the Leibniz rule and is, therefore, a connection. Si
 The set of all connections on a vector bundle $E$ is an affine space over the space of $\operatorname{End}(E)$-valued $1$-forms.
 </div>
 
-The above proposition gives us a neat way to describe connections locally since any connection can be obtained from fixed "basepoint connection". If $U \subset M$ is a trivializing open set, then $E\vert_U \cong U \times \Bbb R^k$. Hence we can take $d$ as our "basepoint connection". It follows that any connection on $U$ can be written as 
+The above proposition gives us a neat way to describe connections locally since any connection can be obtained from fixed "basepoint connection". If $U \subset M$ is a trivializing open set, then $E\vert_U \cong U \times \Bbb R^k$. Hence we can take $d$ as our "basepoint connection". It follows that any connection on the trivial bundle $U \times \Bbb R^k$ can be written as 
 
 $$
 \nabla = d + A,
 $$
 
-where $A$ is a matrix-valued $1$-form. In an upcoming post on connection $1$-forms and curvature $2$-forms, I’ll go more in depth on how we describe these things locally on a framed open set.
+where $A$ is a matrix-valued $1$-form. To be a bit more precise, suppose we have a connection $\nabla$ on $E$ and local trivializations $\varphi_i : E\vert_{U_i} \to U_i \times \Bbb R^k$. For a section $s \in \Gamma(U_i \times \Bbb R^k)$, $\varphi^{-1}_i s$ is a section of $E\vert\_{U_i}$. Then $\nabla \varphi^{-1}_i s \in \Gamma(T^\ast M \otimes E\vert\_{U_i})$ and $\varphi_i \nabla \varphi^{-1}_i s \in \Gamma(T^\ast M \otimes (U_i \times \Bbb R^k))$, where $\varphi_i$ is now identified with the map $\operatorname{id} \otimes \varphi_i$
+
+$$
+\begin{align*}
+T^\ast M \otimes E\vert_{U_i} &\to T^\ast M \otimes (U_i \times \Bbb R^k) \\
+\omega \otimes e &\mapsto \omega \otimes \varphi_i(e).
+\end{align*}
+$$
+
+Hence $\varphi_i \circ \nabla \circ \varphi^{-1}_i$ yields a local description of $\nabla$. We know that such a thing is of the form 
+
+$$
+\varphi_i \circ \nabla \circ \varphi^{-1}_i = d + A_i,
+$$
+
+for $A_i$ a matrix of $1$-forms. Equivalently this gives 
+
+$$
+\nabla = \varphi^{-1}_i \circ (d+A_i) \circ \varphi_i,
+$$
+
+i.e. $\nabla$ looks locally like the connection $d+A_i$ on the trivial bundle $U_i \times \Bbb R^k$ which we've established before. Here $\varphi^{-1}_i$ should be in turn interpreted as a map
+
+$$
+\begin{align*}
+T^\ast M \otimes (U_i \times \Bbb R^k)  &\to T^\ast M \otimes E\vert_{U_i} \\
+\omega \otimes v &\mapsto \omega \otimes \varphi^{-1}_i(v).
+\end{align*}
+$$
+
+In an upcoming post on connection $1$-forms and curvature $2$-forms, I’ll go more in depth on how we describe these things locally on a framed open set.
 
 ---
 
