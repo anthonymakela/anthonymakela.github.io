@@ -207,10 +207,42 @@ is exact and splits in $\mathscr{D}$.
 </div>
 
 <div class="proof">
-The sequence is exact since $F$ is left exact. If $\psi$ is a section of $\varphi$, the morphism $F(\psi): F(C) \to F(B)$ is a section of $F(\varphi)$ which concludes the proof.
+The sequence is exact since $F$ is left-exact. If $\psi$ is a section of $\varphi$, the morphism $F(\psi): F(C) \to F(B)$ is a section of $F(\varphi)$ which concludes the proof.
 </div>
 
 ---
+
+The "motivation" for what's coming next should be this. We start off with a left-exact functor $F : \mathscr{C} \to \mathscr{D}$ of abelian categories and a short exact sequence
+
+$$
+0 \longrightarrow A \longrightarrow B \longrightarrow C \longrightarrow 0.
+$$
+
+Applying $F$ we obtain
+
+$$
+0 \longrightarrow F(A) \longrightarrow F(B) \longrightarrow F(C).
+$$
+
+Now what we would want to do is to measure the extent to which $F$ fails to be exact by extending the above to a long exact sequence
+
+$$
+0 \longrightarrow F(A) \longrightarrow F(B) \longrightarrow F(C) \longrightarrow R^1F(A) \longrightarrow R^1F(B) \longrightarrow R^1F(C) \longrightarrow \dots
+$$
+
+To understand what I mean by failure of $F$ being exact, note that if $R^1F(A) = 0$, then $F$ is exact. So $R^1F(A)$, in a sense measures the exactness of $F$. We know from our background in homological algebra that if we have a short exact sequence of cochain complexes
+
+$$
+0 \longrightarrow F(I^\bullet) \longrightarrow F(J^\bullet) \longrightarrow F(K^\bullet) \longrightarrow 0,
+$$
+
+we obtain an induced long exact sequence in cohomology
+
+$$
+0 \longrightarrow H^0(F(I^\bullet)) \longrightarrow H^0(F(J^\bullet)) \longrightarrow H^0(F(K^\bullet)) \longrightarrow H^1(F(I^\bullet)) \longrightarrow \dots
+$$
+
+This motivates the following idea. Maybe, for each of the objects $A, B$ and $C$ we can associate a cochain complex and then define the <b>right-derived functors</b> $R^iF$ of $F$ in terms of the cohomology of these cochain complexes. This is exactly the kind of thing we've just developed the theory for.
 
 Let $\mathscr{C}$ and $\mathscr{D}$ be two abelian categories, and $F$ a left-exact functor from $\mathscr{C}$ to $\mathscr{D}$. Suppose in addition that $\mathscr{C}$ has enough injectives.
 
