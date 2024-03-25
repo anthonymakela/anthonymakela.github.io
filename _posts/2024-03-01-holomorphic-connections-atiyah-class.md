@@ -568,13 +568,13 @@ $$
 
 <div class="proof">
 
-As a special case of the Grothendieck spectral sequence, we obtain a convergent spectral sequence
+As a special case of the Grothendieck spectral sequence, we have a convergent spectral sequence
 
 $$
 E^{p,q}_2 = H^p(X, \mathcal{Ext}^q(\mathcal{G}, \mathcal{F})) \implies \operatorname{Ext}^{p+q}(\mathcal{G}, \mathcal{F}).
 $$
 
-from where we obtain a long exact sequence
+From where we obtain a long exact sequence
 
 $$
 0 \rightarrow H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{F})) \rightarrow \operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \rightarrow H^1(X, \mathcal{Ext}^1(\mathcal{G}, \mathcal{F})) \rightarrow H^2(X, \mathcal{Hom}(\mathcal{G}, \mathcal{F})) \rightarrow \dots
