@@ -561,7 +561,7 @@ If the exact sequence $0 \longrightarrow E \longrightarrow F \longrightarrow G \
 The equivalence classes of extensions of $\mathcal{G}$ by $\mathcal{E}$ are in one-to-one correspondence with the elements of $H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{E}))$. Said differently, we have
 
 $$
-\operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \cong H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{E}))
+\operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \cong H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{E})).
 $$
 
 </div>
