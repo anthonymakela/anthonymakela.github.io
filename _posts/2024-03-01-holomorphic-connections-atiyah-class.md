@@ -531,13 +531,72 @@ A(E) = 0 \iff A\left(E\vert_S\right) = 0.
 $$
 </div>
 
-The unfortunate thing now is that neither of these can be generalized. Let $Y = \Bbb P^1$, $Z$ be an elliptic curve, and $X = Y \times Z$. Fix $(y_0,z_0) \in X$ and consider $Y = Y \times \{z_0\}$ and $Z = \{y_0\} \times Z$ as subspaces of $X$. For the canonical bundle of $X$ we obtain $\mathcal{O}_X(-2Z)$. Tensoring the structure sequence of $Z$ with $\mathcal{O}_X(2Z)$ we obtain
+The unfortunate thing now is that neither of these can be generalized. Before we see why, here are two notions regarding short exact sequences of vector bundles that we are going to need. 
+
+<div class="definition">
+Let $E$ and $G$ be vector bundles over $X$. Then $E$ is called an extension of $G$ if there is an short exact sequence of vector bundles
+
+$$
+0 \longrightarrow E \longrightarrow F \longrightarrow G \longrightarrow 0.
+$$
+</div>
+
+<div class="definition">
+Two extensions of $G$ by $E$ are <i>equivalent</i> if we have a commutative diagram
+
+$$
+\xymatrix{
+0 \ar@{->}[r] & E \ar@{->}[r] \ar@{=}[d] & F_1 \ar@{->}[r] \ar@{->}[d] & G \ar@{->}[r] \ar@{=}[d] & 0 \\
+0 \ar@{->}[r] & E \ar@{->}[r] & F_2 \ar@{->}[r] & G \ar@{->}[r] & 0.
+}
+$$
+
+Note that the five lemma implies that the middle arrow is an isomorphism.
+</div>
+
+
+If the exact sequence $0 \longrightarrow E \longrightarrow F \longrightarrow G \longrightarrow 0$ splits we say that the extension is trivial. Also, given our correspondence with locally free sheaves, the extensions of $G$ by $E$ correspond one-to-one with the extensions of the associated sheaves $0 \longrightarrow \mathcal{E} \longrightarrow \mathcal{F} \longrightarrow \mathcal{G} \longrightarrow 0$. Henceforth, we will make very little distinction between locally free sheaves and vector bundles.
+
+<div class="lemma">
+The equivalence classes of extensions of $\mathcal{G}$ by $\mathcal{E}$ are in one-to-one correspondence with the elements of $H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{E}))$. Said differently, we have
+
+$$
+\operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \cong H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{E}))
+$$
+
+</div>
+
+<div class="proof">
+
+As a special case of the Grothendieck spectral sequence, we obtain a convergent spectral sequence
+
+$$
+E^{p,q}_2 = H^p(X, \mathcal{Ext}^q(\mathcal{G}, \mathcal{F})) \implies \operatorname{Ext}^{p+q}(\mathcal{G}, \mathcal{F}).
+$$
+
+from where we obtain a long exact sequence
+
+$$
+0 \rightarrow H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{F})) \rightarrow \operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \rightarrow H^1(X, \mathcal{Ext}^1(\mathcal{G}, \mathcal{F})) \rightarrow H^2(X, \mathcal{Hom}(\mathcal{G}, \mathcal{F})) \rightarrow \dots
+$$
+
+Since we are dealing with the sheaves associated to vector bundles, each of them is locally free. In particular it follows that $\mathcal{Ext}^1$ vanishes and so the sequence reduces to
+
+$$
+0 \longrightarrow H^1(X, \mathcal{Hom}(\mathcal{G}, \mathcal{F})) \longrightarrow \operatorname{Ext}^1(\mathcal{G}, \mathcal{F}) \longrightarrow 0,
+$$
+
+yielding the desired result.
+
+</div>
+
+Consider now the following. Let $Y = \Bbb P^1$, $Z$ be an elliptic curve, and $X = Y \times Z$. Fix $(y_0,z_0) \in X$ and consider $Y = Y \times \{z_0\}$ and $Z = \{y_0\} \times Z$ as subspaces of $X$. For the canonical bundle of $X$ we obtain $\mathcal{O}_X(-2Z)$. Tensoring the structure sequence of $Z$ with $\mathcal{O}_X(2Z)$ we obtain
 
 $$
 0 \longrightarrow \mathcal{O}_X(Z) \longrightarrow \mathcal{O}_X(2Z) \longrightarrow \mathcal{O}_Z \otimes \mathcal{O}_X(2Z) \cong \mathcal{O}_Z \longrightarrow 0.
 $$
 
-Considering the long exact sequence on cohomology and using Serre duality this yields
+Using the induced long exact sequence on cohomology and Serre duality this yields
 
 $$
 H^1(X, \mathcal{O}_X(2Z)) \longrightarrow H^1(Z, \mathcal{O}_Z) \longrightarrow H^2(X, \mathcal{O}_X(Z)) \cong H^0(X, \mathcal{O}_X(-3Z))^\ast = 0.

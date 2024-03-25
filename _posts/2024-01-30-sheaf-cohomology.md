@@ -210,6 +210,26 @@ is exact and splits in $\mathscr{D}$.
 The sequence is exact since $F$ is left-exact. If $\psi$ is a section of $\varphi$, the morphism $F(\psi): F(C) \to F(B)$ is a section of $F(\varphi)$ which concludes the proof.
 </div>
 
+One last thing we are going to need is the following.
+
+<div class="lemma">
+If $ 0 \longrightarrow A \xrightarrow{~~i~~} B \longrightarrow C \longrightarrow 0$ is a short exact sequence in an abelian category with $A$ injective. Then the sequence splits.
+</div>
+
+<div class="proof">
+Note that the map $i: A \to B$ is a monomorphism. Since $A$ is injective there exists a map $h : B \to A$ such that the following diagram commutes:
+
+$$
+\xymatrix{
+A \ar@{->}[d]_{i} \ar@{->}[r]^{\operatorname{id}} & A \\
+B \ar@{-->}[ru]_{h} &
+}.
+$$
+
+Thus $i \circ h$ is a retract and so the splitting lemma yields the result.
+
+</div>
+
 ---
 
 The "motivation" for what's coming next should be this. We start off with a left-exact functor $F : \mathscr{C} \to \mathscr{D}$ of abelian categories and a short exact sequence
