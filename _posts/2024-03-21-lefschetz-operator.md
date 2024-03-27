@@ -15,13 +15,13 @@ In the world of complex geometry, Kähler identities are like a set of rules tha
 
 ---
 
-To set the stage, fix a real finite-dimensional inner product space $(V,\langle \cdot, \cdot \rangle)$ and let $J \in \operatorname{End}(V)$ be an almost complex structure.
+To set the stage, fix a real finite-dimensional inner product space $(V,g)$ and let $J \in \operatorname{End}(V)$ be an almost complex structure.
 
 <div class="definition">
 The almost complex structure $J$ is compatible with the inner product $g$ if 
 
 $$
-\langle u, v \rangle = \langle J(u), J(v)\rangle,
+g( u, v ) = g( J(u), J(v)),
 $$
 
 for all $u,v \in V$.
@@ -29,10 +29,10 @@ for all $u,v \in V$.
 
 
 <div class="definition">
-The <b>fundamental form</b> associated to $(V,\langle \cdot, \cdot \rangle,J)$ is the form given by
+The <b>fundamental form</b> associated to $(V,g,J)$ is the form given by
 
 $$
-\omega(u,v) := \langle J(u), v\rangle.
+\omega(u,v) := g( J(u), v).
 $$
 
 </div>
@@ -41,26 +41,20 @@ Note that the fundamental form is antisymmetric as:
 
 $$
 \begin{align*}
-\omega(u,v) &= \langle J(u),v\rangle \\
-&= \langle J^2(u), J(v)\rangle \\
-&= \langle -u, J(v)\rangle \\
-&= -\langle u,J(v)\rangle \\
-&= -\langle J(v), u\rangle \\
+\omega(u,v) &= g( J(u),v) \\
+&= g( J^2(u), J(v)) \\
+&= g( -u, J(v)) \\
+&= -g( u,J(v)) \\
+&= -g( J(v), u) \\
 &= -\omega(v,u).
 \end{align*}
 $$
 
-We'll now extend these notions to the complexification $V_\Bbb C = V \otimes_\Bbb R \Bbb C$ of $V$. The inner product extends to a Hermitian inner product by
-
-$$
-\langle u \otimes \lambda, v \otimes \mu\rangle_\Bbb C := \lambda\bar{\mu}\langle u,v\rangle.
-$$
-
 <div class="lemma">
-Let $(V,\langle \cdot, \cdot \rangle,J)$ be a real vector space endowed with a compatible complex structure. Then the form 
+Let $(V,g,J)$ be a real vector space endowed with a compatible complex structure. Then the form 
 
 $$
-(u, v) := \langle u, v\rangle - i\omega(u,v),
+h(u, v) := g( u, v) - i\omega(u,v),
 $$
 
 is a positive Hermitian form on $(V,J)$.
@@ -71,24 +65,136 @@ For $u,v,w \in V$ and $a,b \in \Bbb R$ we have that
 
 $$
 \begin{align*}
-(au + bv, w) &= \langle au + bv, w\rangle - i\omega(au + bv, w) \\
-&= a\langle u , w\rangle + b\langle v,w\rangle -i\langle J(au + bv), w\rangle \\
-&= a\langle u , w\rangle + b\langle v,w\rangle -i\langle aJ(u) + bJ(v), w\rangle \\
-&= a\langle u , w\rangle + b\langle v,w\rangle -i(a\langle J(u), w\rangle +  b\langle J(v), w\rangle) \\
-&= a(\langle u, w\rangle -i \langle J(u), w\rangle) + b(\langle v,w\rangle - i\langle J(v), w\rangle) \\
-&= a(u,w) + b(v,w),
+h(au + bv, w) &= g( au + bv, w) - i\omega(au + bv, w) \\
+&= ag( u , w) + bg( v,w) -ig( J(au + bv), w) \\
+&= ag( u , w) + bg( v,w) -ig( aJ(u) + bJ(v), w) \\
+&= ag( u , w) + bg( v,w) -i(ag( J(u), w) +  bg( J(v), w)) \\
+&= a(g( u, w) -i g( J(u), w)) + b(g( v,w) - ig( J(v), w)) \\
+&= ah(u,w) + bh(v,w),
 \end{align*}
 $$
 
-which proves $\Bbb R$-linearity. Also $(u,v) = \overline{(v,u)}$ since $\omega$ is antilinear. Lastly
+which proves $\Bbb R$-linearity. Also $h(u,v) = \overline{h(v,u)}$ since $\omega$ is antilinear. Lastly
 
 $$
 \begin{align*}
-(J(u), v) &= \langle J(u), v \rangle - i\omega(J(u), v) \\
-&= \langle J(u), v \rangle + i\langle u,v\rangle \\
-&= \langle J^2(u), J(v)\rangle + i\langle u,v\rangle \\
-&= 
+h(J(u), v) &= g( J(u), v ) - i\omega(J(u), v) \\
+&= g( J(u), v ) + ig( u,v) \\
+&= g( J^2(u), J(v)) + ig( u,v) \\
+&= g( -u, J(v)) + ig( u,v) \\
+&= i(ig( u, J(v)) + g( u,v)) \\
+&= ih(u,v).
+\end{align*}
+$$
+</div>
+
+We'll now extend these notions to the complexification $V_\Bbb C = V \otimes_\Bbb R \Bbb C$ of $V$. The inner product extends to a Hermitian inner product by
+
+$$
+g( u \otimes \lambda, v \otimes \mu) := \lambda\bar{\mu}g( u,v).
+$$
+
+<div class="lemma">
+Let $(V, g)$ be a real vector space with a compatible almost complex structure $J$. Then
+<ol>
+    <li>
+    The decomposition $V_\Bbb C = V^{1,0} \oplus V^{0,1}$ corresponding to the almost complex structure $J$ is orthogonal with respect to the Hermitian inner product $g_\Bbb C$.
+    </li>
+    <li>
+    The fundamental form $\omega$ is of type $(1,1)$. That is $\omega \in \Lambda^{1,1}V^\ast_\Bbb C$.
+    </li>
+</ol>
+</div>
+
+<div class="proof">
+<ol>
+    <li>
+    Pick $u \in V^{1,0}$ and $v \in V^{0,1}$. Then $J(u) = iu$ and $J(v) = -iv$. We have that
+
+    $$
+    \begin{align*}
+    g( u, v) &= g( J(u), J(v)) \\
+    &= g( iu, -iv) \\
+    &= i^2g( u, v) \\
+    &= -g( u, v),
+    \end{align*}
+    $$
+    
+    which implies that $g( u, v) = 0$.
+    </li>
+    <li>
+    For any $u,v \in V^{1,0}$ we have that
+
+    $$
+    \begin{align*}
+    \omega(u,v) &= g( J(u), v)\\
+    &= g( J^2(u),J(v) ) \\
+    &= \omega(J(u), J(v)) \\
+    &= \omega(iu, iv) \\
+    &= -\omega(u,v),
+    \end{align*}
+    $$
+
+    implying that $\omega(u,v) = 0$ for $u,v \in V^{1,0}$. A similar calculation shows that $\omega(u,v) = 0$ for $u,v \in V^{0,1}$, hence $\omega$ is non-zero only on $V^{1,0} \oplus V^{0,1}$ and $V^{0,1} \oplus V^{1,0}$, i.e. $\omega \in \Lambda^{1,1}V^\ast_\Bbb C$. 
+
+    </li>
+</ol>
+</div>
+
+The following lemma describes the relationship of $h$ and $g$.
+
+<div class="lemma">
+Let $(V, g)$ be a real vector space with a compatible almost complex structure $J$. Under the isomorphism $(V,J) \cong (V^{1,0},i)$ we have that $h = g\vert_{V^{1,0}}$.
+</div>
+
+<div class="proof">
+The isomorphism $(V,J) \cong (V^{1,0},i)$ is given by 
+
+$$
+v \mapsto \frac{1}{2}(v - iJ(v)).
+$$
+
+It follows that
+
+$$
+\begin{align*}
+g(u - iJ(u),v - iJ(v)) &= g(u,v) + ig(u,J(v)) - ig(J(u),v) + g(J(u),J(v)) \\
+&= 2g(u,v) + 2ig(u,J(v)) \\
+&= 2h(u,v).
 \end{align*}
 $$
 
 </div>
+
+Note now that $g = \Re h = \frac{1}{2}(h +\bar{h})$ and $\omega = -\Im h = \frac{i}{2}(h - \bar{h})$. Choosing a $\Bbb C$-basis $z_1,\dots,z_n$ for $V^{1,0}$ gives the two expressions[^1]
+
+$$
+\begin{align*}
+g &= \frac{1}{2}(h_{jk} z^j \otimes \bar{z}^k + h_{kj} \bar{z}^j \otimes z^k) \\
+&= \frac{1}{2}h_{jk} (z^j \otimes \bar{z}^k + \bar{z}^k \otimes z^j),
+\end{align*}
+$$
+
+and
+
+$$
+\begin{align*}
+\omega &= \frac{i}{2}(h_{jk} z^j \otimes \bar{z}^k - h_{kj} \bar{z}^j \otimes z^k) \\
+&= \frac{i}{2}h_{jk} (z^j \otimes \bar{z}^k - \bar{z}^k \otimes z^j) \\
+&= \frac{i}{2}h_{jk} z^j \wedge \bar{z}^k,
+\end{align*}
+$$
+
+which will be useful when we transition to manifolds and need local expressions. 
+
+---
+
+We'll now get to the actual point of this post.
+
+<div class="definition">
+Let $(V,g)$ be a real vector space equipped with an almost complex structure $J$, and suppose that $\omega$ is the associated fundamental form. Then the <b>Lefschetz operator</b> $L : \Lambda^\ast V^\ast_\Bbb C \to \Lambda^\ast V^\ast_\Bbb C$ is defined by $\alpha \mapsto \alpha \wedge \omega$.
+</div>
+
+---
+
+[^1]: Note that I'm denoting the dual basis for $z_1,\dots,z_n$ as $z^1,\dots,z^n$.
