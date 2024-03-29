@@ -174,7 +174,7 @@ such that $\nabla fs = \partial f \otimes s + f\nabla s$ for any local holomorph
 
 </div>
 
-Here $E$ and $T^\ast_{1,0}X \otimes E$ both the the vector bundle and the sheaf of holomorphic sections of these bundles. To see that $\partial f \in \Lambda^{1,0}T^\ast X$ in the above definition, recall that $\bar{\partial}\partial f = - \partial\bar{\partial}f$. Since $f$ is holomorphic $-\partial\bar{\partial}f = 0$ so $\bar{\partial}\partial f = 0$, i.e. $\partial f$ is of type $(1,0)$.
+Here $E$ and $T^\ast_{1,0}X \otimes E$ both the the vector bundle and the sheaf of holomorphic sections of these bundles[^3]. To see that $\partial f \in \Lambda^{1,0}T^\ast X$ in the above definition, recall that $\bar{\partial}\partial f = - \partial\bar{\partial}f$. Since $f$ is holomorphic $-\partial\bar{\partial}f = 0$ so $\bar{\partial}\partial f = 0$, i.e. $\partial f$ is of type $(1,0)$.
 
 Most of the basic constructions of connections carry over to holomorphic connections. Notably the difference $\nabla_1 - \nabla_2$ is a holomorphic section of $T^\ast_{1,0}X \otimes E$ and so locally any holomorphic connection is of the form $\partial + A$, where $A$ is a holomorphic section of $T^\ast_{1,0}X \otimes E$.
 
@@ -674,3 +674,4 @@ That's all for today, next time we will likely take a look at semistable bundles
 
 [^2]: Don't confuse the notion of a holomorphic connection with the notion of a connection that is compatible with the holomorphic structure. These are different things.
 
+[^3]: There is a justification for the notation here. In the smooth category, when we define a connection as a map $\nabla : \Gamma(E) \to \Gamma(T^\ast M \otimes E)$, we are talking about global sections of the bundles $E$ and $T^\ast M \otimes E$. In the holomorphic case, this will not work. If $E$ is a holomorphic vector bundle over a complex manifold $X$, then there is no reason to believe that $\Gamma(X, E) \ne 0$. The way to get over this is to define connections as morphisms of sheaves.
