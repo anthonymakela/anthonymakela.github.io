@@ -115,10 +115,10 @@ $$
 
 Comparing the coefficients of $\lambda^{n-k}$ we get that $f_k(X^{-1}AX) = f_k(A)$ which yields by our proposition above that $f_k(A)$'s are all invariant polynomials on $\mathfrak{gl}(n,\Bbb R)$. You might notice here that $f_k(A)$'s are exactly the sums of the $k \times k$ principal minors of $A$. 
 
-Lastly we consider the <b>trace polynoimals</b> defined by $\sum_k X = \operatorname{tr}(A^k)$. Now as $\operatorname{tr}(A) = f_1(A)$ we have that
+Lastly we consider the <b>trace polynoimals</b> defined by $\Sigma_k A = \operatorname{tr}(A^k)$. Now as $\operatorname{tr}(A) = f_1(A)$ we have that
 
 $$
-\sum_k(X^{-1}AX) = \operatorname{tr}(X^{-1}A^kX) = \operatorname{tr}(A^k) = \sum_k A.
+\Sigma_k(X^{-1}AX) = \operatorname{tr}(X^{-1}A^kX) = \operatorname{tr}(A^k) = \Sigma_k A.
 $$
 
 ---
