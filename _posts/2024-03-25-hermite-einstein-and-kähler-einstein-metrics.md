@@ -33,4 +33,8 @@ for $\lambda \in \Bbb R$.
 
 Consider now a compact Hermitian manifold $(X,g)$ and the fundamental form $\omega = g(J(-), -)$. By definition $(X,g)$ is Kähler if and only if $d\omega = 0$ or equivalently if $J$ is parallel with respect to the Levi-Civita connection of $g$. Now $g$ can be viewed as a Hermitian metric on the tangent bundle of $X$ and instead of asking if the Ricci curvature of the Levi-Civita connection on the tangent bundle of $X$ is proportional to $g$, we can ask the same question about the curvature $F_\nabla$ of a Chern connection $\nabla$ associated to a Hermitian metric on <i>any</i> holomorphic vector bundle $E$ over $X$,
 
-Recall that $F_\nabla \in \Omega^{1,1}(X, \operatorname{End}(E))$, i.e. $F_\nabla$ is of type $(1,1)$.
+Recall that $F_\nabla \in \Omega^{1,1}(X, \operatorname{End}(E))$, i.e. $F_\nabla$ is of type $(1,1)$. Tensoring the fundamental form $\omega$ with the identity map $\operatorname{id}_E$ induces an element of the same type. That is $\omega \otimes \operatorname{id}_E \in \Omega^{1,1}(X, \operatorname{End}(E))$. Using this we'll define the Hermite-Einstein condition as follows:
+
+<div class="definition">
+An 
+</div>

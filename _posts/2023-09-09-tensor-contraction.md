@@ -2,7 +2,7 @@
 layout: post
 title: "Tensor Contraction"
 categories: [Differential Geometry]
-published: false
+published: true
 mathjax: true
 excerpt_separator: <!--more-->
 ---
@@ -141,14 +141,48 @@ where $g^{ij}$ are the components of the inverse metric $h$. In practice you'll 
 
 ---
 
-Consider now the curvature tensor $R : \Gamma(TM) \times \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM)$. In local coordinates we have
+Consider now a Riemannian manifold $(M,g)$ and the curvature tensor 
+
+$$
+R : \Gamma(TM) \times \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM).
+$$
+ 
+In local coordinates we have
 
 $$
 R = R^{\,\,\,\,\,\,l}_{ijk} dx^i \otimes dx^j \otimes dx^k \otimes \partial_l.
 $$
 
-The Ricci tensor is now simply the contraction $C$
+The Ricci tensor is now simply the contraction $\operatorname{tr}_{\alpha,1,4}$, where $\alpha$ is the evaluation pairing $\alpha : T^\ast M \times TM \to \Bbb R$. We obtain
+
+$$
+\begin{align*}
+\operatorname{Ric} &= \operatorname{tr}_{\alpha,1,4}(R) \\
+&= R^{\,\,\,\,\,\,l}_{ijk} \operatorname{tr}_{\alpha,1,4}(dx^i \otimes dx^j \otimes dx^k \otimes \partial_l) \\
+&= R^{\,\,\,\,\,\,l}_{ijk} \alpha(dx^i, \partial_l)dx^j \otimes dx^k \\
+&= R^{\,\,\,\,\,\,l}_{ijk} \delta^i_l dx^j \otimes dx^k \\
+&= R^{\,\,\,\,\,\,i}_{ijk} dx^j \otimes dx^k \\
+&= R_{jk} dx^j \otimes dx^k, 
+\end{align*}
+$$
+
+where[^2] $R_{jk} = R^{\,\,\,\,\,\,i}_{ijk}$.
+
+While we are at it, the Scalar curvature $S$ is defined by taking the $(1,2)$-contraction of $\operatorname{Ric}$ relative to the inner product $h$ on the cotangent space induced by the Riemannian metric. In this instance, we obtain
+
+$$
+\begin{align*}
+S &= \operatorname{tr}_{h,1,2}(\operatorname{Ric}) \\
+&= R^{\,\,\,\,\,\,i}_{ijk} \operatorname{tr}_{h,1,4}(dx^j \otimes dx^k) \\
+&= g^{jk}R^{\,\,\,\,\,\,i}_{ijk} \\
+&= g^{jk}R_{jk}.
+\end{align*}
+$$
+
+That's all this time around.
 
 ---
 
 [^1]: Could be any field, but we will stick with $\Bbb R$ for simplicity.
+
+[^2]: It is a usual convention to denote the components of $\operatorname{Ric}$ by $R_{ij}$. See Introduction to Riemannian Manifolds by John M. Lee for more details on this.
