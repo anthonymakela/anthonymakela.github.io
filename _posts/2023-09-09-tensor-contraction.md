@@ -139,6 +139,45 @@ $$
 
 where $g^{ij}$ are the components of the inverse metric $h$. In practice you'll see this being called <i>lowering an index</i>. Traditionally we can only contract a tensor with one upper index and one lower index, but like above, when we have two upper indices we ought to lower on of them with the metric.
 
+If this is the first time you are seeing index gymnastics, here is a quick intro. If $T$ is any $(k,l)$-tensor and $i \in \\{1,\dots,k+l\\}$ is any <i>covariant</i> index position for $T$ (meaning that the $i$th argument is a vector, not a covector), we can form a new tensor $T^\sharp$ of type $(k+1,l-1)$ by setting
+
+$$
+T^\sharp(\alpha_1,\dots, \alpha_{k+l}) = T(\alpha_1,\dots, \alpha_{i-1},\alpha^\sharp_i,\alpha_{i+1},\dots, \alpha_{k+l}),
+$$
+
+where $\alpha_1,\dots, \alpha_{k+l}$ are vectors or covectors as appropriate. For example, if $T = T_{i\,\,k}^{\,\,j} \varepsilon^i \otimes e_j \otimes \varepsilon^k$ is a tensor of type $(1,2)$, then we can raise the first index to obtain a tensor of type $(2,1)$. We obtain
+
+$$
+\begin{align*}
+T^\sharp(\alpha,\omega, X) &= T(\alpha^\sharp, \omega, X) \\
+&= T\left(\left(\alpha_i\varepsilon^i\right)^\sharp, \omega_j\varepsilon^j, X^ke_k\right) \\
+&= T\left((g^{li}\alpha_i)e_l, \omega_j\varepsilon^j, X^ke_k\right) \\
+&= T(e_l,\varepsilon^j, e_k)g^{li}\alpha_i\omega_j X^k \\
+&= g^{li} T_{l\,\,k}^{\,\,j}e_i \otimes e_j \otimes \varepsilon^k(\alpha,\omega,X) \\
+&= T^{ij}_{\,\,\,k}e_i \otimes e_j \otimes \varepsilon^k(\alpha,\omega,X).
+\end{align*}
+$$
+
+That is, $T^\sharp = T^{ij}_{\,\,\,k}e_i \otimes e_j \otimes \varepsilon^k$. Similarly, if $i$ is a <i>contravariant</i> index position, we can define a $(k-1,l+1)$-tensor $T^\flat$ by
+
+$$
+T^\flat(\alpha_1,\dots, \alpha_{k+l}) = T(\alpha_1,\dots, \alpha_{i-1},\alpha^\flat_i,\alpha_{i+1},\dots, \alpha_{k+l}).
+$$
+
+For example with the above $(1,2)$-tensor $T = T_{i\,\,k}^{\,\,j} \varepsilon^i \otimes e_j \otimes \varepsilon^k$, we can transform it into an $(0,3)$-tensor by lowering the middle index. We obtain
+
+$$
+\begin{align*}
+T^\flat(X,Y, Z) &= T(X, Y^\flat, Z) \\
+&= T\left(X^ie_i, (g_{jl}Y^j)\varepsilon^l, Z^ke_k\right) \\
+&= T(e_i,\varepsilon^l, e_k)X^ig_{jl}Y^jZ^k \\
+&= g_{jl} T_{i\,\,k}^{\,\,l}\varepsilon^i \otimes \varepsilon^j \otimes \varepsilon^k(X,Y,Z) \\
+&= T_{ijk}\varepsilon^i \otimes \varepsilon^j \otimes \varepsilon^k(X,Y,Z),
+\end{align*}
+$$
+
+i.e. $T^\flat = T_{ijk}\varepsilon^i \otimes \varepsilon^j \otimes \varepsilon^k$. To avoid the notational overload, people usually the symbols $T^\sharp$ and $T^\flat$ without explicitly specifying which index position the sharp or flat operator is to be applied to — when there is more than one choice, we will always stipulate in words what is meant.
+
 ---
 
 Consider now a Riemannian manifold $(M,g)$ and the curvature tensor 

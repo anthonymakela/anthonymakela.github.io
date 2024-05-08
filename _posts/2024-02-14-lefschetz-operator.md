@@ -187,7 +187,7 @@ Let $(V, g)$ be a real vector space with a compatible almost complex structure $
 The following lemma describes the relationship of $h$ and $g$.
 
 <div class="lemma">
-Let $(V, g)$ be a real vector space with a compatible almost complex structure $J$. Under the isomorphism $(V,J) \cong (V^{1,0},i)$ we have that $h = g\vert_{V^{1,0}}$.
+Let $(V, g)$ be a real vector space with a compatible almost complex structure $J$. Under the isomorphism $(V,J) \cong (V^{1,0},i)$ we have that $\frac{1}{2}h = g\vert_{V^{1,0}}$.
 </div>
 
 <div class="proof">
