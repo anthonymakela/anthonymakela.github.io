@@ -316,7 +316,7 @@ $$
 Therefore $M \cong \Bbb C^n/\Gamma$ and hence, up to a finite unramified covering, $TM$ is holomorphically trivial yielding that it admits a holomorphic flat connection.
 </div>
 
-Note that in the above proof, $A(TM) = 0$ is significantly stronger than what we actually needed. The flatness of $TM$ was characterized by the first two Chern classes, but $A(TM) = 0$ gave that $c_k(TM) = 0$ for all $k > 0$.
+Note that in the above proof, $A(TM) = 0$ is significantly stronger than what we actually needed. The flatness of $TM$ was controlled by the first two Chern classes, but $A(TM) = 0$ gave that $c_k(TM) = 0$ for all $k > 0$.
 
 ---
 
