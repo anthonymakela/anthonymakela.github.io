@@ -34,7 +34,7 @@ for $\lambda \in \Bbb R$.
 Consider now a compact Hermitian manifold $(X,g)$ and the fundamental form $\omega = g(J(-), -)$. By definition, $(X,g)$ is Kähler if and only if $d\omega = 0$ or equivalently if $J$ is parallel with respect to the Levi-Civita connection of $g$. Now $g$ can be viewed as a Hermitian metric on the tangent bundle of $X$ and instead of asking if the Ricci curvature of the Levi-Civita connection on the tangent bundle of $X$ is proportional to $g$, we can ask the same question about the curvature $F_\nabla$ of a Chern connection $\nabla$ associated to a Hermitian metric on <i>any</i> holomorphic vector bundle $(E,h)$ over $(X,g)$.
 
 
-Clearly, we are trying to generalize the definition above and since it depends on the Ricci curvature, we should probably start with the curvature tensor $F_\nabla$ of $E$. This is an $\operatorname{End}(E)$-valued $2$-form so locally on a framed open set we can write
+Clearly, we are trying to generalize the definition above and since it depends on the Ricci curvature, we should probably start with the curvature tensor $F_\nabla$ of $E$. This is an $\operatorname{End}(E)$-valued $2$-form so locally on a framed open set we can write[^1]
 
 $$
 \begin{align*}
@@ -49,7 +49,7 @@ $$
 \Lambda_\omega F_\nabla =\sum\left(\sum g^{\alpha\bar{\beta}} R_{j \alpha \bar{\beta}}^{i}\right) \otimes \varepsilon^j \otimes e_i.
 $$
 
-Note that we are using the metric $g$ here since we are tracing over something conducted over the structure of the base manifold (where the curvature two-form lives). In literature[^1] you might see $\Lambda_\omega F_\nabla$ being denoted by $K$ and called the <b>mean curvature</b>. This is defined by setting $K^i_j = g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}}$ and $K(\xi) = K^i_j\xi^je_i$, for a section $\xi = \xi^ie_i$. There is also the <b>mean curvature form</b> obtained by setting $K_{j\bar{k}} = h_{i\bar{k}}K^i_j$ and $\hat{K}(\xi,\eta) = K_{j\bar{k}}\xi^j\bar{\eta}^k$.
+Note that we are using the metric $g$ here since we are tracing over something conducted over the structure of the base manifold (where the curvature two-form lives). In literature[^2] you might see $\Lambda_\omega F_\nabla$ being denoted by $K$ and called the <b>mean curvature</b>. This is defined by setting $K^i_j = g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}}$ and $K(\xi) = K^i_j\xi^je_i$, for a section $\xi = \xi^ie_i$. There is also the <b>mean curvature form</b> obtained by setting $K_{j\bar{k}} = h_{i\bar{k}}K^i_j$ and $\hat{K}(\xi,\eta) = K_{j\bar{k}}\xi^j\bar{\eta}^k$.
 
 Using this we'll define the Hermite-Einstein condition as follows:
 
@@ -467,4 +467,6 @@ If $E$ is a stable vector bundle over a compact Riemann surface $(X, g)$, there 
 
 ---
 
-[^1]: Especially in Kobayashi's texts.
+[^1]: The indices here might be a bit unusual. I'm denoting $R^{j}_{ik\bar{l}}\partial_j = R(\partial_k,\bar{\partial}_l)\partial_i$ when we consider the curvature on the tangent bundle and $R^{j}\_{i\alpha\bar{\beta}}e\_j = R(\partial\_\alpha,\bar{\partial}\_\beta)e\_i$ when $R$ is the curvature of on a general vector bundle with a local frame $e_1,\dots,e_k$.
+
+[^2]: Especially in Kobayashi's texts.
