@@ -309,7 +309,7 @@ Let $(M,J,g)$ be a compact Kähler manifold and suppose that $A(TM) = 0$. Then $
 </div>
 
 <div class="proof">
-The proof follows from the above proposition, the Calabi-Yau theorem, and the uniformization theorem. Note that by the above proposition $A(TM) = 0$ implies that $c_1(M) = 0$ and $c_2(M) = 0$. Since $c_1(M) = 0$, $M$ admits a Ricci-flat metric and is thus a Kähler-Einstein manifold. Recall now that by the uniformization theorem $\widetilde{X} \cong \Bbb C^n$ since 
+The proof follows from the above proposition, the Calabi-Yau theorem, and the uniformization theorem. Note that by the above proposition $A(TM) = 0$ implies that $c_1(M) = 0$ and $c_2(M) = 0$. Since $c_1(M) = 0$, $M$ admits a Ricci-flat metric and is thus a Kähler-Einstein manifold. Recall now that by the uniformization theorem $\widetilde{M} \cong \Bbb C^n$ since 
 $$
 \left(2(n+1)c_2(X) - nc_1(X)^2\right)\wedge [\omega]^{n-2} = 0.
 $$
