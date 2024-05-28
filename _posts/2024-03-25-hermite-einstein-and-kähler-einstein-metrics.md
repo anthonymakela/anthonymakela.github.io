@@ -43,13 +43,40 @@ F_\nabla &= \sum \Omega^i_j \otimes \varepsilon^j \otimes e_i \\
 \end{align*}
 $$
 
-Now the Ricci tensor is given by tracing over the Levi-Civita connection on the tangent bundle of $X$. We'll do something similar here and consider the trace/contraction of $F_\nabla$ with the fundamental form $\omega$ given by
+Now, the Ricci tensor is given by tracing over the Levi-Civita connection on the tangent bundle of $X$. We'll do something similar here and consider the trace/contraction of $F_\nabla$​ with the fundamental form $\omega$. However, tracing with the form $\omega$ is not as straightforward as it sounds. What we'll do is consider the adjoint $\Lambda_\omega$ of the Lefschetz operator to define this. Recall that the Lefschetz operator $L_\omega : \Omega^{p,q}(X) \to \Omega^{p+1,q+1}(X)$ is given by 
 
 $$
-\Lambda_\omega F_\nabla =\sum\left(\sum g^{\alpha\bar{\beta}} R_{j \alpha \bar{\beta}}^{i}\right) \otimes \varepsilon^j \otimes e_i.
+\alpha \mapsto \alpha \wedge \omega.
 $$
 
-Note that we are using the metric $g$ here since we are tracing over something conducted over the structure of the base manifold (where the curvature two-form lives). In literature[^2] you might see $\Lambda_\omega F_\nabla$ being denoted by $K$ and called the <b>mean curvature</b>. This is defined by setting $K^i_j = g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}}$ and $K(\xi) = K^i_j\xi^je_i$, for a section $\xi = \xi^ie_i$. There is also the <b>mean curvature form</b> obtained by setting $K_{j\bar{k}} = h_{i\bar{k}}K^i_j$ and $\hat{K}(\xi,\eta) = K_{j\bar{k}}\xi^j\bar{\eta}^k$.
+Let $e_k:\Omega^{p,q}(X) \to \Omega^{p+1,q}(X)$ be the operator given by $\alpha \mapsto dz^k\wedge \alpha$ and define $\bar{e}_k:\Omega^{p,q}(X) \to \Omega^{p,q+1}(X)$ similarly. Recall now also that the wedge product has the interior product as its adjoint. Denote these by $\iota_k$ and $\bar{\iota}_k$ respectively. Now 
+
+$$
+\begin{align*}
+L_\omega(\alpha) &= \alpha \wedge \omega \\
+&= ig_{j\bar{k}}\alpha\wedge dz^j\wedge d\bar{z}^k \\
+&= \sum_{j,k} ig_{j\bar{k}}e_j\bar{e}_k(\alpha).
+\end{align*}
+$$
+
+The adjoint $\Lambda_\omega$ is thus given by 
+
+$$
+\Lambda_\omega = -\sum_{j,k}ig^{j\bar{k}}\bar{\iota}_k\iota_j.
+$$
+
+Applying this yields
+
+$$
+\begin{align*}
+\Lambda_\omega F_\nabla &= \Lambda_\omega\left(\sum \Omega^i_j \otimes \varepsilon^j \otimes e_i\right) \\
+&= \Lambda_\omega\left(\sum \left(\sum R^i_{j\alpha\bar{\beta}} dz^\alpha \wedge d\bar{z}^\beta\right) \otimes \varepsilon^j \otimes e_i\right) \\
+&= \sum \left(\sum R^i_{j\alpha\bar{\beta}} \Lambda_\omega(dz^\alpha \wedge d\bar{z}^\beta)\right) \otimes  \varepsilon^j \otimes e_i \\
+&= -i\sum \left(\sum g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}} \right) \otimes  \varepsilon^j \otimes e_i. 
+\end{align*}
+$$
+
+Note that multiplying by $i$ gives $i\Lambda_\omega F_\nabla = \sum \left(\sum g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}} \right) \otimes  \varepsilon^j \otimes e_i$. In literature[^2] you might see $\Lambda_\omega F_\nabla$ being denoted by $K$ and called the <b>mean curvature</b>. This is defined by setting $K^i_j = g^{\alpha\bar{\beta}}R^i_{j\alpha\bar{\beta}}$ and $K(\xi) = K^i_j\xi^je_i$, for a section $\xi = \xi^ie_i$. There is also the <b>mean curvature form</b> obtained by setting $K_{j\bar{k}} = h_{i\bar{k}}K^i_j$ and $\hat{K}(\xi,\eta) = K_{j\bar{k}}\xi^j\bar{\eta}^k$.
 
 Using this we'll define the Hermite-Einstein condition as follows:
 
