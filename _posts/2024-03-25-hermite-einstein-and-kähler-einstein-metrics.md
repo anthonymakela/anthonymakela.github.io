@@ -62,7 +62,7 @@ $$
 The adjoint $\Lambda_\omega$ is thus given by 
 
 $$
-\Lambda_\omega = -\sum_{j,k}ig^{j\bar{k}}\bar{\iota}_k\iota_j.
+\Lambda_\omega = -i\sum_{j,k}g^{j\bar{k}}\bar{\iota}_k\iota_j.
 $$
 
 Applying this yields
