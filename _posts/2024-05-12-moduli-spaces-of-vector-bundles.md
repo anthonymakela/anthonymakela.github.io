@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Moduli Spaces of Vector Bundles"
+title: "Moduli Spaces of Holomorphic Structures"
 categories: [Complex Geometry, Differential Geometry]
 mathjax: true
 published: false
 excerpt_separator: <!--more-->
 ---
 
-I've recently been thinking about Higgs Bundles and their moduli spaces. Before diving into that topic, I'd like to start with a broader discussion on the moduli spaces of vector bundles and look at the moduli spaces of specific types of bundles we've previously explored.
+I've recently been thinking about Higgs Bundles and their moduli spaces. Before diving into that topic, I'd like to start with a discussion on the moduli spaces of holomorphic structures and look at the moduli spaces of specific types of bundles we've previously explored.
 
 <!--more-->
 
@@ -17,7 +17,28 @@ Let's take a slightly different viewpoint on the previous example in terms of gr
 
 ---
 
-To set up shop, let $E$ be a complex vector bundle of rank $r$ over a complex manifold $M$ and denote the group of smooth bundle automorphisms of $E$ by $\mathrm{GL}(E)$. Let $\mathscr{D}^{0,1}(E)$ denote the set of all $\Bbb C$-linear maps
+To set up shop, let $E$ be a complex vector bundle of rank $r$ over a complex manifold $M$ and denote the group of smooth bundle automorphisms of $E$ by $\mathrm{GL}(E)$. The following propositions will serve as our guiding light towards the definition for the moduli space in question.
+
+<div class="proposition">
+Let $E$ be a holomorphic vector bundle over a complex manifold $M$. Then there exists a unique connection $\nabla$ such that
+$$
+\nabla^{0,1} = \bar{\partial}.
+$$
+For such a connection, the $(0,2)$-component $\nabla^{0,1} \circ \nabla^{0,1}$ of the curvature $F_\nabla$ vanishes.
+</div>
+
+The connection in the above proof is called the Chern connection. For a proof of the proposition, see <a href="https://anthonymakela.com/complex%20geometry/differential%20geometry/2024/03/01/holomorphic-connections-atiyah-class.html" style="color:#680530; text-decoration: underline;">Holomorphic Connections and The Atiyah Class</a>. The converse is the bit about which we are mostly interested today.
+
+<div class="theorem" text="(Koszul-Malgrange)">
+Let $E$ be a complex vector bundle over a complex manifold $M$. If $\nabla$ is a connection in $E$ such that
+$$
+\nabla^{0,1} \circ \nabla^{0,1} = 0,
+$$
+then there exists a unique holomorphic vector bundle structure in $E$ such that $\nabla^{0,1} = \bar{\partial}$.
+</div>
+
+
+Denote now by $\mathscr{D}^{0,1}(E)$ the set of all $\Bbb C$-linear maps
 
 $$
 \nabla^{0,1} : \Omega^0(E) \to \Omega^{0,1}(E),
@@ -29,7 +50,7 @@ $$
 \left(\nabla^{0,1}\right)^2 = \nabla^{0,1} \circ \nabla^{0,1} = 0.
 $$
 
-Also recall that if $E$ is a holomorphic vector bundle, then $\bar{\partial} : \Omega^0(E) \to \Omega^{0,1}(E)$ gives a well-defined element of $\mathscr{H}^{0,1}(E)$. Conversely, every $\nabla^{0,1} \in \mathscr{H}^{0,1}(E)$ defines a unique holomorphic structure in $E$ for which $\nabla^{0,1} = \bar{\partial}$. Hence one can consider $\mathscr{H}^{0,1}(E)$ as the set of holomorphic bundle structures in $E$. The action of $\mathrm{GL}(E)$ on $\mathscr{D}^{0,1}(E)$ is given by conjugation
+Now if $E$ is a holomorphic vector bundle, then $\bar{\partial} : \Omega^0(E) \to \Omega^{0,1}(E)$ gives a well-defined element of $\mathscr{H}^{0,1}(E)$. Conversely, by the Koszul-Malgrange Theorem every $\nabla^{0,1} \in \mathscr{H}^{0,1}(E)$ defines a unique holomorphic structure in $E$ for which $\nabla^{0,1} = \bar{\partial}$. Hence one can consider $\mathscr{H}^{0,1}(E)$ as the set of holomorphic bundle structures in $E$. The action of $\mathrm{GL}(E)$ on $\mathscr{D}^{0,1}(E)$ is given by conjugation
 
 $$
 (f,\nabla^{0,1}) \mapsto f^{-1} \circ \nabla^{0,1} \circ f.
@@ -49,7 +70,7 @@ $$
 \mathscr{H}^{0,1}(E)/\mathrm{GL}(E),
 $$
 
-which we will call the <i>moduli space of holomorphic structures</i> in $E$. Unfortunately, there is a slight problem with this definition. The space we are considering is in general non-Hausdorff. The way to resolve this is to consider (semi-)stable bundles.
+which we will call the <b>moduli space of holomorphic structures</b> in $E$. Unfortunately, there is a slight problem with this definition. The space we are considering is in general non-Hausdorff. The way to resolve this is to consider (semi-)stable bundles.
 
 Fix now a Hermitian structure $h$ in the complex vector bundle $E$ and consider the subgroup $\mathrm{U}(E,h)$ of $\mathrm{GL}(E)$ consisting of unitary automorphisms of $E$. Let $\mathscr{D}(E,h)$ be the set of connections $\nabla$ in $E$ that preserve $h$. That is, $\mathscr{D}(E,h)$ consits of $\Bbb C$-linear maps $\nabla : \Omega^0(E) \to \Omega^1(E)$ for which 
 
@@ -203,7 +224,7 @@ $$
 \mathscr{E}(E,h)/\mathrm{U}(E,h) \to \mathscr{H}^{0,1}(E,h)/\mathrm{GL}(E) 
 $$
 
-is injective. The space $\mathscr{E}(E,h)/\mathrm{U}(E,h)$ is called the <i>moduli space of Hermite-Einstein</i> structures in $E$.
+is injective. The space $\mathscr{E}(E,h)/\mathrm{U}(E,h)$ is called the <b>moduli space of Hermite-Einstein structures</b> in $E$.
 
 <div class="proposition">
 The moduli space $\mathscr{E}(E,h)/\mathrm{U}(E,h)$ of Hermite-Einstein structures in $E$ is Hausdorff and injects into $\mathscr{H}^{0,1}(E,h)/\mathrm{GL}(E)$.
@@ -211,4 +232,72 @@ The moduli space $\mathscr{E}(E,h)/\mathrm{U}(E,h)$ of Hermite-Einstein structur
 
 ---
 
-We'll now look into something called <i>infinitesimal deformations</i> or "tangent spaces" to these moduli spaces. 
+We'll now look into something called <b>infinitesimal deformations</b> or "tangent spaces" to these moduli spaces. Recall from <a href="https://anthonymakela.com/complex%20geometry/differential%20geometry/2024/05/03/infinitesimal-deformations-and-the-kodaira-spencer-map.html" style="color:#680530; text-decoration: underline;">Infinitesimal Deformations and The Kodaira-Spencer Map</a> that we should be expecting a space we can identify with $H^{0,1}(M, \operatorname{End}(E, \nabla^{0,1}))$.
+
+Consider perturbing $\nabla^{0,1}$ by $\alpha^{0,1}_t \in \Omega^{0,1}(\operatorname{End}(E))$ for some small $t$ such that
+
+$$
+\nabla^{0,1}_t = \nabla^{0,1} + \alpha^{0,1}_t
+$$
+
+and $\alpha^{0,1}_0 = 0$. Then for any section $s$ we have
+
+$$
+\begin{align*}
+0 &= \nabla^{0,1}_t(\nabla^{0,1}_t(s)) \\
+&= \nabla^{0,1}_t(\nabla^{0,1}s + \alpha^{0,1}_t s) \\
+&= \nabla^{0,1}_t(\nabla^{0,1}s) + \nabla^{0,1}_t(\alpha^{0,1}_t s) \\
+&= \nabla^{0,1}(\nabla^{0,1}s) + \alpha^{0,1}_t(\nabla^{0,1}s) + \nabla^{0,1}(\alpha^{0,1}_t s) + \alpha^{0,1}_t(\alpha^{0,1}_t s) \\
+&= \alpha^{0,1}_t(\nabla^{0,1}s) + \nabla^{0,1}(\alpha^{0,1}_t s) + (\alpha^{0,1}_t \wedge \alpha^{0,1}_t)s \\
+&= (\nabla^{0,1}\alpha^{0,1}_t)s + (\alpha^{0,1}_t \wedge \alpha^{0,1}_t)s.
+\end{align*}
+$$
+
+Hence $\nabla^{0,1}\alpha^{0,1}_t + \alpha^{0,1}_t \wedge \alpha^{0,1}_t = 0$. Now differentiating this with respect to $t$ we obtain
+
+$$
+\nabla^{0,1}\left(\frac{\partial}{\partial t} \alpha^{0,1}_t\right) + \frac{\partial}{\partial t} \alpha^{0,1}_t \wedge \alpha^{0,1}_t + \alpha^{0,1}_t \wedge \frac{\partial}{\partial t} \alpha^{0,1}_t = 0.
+$$
+
+At $t = 0$ we have $\alpha^{0,1}_t = \alpha^{0,1}_0 = 0$ so this yields
+
+$$
+\nabla^{0,1}\left(\alpha^{0,1}\right) = 0,
+$$
+
+where $\alpha^{0,1} = \frac{\partial}{\partial t} \alpha^{0,1}_t \Big\vert\_{t=0}$. If $\nabla^{0,1}_t$ is obtained by a gauge transformation
+
+$$
+\nabla^{0,1}_t = f^{-1}_t \circ \nabla^{0,1} \circ f_t,
+$$
+
+where $f_t \in \mathrm{GL}(E)$ and $f_0 = \operatorname{id}_E$, then for $s \in \Omega^0(E)$
+
+$$
+\begin{align*}
+\nabla^{0,1}_t(s) &= f^{-1}_t(\nabla^{0,1}(f_t(s))) \\
+&= \nabla^{0,1} s + (f^{-1}_t \bar{\partial} f_t)s. 
+\end{align*}
+$$
+
+Setting $\alpha^{0,1}_t = f^{-1}_t \bar{\partial}f_t$ and $\alpha^{0,1} = \frac{\partial}{\partial t} \alpha^{0,1}_t \Big\vert\_{t=0}$ we have
+
+$$
+\alpha^{0,1} = \nabla^{0,1}f,
+$$
+
+where $f = \frac{\partial}{\partial t} f_t \Big\vert\_{t=0}$. It follows that the infinitesimal deformations are given by
+
+$$
+H^{0,1}(M, \operatorname{End}(E,\nabla^{0,1})) = \frac{\{\alpha^{0,1} \in \Omega^{0,1}(\operatorname{End}(E) \mid \nabla^{0,1}\alpha^{0,1} = 0\}}{\{\nabla^{0,1}f \mid f \in \Omega^0(E)\}}
+$$
+
+provided that $\mathscr{H}^{0,1}(E)/\mathrm{GL}(E)$ is a manifold.
+
+Suppose now that $M$ is a compact Kähler manifold. Then, given an Hermite-Einstein connection $\nabla \in \mathscr{E}(E,h)$ in $E$, we'll determine the tangent space of $\mathscr{E}(E,h)/\mathrm{U}(E,h)$ at $\nabla$. Consider
+
+$$
+\nabla_t = \nabla + \alpha_t,
+$$
+
+where $\alpha_t \in \Omega^1(\operatorname{End}(E,h))$ and $\alpha_0 = 0$.

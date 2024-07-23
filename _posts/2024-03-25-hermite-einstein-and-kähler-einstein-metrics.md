@@ -205,27 +205,44 @@ and so
 
 $$
 \begin{align*}
-\operatorname{tr}(F_{\nabla'}) &= \operatorname{tr}(F_{\nabla^\ast} \otimes 1 + 1 \otimes F_{\nabla}) \\
-&= \operatorname{tr}(F_{\nabla^\ast}) + \operatorname{tr}(F_{\nabla}) \\
-&= \operatorname{tr}(F_{\nabla^\ast}) - \operatorname{tr}(F_{\nabla^\ast}) \\
+\operatorname{tr}(F_{\nabla'}) &= \operatorname{tr}(F_{\nabla^\ast} \otimes \operatorname{id}_E + \operatorname{id}_E \otimes F_{\nabla}) \\
+&= \operatorname{tr}(F_{\nabla^\ast})k + k\operatorname{tr}(F_{\nabla}) \\
+&= k(\operatorname{tr}(F_{\nabla^\ast}) - \operatorname{tr}(F_{\nabla^\ast})) \\
 &= 0.
 \end{align*}
 $$
 
-That is $c_1(\operatorname{End}(E), \nabla') = 0$. In particular $\Lambda_\omega F_{\nabla'} = 0$. It suffices to show that $ch_2(\operatorname{End}(E), \nabla')\omega^{n-2} \le 0$ pointwise, since 
+That is $c_1(\operatorname{End}(E), \nabla') = 0$. In particular $\Lambda_\omega F_{\nabla'} = 0$ since the Hermite-Einstein constant $\lambda$ is defined in terms of $c_1(\operatorname{End}(E), \nabla')$ as we will see shortly. It suffices to show that $ch_2(\operatorname{End}(E), \nabla')\wedge\omega^{n-2} \le 0$ pointwise, since 
 
 $$
 ch_2(\operatorname{End}(E), \nabla') = -(2kc_2(E,\nabla) - (k-1)c^2_1(E,\nabla)).
 $$
 
-As 
-
+Now
 
 $$
-ch_2(\operatorname{End}(E), \nabla') = \operatorname{tr}\left(\frac{i}{2\pi}F_{\nabla'} \wedge \overline{\left(\frac{i}{2\pi}F_{\nabla'}\right)}\right),
+\begin{align*}
+ch_2(\operatorname{End}(E), \nabla') &= \frac{1}{2}(\underbrace{c^2_1(\operatorname{End}(E), \nabla')}_{0} - 2c_2(\operatorname{End}(E),\nabla')) \\
+&= -c_2(\operatorname{End}(E),\nabla')) \\
+&= -\frac{1}{8\pi^2} \operatorname{tr}(F^2_{\nabla'}) \\
+&= \frac{1}{2} \left(\operatorname{tr}\left(\frac{i}{2\pi} F_{\nabla'} \wedge \left(\overline{\frac{i}{2\pi} F_{\nabla'}}\right)^T \right)\right)
+\end{align*}
 $$
 
-and the Hodge-Riemann bilinear relation states that any matrix $A$ of primitive $(1,1)$-forms satisfies $\operatorname{tr}\left(A\bar{A}^T\right) \wedge \omega^{n-2} =  \sum a^i_j \bar{a}^i_j \wedge \omega^{n-2} \le 0$, we conclude the result.
+and since $\Lambda_\omega F_{\nabla'} = 0$, we know that $F_{\nabla'}$ is a primitive real $(1,1)$-form. the Hodge-Riemann bilinear relation now yields
+
+$$
+\begin{align*}
+ch_2(\operatorname{End}(E), \nabla') \wedge \omega^{n-2} &= \frac{1}{2} \left(\operatorname{tr}\left(\frac{i}{2\pi} F_{\nabla'} \wedge \left(\overline{\frac{i}{2\pi} F_{\nabla'}}\right)^T \right)\right) \wedge \omega^{n-2} \\
+&\le 0
+\end{align*}
+$$
+
+since for any matrix $A = [\alpha^i_j]$ of primitive $(1,1)$-forms the relation gives
+
+$$
+\operatorname{tr}\left(A \wedge \bar{A}^T\right )\wedge \omega^{n-2} = \sum_j \sum_k \alpha^j_k \wedge \bar{\alpha}^j_k \wedge \omega^{n-2} \le 0.
+$$
 
 </div>
 
@@ -274,22 +291,16 @@ $$
 
 gives $ \Lambda_\omega F_\nabla = \lambda \operatorname{id}$ when we set $\frac{1}{\operatorname{rank}(E)} \Lambda_\omega\operatorname{tr}( F_\nabla) = \lambda$. The harmonicity of $\operatorname{tr}(F_\nabla)$ yields that $\frac{1}{\operatorname{rank}(E)} \Lambda_\omega \operatorname{tr}(F_\nabla)$ is constant. 
 
-The Hermite-Einstein condition is equivalent to writing 
+It's not too difficult to see[^3] that the metric $h$ is Hermite-Einstein if and only if
 
 $$
-iF_\nabla = \frac{\lambda}{n}\omega\operatorname{id}_E + F'_\nabla,
-$$
-
-where $F'_\nabla$ is locally a matrix of $\omega$-primitive $(1,1)$-forms. It's not too difficult to see that the metric $h$ is Hermite-Einstein if and only if
-
-$$
-iF_\nabla \wedge \omega^{n-1} = \frac{\lambda}{n} \omega^n \operatorname{id}_E.
+iF_\nabla \wedge \omega^{n-1} = i\frac{\lambda}{n} \omega^n \operatorname{id}_E.
 $$
 
 Taking traces gives
 
 $$
-2\pi ic_1(E) \wedge \omega^{n-1} = \frac{\operatorname{rank}(E)\cdot \lambda}{n}\omega^n,
+2\pi ic_1(E) \wedge \omega^{n-1} = i\frac{\operatorname{rank}(E)\cdot \lambda}{n}\omega^n,
 $$
 
 and furthermore
@@ -497,3 +508,5 @@ If $E$ is a stable vector bundle over a compact Riemann surface $(X, g)$, there 
 [^1]: The indices here might be a bit unusual. I'm denoting $R^{j}_{ik\bar{l}}\partial_j = R(\partial_k,\bar{\partial}_l)\partial_i$ when we consider the curvature on the tangent bundle and $R^{j}\_{i\alpha\bar{\beta}}e\_j = R(\partial\_\alpha,\bar{\partial}\_\beta)e\_i$ when $R$ is the curvature of on a general vector bundle with a local frame $e_1,\dots,e_k$.
 
 [^2]: Especially in Kobayashi's texts.
+
+[^3]: Recall that for a $(1,1)$-form $\alpha = i \sum \alpha_{j\bar{k}}dz^j \wedge d\bar{z}^k$ we have $\alpha \wedge \omega^{n-1} = \frac{1}{n}\left(\sum \alpha_{k\bar{k}}\right)\omega^n$.

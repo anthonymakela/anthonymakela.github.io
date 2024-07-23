@@ -7,7 +7,7 @@ published: true
 excerpt_separator: <!--more-->
 ---
 
-Infinitesimal deformation, broadly speaking, considers the infinitesimal variations in the structures of certain mathematical objects. Imagine an object in space, potentially rigid, whose shape changes due to the application of external forces. At each moment in time, $t$, the object assumes a slightly different shape.
+Infinitesimal deformation, broadly speaking, considers the infinitesimal variations in the _structures_ of certain mathematical objects. Imagine an object in space, potentially rigid, whose shape changes due to the application of external forces. At each moment in time, $t$, the object assumes a slightly different shape.
 
 <!--more-->
 
