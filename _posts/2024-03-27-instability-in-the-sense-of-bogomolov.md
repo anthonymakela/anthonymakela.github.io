@@ -149,7 +149,7 @@ Let $(E,h)$ be a Hermite-Einstein vector bundle over $X$ with proportionality fa
 </ol>
 </div>
 <div class="proof">
-Recall that the tensor power $E^{\otimes r}$ of a Hermite-Einstein bundle $E$ is Hermite-Einstein with proportionality factor $r\lambda$ and the dual bundle $E^\ast$ is Hermite-Einstein with proportionality factor $-\lambda$. It follows that $E^{\otimes r} \otimes {E^\ast}^{\otimes s}$ is Hermite-Einstein with proportionality factor $(r-s)\lambda$. All of the statements now follow from the previous propositions by analyzing the sign of $(r-s)\lambda$.
+Recall that the tensor power $E^{\otimes r}$ of a Hermite-Einstein bundle $E$ is Hermite-Einstein with proportionality factor $r\lambda$ and the dual bundle $E^\ast$ is Hermite-Einstein with proportionality factor $-\lambda$. It follows that $E^{\otimes r} \otimes {E^\ast}^{\otimes s}$ is Hermite-Einstein with proportionality factor $(r-s)\lambda$. All of the statements now follow from the previous proposition by analyzing the sign of $(r-s)\lambda$.
 </div>
 <div class="corollary">
 If $(E,h)$ is a Hermite-Einstein vector bundle over $X$ with proportionality factor $\lambda = 0$ and $\xi \in H^0(X, E)$ has a zero, then $\xi = 0$.
