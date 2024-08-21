@@ -13,7 +13,7 @@ In the near future, I will write a short series on homological mirror symmetry a
 
 ---
 
-The motivation to consider $D^b(X) := D^b(\operatorname{Coh}(X))$ seems to originate from a physics perspective. The objects of this category correspond to $B$-branes in the $B$-model in topological string theory. To get a handle on the complex geometry of $B$-branes, a good starting point is to think of them as complex vector bundles. From there, we can broaden our view naturally to the category of coherent sheaves $\operatorname{Coh}(X)$ on $X$. However, not all $B$-branes can be described in terms of objects in $\operatorname{Coh}(X)$. To capture the full range of $B$-branes, one needs to consider the "larger" category $D^b(X)$.  
+The motivation to consider $D^b(X) := D^b(\textbf{Coh}(X))$ seems to originate from a physics perspective. The objects of this category correspond to $B$-branes in the $B$-model in topological string theory. To get a handle on the complex geometry of $B$-branes, a good starting point is to think of them as complex vector bundles. From there, we can broaden our view naturally to the category of coherent sheaves $\textbf{Coh}(X)$ on $X$. However, not all $B$-branes can be described in terms of objects in $\textbf{Coh}(X)$. To capture the full range of $B$-branes, one needs to consider the "larger" category $D^b(X)$.  
 
 Since I have not talked about derived or triangulated categories here before, we'll be starting from there. 
 
@@ -81,34 +81,34 @@ of $\mathcal{A}$, equipped with a differential $d : A^\bullet \to A^\bullet$ sat
 
 Differential-graded objects frequently appear in both physics and mathematics. In topology, for example, one associates a complex of free abelian groups to a space $X$, where the cohomology of this complex corresponds to the cohomology groups of $X$. In algebra, it's often useful to replace a module over a ring with various types of resolutions. Our goal is to consider complexes only up to an equivalence relation. A single topological space $X$ can have multiple triangulations, each leading to a different chain complex. However, we aim to associate a unique equivalence class of complexes to $X$. Similarly, different resolutions of a fixed module of a given type are usually not unique, and we want to treat all these resolutions equivalently.
 
-Suppose for example that $\mathscr{F}$ is a coherent sheaf over a projective variety $X$. Then there exists an resolution $\mathscr{E}^\bullet$
+Suppose for example that $\mathcal{F}$ is a coherent sheaf over a projective variety $X$. Then there exists an resolution $\mathcal{E}^\bullet$
 
 $$
-0 \longrightarrow \mathscr{F} \xrightarrow{\quad f\quad} \mathscr{E}^0 \longrightarrow \mathscr{E}^1 \longrightarrow \mathscr{E}^2 \longrightarrow \dots \longrightarrow \mathscr{E}^n \longrightarrow 0        
+0 \longrightarrow \mathcal{F} \xrightarrow{\quad f\quad} \mathcal{E}^0 \longrightarrow \mathcal{E}^1 \longrightarrow \mathcal{E}^2 \longrightarrow \dots \longrightarrow \mathcal{E}^n \longrightarrow 0        
 $$
 
-of $\mathscr{F}$ by locally free sheaves $\mathscr{E}^i$, i.e. vector bundles. One can now study $\mathscr{F}$ in terms of this resolution and we would not want to distinguish between
+of $\mathcal{F}$ by locally free sheaves $\mathcal{E}^i$, i.e. vector bundles. One can now study $\mathcal{F}$ in terms of this resolution and we would not want to distinguish between
 
 $$
-0 \longrightarrow \mathscr{F} \longrightarrow 0
+0 \longrightarrow \mathcal{F} \longrightarrow 0
 $$
 
 and
 
 $$
-0 \longrightarrow \mathscr{E}^0 \longrightarrow \mathscr{E}^1 \longrightarrow \mathscr{E}^2 \longrightarrow \dots \longrightarrow \mathscr{E}^n \longrightarrow 0,
+0 \longrightarrow \mathcal{E}^0 \longrightarrow \mathcal{E}^1 \longrightarrow \mathcal{E}^2 \longrightarrow \dots \longrightarrow \mathcal{E}^n \longrightarrow 0,
 $$
 
 since different resolutions of the same sheaf will generally lead to complexes that are not identical, but these complexes should be considered equivalent if they produce the same cohomology. The map $f$ above yields a quasi-isomorphism of the complexes. Indeed, consider
 
 $$
 \xymatrix{
-0 \ar@{->}[r] & \mathscr{F} \ar@{->}[r] \ar@{->}[d]^{f} & 0 \ar@{->}[r] \ar@{->}[d] & \dots \ar@{->}[r] & 0 \ar@{->}[r] \ar@{->}[d] & 0 \\
-0 \ar@{->}[r] & \mathscr{E}^0 \ar@{->}[r] & \mathscr{E}^1 \ar@{->}[r] & \dots \ar@{->}[r] & \mathscr{E}^n \ar@{->}[r] & 0.
+0 \ar@{->}[r] & \mathcal{F} \ar@{->}[r] \ar@{->}[d]^{f} & 0 \ar@{->}[r] \ar@{->}[d] & \dots \ar@{->}[r] & 0 \ar@{->}[r] \ar@{->}[d] & 0 \\
+0 \ar@{->}[r] & \mathcal{E}^0 \ar@{->}[r] & \mathcal{E}^1 \ar@{->}[r] & \dots \ar@{->}[r] & \mathcal{E}^n \ar@{->}[r] & 0.
 }
 $$
 
-Since $H^i(\mathscr{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathscr{F}) = \mathscr{F}$ and $H^0(\mathscr{E}^\bullet) = \operatorname{Im}f$. Since $\ker f$ we obtain $\operatorname{Im}f = \mathscr{F}$. Hence $H^0(f) : \mathscr{H}^0(\mathscr{F}) \to \mathscr{H}^0(\mathscr{E})$ is an isomorphism and $f$ a quasi-isomorphism.
+Since $H^i(\mathcal{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathcal{F}) = \mathcal{F}$ and $H^0(\mathcal{E}^\bullet) = \operatorname{Im}f$. Since $\ker f$ we obtain $\operatorname{Im}f = \mathcal{F}$. Hence $H^0(f) : \mathcal{H}^0(\mathcal{F}) \to \mathcal{H}^0(\mathcal{E})$ is an isomorphism and $f$ a quasi-isomorphism.
 
 
 <div class="definition">

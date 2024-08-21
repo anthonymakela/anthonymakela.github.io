@@ -429,6 +429,23 @@ blockquote {
   content: "Corollary (" attr(text) "). ";
 }
 
+.conjecture {
+  display: block;
+  margin: 12px 0;
+  border-left: 0.3rem solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+  font-style: normal;
+}
+.conjecture:before {
+  content: "Conjecture.";
+  font-weight: bold;
+  font-style: normal;
+}
+.conjecture[text]:before {
+  content: "Conjecture (" attr(text) "). ";
+}
+
 mjx-container {
   overflow-x: auto;
   overflow-y: hidden;
