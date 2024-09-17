@@ -4,6 +4,7 @@ title: "Flat Connections"
 categories: [Differential Geometry]
 mathjax: true
 published: true
+keywords: "Flat Connections"
 excerpt_separator: <!--more-->
 ---
 

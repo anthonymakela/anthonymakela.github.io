@@ -471,7 +471,7 @@ $$
 F : D(\mathcal{A}) \to D(\mathcal{B}),
 $$
 
-although such equivalences typically do not stem from an equivalence of the underlying abelian categories $\mathcal{A}$ and $\mathcal{B}$. Therefore, the use of derived categories is essential. Shifting perspectives slightly, one can think of a derived equivalence as a single triangulated category containing two different abelian categories. The theory of $t$-structures enables one to discern these distinct abelian categories within the triangulated category.
+although such equivalences typically do not stem from an equivalence of the underlying abelian categories $\mathcal{A}$ and $\mathcal{B}$. Therefore, the use of derived categories is essential. Shifting perspectives slightly, one can think of a derived equivalence $D(\mathcal{A}) \cong D(\mathcal{B})$ as a single triangulated category containing two different abelian categories. The theory of $t$-structures enables one to discern these distinct abelian categories within the triangulated category. In essence we would like to understand the image of $\mathcal{A} = \mathcal{A}[0]$ in $D(\mathcal{B})$.
 
 <div class="definition">
 Let $\mathcal{D}$ be a triangulated category. A <b>t-structure</b> on $\mathcal{D}$ is a pair $(\mathcal{D}^{\le 0},\mathcal{D}^{\ge 0})$ of full subcategories satisfying the following axioms:
