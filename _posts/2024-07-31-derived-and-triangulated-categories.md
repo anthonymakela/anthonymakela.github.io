@@ -108,7 +108,7 @@ $$
 }
 $$
 
-Since $H^i(\mathcal{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathcal{F}) = \mathcal{F}$ and $H^0(\mathcal{E}^\bullet) = \operatorname{Im}f$. Since $\ker f$ we obtain $\operatorname{Im}f = \mathcal{F}$. Hence $H^0(f) : \mathcal{H}^0(\mathcal{F}) \to \mathcal{H}^0(\mathcal{E})$ is an isomorphism and $f$ a quasi-isomorphism.
+Since $H^i(\mathcal{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathcal{F}) = \mathcal{F}$ and $H^0(\mathcal{E}^\bullet) = \operatorname{Im}f$. Since $\ker f$ we obtain $\operatorname{Im}f = \mathcal{F}$. Hence $H^0(f) : H^0(\mathcal{F}) \to H^0(\mathcal{E})$ is an isomorphism and $f$ a quasi-isomorphism.
 
 
 <div class="definition">
@@ -240,7 +240,7 @@ Let $\mathcal{A}$ be an abelian category and $K(\mathcal{A})$ the homotopy categ
  commutes.
     </li>
     <li>
- If $f : A^\bullet \to B^\bullet$ is a morphism in $K(\mathcal{A})$, then there is a quasi-isomorphism $s : C^\bullet \to A^\bullet$ with $f \circ s = 0$ in $K(\mathcal{A})$ precisely if there exists a quasi-isomorphism $t : B^\bullet \to D^bullet$ with $t \circ f = 0$ in $K(\mathcal{A})$.
+ If $f : A^\bullet \to B^\bullet$ is a morphism in $K(\mathcal{A})$, then there is a quasi-isomorphism $s : C^\bullet \to A^\bullet$ with $f \circ s = 0$ in $K(\mathcal{A})$ precisely if there exists a quasi-isomorphism $t : B^\bullet \to D^\bullet$ with $t \circ f = 0$ in $K(\mathcal{A})$.
     </li>
 </ol>
 </div>
