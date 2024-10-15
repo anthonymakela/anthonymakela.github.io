@@ -13,9 +13,7 @@ In the near future, I will write a short series on homological mirror symmetry a
 
 ---
 
-The motivation to consider $D^b(X) := D^b(\textbf{Coh}(X))$ seems to originate from a physics perspective. The objects of this category correspond to $B$-branes in the $B$-model in topological string theory. To get a handle on the complex geometry of $B$-branes, a good starting point is to think of them as complex vector bundles. From there, we can broaden our view naturally to the category of coherent sheaves $\textbf{Coh}(X)$ on $X$. However, not all $B$-branes can be described in terms of objects in $\textbf{Coh}(X)$. To capture the full range of $B$-branes, one needs to consider the "larger" category $D^b(X)$.  
-
-Since I have not talked about derived or triangulated categories here before, we'll be starting from there. 
+The motivation to consider $D^b(X) := D^b(\textbf{Coh}(X))$ seems to originate from a physics perspective. The objects of this category correspond to $B$-branes in the $B$-model in topological string theory. To get a handle on the complex geometry of $B$-branes, a good starting point is to think of them as complex vector bundles. From there, we can broaden our view naturally to the category of coherent sheaves $\textbf{Coh}(X)$ on $X$. However, not all $B$-branes can be described in terms of objects in $\textbf{Coh}(X)$. To capture the full range of $B$-branes, one needs to consider the "larger" category $D^b(X).$  Since I have not talked about derived or triangulated categories here before, we'll be starting from there. 
 
 
 ---
@@ -65,7 +63,7 @@ $$
 
 The shift is usually written as $A^\bullet[1] = \Sigma A^\bullet$, or more generally $A^\bullet[n] = \Sigma^n A^\bullet$. We'll discuss more about this shortly when we introduce triangulated categories. 
 
-Given a complex $A^\bullet \in \operatorname{Kom}(\mathcal{A})$, the ith cohomology object is defined as the quotient
+Given a complex $A^\bullet \in \operatorname{Kom}(\mathcal{A})$, the i'th cohomology object is defined as the quotient
 
 $$
 H^i(A^\bullet) = \ker(d^i)/\operatorname{Im}(d^{i-1}).
@@ -99,16 +97,16 @@ $$
 0 \longrightarrow \mathcal{E}^0 \longrightarrow \mathcal{E}^1 \longrightarrow \mathcal{E}^2 \longrightarrow \dots \longrightarrow \mathcal{E}^n \longrightarrow 0,
 $$
 
-since different resolutions of the same sheaf will generally lead to complexes that are not identical, but these complexes should be considered equivalent if they produce the same cohomology. The map $f$ above yields a quasi-isomorphism of the complexes. Indeed, consider
+since different resolutions of the same sheaf will generally lead to complexes that are not identical, but these complexes should be considered equivalent if they are <b>quasi-isomorphic</b>. The map $f$ above yields a quasi-isomorphism of the complexes. Indeed, consider
 
 $$
 \xymatrix{
-0 \ar@{->}[r] & \mathcal{F} \ar@{->}[r] \ar@{->}[d]^{f} & 0 \ar@{->}[r] \ar@{->}[d] & \dots \ar@{->}[r] & 0 \ar@{->}[r] \ar@{->}[d] & 0 \\
-0 \ar@{->}[r] & \mathcal{E}^0 \ar@{->}[r] & \mathcal{E}^1 \ar@{->}[r] & \dots \ar@{->}[r] & \mathcal{E}^n \ar@{->}[r] & 0.
+0 \ar@{->}[r] & \mathcal{F} \ar@{->}[r] \ar@{->}[d]^{f} & 0 \ar@{->}[r] \ar@{->}[d] & \cdots \ar@{->}[r] & 0 \ar@{->}[r] \ar@{->}[d] & 0 \\
+0 \ar@{->}[r] & \mathcal{E}^0 \ar@{->}[r] & \mathcal{E}^1 \ar@{->}[r] & \cdots \ar@{->}[r] & \mathcal{E}^n \ar@{->}[r] & 0.
 }
 $$
 
-Since $H^i(\mathcal{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathcal{F}) = \mathcal{F}$ and $H^0(\mathcal{E}^\bullet) = \operatorname{Im}f$. Since $\ker f$ we obtain $\operatorname{Im}f = \mathcal{F}$. Hence $H^0(f) : \mathcal{H}^0(\mathcal{F}) \to \mathcal{H}^0(\mathcal{E})$ is an isomorphism and $f$ a quasi-isomorphism.
+Since $H^i(\mathcal{E}^\bullet) = 0$ for all $i \ge 1$ we only need to consider the morphism $f$. We have that $H^0(\mathcal{F}) = \mathcal{F}$ and $H^0(\mathcal{E}^\bullet) = \operatorname{Im}f$. Since $\ker f = 0$ we obtain $\operatorname{Im}f = \mathcal{F}$. Hence $H^0(f) : H^0(\mathcal{F}) \to H^0(\mathcal{E})$ is an isomorphism and $f$ a quasi-isomorphism.
 
 
 <div class="definition">

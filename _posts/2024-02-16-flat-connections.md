@@ -366,7 +366,7 @@ $$
 }
 $$
 
-with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R^k)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem[^6].
+with $\varphi_i \circ \varphi^{-1}_j$ being an $\mathcal{O}_X\vert\_{U_i \cap U_j}$-module isomorphism. This yields an invertible $(k \times k)$-matrix, i.e. an element in $\mathrm{GL}(k, \mathcal{O}_X(U_i \cap U_j))$ which we can identify with a map $g\_{ij} : U_i \cap U_j \to \mathrm{GL}(k,\Bbb R)$. Recall now that these transition functions $g\_{ij}$ determine a vector bundle of rank $k$ on $X$ via the vector bundle construction theorem[^6].
 
 That's all this time around, in the near future I'll probably come back to this topic from the viewpoint of local systems and those representations of the fundamental group.
 
