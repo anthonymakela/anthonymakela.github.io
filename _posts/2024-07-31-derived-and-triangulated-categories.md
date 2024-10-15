@@ -238,7 +238,7 @@ Let $\mathcal{A}$ be an abelian category and $K(\mathcal{A})$ the homotopy categ
  commutes.
     </li>
     <li>
- If $f : A^\bullet \to B^\bullet$ is a morphism in $K(\mathcal{A})$, then there is a quasi-isomorphism $s : C^\bullet \to A^\bullet$ with $f \circ s = 0$ in $K(\mathcal{A})$ precisely if there exists a quasi-isomorphism $t : B^\bullet \to D^bullet$ with $t \circ f = 0$ in $K(\mathcal{A})$.
+ If $f : A^\bullet \to B^\bullet$ is a morphism in $K(\mathcal{A})$, then there is a quasi-isomorphism $s : C^\bullet \to A^\bullet$ with $f \circ s = 0$ in $K(\mathcal{A})$ precisely if there exists a quasi-isomorphism $t : B^\bullet \to D^\bullet$ with $t \circ f = 0$ in $K(\mathcal{A})$.
     </li>
 </ol>
 </div>
