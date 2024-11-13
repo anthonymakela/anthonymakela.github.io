@@ -258,10 +258,10 @@ $$
 The reason I wanted to do this is that now we have a more explicit description for the coefficient $f_{k}(A)$ of $t^{n-k}$ as 
 
 $$
-f_k(A) = \frac{1}{k!}\delta^{i_{1}i_{2}i_{3}\ldots i_{k}}_{j_{1}j_{2}j_{3}\ldots j_{k}}a^{j_1}_{i_1}\cdots a^{j_k}_{i_k}
+f_k(A) = \frac{1}{k!}\delta^{i_{1}i_{2}i_{3}\ldots i_{k}}_{j_{1}j_{2}j_{3}\ldots j_{k}}a^{j_1}_{i_1}\cdots a^{j_k}_{i_k},
 $$
 
-Which is... actually, I believe this is a good point to end this.
+which is... actually, I believe this is a good point to end this.
 
 ---
 
