@@ -95,8 +95,8 @@ Note that this gives also the transition functions for $\mathcal{O}(1) := \mathc
 $$
 \begin{align*}
 g_{\alpha\beta}([z])^{-1} &= \frac{z^\beta}{z^\alpha}, \\
-g_{\alpha\beta}([z])^{-k} &= \left(\frac{z^\alpha}{z^\beta}\right)^k, \\
-g_{\alpha\beta}([z])^{k} &= \left(\frac{z^\beta}{z^\alpha}\right)^k
+g_{\alpha\beta}([z])^{k} &= \left(\frac{z^\alpha}{z^\beta}\right)^k, \\
+g_{\alpha\beta}([z])^{-k} &= \left(\frac{z^\beta}{z^\alpha}\right)^k
 \end{align*}
 $$
 
