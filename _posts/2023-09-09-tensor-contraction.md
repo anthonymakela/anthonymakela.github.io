@@ -212,7 +212,7 @@ While we are at it, the Scalar curvature $S$ is defined by taking the $(1,2)$-co
 $$
 \begin{align*}
 S &= \operatorname{tr}_{h,1,2}(\operatorname{Ric}) \\
-&= R^{\,\,\,\,\,\,i}_{ijk} \operatorname{tr}_{h,1,4}(dx^j \otimes dx^k) \\
+&= R^{\,\,\,\,\,\,i}_{ijk} \operatorname{tr}_{h,1,2}(dx^j \otimes dx^k) \\
 &= g^{jk}R^{\,\,\,\,\,\,i}_{ijk} \\
 &= g^{jk}R_{jk}.
 \end{align*}
