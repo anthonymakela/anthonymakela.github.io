@@ -147,7 +147,7 @@ $$
 or as matrices $\partial h = \omega^T h$ and $\bar{\partial}h = h\bar{\omega}$. This yields that $\omega = \bar{h}^{-1}\partial\bar{h}$ is a unique solution to both equations. So $\omega$ is completely determined locally by the Hermitian metric, and thus so is $\nabla$. The argument also constructs such a connection on each framed open set. Then by uniqueness, these local connections glue to a connection on all of $E$ and so we are done.
 </div>
 
-The unique connection described in the previous proposition is called the <b>Chern connection</b>[^1]. To get a better feel for this, let's see how this behaves in terms of holomorphic line bundles.
+    The unique connection described in the previous proposition is called the <b>Chern connection</b>[^1]. To get a better feel for this, let's see how this behaves in terms of holomorphic line bundles.
 
 <div class="example">
 Let $L \to X$ be a holomorphic line bundle. Then, locally on a framed open set $U$ with a frame $e$, a Hermitian metric $h$ is given by a positive real function $h(e,e)$. It follows that 

@@ -235,7 +235,7 @@ which will be useful when we transition to manifolds and need local expressions.
 We'll now get to the actual point of this post.
 
 <div class="definition">
-Let $(V,g)$ be a real vector space equipped with an almost complex structure $J$, and suppose that $\omega$ is the associated fundamental form. Then the <b>Lefschetz operator</b> $L : \bigwedge^\ast V^\ast_\Bbb C \to \bigwedge^\ast V^\ast_\Bbb C$ is defined by $\alpha \mapsto \alpha \wedge \omega$.
+Let $(V,\langle \cdot, \cdot \rangle)$ be a real vector space equipped with an almost complex structure $J$, and suppose that $\omega$ is the associated fundamental form. Then the <b>Lefschetz operator</b> $L : \bigwedge^\ast V^\ast_\Bbb C \to \bigwedge^\ast V^\ast_\Bbb C$ is defined by $\alpha \mapsto \alpha \wedge \omega$.
 </div>
 
 We immediately see that $L$ is the $\Bbb C$-linear extension of the real operator $\bigwedge^\ast V^\ast \to \bigwedge^\ast V^\ast$ sending $\alpha \mapsto w\wedge \alpha$. Also, since we can choose an orthonormal basis $z_1,\dots,z_n$ for $V_\Bbb C$ and write

@@ -214,7 +214,7 @@ Let $\mathcal{O}(1) \to \Bbb P^n$ be the dual of the tautological line bundle. T
  $$
  s([z]) \in \ell^\ast \otimes \cdots \otimes \ell^\ast, 
     $$
- where $\ell$ is the line corresponding to $[z]$. Under our identification of $\ell^\ast \otimes \cdots \otimes \ell^\ast$ with homogeneous maps $\ell \to \Bbb C$, we'll view $s([z])$ as such and define
+ where $\ell$ is the line corresponding to $[z]$. Under our identification of $\ell^\ast \otimes \cdots \otimes \ell^\ast$ with homogeneous maps $\ell \to \Bbb C$ of degree $d$, we'll view $s([z])$ as such and define
  $$
     \begin{align*}
  f : \Bbb C^{n+1} \setminus \{0\} &\to \Bbb C \\

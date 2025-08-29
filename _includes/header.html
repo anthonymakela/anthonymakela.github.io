@@ -1,6 +1,7 @@
 <header class="site-header">
+  
 
-  <div class="wrapper">
+  <div class="header-wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
@@ -17,7 +18,7 @@
           </span>
         </label>
         <div class="trigger">
-          <a class="page-link" href="/about/">About</a>          
+          <a class="page-link" href="/posts/">Posts</a>          
         </div>        
       </nav>
     {%- endif -%}
