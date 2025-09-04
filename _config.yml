@@ -5,8 +5,6 @@ author:
 
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
-description: >
-  Perspectives
 
 # Build settings
 markdown: kramdown
@@ -53,5 +51,6 @@ minima:
 # Set to `true` to show excerpts on the homepage.
 #
 # show_excerpts: false
+
 
 google_analytics: G-CEX4KQJM3W
