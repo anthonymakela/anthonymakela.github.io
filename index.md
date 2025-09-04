@@ -35,7 +35,7 @@ layout: page
       <a href="assets/The_Atiyah_Class_on_Calabi__Yau_Manifolds.pdf" style="color:#680530" target="_blank">Here</a> are some notes on the Atiyah class on Calabi–Yau manifolds. Much of this formed the basis of my master's thesis.
     </p>
     <p>
-      You can reach me at <p style="color:#680530">anthony.makela[at]gu.se</p>.
+      You can reach me at anthony.makela[at]gu.se.
     </p>
   </div>
 
