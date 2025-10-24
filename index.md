@@ -29,7 +29,7 @@ layout: page
       I am a PhD student at the University of Gothenburg, working on complex geometry under the supervision of <a href="https://sites.google.com/cirget.ca/lars-sektnan/" style="color:#680530" target="_blank">Lars Martin Sektnan</a>. Before this, I completed my undergraduate and master’s studies in Mathematics at the University of Helsinki.
     </p>
     <p>
-    I am interested in the interplay between derived categories, complex geometry, and algebraic geometry. More specifically in stability conditions, such as Bridgeland stability and K-stability. 
+    My research interests lie in the interplay between derived categories, complex and algebraic geometry, with emphasis on Bridgeland stability conditions and the geometry of moduli spaces.
     </p>
     <p>
       <a href="assets/The_Atiyah_Class_on_Calabi__Yau_Manifolds.pdf" style="color:#680530" target="_blank">Here</a> are some notes on the Atiyah class on Calabi–Yau manifolds. Much of this formed the basis of my master's thesis.
