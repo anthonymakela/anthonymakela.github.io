@@ -8,6 +8,15 @@ layout: page
     margin-right: auto;
     margin-left: auto;
   }
+  @media (max-width: 700px) {
+    .profile-photo {
+      float: none !important;
+      display: block !important;
+      margin: 0 auto 18px auto !important;
+      width: min(290px, 70vw) !important;
+      height: min(290px, 70vw) !important;
+    }
+  }  
 </style>
 
 <div class="wrapper">
@@ -15,15 +24,17 @@ layout: page
     <link rel="stylesheet" href="/assets/css/custom.css">
 
     <img
-      src="/assets/images/anth.jpg"
-      alt="Anthony Mäkelä"
-      style="width: 290px;
-          height: 290px;
-          float: right;
-          margin-left: 20px;
-          margin-bottom: 20px;
-          border-radius: 50%;
-          object-fit: cover;">
+    class="profile-photo"
+    src="/assets/images/anth.jpg"
+    alt="Anthony Mäkelä"
+    style="width: 290px;
+        height: 290px;
+        float: right;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        object-fit: cover;">
+
 
     <p>
       I am a PhD student in mathematics at the University of Gothenburg, working on complex geometry under the supervision of
