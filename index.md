@@ -26,7 +26,7 @@ layout: page
   min-width: 300px;
 ">
     <p>
-      I am a PhD student at the University of Gothenburg, working on complex geometry under the supervision of <a href="https://sites.google.com/cirget.ca/lars-sektnan/" style="color:#680530" target="_blank">Lars Martin Sektnan</a>. Before this, I completed my undergraduate and master’s studies in Mathematics at the University of Helsinki.
+      I am a PhD student in mathematics at the University of Gothenburg, working on complex geometry under the supervision of <a href="https://sites.google.com/cirget.ca/lars-sektnan/" style="color:#680530" target="_blank">Lars Martin Sektnan</a>. Before this, I completed my undergraduate and master’s studies in Mathematics at the University of Helsinki.
     </p>
     <p>
     My research interests lie in the interplay between derived categories, complex and algebraic geometry, with emphasis on Bridgeland stability conditions and the geometry of moduli spaces.
