@@ -79,11 +79,9 @@ layout: page
 
 <hr class="section-separator">
 
-<h2>Research</h2>
+<h2>Publications & Preprints</h2>
 
 <p>
-  Negative Effective Divisors and Bridgeland Stability of Line Bundles on Surfaces
-
  <a class="publication-icon"
    href="/assets/2608.26080v1.pdf"
    target="_blank">
@@ -100,6 +98,7 @@ layout: page
        alt="arXiv"
        style="height: 20px;">
 </a>
+  Negative Effective Divisors and Bridgeland Stability of Line Bundles on Surfaces (2026)
 </p>
 
 </div>
