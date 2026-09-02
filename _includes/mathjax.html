@@ -1,0 +1,27 @@
+<script>
+  MathJax = {
+    loader: {
+      load: ['[custom]/xypic.js'],
+      paths: {
+        custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'
+      }
+    },
+    tex: {
+      packages: {'[+]': ['xypic']},
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true,
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    chtml: {
+      linebreaks: { automatic: true }
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+  </script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
